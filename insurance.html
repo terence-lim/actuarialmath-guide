@@ -1,0 +1,1040 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Insurance &#8212; Solving Actuarial Math with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'insurance';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Annuities" href="annuity.html" />
+    <link rel="prev" title="Fractional Ages" href="fractional.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Solving Actuarial Math with Python</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="actuarial.html">Actuarial Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interest.html">Interest Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="life.html">Life Contingent Risks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="survival.html">Survival Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lifetime.html">Expected Future Lifetimes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fractional.html">Fractional Ages</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Insurance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annuity.html">Annuities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="woolhouse.html">Woolhouse M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faml.html">Sample Solutions and Hints</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/terence-lim/actuarialmath.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/terence-lim/actuarialmath.git/issues/new?title=Issue%20on%20page%20%2Finsurance.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/insurance.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Insurance</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#present-value-of-life-insurance-r-v-z">Present value of life insurance r.v. <span class="math notranslate nohighlight">\(Z\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-endowment">Pure endowment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variances">Variances</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-insurance">Varying insurance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="insurance">
+<h1>Insurance<a class="headerlink" href="#insurance" title="Permalink to this heading">#</a></h1>
+<p>For a life insurance policy, the time at which the benefit will be paid is unknown until the policyholder actually dies and the policy becomes a claim.</p>
+<section id="present-value-of-life-insurance-r-v-z">
+<h2>Present value of life insurance r.v. <span class="math notranslate nohighlight">\(Z\)</span><a class="headerlink" href="#present-value-of-life-insurance-r-v-z" title="Permalink to this heading">#</a></h2>
+<p>Valuation functions for the present value of insurance benefits, denoted by Z, are based on the continuous future lifetime random variable, Tx, or the curtate future lifetime random variable, Kx.
+The expected present value of insurance benefit,denoted and solved by EPV(Z), is sometimes referred to as the actuarial value or actuarial present value.</p>
+<p><strong>Whole life insurance</strong>:</p>
+<p><span class="math notranslate nohighlight">\(Z = v^{T_x}\)</span></p>
+<ul class="simple">
+<li><p>continuous insurance, benefit is payable immediately on death</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\overline{A}_x = E[v^{T_x}] = \int_{t=0}^{\infty} ~ v^t ~ _tp_x ~ \mu_{x+t} ~ dt\)</span></p>
+<ul class="simple">
+<li><p>EPV continuous whole life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Z = v^{K_x + 1}\)</span></p>
+<ul class="simple">
+<li><p>annual insurance, benefit is payable at end of year of death</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(A_x = E[v^{K_x+1}] = \sum_{k=0}^{\infty} ~ v^{k+1} ~ _{k|}q_x\)</span></p>
+<ul class="simple">
+<li><p>EPV of annual whole life insurance</p></li>
+</ul>
+<p><strong>Term insurance</strong>:</p>
+<p><span class="math notranslate nohighlight">\(Z = 0\)</span> when <span class="math notranslate nohighlight">\(T_x &gt; t\)</span>, else <span class="math notranslate nohighlight">\(v^{T_x}\)</span></p>
+<ul class="simple">
+<li><p>death benefit is payable immediately only if the policy-holder dies within <span class="math notranslate nohighlight">\(t\)</span> years</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\overline{A}^ {1}_{x:\overline{t|}} = \int_{s=0}^{t} ~ v^s ~ _sp_x ~ \mu_{x+s} ~ ds = \overline{A}_x - ~_tE_x ~ \overline{A}_{x+t}\)</span></p>
+<ul class="simple">
+<li><p>continous term insurance as the difference of continous whole life and deferred continuous whole life</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Z = 0\)</span> when <span class="math notranslate nohighlight">\(K_x \ge t\)</span>, else <span class="math notranslate nohighlight">\(v^{K_x + 1}\)</span></p>
+<ul class="simple">
+<li><p>death benefit is payable at the end of the year of death provided this occurs within <span class="math notranslate nohighlight">\(t\)</span> years</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(A^ {1}_{x:\overline{t|}} = \sum_{k=0}^{t-1} ~ v^{k+1} ~ _{k|}q_x = A_x - ~_tE_x ~ A_{x+t}\)</span></p>
+<ul class="simple">
+<li><p>annual term insurance as the difference of annual whole life and deferred annual whole life</p></li>
+</ul>
+<p><strong>Deferred whole life insurance</strong>:</p>
+<p>Does not begin to offer death benefit cover until the end of a deferred period</p>
+<p><span class="math notranslate nohighlight">\(Z = 0\)</span> when <span class="math notranslate nohighlight">\(T_x &lt; u\)</span>, else <span class="math notranslate nohighlight">\(v^{T_x}\)</span></p>
+<ul class="simple">
+<li><p>benefit is payable immediately on the death of (x) provided that (x) dies after the age of <span class="math notranslate nohighlight">\(x+u\)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_{u|}\overline{A}_{x:\overline{t|}} = ~_uE_x ~ \overline{A}_{x+u:\overline{t|}}\)</span></p>
+<ul class="simple">
+<li><p>continuous deferred insurance as the EPV of whole life insurance starting at the end of deferred period.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Z = 0\)</span> when <span class="math notranslate nohighlight">\(K_x &lt; u\)</span>, else <span class="math notranslate nohighlight">\(v^{K_x + 1}\)</span></p>
+<ul class="simple">
+<li><p>annual deferred insurance where the death benefit is payable at the end of the year of death</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_{u|}A_{x:\overline{t|}} = ~_uE_x ~ A_{x+u:\overline{t|}}\)</span></p>
+<ul class="simple">
+<li><p>annual deferred insurance as the EPV of whole life insurance starting at the end of deferred period.</p></li>
+</ul>
+<p><strong>Endowment insurance</strong>:</p>
+<p>An endowment insurance provides a combination of a term insurance and a pure endowment.</p>
+<p><span class="math notranslate nohighlight">\(Z = v^t\)</span> when <span class="math notranslate nohighlight">\(T_x \ge t\)</span>, else <span class="math notranslate nohighlight">\(v^{T_x}\)</span></p>
+<ul class="simple">
+<li><p>benefit is payable on the death of (x) should (x)
+die within <span class="math notranslate nohighlight">\(t\)</span> years, but if (x) survives for <span class="math notranslate nohighlight">\(t\)</span> years, the sum
+insured is payable at the end of the <span class="math notranslate nohighlight">\(t\)</span>-th year.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\overline{A}_{x:\overline{t|}} = \overline{A}^ {1}_{x:\overline{t|}}  + ~_tE_x\)</span></p>
+<ul class="simple">
+<li><p>continuous endowment insurance as continuous term insurance plus a pure endowment</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Z = v^t\)</span> when <span class="math notranslate nohighlight">\(K_x \ge t\)</span>, else <span class="math notranslate nohighlight">\(v^{K_x + 1}\)</span></p>
+<ul class="simple">
+<li><p>annual endowment insurance where the death benefit is payable at the end of the year of death</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(A_{x:\overline{t|}} = A^ {1}_{x:\overline{t|}} + ~_tE_x\)</span></p>
+<ul class="simple">
+<li><p>annual endowment insurance as annual term insurance plus a pure endowment</p></li>
+</ul>
+</section>
+<section id="pure-endowment">
+<h2>Pure endowment<a class="headerlink" href="#pure-endowment" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(Z = 0\)</span> when <span class="math notranslate nohighlight">\(T_x &lt; t\)</span>, else <span class="math notranslate nohighlight">\(v^t\)</span></p>
+<ul class="simple">
+<li><p>benefit payable in <span class="math notranslate nohighlight">\(t\)</span> years if (x) is still alive at that time, but pays nothing if (x) dies before then.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\({_n}E_x = A^{~~~~1}_{x:\overline{n|}} = v^n ~ _np_x\)</span></p>
+<ul class="simple">
+<li><p>Because the pure endowment will be paid only at time <span class="math notranslate nohighlight">\(t\)</span>, assuming the life survives, there is only the discrete time version</p></li>
+</ul>
+</section>
+<section id="variances">
+<h2>Variances<a class="headerlink" href="#variances" title="Permalink to this heading">#</a></h2>
+<p>The variance of life insurance benefits is computed as the difference of the second moment and square of the first moment.</p>
+<p><span class="math notranslate nohighlight">\({^2}{\overline{A}}_{x} = \int_{t=0}^{\infty} ~ v^{2t} ~ _tp_x ~ \mu_{x+t} ~ dt\)</span></p>
+<ul class="simple">
+<li><p>second moment of continuous insurance equal to <span class="math notranslate nohighlight">\(\overline{A}_{x}\)</span> at double the force of interest.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\({^2}{A}_{x} = \sum_{k=0}^{\infty} ~ v^{2(k+1)} ~ _{k|}q_x\)</span></p>
+<ul class="simple">
+<li><p>second moment of annual insurance is equal to <span class="math notranslate nohighlight">\(A_{x}\)</span> at double the force of interest.</p></li>
+</ul>
+<p><strong>Life insurance</strong>:</p>
+<p><span class="math notranslate nohighlight">\(Var(\overline{A}_{x}) =  {^2}\overline{A}_{x} - (\overline{A}_{x})^2\)</span></p>
+<ul class="simple">
+<li><p>variance of continuous whole life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var(A_{x}) = {^2}A_{x} - ~(A_{x})^2\)</span></p>
+<ul class="simple">
+<li><p>variance of annual whole life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var(\overline{A}^ {1}_{x:\overline{t|}}) =  {^2}\overline{A}^ {1}_{x:\overline{t|}} - (\overline{A}^ {1}_{x:\overline{t|}})^2\)</span></p>
+<ul class="simple">
+<li><p>variance of continuous term life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var(A^ {1}_{x:\overline{t|}}) = {^2}A^ {1}_{x:\overline{t|}} - ~(A^ {1}_{x:\overline{t|}})^2\)</span></p>
+<ul class="simple">
+<li><p>variance of annual term life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var(_{u|}\overline{A}_{x:\overline{t|}}) =  {^2_{u|}}\overline{A}_{x:\overline{t|}} - (_{u|}\overline{A}_{x:\overline{t|}})^2\)</span></p>
+<ul class="simple">
+<li><p>variance of continuous deferred life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var(_{u|}A_{x:\overline{t|}}) = {^2_{u|}}A_{x:\overline{t|}} - ~(_{u|}A_{x:\overline{t|}})^2\)</span></p>
+<ul class="simple">
+<li><p>variance of annual deferred life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var(\overline{A}_{x:\overline{t|}}) =  {^2}\overline{A}_{x:\overline{t|}} - (\overline{A}_{x:\overline{t|}})^2\)</span></p>
+<ul class="simple">
+<li><p>variance of continous endowment insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var(A_{x:\overline{t|}}) = {^2}A_{x:\overline{t|}} - ~(A_{x:\overline{t|}})^2\)</span></p>
+<ul class="simple">
+<li><p>variance of annual endowment insurance</p></li>
+</ul>
+<p><strong>Pure Endowment</strong>:</p>
+<p><span class="math notranslate nohighlight">\({^2_t}E_{x} = v^{2t} ~ _tp_x = v_t ~ _tE_x\)</span></p>
+<ul class="simple">
+<li><p>second moment of pure endowment by discounting <span class="math notranslate nohighlight">\(_tE_x\)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var(_tE_x) = v^{2t} ~ _tp_x ~ _tq_x = v^{2t} ~_tp_x - (v^t ~ _tp_x)^2\)</span></p>
+<ul class="simple">
+<li><p>variance of pure endowment is the variance of a Bernoulli random variable</p></li>
+</ul>
+</section>
+<section id="varying-insurance">
+<h2>Varying insurance<a class="headerlink" href="#varying-insurance" title="Permalink to this heading">#</a></h2>
+<p><strong>Increasing insurance</strong>:</p>
+<p>Amount of death benefit increases arithmetically at a rate of $1 per year.</p>
+<p><span class="math notranslate nohighlight">\((\overline{IA})_{x} = \int_{t=0}^{\infty} ~ t ~ v^t ~ _tp_x ~ \mu_{x+t} ~ dt\)</span></p>
+<ul class="simple">
+<li><p>increasing continuous whole life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\((IA)_{x} = \sum_{k=0}^{\infty} ~ (k+1) ~ v^{k+1} ~ _{k|}q_x\)</span></p>
+<ul class="simple">
+<li><p>increasing annual whole life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\((\overline{IA})^{1}_{x:\overline{t|}} = \int_{s=0}^{t} ~ s ~ v^s ~ _sp_x ~ \mu_{x+s} ~ ds\)</span></p>
+<ul class="simple">
+<li><p>increasing continuous term insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\((IA)^{1}_{x:\overline{t|}} = \sum_{k=0}^{t-1} ~ (k+1) ~ v^{k+1} ~ _{k|}q_x\)</span></p>
+<ul class="simple">
+<li><p>increasing annual term insurance</p></li>
+</ul>
+<p><strong>Decreasing insurance</strong>:</p>
+<p>Amount of death benefit increasing arithmetically at a rate of $1 per year.</p>
+<p><span class="math notranslate nohighlight">\((\overline{DA})^{1}_{x:\overline{t|}} = \int_{s=0}^{t} ~ (t-s) ~ v^s ~ _sp_x ~ \mu_{x+s} ~ ds\)</span></p>
+<ul class="simple">
+<li><p>decreasing continuous term insurance (not defined for whole life)</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\((DA)^{1}_{x:\overline{t|}} = \sum_{k=0}^{t-1} ~ (t-k) ~ v^{k+1} ~ _{k|}q_x\)</span></p>
+<ul class="simple">
+<li><p>decreasing annual term insurance (not defined for whole life)</p></li>
+</ul>
+<p><strong>Identity relationship</strong>:</p>
+<p><span class="math notranslate nohighlight">\((\overline{DA})^{1}_{x:\overline{t|}} + (\overline{IA})^{1}_{x:\overline{t|}} = t ~ \overline{A}^{1}_{x:\overline{t|}}\)</span></p>
+<ul class="simple">
+<li><p>relates continuous increasing and decreasing insurances</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\((DA)^{1}_{x:\overline{t|}} + (IA)^{1}_{x:\overline{t|}} = (t+1) ~ A^{1}_{x:\overline{t|}}\)</span></p>
+<ul class="simple">
+<li><p>relates annual increasing and decreasing insurances</p></li>
+</ul>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Insurance</span></code> class implements methods to compute the present value of life insurance</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">actuarialmath.insurance</span> <span class="kn">import</span> <span class="n">Insurance</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 6.33</strong></p>
+<p>An insurance company sells 15-year pure endowments of 10,000 to 500 lives, each age x, with independent future lifetimes. The single premium for each pure endowment is determined by the equivalence principle.</p>
+<ul class="simple">
+<li><p>You are given:</p></li>
+<li><p><span class="math notranslate nohighlight">\(i\)</span> = 0.03</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu_x(t) = 0.02 t, \quad t \ge 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(_0L\)</span> is the aggregate loss at issue random variable for these pure endowments.</p></li>
+</ul>
+<p>Using the normal approximation without continuity correction, calculate <span class="math notranslate nohighlight">\(Pr(_0L) &gt; 50,000)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.33:  (B) 0.13&quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Insurance</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mf">0.02</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">moment</span><span class="o">=</span><span class="n">life</span><span class="o">.</span><span class="n">_VARIANCE</span><span class="p">,</span> <span class="n">endowment</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">life</span><span class="o">.</span><span class="n">portfolio_cdf</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="n">var</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.33:  (B) 0.13
+0.12828940905648634
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 4.18</strong></p>
+<p>You are given that T, the time to first failure of an industrial robot, has a density f(t) given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+f(t) &amp;= 0.1, \quad 0 \le t &lt; 2\\
+ &amp;= 0.4t^{-2}, \quad t \le t &lt; 10
+\end{align*}
+\end{split}\]</div>
+<p>with <span class="math notranslate nohighlight">\(f(t)\)</span> undetermined on <span class="math notranslate nohighlight">\([10, \infty)\)</span>.</p>
+<p>Consider a supplemental warranty on this robot that pays 100,000 at the time T of its first failure if <span class="math notranslate nohighlight">\(2 \le T \le 10\)</span> , with no benefits payable otherwise.
+You are also given that <span class="math notranslate nohighlight">\(\delta = 5\%\)</span>. Calculate the 90th percentile of the present value of the future benefits under this warranty.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 4.18  (A) 81873 &quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">t</span><span class="p">):</span> <span class="k">return</span> <span class="mf">0.1</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">t</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Insurance</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>\
+                  <span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">maxage</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">benefit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">):</span> <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="mi">100000</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="mf">0.9</span> <span class="o">-</span> <span class="n">life</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">Z_t</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="n">prob</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">Z_from_t</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">benefit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 4.18  (A) 81873 
+81873.07530779815
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 4.10</strong></p>
+<p>The present value random variable for an insurance policy on (x) is expressed as:
+$<span class="math notranslate nohighlight">\(\begin{align*}
+Z &amp; =0, \quad \textrm{if } T_x \le 10\\
+&amp; =v^T, \quad \textrm{if } 10 &lt; T_x \le 20\\
+&amp; =2v^T, \quad \textrm{if } 20 &lt; T_x \le 30\\
+&amp; =0, \quad \textrm{thereafter}
+\end{align*}\)</span>$</p>
+<p>Determine which of the following is a correct expression for <span class="math notranslate nohighlight">\(E[Z]\)</span>.</p>
+<p>(A) <span class="math notranslate nohighlight">\(_{10|}\overline{A}_x + _{20|}\overline{A}_x - _{30|}\overline{A}_x\)</span></p>
+<p>(B) <span class="math notranslate nohighlight">\(\overline{A}_x + _{20}E_x \overline{A}_{x+20} - 2~_{30}E_x \overline{A}_{x +30}\)</span></p>
+<p>(C) <span class="math notranslate nohighlight">\(_{210}E_x \overline{A}_x + _{20}E_x \overline{A}_{x+20} - 2 ~_{30}E_x \overline{A}_{x +30}\)</span></p>
+<p>(D) <span class="math notranslate nohighlight">\(_{10}E_x \overline{A}_{x+10} + _{20}E x \overline{A}_{x+20} - 2~ _{30}E x \overline{A}_{x+30}\)</span></p>
+<p>(E) <span class="math notranslate nohighlight">\(_{10}E_x [\overline{A}_{x} + _{10}E_{x+10} + \overline{A}_{x+20} - _{10}E_{x+20} + \overline{A}_{x+30}]\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 4.10:  (D)&quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Insurance</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>\
+                    <span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">S</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">maxage</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="k">if</span> <span class="mi">10</span> <span class="o">&lt;=</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">:</span> <span class="k">return</span> <span class="n">life</span><span class="o">.</span><span class="n">interest</span><span class="o">.</span><span class="n">v_t</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="mi">20</span> <span class="o">&lt;</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="mi">30</span><span class="p">:</span> <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">life</span><span class="o">.</span><span class="n">interest</span><span class="o">.</span><span class="n">v_t</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+<span class="k">def</span> <span class="nf">A</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>  <span class="c1"># Z_x+k (t-k)                                                       </span>
+    <span class="k">return</span> <span class="n">life</span><span class="o">.</span><span class="n">interest</span><span class="o">.</span><span class="n">v_t</span><span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">benefits</span><span class="o">=</span><span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+                            <span class="o">+</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span><span class="o">*</span> <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">20</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+                            <span class="o">-</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="p">)),</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+                            <span class="o">+</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">20</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+                            <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="p">)),</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+                            <span class="o">+</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">20</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+                            <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="p">)),</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+                            <span class="o">+</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">20</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+                            <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="p">)),</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                            <span class="o">*</span> <span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+                            <span class="o">+</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">20</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+                            <span class="o">-</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">20</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="p">)))]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">fun</span><span class="p">]</span> <span class="o">+</span> <span class="n">benefits</span><span class="p">):</span>
+    <span class="n">life</span><span class="o">.</span><span class="n">Z_plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;C</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="s2">&quot;abcde&quot;</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span> <span class="k">if</span> <span class="n">i</span> <span class="k">else</span> <span class="s2">&quot;Z&quot;</span><span class="p">])</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">b</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="n">fun</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">))</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">benefits</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ABCDE&quot;</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">z</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 4.10:  (D)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D
+</pre></div>
+</div>
+<img alt="_images/3fafdb587400ef89e5dc00e80ccf91c3d6ed5972953078f4959617778fb3a671.png" src="_images/3fafdb587400ef89e5dc00e80ccf91c3d6ed5972953078f4959617778fb3a671.png" />
+</div>
+</div>
+<p><strong>SOA Question 4.12</strong></p>
+<p>For three fully discrete insurance products on the same (x), you are given:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Z_1\)</span> is the present value random variable for a 20-year term insurance of 50</p></li>
+<li><p><span class="math notranslate nohighlight">\(Z_2\)</span> is the present value random variable for a 20-year deferred whole life
+insurance of 100</p></li>
+<li><p><span class="math notranslate nohighlight">\(Z_3\)</span> is the present value random variable for a whole life insurance of 100.</p></li>
+<li><p><span class="math notranslate nohighlight">\(E[Z_1] = 1.65\)</span> and <span class="math notranslate nohighlight">\(E[Z_2] = 10.75\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Var(Z_1) = 46.75\)</span> and <span class="math notranslate nohighlight">\(Var(Z_2) = 50.78\)</span></p></li>
+</ul>
+<p>Calculate <span class="math notranslate nohighlight">\(Var(Z_3)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 4.12:  (C) 167&quot;</span><span class="p">)</span>
+<span class="n">cov</span> <span class="o">=</span> <span class="n">Insurance</span><span class="o">.</span><span class="n">covariance</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mf">1.65</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">10.75</span><span class="p">,</span> <span class="n">ab</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Z1 and Z2 nonoverlapping      </span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">Insurance</span><span class="o">.</span><span class="n">variance</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">var_a</span><span class="o">=</span><span class="mf">46.75</span><span class="p">,</span> <span class="n">var_b</span><span class="o">=</span><span class="mf">50.78</span><span class="p">,</span> <span class="n">cov_ab</span><span class="o">=</span><span class="n">cov</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 4.12:  (C) 167
+166.82999999999998
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 4.11</strong></p>
+<p>You are given:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Z_1\)</span> is the present value random variable for an n-year term insurance of 1000
+issued to (x)</p></li>
+<li><p><span class="math notranslate nohighlight">\(Z_2\)</span> is the present value random variable for an n-year endowment insurance of
+1000 issued to (x)</p></li>
+<li><p>For both <span class="math notranslate nohighlight">\(Z_1\)</span> and <span class="math notranslate nohighlight">\(Z_2\)</span> the death benefit is payable at the end of the year of death</p></li>
+<li><p><span class="math notranslate nohighlight">\(E [ Z_1 ] = 528\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Var ( Z_2 ) = 15,000\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A^{~~~~1}_{x:{\overline{n|}}} = 0.209\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^2A^{~~~~1}_{x:{\overline{n|}}} = 0.136\)</span></p></li>
+</ul>
+<p>Calculate <span class="math notranslate nohighlight">\(Var(Z_1)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 4.11:  (A) 143385&quot;</span><span class="p">)</span>
+<span class="n">A1</span> <span class="o">=</span> <span class="mi">528</span><span class="o">/</span><span class="mi">1000</span>   <span class="c1"># E[Z1]  term insurance                                           </span>
+<span class="n">C1</span> <span class="o">=</span> <span class="mf">0.209</span>      <span class="c1"># E[pure_endowment]                                               </span>
+<span class="n">C2</span> <span class="o">=</span> <span class="mf">0.136</span>      <span class="c1"># E[pure_endowment^2]                                             </span>
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">A2</span><span class="p">):</span>
+    <span class="n">B1</span> <span class="o">=</span> <span class="n">A1</span> <span class="o">+</span> <span class="n">C1</span>   <span class="c1"># endowment = term + pure_endowment                            </span>
+    <span class="n">B2</span> <span class="o">=</span> <span class="n">A2</span> <span class="o">+</span> <span class="n">C2</span>   <span class="c1"># double force of interest                                     </span>
+    <span class="k">return</span> <span class="n">Insurance</span><span class="o">.</span><span class="n">insurance_variance</span><span class="p">(</span><span class="n">A2</span><span class="o">=</span><span class="n">B2</span><span class="p">,</span> <span class="n">A1</span><span class="o">=</span><span class="n">B1</span><span class="p">)</span>
+<span class="n">A2</span> <span class="o">=</span> <span class="n">Insurance</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">15000</span><span class="o">/</span><span class="p">(</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">),</span> <span class="n">grid</span><span class="o">=</span><span class="p">[</span><span class="mi">143400</span><span class="p">,</span> <span class="mi">279300</span><span class="p">])</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">Insurance</span><span class="o">.</span><span class="n">insurance_variance</span><span class="p">(</span><span class="n">A2</span><span class="o">=</span><span class="n">A2</span><span class="p">,</span> <span class="n">A1</span><span class="o">=</span><span class="n">A1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 4.11:  (A) 143385
+143384.99999999997
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 4.15</strong></p>
+<p>For a special whole life insurance on (x), you are given:</p>
+<ul class="simple">
+<li><p>Death benefits are payable at the moment of death</p></li>
+<li><p>The death benefit at time <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(b_t = e^{0.02t}\)</span>, for <span class="math notranslate nohighlight">\(t \ge 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu_{x+t} = 0.04\)</span>, for <span class="math notranslate nohighlight">\(t \ge 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\delta = 0.06\)</span></p></li>
+<li><p>Z is the present value at issue random variable for this insurance.</p></li>
+</ul>
+<p>Calculate <span class="math notranslate nohighlight">\(Var(Z)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 4.15  (E) 0.0833 &quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Insurance</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="mf">0.04</span><span class="p">)</span>\
+                  <span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>
+<span class="n">benefit</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.02</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+<span class="n">A1</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">A_x</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="n">benefit</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">A2</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">A_x</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">moment</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="n">benefit</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">A2</span> <span class="o">-</span> <span class="n">A1</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 4.15  (E) 0.0833 
+0.08334849338238598
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 4.4</strong></p>
+<p>For a special increasing whole life insurance on (40), payable at the moment of death, you are given:</p>
+<ul class="simple">
+<li><p>The death benefit at time t is <span class="math notranslate nohighlight">\(b_t = 1 + 0.2 t, \quad t \ge 0\)</span></p></li>
+<li><p>The interest discount factor at time t is <span class="math notranslate nohighlight">\(v(t) = (1 + 0.2 t ) − 2, \quad t \ge 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(_tp_{40} \mu_{40+t} = 0.025~\text{if} ~ 0 \le t &lt; 40\)</span>, otherwise <span class="math notranslate nohighlight">\(0\)</span></p></li>
+<li><p>Z is the present value random variable for this insurance
+Calculate Var(Z).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 4.4  (A) 0.036&quot;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Insurance</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="mf">0.025</span><span class="p">,</span> <span class="n">maxage</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">40</span><span class="p">)</span>\
+                  <span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">v_t</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mf">.2</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">benefit</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mi">1</span> <span class="o">+</span> <span class="mf">.2</span> <span class="o">*</span> <span class="n">t</span>
+<span class="n">A1</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">A_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="n">benefit</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">A2</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">A_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">moment</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="n">benefit</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">A2</span> <span class="o">-</span> <span class="n">A1</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 4.4  (A) 0.036
+0.03567680106032681
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Plot insurance present value r.v Z</strong></p>
+<p>Plot the insurance present value r.v. Z and survival probability of (x), and indicate median survival lifetime.  Assume mortality follows Standard Ultimate Life Table</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.sult</span> <span class="kn">import</span> <span class="n">SULT</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
+<span class="n">life</span><span class="o">.</span><span class="n">Z_curve</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">life</span><span class="o">.</span><span class="n">Z_t</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+             <span class="n">title</span><span class="o">=</span><span class="s2">&quot;PV insurance benefit if (x) survives median lifetime&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/199f171472af59e6fdc443aea3bc451b7d0128be4bc2501c4bb3bb0f826347ba.png" src="_images/199f171472af59e6fdc443aea3bc451b7d0128be4bc2501c4bb3bb0f826347ba.png" />
+</div>
+</div>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Insurance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Insurance - Compute expected present values of life insurance
+
+    Methods:
+    --------
+
+    E_x(x, s, t, endowment, moment):
+      Pure endowment: t_E_x
+
+    A_x(x, s, t, u, benefit, endowment, moment, discrete):
+      Numerically compute EPV of insurance from basic survival functions
+
+    insurance_variance(A2, A1, b):
+      Compute variance of insurance given moments and benefit
+
+    whole_life_insurance(x, s, moment, b, discrete):
+      Whole life insurance: A_x
+
+    term_insurance(x, s, t, b, moment, discrete):
+      Term life insurance: A_x:t^1
+
+    deferred_insurance(x, s, u, t, b, moment, discrete):
+      Deferred insurance n|_A_x:t^1 = discounted term or whole life
+
+    endowment_insurance(x, s, t, b, endowment, moment, discrete):
+      Endowment insurance: A_x^1:t = term insurance + pure endowment
+
+    increasing_insurance(x, s, t, b, discrete):
+      Increasing life insurance: (IA)_x
+
+    decreasing_insurance(x, s, t, b, discrete):
+      Decreasing life insurance: (DA)_x
+
+    Z_t(x, prob, discrete):
+      T_x given percentile of the PV of WL or Term insurance, i.e. r.v. Z(t)
+
+    Z_from_t(t, discrete):
+      PV of insurance payment Z(t), given T_x (or K_x if discrete)
+
+    Z_to_t(Z):
+      T_x s.t. PV of insurance payment is Z
+
+    Z_from_prob(x, prob, discrete):
+      Percentile of insurance PV r.v. Z, given probability
+
+    Z_to_prob(x, Z):
+      Cumulative density of insurance PV r.v. Z, given percentile value
+
+    Z_x(x, s, t, discrete):
+      EPV of year t insurance death benefit for life aged [x]+s: b_x[s]+s(t)
+
+    Z_plot(x, s, stop, benefit, T, discrete, ax, title, color):
+      Plot of PV of insurance r.v. Z vs t
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="fractional.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Fractional Ages</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="annuity.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Annuities</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#present-value-of-life-insurance-r-v-z">Present value of life insurance r.v. <span class="math notranslate nohighlight">\(Z\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-endowment">Pure endowment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variances">Variances</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-insurance">Varying insurance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Terence Lim
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

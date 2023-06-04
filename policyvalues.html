@@ -1,0 +1,914 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Policy Values &#8212; Solving Actuarial Math with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'policyvalues';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Reserves" href="reserves.html" />
+    <link rel="prev" title="Premiums" href="premiums.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Solving Actuarial Math with Python</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="actuarial.html">Actuarial Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interest.html">Interest Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="life.html">Life Contingent Risks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="survival.html">Survival Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lifetime.html">Expected Future Lifetimes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fractional.html">Fractional Ages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insurance.html">Insurance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annuity.html">Annuities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Policy Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="woolhouse.html">Woolhouse M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faml.html">Sample Solutions and Hints</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/terence-lim/actuarialmath.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/terence-lim/actuarialmath.git/issues/new?title=Issue%20on%20page%20%2Fpolicyvalues.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/policyvalues.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Policy Values</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#net-policy-value">Net policy value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gross-policy-value">Gross policy value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-future-loss">Variance of future loss</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expense-reserve">Expense reserve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="policy-values">
+<h1>Policy Values<a class="headerlink" href="#policy-values" title="Permalink to this heading">#</a></h1>
+<p><strong>Present value of future loss random variable at issue</strong></p>
+<p>For net future loss, we consider benefit payments and net premiums only.</p>
+<p><span class="math notranslate nohighlight">\(_0L = b~v^{K_x + 1} - P\ddot{a}_{\overline{K_x + 1|}} = (b + \dfrac{P}{d})~v^{K_x+1} - \dfrac{P}{d}\)</span></p>
+<ul class="simple">
+<li><p>net future loss at issue of fully discrete whole life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_0L = b~v^{T_x} - P\overline{a}_{\overline{T_x|}} = (b + \dfrac{P}{\delta})~v^{T_x} - \dfrac{P}{\delta}\)</span> (continuous)</p>
+<ul class="simple">
+<li><p>net future loss at issue of fully continuous whole life insurance</p></li>
+</ul>
+<p>For gross future loss, expenses are included along with benefits payments and gross premiums.</p>
+<p><span class="math notranslate nohighlight">\(_0L = (b + E + \dfrac{G - e_r}{d})~v^{K_x+1} - \dfrac{G - e_r}{d} + (e_i - e_r)\)</span></p>
+<ul class="simple">
+<li><p>gross future loss at issue of fully discrete whole life insurance</p></li>
+</ul>
+<section id="net-policy-value">
+<h2>Net policy value<a class="headerlink" href="#net-policy-value" title="Permalink to this heading">#</a></h2>
+<p>The amount needed at time <span class="math notranslate nohighlight">\(t\)</span> to cover the shortfall of expected future benefits greater than the EPV of future premiums is called the policy value for the policy at time <span class="math notranslate nohighlight">\(t\)</span>, denoted <span class="math notranslate nohighlight">\(_tV\)</span>,</p>
+<p><span class="math notranslate nohighlight">\(_tV = E[_tL] = EPV_t (\textsf{future benefits}) - EPV_t (\textsf{future premiums})\)</span></p>
+<ul class="simple">
+<li><p>net policy value at time <span class="math notranslate nohighlight">\(t\)</span> is the expected net future loss of benefits less premiums after time <span class="math notranslate nohighlight">\(t\)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_0V = 0\)</span></p>
+<ul class="simple">
+<li><p>net policy value at issue is 0 because of the equivalence principle</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_nV = 0\)</span></p>
+<ul class="simple">
+<li><p>net policy value at year <span class="math notranslate nohighlight">\(n\)</span> is 0 for a n-year term insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_nV = \)</span> endowment benefit</p>
+<ul class="simple">
+<li><p>net policy value at year <span class="math notranslate nohighlight">\(n\)</span> is equal to the endowment benefit for a n-year endowment insurance</p></li>
+</ul>
+<p><strong>Shortcuts for whole life and endowment insurance:</strong></p>
+<p><span class="math notranslate nohighlight">\(_tV = b[1 - \dfrac{\ddot{a}_{x+t}}{\ddot{a}_{x}}]\)</span> or <span class="math notranslate nohighlight">\(b[\dfrac{A_{x+t} - A_x}{1 - A_x}]\space \)</span></p>
+<ul class="simple">
+<li><p>net policy value at time <span class="math notranslate nohighlight">\(t\)</span> of fully-discrete whole life insurance*</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_tV = b[1 - \dfrac{\overline{a}_{x+t}}{\overline{a}_{x}}]\)</span> or <span class="math notranslate nohighlight">\(b[\dfrac{\overline{A}_{x+t} - \overline{A}_x}{1 - \overline{A}_x}] \space \)</span></p>
+<ul class="simple">
+<li><p>net policy value at time <span class="math notranslate nohighlight">\(t\)</span> of fully-continuous whole life insurance*</p></li>
+</ul>
+<p>*Add <span class="math notranslate nohighlight">\(:\overline{n|}\)</span> to <span class="math notranslate nohighlight">\(A\)</span>’s and <span class="math notranslate nohighlight">\(a\)</span>’s for endowment insurance</p>
+</section>
+<section id="gross-policy-value">
+<h2>Gross policy value<a class="headerlink" href="#gross-policy-value" title="Permalink to this heading">#</a></h2>
+<p>Gross premium policy values explicitly allow for expenses and for the full gross premium, whereas net premium policy values exclude expenses from cash flows, and only the net premium is counted.</p>
+<p><span class="math notranslate nohighlight">\(_tV^g = E[_tL^g] = EPV_t (\textsf{future benefits}) + EPV_t (\textsf{future expenses}) - EPV_t (\textsf{future premiums})\)</span></p>
+<ul class="simple">
+<li><p>gross policy value at time <span class="math notranslate nohighlight">\(t\)</span> is the expected net future loss of benefits and expenses less premiums after time <span class="math notranslate nohighlight">\(t\)</span></p></li>
+</ul>
+</section>
+<section id="variance-of-future-loss">
+<h2>Variance of future loss<a class="headerlink" href="#variance-of-future-loss" title="Permalink to this heading">#</a></h2>
+<p>These formulas apply to <em>whole life</em> and <em>endowment insurance</em> <strong>only</strong>:</p>
+<p><strong>Net future loss</strong></p>
+<p><span class="math notranslate nohighlight">\(Var[_tL] = (b + \dfrac{P}{d})^2~[^{2}A_{x+t:\overline{n-t|}} - (A_{x+t:\overline{n-t|}})^2]\)</span></p>
+<ul class="simple">
+<li><p>fully discrete endowment insurance*</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var[_tL] = (b + \dfrac{P}{\delta})^2~[^{2}\overline{A}_{x+t:\overline{n-t|}} - (\overline{A}_{x+t:\overline{n-t|}})^2]\)</span></p>
+<ul class="simple">
+<li><p>fully continuous endowment insurance*</p></li>
+</ul>
+<p><strong>Gross future loss</strong></p>
+<p><span class="math notranslate nohighlight">\(Var[_tL] = (b + E + \dfrac{G-e_r}{d})^2~[^{2}A_{x+t:\overline{n-t|}} - (A_{x+t:\overline{n-t|}})^2]\)</span></p>
+<ul class="simple">
+<li><p>fully discrete endowment insurance*</p></li>
+</ul>
+<p><strong>Shortcuts for variance of net future loss</strong></p>
+<p>When net premiums are set under equivalence principle, these shortcuts are available without explicitly specifying the value of net premiums, again, for <em>whole life</em> and <em>endowment insurance</em> <strong>only</strong>:</p>
+<p><span class="math notranslate nohighlight">\(Var[_tL] = b^2[\dfrac{^{2}A_{x+t:\overline{n-t|}} - (A_{x+t:\overline{n-t|}})^2}{(1 - A_{x:\overline{n|}})^2}]\)</span></p>
+<ul class="simple">
+<li><p>variance of net future loss for fully-discrete endowment insurance*</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var[_tL] = b^2[\dfrac{^{2}\overline{A}_{x+t:\overline{n-t|}} - (\overline{A}_{x+t:\overline{n-t|}})^2}{(1 - \overline{A}_{x:\overline{n|}})^2}]\)</span></p>
+<ul class="simple">
+<li><p>variance of net future loss for fully-continuous endowment insurance*</p></li>
+</ul>
+<p>*For whole life insurance, remove the <span class="math notranslate nohighlight">\(\overline{:n|}\)</span> and <span class="math notranslate nohighlight">\(\overline{:n-t|}\)</span> notations.</p>
+</section>
+<section id="expense-reserve">
+<h2>Expense reserve<a class="headerlink" href="#expense-reserve" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(P^e = P^g - P^n\)</span></p>
+<ul class="simple">
+<li><p>expense premium (sometimes, expense loading) is defined as the difference of gross premium and net premium</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_tV^e = ~_tV^g - ~_tV = EPV_t(\textsf{future expenses}) -  EPV_t(\textsf{future expense loadings})\)</span></p>
+<ul class="simple">
+<li><p>expense reserves, defined as the difference between gross reserves and net reserves, equals the expected present value of future expenses less the expected present value of future expense loadings (or expense premiums)</p></li>
+</ul>
+<p>Generally:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(_tV^e &lt; 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(~_tV &gt; ~_tV^g &gt; 0 &gt; ~_tV^e\)</span></p></li>
+</ul>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">PolicyValues</span></code> class implements methods for computing net and gross future losses, and policy values (expected present values).  The <code class="docutils literal notranslate"><span class="pre">Contract</span></code> class helps to store and retrieve policy contract terms, such as benefit amounts and various expenses.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.policyvalues</span> <span class="kn">import</span> <span class="n">PolicyValues</span><span class="p">,</span> <span class="n">Contract</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 6.24</strong></p>
+<p>For a fully continuous whole life insurance of 1 on (x), you are given:</p>
+<ul class="simple">
+<li><p>L is the present value of the loss at issue random variable if the premium rate is
+determined by the equivalence principle</p></li>
+<li><p>L^* is the present value of the loss at issue random variable if the premium rate is 0.06</p></li>
+<li><p><span class="math notranslate nohighlight">\(\delta = 0.07\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline{A}_x = 0.30\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Var(L) = 0.18\)</span></p></li>
+</ul>
+<p>Calculate <span class="math notranslate nohighlight">\(Var(L^*)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.24:  (E) 0.30&quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">PolicyValues</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="mf">0.07</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">A1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.30</span>   <span class="c1"># Policy for first insurance</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">premium_equivalence</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A1</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Need its premium</span>
+<span class="n">contract</span> <span class="o">=</span> <span class="n">Contract</span><span class="p">(</span><span class="n">premium</span><span class="o">=</span><span class="n">P</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">A2</span><span class="p">):</span>  <span class="c1"># Solve for A2, given Var(Loss)</span>
+    <span class="k">return</span> <span class="n">life</span><span class="o">.</span><span class="n">gross_variance_loss</span><span class="p">(</span><span class="n">A1</span><span class="o">=</span><span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="o">=</span><span class="n">A2</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
+<span class="n">A2</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mf">0.18</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="mf">0.18</span><span class="p">)</span>
+<span class="n">contract</span> <span class="o">=</span> <span class="n">Contract</span><span class="p">(</span><span class="n">premium</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>     <span class="c1"># Solve second insurance</span>
+<span class="n">variance</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">gross_variance_loss</span><span class="p">(</span><span class="n">A1</span><span class="o">=</span><span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="o">=</span><span class="n">A2</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.24:  (E) 0.30
+0.30419999999999975
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 6.30</strong></p>
+<p>For a fully discrete whole life insurance of 100 on (x), you are given:</p>
+<ul class="simple">
+<li><p>The first year expense is 10% of the gross annual premium</p></li>
+<li><p>Expenses in subsequent years are 5% of the gross annual premium</p></li>
+<li><p>The gross premium calculated using the equivalence principle is 2.338</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.04\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\ddot{a}_x = 16.50\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^2A_x = 0.17\)</span></p></li>
+</ul>
+<p>Calculate the variance of the loss at issue random variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.30:  (A) 900&quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">PolicyValues</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
+<span class="n">contract</span> <span class="o">=</span> <span class="n">Contract</span><span class="p">(</span><span class="n">premium</span><span class="o">=</span><span class="mf">2.338</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">initial_premium</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span>
+                    <span class="n">renewal_premium</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">gross_variance_loss</span><span class="p">(</span><span class="n">A1</span><span class="o">=</span><span class="n">life</span><span class="o">.</span><span class="n">insurance_twin</span><span class="p">(</span><span class="mf">16.50</span><span class="p">),</span>
+                                <span class="n">A2</span><span class="o">=</span><span class="mf">0.17</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.30:  (A) 900
+908.141412994607
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 7.32</strong></p>
+<p>For two fully continuous whole life insurance policies on (x), you are given:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Death Benefit</p></th>
+<th class="head"><p>Annual Premium Rate</p></th>
+<th class="head"><p>Variance of the PV of Future Loss at t</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Policy A</p></td>
+<td><p>1</p></td>
+<td><p>0.10</p></td>
+<td><p>0.455</p></td>
+</tr>
+<tr class="row-odd"><td><p>Policy B</p></td>
+<td><p>2</p></td>
+<td><p>0.16</p></td>
+<td><p>-</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\delta= 0.06\)</span></p></li>
+</ul>
+<p>Calculate the variance of the present value of future loss at <span class="math notranslate nohighlight">\(t\)</span> for Policy B.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 7.32:  (B) 1.4&quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">PolicyValues</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>
+<span class="n">contract</span> <span class="o">=</span> <span class="n">Contract</span><span class="p">(</span><span class="n">benefit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">premium</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">A2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">life</span><span class="o">.</span><span class="n">gross_variance_loss</span><span class="p">(</span><span class="n">A1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">A2</span><span class="o">=</span><span class="n">A2</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
+<span class="n">A2</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mf">0.455</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="mf">0.455</span><span class="p">)</span>
+<span class="n">contract</span> <span class="o">=</span> <span class="n">Contract</span><span class="p">(</span><span class="n">benefit</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">premium</span><span class="o">=</span><span class="mf">0.16</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">gross_variance_loss</span><span class="p">(</span><span class="n">A1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">A2</span><span class="o">=</span><span class="n">A2</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 7.32:  (B) 1.4
+1.3848168384380901
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 6.12</strong></p>
+<p>For a fully discrete whole life insurance of 1000 on (x), you are given:</p>
+<ul class="simple">
+<li><p>The following expenses are incurred at the beginning of each year:</p></li>
+</ul>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Year 1</p></th>
+<th class="head"><p>Years 2+</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Percent of premium</p></td>
+<td><p>75%</p></td>
+<td><p>10%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Maintenance expenses</p></td>
+<td><p>10</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>An additional expense of 20 is paid when the death benefit is paid</p></li>
+<li><p>The gross premium is determined using the equivalence principle</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.06\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\ddot{a}_x = 12.0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^2A_x = 0.14\)</span></p></li>
+</ul>
+<p>Calculate the variance of the loss at issue random variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.12:  (E) 88900&quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">PolicyValues</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">insurance_twin</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">contract</span> <span class="o">=</span> <span class="n">Contract</span><span class="p">(</span><span class="n">benefit</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">settlement_policy</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+                    <span class="n">initial_policy</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">initial_premium</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> 
+                    <span class="n">renewal_policy</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">renewal_premium</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">contract</span><span class="o">.</span><span class="n">premium</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">gross_premium</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">contract</span><span class="o">.</span><span class="n">premium_terms</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">contract</span><span class="o">.</span><span class="n">premium</span><span class="p">)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">gross_variance_loss</span><span class="p">(</span><span class="n">A1</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">A2</span><span class="o">=</span><span class="mf">0.14</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.12:  (E) 88900
+0.3207547169811321 35.38618830746352
+88862.59592874818
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Plot present value of future loss r.v L</strong>:</p>
+<p>Assume mortality follows Standard Ultimate Life Table. Indicate breakeven lifetime.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.sult</span> <span class="kn">import</span> <span class="n">SULT</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">net_premium</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<span class="n">contract</span> <span class="o">=</span> <span class="n">Contract</span><span class="p">(</span><span class="n">premium</span><span class="o">=</span><span class="n">P</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">L_to_t</span><span class="p">(</span><span class="n">L</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>  <span class="c1"># breakeven T                            </span>
+<span class="n">life</span><span class="o">.</span><span class="n">L_plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.000695265147726408
+</pre></div>
+</div>
+<img alt="_images/85d4338a0015bcf6b0da287af8aa4c47282f3df525cc1d973a985f4d1eb22e28.png" src="_images/85d4338a0015bcf6b0da287af8aa4c47282f3df525cc1d973a985f4d1eb22e28.png" />
+</div>
+</div>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">PolicyValues</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class PolicyValues - Compute net and gross future losses and policy values
+
+    Methods:
+    --------
+
+    net_future_loss(A, A1, b):
+      Shortcuts for WL or Endowment Insurance net loss
+
+    net_variance_loss(A1, A2, A, b):
+      Shortcuts for variance of net loss of WL or Endowment Insurance
+
+    net_policy_variance(x, s, t, b, n, endowment, discrete):
+      Variance of future loss for WL or Endowment Ins assuming equivalence
+
+    gross_future_loss(A, a, contract):
+      Shortcut for WL or Endowment Insurance gross future loss
+
+    gross_policy_variance(x, s, t, n, contract):
+      Variance of gross policy value for WL and Endowment Insurance
+
+    gross_policy_value(x, s, t, n, contract):
+      Gross policy values for insurance: t_V = E[L_t]
+
+    L_from_t(t, contract):
+      PV of Loss L(t) at time of death t = T_x (or K_x if discrete)
+
+    L_to_t(L, contract):
+      Compute time of death T_x s.t. PV future loss is L
+
+    L_from_prob(x, prob, contract):
+      Compute PV of future loss at given percentile prob
+
+    L_to_prob(x, L, contract):
+      Compute percentile of L on the PV of future loss curve&quot;
+
+    L_plot(x, s, stop, T, contract, ax, title, color):
+      Plot PV of future loss r.v. L vs time of death T_x
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">PolicyValues</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class PolicyValues - Compute net and gross future losses and policy values
+
+    Methods:
+    --------
+
+    net_future_loss(A, A1, b):
+      Shortcuts for WL or Endowment Insurance net loss
+
+    net_variance_loss(A1, A2, A, b):
+      Shortcuts for variance of net loss of WL or Endowment Insurance
+
+    net_policy_variance(x, s, t, b, n, endowment, discrete):
+      Variance of future loss for WL or Endowment Ins assuming equivalence
+
+    gross_future_loss(A, a, contract):
+      Shortcut for WL or Endowment Insurance gross future loss
+
+    gross_policy_variance(x, s, t, n, contract):
+      Variance of gross policy value for WL and Endowment Insurance
+
+    gross_policy_value(x, s, t, n, contract):
+      Gross policy values for insurance: t_V = E[L_t]
+
+    L_from_t(t, contract):
+      PV of Loss L(t) at time of death t = T_x (or K_x if discrete)
+
+    L_to_t(L, contract):
+      Compute time of death T_x s.t. PV future loss is L
+
+    L_from_prob(x, prob, contract):
+      Compute PV of future loss at given percentile prob
+
+    L_to_prob(x, L, contract):
+      Compute percentile of L on the PV of future loss curve&quot;
+
+    L_plot(x, s, stop, T, contract, ax, title, color):
+      Plot PV of future loss r.v. L vs time of death T_x
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="premiums.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Premiums</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="reserves.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Reserves</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#net-policy-value">Net policy value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gross-policy-value">Gross policy value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-future-loss">Variance of future loss</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expense-reserve">Expense reserve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Terence Lim
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

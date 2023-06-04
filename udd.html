@@ -1,0 +1,821 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>UDD M’thly &#8212; Solving Actuarial Math with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'udd';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Woolhouse M’thly" href="woolhouse.html" />
+    <link rel="prev" title="1/M’thly" href="mthly.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Solving Actuarial Math with Python</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="actuarial.html">Actuarial Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interest.html">Interest Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="life.html">Life Contingent Risks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="survival.html">Survival Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lifetime.html">Expected Future Lifetimes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fractional.html">Fractional Ages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insurance.html">Insurance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annuity.html">Annuities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">UDD M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="woolhouse.html">Woolhouse M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faml.html">Sample Solutions and Hints</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/terence-lim/actuarialmath.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/terence-lim/actuarialmath.git/issues/new?title=Issue%20on%20page%20%2Fudd.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/udd.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>UDD M’thly</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-insurance">Life insurance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-life-insurance">Continuous Life Insurance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interest-functions">Interest functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-annuities">Life annuities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="udd-m-thly">
+<h1>UDD M’thly<a class="headerlink" href="#udd-m-thly" title="Permalink to this heading">#</a></h1>
+<p>With the UDD fractional age assumption, we can work with annual insurance and annuity factors <span class="math notranslate nohighlight">\(A_x\)</span> and <span class="math notranslate nohighlight">\(a_x\)</span>, then adjust for a more appropriate frequency <span class="math notranslate nohighlight">\(A^{(m)}_{x}\)</span> and <span class="math notranslate nohighlight">\(\ddot{a}^{(m)}_{x}\)</span> using the following relationships.</p>
+<section id="life-insurance">
+<h2>Life insurance<a class="headerlink" href="#life-insurance" title="Permalink to this heading">#</a></h2>
+<p>Using the values of <span class="math notranslate nohighlight">\(A_x\)</span> to approximate <span class="math notranslate nohighlight">\(A^{(m)}_{x}\)</span></p>
+<p><span class="math notranslate nohighlight">\(A^{(m)}_x = \dfrac{i}{i^{(m)}} A_x\)</span></p>
+<ul class="simple">
+<li><p>discrete whole life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(A^ {1~(m)}_{x:\overline{t|}} = \dfrac{i}{i^{(m)}} A^{1}_{x:\overline{t|}}\)</span></p>
+<ul class="simple">
+<li><p>discrete term insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(A^{(m)}_{x:\overline{t|}} = \dfrac{i}{i^{(m)}} A^{1}_{x:\overline{t|}} + ~_tE_x\)</span></p>
+<ul class="simple">
+<li><p>endowment insurance combines the death and survival benefits, so we need to split off the death benefit to apply the approximations.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_{u|}A^{(m)}_{x} = ~_uE_x \dfrac{i}{i^{(m)}} A_{x+u}\)</span></p>
+<ul class="simple">
+<li><p>discrete deferred insurance</p></li>
+</ul>
+<p><strong>Double the force of interest</strong></p>
+<p><span class="math notranslate nohighlight">\({^2}A^{(m)}_x = \dfrac{i^2 - 2i}{(i^{(m)})^2 - 2 i^{(m)}} ~ {^2}A_x\)</span></p>
+<ul class="simple">
+<li><p>relate to doubling the force of interest for annual whole life insurance</p></li>
+</ul>
+</section>
+<section id="continuous-life-insurance">
+<h2>Continuous Life Insurance<a class="headerlink" href="#continuous-life-insurance" title="Permalink to this heading">#</a></h2>
+<p>Under UDD, continuous life insurance can also be related to annual life insurance factors</p>
+<p><span class="math notranslate nohighlight">\(\overline{A}_x = \dfrac{i}{\delta} A_x\)</span></p>
+<ul class="simple">
+<li><p>cwhole life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\overline{A}^ {1}_{x:\overline{t|}} = \dfrac{i}{\delta} A^{1}_{x:\overline{t|}}\)</span></p>
+<ul class="simple">
+<li><p>term life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\overline{A}_{x:\overline{t|}} = \dfrac{i}{\delta} A^{1}_{x:\overline{t|}} + ~_tE_x\)</span></p>
+<ul class="simple">
+<li><p>endowment insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_{u|}\overline{A}_{x} = ~_uE_x ~ \dfrac{i}{\delta} A_{x+u}\)</span></p>
+<ul class="simple">
+<li><p>deferred life insurance</p></li>
+</ul>
+<p><strong>Double the force of interest</strong></p>
+<p><span class="math notranslate nohighlight">\({^2}\overline{A}_x = \dfrac{i^2 - 2i}{2\delta} ~ {^2} A_x\)</span></p>
+<ul class="simple">
+<li><p>relate to doubling the force of interest for annual whole life insurance</p></li>
+</ul>
+</section>
+<section id="interest-functions">
+<h2>Interest functions<a class="headerlink" href="#interest-functions" title="Permalink to this heading">#</a></h2>
+<p>It can be shown that by subtituting in annuity twins in the above relationships under UDD, values of 1/mthly life annuities can be adjusted from annual life annuity factors using interest rate functions <span class="math notranslate nohighlight">\(\alpha(m)\)</span> and <span class="math notranslate nohighlight">\(\beta(m)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\alpha(m) = \dfrac{id}{i^{(m)} ~ d^{(m)}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\beta(m) = \dfrac{i - i^{(m)}}{i^{(m)} ~ d^{(m)}}\)</span></p>
+</section>
+<section id="life-annuities">
+<h2>Life annuities<a class="headerlink" href="#life-annuities" title="Permalink to this heading">#</a></h2>
+<p>Using the values of <span class="math notranslate nohighlight">\(\ddot{a}_x\)</span>, and the interest rate functions, to obtain <span class="math notranslate nohighlight">\(\ddot{a}^{(m)}_{x}\)</span> under UDD.</p>
+<p><span class="math notranslate nohighlight">\(\ddot{a}^{(m)}_{x} = \alpha(m) ~ \ddot{a}_{x} - \beta(m)\)</span></p>
+<ul class="simple">
+<li><p>whole life annuity</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\ddot{a}^{(m)}_{x:\overline {n|}} = \alpha(m) ~ \ddot{a}_{x:\overline {n|}} - \beta(m)(1 - ~_tE_x)\)</span></p>
+<ul class="simple">
+<li><p>temporary life annuity</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_{u|}\ddot{a}^{(m)}_{x} = \alpha(m) ~ _{u|}\ddot{a}_{x} - \beta(m) ~ _uE_x\)</span></p>
+<ul class="simple">
+<li><p>deferred whole life annuity</p></li>
+</ul>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">UDD</span></code> class implements methods to compute life insurance and annuities assuming a uniform distribution of deaths (UDD)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.udd</span> <span class="kn">import</span> <span class="n">UDD</span>
+<span class="kn">from</span> <span class="nn">actuarialmath.sult</span> <span class="kn">import</span> <span class="n">SULT</span>
+<span class="kn">from</span> <span class="nn">actuarialmath.recursion</span> <span class="kn">import</span> <span class="n">Recursion</span>
+<span class="kn">from</span> <span class="nn">actuarialmath.policyvalues</span> <span class="kn">import</span> <span class="n">Contract</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 6.38</strong></p>
+<p>For an n-year endowment insurance of 1000 on (x), you are given:</p>
+<ul class="simple">
+<li><p>Death benefits are payable at the moment of death</p></li>
+<li><p>Premiums are payable annually at the beginning of each year</p></li>
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(_nE_x = 0.172\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline{A}_{x:\overline{n|}} = 0.192\)</span></p></li>
+</ul>
+<p>Calculate the annual net premium for this insurance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.38:  (B) 11.3&quot;</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>\
+                  <span class="o">.</span><span class="n">set_A</span><span class="p">(</span><span class="mf">0.192</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">endowment</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>\
+                  <span class="o">.</span><span class="n">set_E</span><span class="p">(</span><span class="mf">0.172</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">temporary_annuity</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>      <span class="c1"># solve for discrete annuity, given continuous                   </span>
+    <span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>\
+                      <span class="o">.</span><span class="n">set_a</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>\
+                      <span class="o">.</span><span class="n">set_E</span><span class="p">(</span><span class="mf">0.172</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">UDD</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">life</span><span class="o">=</span><span class="n">life</span><span class="p">)</span><span class="o">.</span><span class="n">temporary_annuity</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># discrete annuity                        </span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">gross_premium</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="mf">0.192</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.38:  (B) 11.3
+ *Temporary Annuity a_0(t=10) &lt;--
+   a_0(t=10) = [ 1 - A_0(t=10) ] / d(t=10)                       ~annuity twin
+      a_0(t=1) = 1                                  ~one-year discrete annuity
+      a_1(t=1) = 1                                  ~one-year discrete annuity
+16.560714925944584
+16.978162620976775 11.308644185253657
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 6.32</strong></p>
+<p>For a whole life insurance of 100,000 on (x), you are given:</p>
+<ul class="simple">
+<li><p>Death benefits are payable at the moment of death</p></li>
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+<li><p>Premiums are payable monthly</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\ddot{a}_x = 9.19\)</span></p></li>
+</ul>
+<p>Calculate the monthly net premium.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.32:  (C) 550&quot;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span><span class="o">.</span><span class="n">set_a</span><span class="p">(</span><span class="mf">9.19</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<span class="n">benefits</span> <span class="o">=</span> <span class="n">UDD</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">life</span><span class="o">=</span><span class="n">life</span><span class="p">)</span><span class="o">.</span><span class="n">whole_life_insurance</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">payments</span> <span class="o">=</span> <span class="n">UDD</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">life</span><span class="o">=</span><span class="n">life</span><span class="p">)</span><span class="o">.</span><span class="n">whole_life_annuity</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">benefits</span><span class="p">,</span> <span class="n">payments</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">gross_premium</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">payments</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="n">benefits</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span><span class="o">/</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.32:  (C) 550
+ *Whole Life Insurance A_0(t=WL) &lt;--
+   A_x = 1 - d * a_x                                             ~annuity twin
+0.5763261529803323 8.72530251348809
+550.4356936711871
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 6.22</strong></p>
+<p>For a whole life insurance of 100,000 on (45) with premiums payable monthly for a
+period of 20 years, you are given:</p>
+<ul class="simple">
+<li><p>The death benefit is paid immediately upon death</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+</ul>
+<p>Calculate the monthly net premium.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.22:  (C) 102&quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">UDD</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">life</span><span class="o">=</span><span class="n">life</span><span class="p">)</span><span class="o">.</span><span class="n">temporary_annuity</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">UDD</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">life</span><span class="o">=</span><span class="n">life</span><span class="p">)</span><span class="o">.</span><span class="n">whole_life_insurance</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">gross_premium</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span><span class="o">/</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.22:  (C) 102
+102.40668704849178
+</pre></div>
+</div>
+</div>
+</div>
+<p>SOA Question 7.9</p>
+<p>For a semi-continuous 20-year endowment insurance of 100,000 on (45), you are given:</p>
+<ul class="simple">
+<li><p>Net premiums of 253 are payable monthly</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+<li><p>i = 0.05</p></li>
+</ul>
+<p>Calculate <span class="math notranslate nohighlight">\(_{10}V\)</span>, the net premium policy value at the end of year 10 for this insurance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 7.9:  (A) 38100&quot;</span><span class="p">)</span>
+<span class="n">sult</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">10</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">UDD</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">life</span><span class="o">=</span><span class="n">sult</span><span class="p">)</span><span class="o">.</span><span class="n">temporary_annuity</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">UDD</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">life</span><span class="o">=</span><span class="n">sult</span><span class="p">)</span><span class="o">.</span><span class="n">endowment_insurance</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+<span class="n">contract</span> <span class="o">=</span> <span class="n">Contract</span><span class="p">(</span><span class="n">premium</span><span class="o">=</span><span class="mi">253</span><span class="o">*</span><span class="mi">12</span><span class="p">,</span> <span class="n">endowment</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="mi">100000</span> <span class="o">-</span> <span class="n">a</span><span class="o">*</span><span class="mi">12</span><span class="o">*</span><span class="mi">253</span><span class="p">,</span> <span class="n">sult</span><span class="o">.</span><span class="n">gross_future_loss</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 7.9:  (A) 38100
+7.831075686716718 0.6187476755196442
+38099.62176709247 38099.62176709246
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 6.49</strong></p>
+<p>For a special whole life insurance of 100,000 on (40), you are given:</p>
+<ul class="simple">
+<li><p>The death benefit is payable at the moment of death</p></li>
+<li><p>Level gross premiums are payable monthly for a maximum of 20 years</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+<li><p>Initial expenses are 200</p></li>
+<li><p>Renewal expenses are 4% of each premium including the first</p></li>
+<li><p>Gross premiums are calculated using the equivalence principle</p></li>
+</ul>
+<p>Calculate the monthly gross premium.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.49:  (C) 86&quot;</span><span class="p">)</span>
+<span class="n">sult</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">UDD</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">life</span><span class="o">=</span><span class="n">sult</span><span class="p">)</span><span class="o">.</span><span class="n">temporary_annuity</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">sult</span><span class="o">.</span><span class="n">whole_life_insurance</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">sult</span><span class="o">.</span><span class="n">gross_premium</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">initial_policy</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+                        <span class="n">renewal_premium</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">initial_premium</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="o">/</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.49:  (C) 86
+85.99177833261696
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Generate table of interest functions</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Interest Functions at i=0.05&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">UDD</span><span class="o">.</span><span class="n">interest_frame</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Interest Functions at i=0.05
+----------------------------
+       i(m)     d(m)   i/i(m)   d/d(m)  alpha(m)  beta(m)
+1   0.05000  0.04762  1.00000  1.00000   1.00000  0.00000
+2   0.04939  0.04820  1.01235  0.98795   1.00015  0.25617
+4   0.04909  0.04849  1.01856  0.98196   1.00019  0.38272
+12  0.04889  0.04869  1.02271  0.97798   1.00020  0.46651
+0   0.04879  0.04879  1.02480  0.97600   1.00020  0.50823
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">UDD</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class UDD - 1/mthly shortcuts with UDD assumption
+
+    Args:
+      m : number of payments per year
+      life : original fractional survival and mortality functions
+
+    Methods:
+    --------
+
+    alpha(m, i):
+      Derive 1/mthly UDD interest rate beta function value
+
+    beta(m, i):
+      Derive 1/mthly UDD interest rate alpha function value
+
+    interest_frame(i):
+      Display 1/mthly UDD interest function values
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="mthly.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">1/M’thly</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="woolhouse.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Woolhouse M’thly</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-insurance">Life insurance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-life-insurance">Continuous Life Insurance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interest-functions">Interest functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-annuities">Life annuities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Terence Lim
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

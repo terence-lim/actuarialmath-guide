@@ -1,0 +1,777 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Survival Models &#8212; Solving Actuarial Math with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'survival';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Expected Future Lifetimes" href="lifetime.html" />
+    <link rel="prev" title="Life Contingent Risks" href="life.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Solving Actuarial Math with Python</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="actuarial.html">Actuarial Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interest.html">Interest Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="life.html">Life Contingent Risks</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Survival Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lifetime.html">Expected Future Lifetimes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fractional.html">Fractional Ages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insurance.html">Insurance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annuity.html">Annuities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="woolhouse.html">Woolhouse M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faml.html">Sample Solutions and Hints</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/terence-lim/actuarialmath.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/terence-lim/actuarialmath.git/issues/new?title=Issue%20on%20page%20%2Fsurvival.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/survival.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Survival Models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lifetime-distribution">Lifetime distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-function">Survival function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#force-of-mortality">Force of mortality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actuarial-notation">Actuarial notation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="survival-models">
+<h1>Survival Models<a class="headerlink" href="#survival-models" title="Permalink to this heading">#</a></h1>
+<p>The future lifetime of an individual is represented as a random variable. Under this framework, probabilities of death or survival, as well as an important quantity known as the force of mortality, can be calculated.  Some actuarial notation is also introduced, and it is shown how all these quantities are related to each other.</p>
+<section id="lifetime-distribution">
+<h2>Lifetime distribution<a class="headerlink" href="#lifetime-distribution" title="Permalink to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\((x)\)</span> denotes a life aged x, where <span class="math notranslate nohighlight">\(x \ge 0\)</span>, and <span class="math notranslate nohighlight">\(T_x\)</span> is time-to-death, or future lifetime, of <span class="math notranslate nohighlight">\((x)\)</span>. This means that <span class="math notranslate nohighlight">\(x + T_x\)</span> represents the age-at-death random variable for <span class="math notranslate nohighlight">\((x)\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(F_{x}(t) = Pr[T_x \le t] = \int_0^t f_x(t) ds\)</span></p>
+<ul class="simple">
+<li><p>probability that <span class="math notranslate nohighlight">\((x)\)</span> does not survive beyond age <span class="math notranslate nohighlight">\(x+t\)</span>.</p></li>
+</ul>
+<p><strong>Lifetime density function</strong></p>
+<p><span class="math notranslate nohighlight">\(f_x(t) =~ \frac{\partial}{\partial t} F_x(t) =~ \dfrac{f_0(x+t)}{S_0(x)}\)</span></p>
+<ul class="simple">
+<li><p>probability density function for the random variable <span class="math notranslate nohighlight">\(T_x\)</span></p></li>
+</ul>
+</section>
+<section id="survival-function">
+<h2>Survival function<a class="headerlink" href="#survival-function" title="Permalink to this heading">#</a></h2>
+<p>In life insurance problems we may be interested in the probability of survival rather than death</p>
+<p><span class="math notranslate nohighlight">\(S_x(t) \equiv ~_tp_x  = Pr[T_x &gt; t] = 1 - F_x(t)\)</span></p>
+<ul class="simple">
+<li><p>the probability that (x) survives for at least t years</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(S_x(t) = \dfrac{S_0(x+t)}{S_0(x)}\)</span></p>
+<ul class="simple">
+<li><p>by assumption that <span class="math notranslate nohighlight">\(Pr[T_x \le t] = Pr[T_0 \le x + t | T_0 &gt; x]\)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(S_x(t) = \int_t^{\infty} f_x(s) ds\)</span></p>
+<ul class="simple">
+<li><p>since <span class="math notranslate nohighlight">\(\int_0^{t} f_x(s)) ds + \int_t^{\infty} f_x(s) ds = 1\)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(S_x(t) = \dfrac{l_{x+t}}{l_x}\)</span></p>
+<ul class="simple">
+<li><p>relate survivor function to the number of lives in life table</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(S_x(t) = e^{-\int_0^t \mu_{x+t} ds}\)</span></p>
+<ul class="simple">
+<li><p>relate survival function to the force of mortality</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(S_x(0) = 1,~ S_x(\infty) = 0, ~S'_x(t) \le 0\)</span></p>
+<ul class="simple">
+<li><p>conditions to be a valid survival function</p></li>
+</ul>
+</section>
+<section id="force-of-mortality">
+<h2>Force of mortality<a class="headerlink" href="#force-of-mortality" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(\mu_{x+t} = \dfrac{f_x(t)}{S_x(t)} = \dfrac{-\frac{\partial}{\partial t} _tp_x}{_tp_x} -\dfrac{\partial}{\partial t} \ln~ _tp_x\)</span></p>
+<ul class="simple">
+<li><p>is what actuaries call the force of mortality (and known as the hazard rate in survival analysis and the failure rate in reliability theory)</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\mu_{x} dx \approx Pr[T_0 \le x + dx | T_0 &gt; x]\)</span></p>
+<ul class="simple">
+<li><p>can be interpreted as the probability that <span class="math notranslate nohighlight">\((x)\)</span> dies before attaining age <span class="math notranslate nohighlight">\(x + dx\)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(f_x(t)  =~ _tp_x ~\mu_{x+t}\)</span></p>
+<ul class="simple">
+<li><p>can be related to the lifetime density function</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\int_0^{\infty} \mu_{x+s} ds = \infty\)</span></p>
+<ul class="simple">
+<li><p>since <span class="math notranslate nohighlight">\(S_x(\infty) = 0\)</span></p></li>
+</ul>
+</section>
+<section id="actuarial-notation">
+<h2>Actuarial notation<a class="headerlink" href="#actuarial-notation" title="Permalink to this heading">#</a></h2>
+<p><strong>Survival probability</strong></p>
+<p><span class="math notranslate nohighlight">\(~_tp_x = Pr[T_x &gt; t] \equiv S_x(t)\)</span></p>
+<ul class="simple">
+<li><p>probability that <span class="math notranslate nohighlight">\((x)\)</span> survives to at least age <span class="math notranslate nohighlight">\(x+t\)</span></p></li>
+</ul>
+<p><strong>Expected number of survivors</strong></p>
+<p><span class="math notranslate nohighlight">\(l_{x} = l_{x_0} ~ _{x - x_{0}}p_{x_0}\)</span></p>
+<ul class="simple">
+<li><p>is the expected number of surviving lives at
+age <span class="math notranslate nohighlight">\(x\)</span> from <span class="math notranslate nohighlight">\(l_{x_0}\)</span> independent individuals aged <span class="math notranslate nohighlight">\(x_0\)</span>.</p></li>
+</ul>
+<p><strong>Mortality rate</strong></p>
+<p><span class="math notranslate nohighlight">\(~_tq_x = 1 - ~_tp_x \equiv F_x(t)\)</span></p>
+<ul class="simple">
+<li><p>probability that <span class="math notranslate nohighlight">\((x)\)</span> dies before age <span class="math notranslate nohighlight">\(x+t\)</span>.</p></li>
+</ul>
+<p><strong>Deferred mortality probability</strong></p>
+<p><span class="math notranslate nohighlight">\(_{u|t} q_x = Pr[u &lt; T_x \le u + t] = \int_u^{u+t} ~ _sp_x\mu_{x+s} ds \)</span></p>
+<ul class="simple">
+<li><p>probability that <span class="math notranslate nohighlight">\((x)\)</span> survives <span class="math notranslate nohighlight">\(u\)</span> years, and then dies in the subsequent <span class="math notranslate nohighlight">\(t\)</span> years.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_{u|t} q_x =~ \dfrac{l_{x+u} - l_{x+u+t}}{l_x}\)</span></p>
+<ul class="simple">
+<li><p>can be related to number of lives in the life table</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_{u|t} q_x =~ _up_x {t}q_{x+u} =~ _{u+t}q_x -~ _uq_x =~ _up_x -~ _{u+t}p_x\)</span></p>
+<ul class="simple">
+<li><p>can be computed from (1) deferred mortality (2) limited mortality (3) complement of survival functions.</p></li>
+</ul>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Survival</span></code> class implements methods to compute and apply relationships between the various basic and actuarial forms of survival and mortality functions. The force of mortality
+function fully describes the lifetime distribution, just as the survival function does.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">actuarialmath.survival</span> <span class="kn">import</span> <span class="n">Survival</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 2.3</strong>:</p>
+<p>You are given that mortality follows Gompertz Law with B = 0.00027 and c = 1.1.
+Calculate <span class="math notranslate nohighlight">\(f_{50}(10)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 2.3: (A) 0.0483&quot;</span><span class="p">)</span>
+<span class="n">B</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">0.00027</span><span class="p">,</span> <span class="mf">1.1</span>
+<span class="k">def</span> <span class="nf">S</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">t</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">B</span> <span class="o">*</span> <span class="n">c</span><span class="o">**</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="o">**</span><span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)))</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Survival</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">f_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 2.3: (A) 0.0483
+0.048327399045049846
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 2.6</strong></p>
+<p>You are given the survival function:</p>
+<p><span class="math notranslate nohighlight">\(S_0(x) = \left( 1 − \frac{x}{60} \right)^{\frac{1}{3}}, \quad 0 \le x \le 60\)</span></p>
+<p>Calculate <span class="math notranslate nohighlight">\(1000 \mu_{35}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# SOA Question 2.6: (C) 13.3&quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Survival</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1000</span><span class="o">*</span><span class="n">life</span><span class="o">.</span><span class="n">mu_x</span><span class="p">(</span><span class="mi">35</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># SOA Question 2.6: (C) 13.3
+13.340451278922776
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 2.7</strong></p>
+<p>You are given the following survival function of a newborn:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+S_0(x) &amp; = 1 - \frac{x}{250}, \quad 0 \le x &lt; 40\\
+&amp;=  1 - (\frac{x}{100})^2, \quad 40 \le x \le 100\\
+\end{align*}
+\end{split}\]</div>
+<p>Calculate the probability that (30) dies within the next 20 years</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 2.7: (B) 0.1477&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">S</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">((</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span> <span class="o">/</span> <span class="mi">250</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">40</span> <span class="k">else</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">((</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Survival</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="n">S</span><span class="p">)</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 2.7: (B) 0.1477
+0.1477272727272727
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 2.8</strong></p>
+<p>In a population initially consisting of 75% females and 25% males, you are given:</p>
+<ul class="simple">
+<li><p>For a female, the force of mortality is constant and equals <span class="math notranslate nohighlight">\(\mu\)</span></p></li>
+<li><p>For a male, the force of mortality is constant and equals <span class="math notranslate nohighlight">\(1.5 \mu\)</span></p></li>
+<li><p>At the end of 20 years, the population is expected to consist of 85% females and
+15% males.</p></li>
+</ul>
+<p>Calculate the probability that a female survives one year.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 2.8: (C) 0.938&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">mu</span><span class="p">):</span>  <span class="c1"># Solve first for mu, given ratio of start and end proportions</span>
+    <span class="n">male</span> <span class="o">=</span> <span class="n">Survival</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mu</span><span class="p">)</span>
+    <span class="n">female</span> <span class="o">=</span> <span class="n">Survival</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="n">mu</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">75</span> <span class="o">*</span> <span class="n">female</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">25</span> <span class="o">*</span> <span class="n">male</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">))</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">Survival</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">85</span><span class="o">/</span><span class="mi">15</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="p">[</span><span class="mf">0.89</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">])</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Survival</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="n">mu</span><span class="p">)</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 2.8: (C) 0.938
+0.9383813306903799
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>CAS41-F99:12</strong></p>
+<p>You are given the following survival function:</p>
+<p><span class="math notranslate nohighlight">\(S(x) = 100 (k - \frac{x}{2})^{\frac{2}{3}}\)</span></p>
+<p>Find <span class="math notranslate nohighlight">\(k\)</span>, given that <span class="math notranslate nohighlight">\(\mu_{50} = \frac{1}{48}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CAS41-F99:12: k = 41&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Survival</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span>\
+                     <span class="o">.</span><span class="n">mu_x</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Survival</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">48</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="mi">50</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CAS41-F99:12: k = 41
+41.005207994280646
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Survival</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Survival - Set and derive basic survival and mortality functions
+
+    Methods:
+    --------
+
+    set_survival(S, f, l, mu, maxage, minage):
+      Construct the basic survival and mortality functions given any one form
+
+    l_x(x, s):
+      Number of lives at integer age [x]+s: l_[x]+s
+
+    d_x(x, s):
+      Number of deaths at integer age [x]+s: d_[x]+s
+
+    p_x(x, s, t):
+      Probability that [x]+s lives another t years: : t_p_[x]+s
+
+    q_x(x, s, t, u):
+      Probability that [x]+s lives for u, but not t+u years: u|t_q_[x]+s
+
+    f_x(x, s, t):
+      Lifetime density function of [x]+s after t years: f_[x]+s(t)
+
+    mu_x(x, s, t):
+      Force of mortality of [x] at  s+t years: mu_[x](s+t)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="life.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Life Contingent Risks</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lifetime.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Expected Future Lifetimes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lifetime-distribution">Lifetime distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-function">Survival function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#force-of-mortality">Force of mortality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actuarial-notation">Actuarial notation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Terence Lim
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

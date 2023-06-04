@@ -1,0 +1,723 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>1/M’thly &#8212; Solving Actuarial Math with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'mthly';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="UDD M’thly" href="udd.html" />
+    <link rel="prev" title="Extra Risk" href="extrarisk.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Solving Actuarial Math with Python</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="actuarial.html">Actuarial Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interest.html">Interest Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="life.html">Life Contingent Risks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="survival.html">Survival Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lifetime.html">Expected Future Lifetimes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fractional.html">Fractional Ages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insurance.html">Insurance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annuity.html">Annuities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1/M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="woolhouse.html">Woolhouse M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faml.html">Sample Solutions and Hints</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/terence-lim/actuarialmath.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/terence-lim/actuarialmath.git/issues/new?title=Issue%20on%20page%20%2Fmthly.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/mthly.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1/M’thly</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-insurance">Life Insurance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-annuity-twin">Life Annuity Twin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#immediate-life-annuity">Immediate Life Annuity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="m-thly">
+<h1>1/M’thly<a class="headerlink" href="#m-thly" title="Permalink to this heading">#</a></h1>
+<p>A new lifetime random variable is introduced to value benefits which depend on the number of complete periods of length <span class="math notranslate nohighlight">\(1/m\)</span> years lived by a life (x).</p>
+<p><span class="math notranslate nohighlight">\(K^{(m)}_x = \dfrac{1}{m} \lfloor m T_x \rfloor\)</span></p>
+<ul class="simple">
+<li><p>1/mthly curtate future lifetime random variable,
+where <span class="math notranslate nohighlight">\(m &gt; 1\)</span> is an integer, is the future lifetime of (x) in years rounded to the lower <span class="math notranslate nohighlight">\(\frac{1}{m}\)</span>th of a year.</p></li>
+</ul>
+<section id="life-insurance">
+<h2>Life Insurance<a class="headerlink" href="#life-insurance" title="Permalink to this heading">#</a></h2>
+<p><strong>Whole life insurance</strong></p>
+<p><span class="math notranslate nohighlight">\(Z = v^{K_x^{(k)}+1/m}\)</span></p>
+<ul class="simple">
+<li><p>present value random variable of whole life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(A^{(m)}_x = E[Z] = \sum_{k=0}^{\infty} ~ v^{\frac{k+1}{m}} ~ _{\frac{k}{m}|\frac{1}{m}}q_x\)</span></p>
+<ul class="simple">
+<li><p>1/m’thly  whole life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(E[Z^2] = E[(v^2)^{K_x^{(k)}+1/m}] = ^2A^{(m)}_x\)</span></p>
+<ul class="simple">
+<li><p>second moment is also obtained from <span class="math notranslate nohighlight">\(A^{(m)}_x\)</span> at double the force of interest</p></li>
+</ul>
+<p><strong>Term life insurance</strong></p>
+<p><span class="math notranslate nohighlight">\(Z = 0\)</span> if <span class="math notranslate nohighlight">\(K_x^{(m)} \ge t\)</span>, else <span class="math notranslate nohighlight">\(v^{K_x^{(k)}+1/m}\)</span></p>
+<ul class="simple">
+<li><p>death benefit is payable at the end of the 1/m-th year of death , provided this occurs within <span class="math notranslate nohighlight">\(t\)</span> years.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(A^{1^{(m)}}_{x:\overline{t|}} = \sum_{k=0}^{mt-1} ~ v^{\frac{k+1}{m}} ~ _{\frac{k}{m}|\frac{1}{m}}q_x \)</span></p>
+<ul class="simple">
+<li><p>EPV of 1/m-thly term insurance benefits</p></li>
+</ul>
+</section>
+<section id="life-annuity-twin">
+<h2>Life Annuity Twin<a class="headerlink" href="#life-annuity-twin" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(A^{(m)}_{x} = 1 - d^{(m)} ~ \ddot{a}^{(m)}_{x} ~ \Longleftrightarrow ~ \ddot{a}^{(m)}_{x} = \dfrac{1 - A^{(m)}_{x}}{d^{(m)}}\)</span></p>
+<ul class="simple">
+<li><p>1/m’thly  whole life annuity due</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(A^{(m)}_{x:\overline {t|}} = 1 - d^{(m)} ~ \ddot{a}^{(m)}_{x:\overline {t|}} ~ \Longleftrightarrow ~ \ddot{a}^{(m)}_{x:\overline {t|}} = \dfrac{1 - A^{(m)}_{x:\overline {t|}}}{d^{(m)}}\)</span></p>
+<ul class="simple">
+<li><p>1/m’thly temporary annuity due and endowment insurance</p></li>
+</ul>
+</section>
+<section id="immediate-life-annuity">
+<h2>Immediate Life Annuity<a class="headerlink" href="#immediate-life-annuity" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(a^{(m)}_{x} = \ddot{a}^{(m)}_{x} - \dfrac{1}{m}\)</span></p>
+<ul class="simple">
+<li><p>immediate 1/m’thly whole life annuity</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(a^{(m)}_{x:\overline {t|}} = \ddot{a}^{(m)}_{x:\overline {t|}} - \dfrac{1}{m}(1 - ~_tE_x)\)</span></p>
+<ul class="simple">
+<li><p>immediate 1/m’thly temporary life annuity</p></li>
+</ul>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>Ths <code class="docutils literal notranslate"><span class="pre">Mthly</span></code> class implements methods to compute life insurance and annuity values with m’thly-pay.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.mthly</span> <span class="kn">import</span> <span class="n">Mthly</span>
+<span class="kn">from</span> <span class="nn">actuarialmath.premiums</span> <span class="kn">import</span> <span class="n">Premiums</span>
+<span class="kn">from</span> <span class="nn">actuarialmath.lifetable</span> <span class="kn">import</span> <span class="n">LifeTable</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 6.4</strong></p>
+<p>For whole life annuities-due of 15 per month on each of 200 lives age 62 with
+independent future lifetimes, you are given:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(i = 0.06\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{62}^{(12)} = 0.2105\)</span> and <span class="math notranslate nohighlight">\(^2A_{62}^{(12)} = 0.4075\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi\)</span> is the single premium to be paid by each of the 200 lives</p></li>
+<li><p><span class="math notranslate nohighlight">\(S\)</span> is the present value random variable at time 0 of total payments made to the 200 lives</p></li>
+</ul>
+<p>Using the normal approximation, calculate <span class="math notranslate nohighlight">\(\pi\)</span> such that <span class="math notranslate nohighlight">\(Pr(200 \pi &gt; S ) =
+0.90\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.4:  (E) 1893.9&quot;</span><span class="p">)</span>
+<span class="n">mthly</span> <span class="o">=</span> <span class="n">Mthly</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">life</span><span class="o">=</span><span class="n">Premiums</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.06</span><span class="p">))</span>
+<span class="n">A1</span><span class="p">,</span> <span class="n">A2</span> <span class="o">=</span> <span class="mf">0.4075</span><span class="p">,</span> <span class="mf">0.2105</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">mthly</span><span class="o">.</span><span class="n">annuity_twin</span><span class="p">(</span><span class="n">A1</span><span class="p">)</span><span class="o">*</span><span class="mi">15</span><span class="o">*</span><span class="mi">12</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">mthly</span><span class="o">.</span><span class="n">annuity_variance</span><span class="p">(</span><span class="n">A1</span><span class="o">=</span><span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="o">=</span><span class="n">A2</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">15</span> <span class="o">*</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">Premiums</span><span class="o">.</span><span class="n">portfolio_percentile</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">mean</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="n">var</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">.9</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">S</span> <span class="o">/</span> <span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.4:  (E) 1893.9
+1893.912859650868
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 4.2</strong></p>
+<p>For a special 2-year term insurance policy on (x), you are given:</p>
+<ul class="simple">
+<li><p>Death benefits are payable at the end of the half-year of death</p></li>
+<li><p>The amount of the death benefit is 300,000 for the first half-year and increases by 30,000 per half-year thereafter</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_x = 0.16\)</span> and <span class="math notranslate nohighlight">\(q_{x + 1} = 0.23\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(i^{(2)} = 0.18\)</span></p></li>
+<li><p>Deaths are assumed to follow a constant force of mortality between integral ages</p></li>
+<li><p>Z is the present value random variable for this insurance</p></li>
+</ul>
+<p>Calculate <span class="math notranslate nohighlight">\(Pr(Z &gt; 277,000)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 4.2:  (D) 0.18&quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">LifeTable</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_table</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mf">0.23</span><span class="p">})</span>\
+                           <span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i_m</span><span class="o">=</span><span class="mf">0.18</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">mthly</span> <span class="o">=</span> <span class="n">Mthly</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">life</span><span class="o">=</span><span class="n">life</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">mthly</span><span class="o">.</span><span class="n">Z_m</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mi">300000</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="mi">30000</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Z</span><span class="p">[</span><span class="n">Z</span><span class="p">[</span><span class="s1">&#39;Z&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">277000</span><span class="p">][</span><span class="s1">&#39;q&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 4.2:  (D) 0.18
+               Z         q
+m                         
+1  275229.357798  0.083485
+2  277754.397778  0.076515
+3  277986.052822  0.102903
+4  276285.832315  0.090297
+0.17941813045022975
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Mthly</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Mthly - Compute 1/M&#39;thly insurance and annuities
+
+    Args:
+      m : number of payments per year
+      life : original survival and life contingent functions
+
+    Methods:
+    --------
+
+    v_m(k):
+      Compute discount rate compounded over k m&#39;thly periods
+
+    p_m(x, s_m, t_m):
+      Compute survival probability over m&#39;thly periods
+
+    q_m(x, s_m, t_m, u_m):
+      Compute deferred mortality over m&#39;thly periods
+
+    Z_m(x, s, t, benefit, moment):
+      Return PV of insurance r.v. Z and probability of death at mthly intervals
+
+    E_x(x, s, t, moment, endowment):
+      Compute pure endowment factor
+
+    A_x(x, s, t, u, benefit, moment):
+      Compute insurance factor with m&#39;thly benefits
+
+    whole_life_insurance(x, s, moment, b):
+      Whole life insurance: A_x
+
+    term_insurance(x, s, t, b, moment):
+      Term life insurance: A_x:t^1
+
+    deferred_insurance(x, s, n, b, t, moment):
+      Deferred insurance n|_A_x:t^1 = discounted whole life
+
+    endowment_insurance(x, s, t, b, endowment, moment):
+      Endowment insurance: A_x:t = term insurance + pure endowment
+
+    immediate_annuity(x, s, t, b):
+      Immediate m&#39;thly annuity
+
+    insurance_twin(a):
+      Return insurance twin of m&#39;thly annuity
+
+    annuity_twin(A):
+      Return value of annuity twin of m&#39;thly insurance
+
+    annuity_variance(A2, A1, b):
+      Variance of m&#39;thly annuity from m&#39;thly insurance moments
+
+    whole_life_annuity(x, s, b, variance):
+      Whole life m&#39;thly annuity: a_x
+
+    temporary_annuity(x, s, t, b, variance):
+      Temporary m&#39;thly life annuity: a_x:t
+
+    deferred_annuity(x, s, u, t, b):
+      Deferred m&#39;thly life annuity due n|t_a_x =  n+t_a_x - n_a_x
+
+    immediate_annuity(x, s, t, b):
+      Immediate m&#39;thly annuity
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="extrarisk.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Extra Risk</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="udd.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">UDD M’thly</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-insurance">Life Insurance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-annuity-twin">Life Annuity Twin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#immediate-life-annuity">Immediate Life Annuity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Terence Lim
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

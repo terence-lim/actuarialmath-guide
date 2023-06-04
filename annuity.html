@@ -1,0 +1,796 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Annuities &#8212; Solving Actuarial Math with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'annuity';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Premiums" href="premiums.html" />
+    <link rel="prev" title="Insurance" href="insurance.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Solving Actuarial Math with Python</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="actuarial.html">Actuarial Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interest.html">Interest Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="life.html">Life Contingent Risks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="survival.html">Survival Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lifetime.html">Expected Future Lifetimes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fractional.html">Fractional Ages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insurance.html">Insurance</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Annuities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="woolhouse.html">Woolhouse M’thly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faml.html">Sample Solutions and Hints</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/terence-lim/actuarialmath.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/terence-lim/actuarialmath.git/issues/new?title=Issue%20on%20page%20%2Fannuity.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/annuity.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Annuities</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#present-value-of-life-annuity-r-v-y">Present value of life annuity r.v. <span class="math notranslate nohighlight">\(Y\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-insurance-twin">Life insurance twin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variances">Variances</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#immediate-life-annuity">Immediate life annuity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-life-annuities">Varying life annuities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="annuities">
+<h1>Annuities<a class="headerlink" href="#annuities" title="Permalink to this heading">#</a></h1>
+<p>A life annuity is a regular sequence of payments as long as the annuitant is alive on the payment date.</p>
+<section id="present-value-of-life-annuity-r-v-y">
+<h2>Present value of life annuity r.v. <span class="math notranslate nohighlight">\(Y\)</span><a class="headerlink" href="#present-value-of-life-annuity-r-v-y" title="Permalink to this heading">#</a></h2>
+<p>Valuation functions for the present value of annuity benefits, denoted by Y, are based on the continuous future lifetime random variable, <span class="math notranslate nohighlight">\(T_x\)</span>, and the curtate future lifetime random variable, <span class="math notranslate nohighlight">\(K_x\)</span>. The expected present value of annuity benefits is denoted and solved by EPV(Y)</p>
+<p><strong>Whole life annuity</strong>:</p>
+<p><span class="math notranslate nohighlight">\(Y = ~ \overline{a}_{\overline{T_x|}} = \dfrac{1 - v^{T_x}}{\delta} =\)</span> present value of annuity certain due through <span class="math notranslate nohighlight">\(T_x\)</span></p>
+<p><span class="math notranslate nohighlight">\(\overline{a}_x = EPV[\overline{a}_{\overline{T_x|}}] = \int_{t=0}^{\infty} ~ v^t ~ _tp_x  ~ dt\)</span></p>
+<ul class="simple">
+<li><p>continuous whole life annuity, benefit is payable up to the moment of death</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Y = \ddot{a}_{\overline{K_x + 1|}} = \dfrac{1 - v^{K_x + 1}}{d} =\)</span> present value of continuous annuity certain through <span class="math notranslate nohighlight">\(K_x + 1\)</span></p>
+<p><span class="math notranslate nohighlight">\(\ddot{a}_x = EPV[\ddot{a}_{\overline{K_x+1|}}] = \sum_{k=0}^{\infty} ~ v^k ~ _{k|}p_x\)</span></p>
+<ul class="simple">
+<li><p>annual life annuity due, benefit is payable up to the beginning of the year of death</p></li>
+</ul>
+<p><strong>Temporary annuity</strong>:</p>
+<p><span class="math notranslate nohighlight">\(Y = ~ \overline{a}_{\overline{t|}}\)</span> when or <span class="math notranslate nohighlight">\(T_x &gt; t\)</span>, else <span class="math notranslate nohighlight">\(\overline{a}_{\overline{T_x|}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\overline{a}_{x:\overline{t|}} = \int_{s=0}^{t} ~ v^s ~ _sp_x  ~ ds = \overline{A}_x - ~_tE_x ~ \overline{a}_{x+t}\)</span></p>
+<ul class="simple">
+<li><p>continuous temporary life annuity</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Y = \ddot{a}_{\overline{t|}}\)</span> when <span class="math notranslate nohighlight">\(K_x \ge t\)</span>, else <span class="math notranslate nohighlight">\(\ddot{a}_{\overline{K_x+1|}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\ddot{a}_{x:\overline{t|}} \sum_{k=0}^{t} ~ v^k ~ _{k|}p_x = \ddot{a}_x - ~_tE_x ~ \ddot{a}_{x+t}\)</span></p>
+<ul class="simple">
+<li><p>annual temporary life annuity due</p></li>
+</ul>
+<p><strong>Deferred whole life annuity</strong>:</p>
+<p><span class="math notranslate nohighlight">\(_{u|}\overline{a}_{x} = \overline{a}_{x} - \overline{a}_{x+u}\)</span></p>
+<ul class="simple">
+<li><p>continuous deferred life annuity as the difference of whole life annuities</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_{u|}\ddot{a}_{x} = \ddot{a}_{x} - \ddot{a}_{x+u}\)</span></p>
+<ul class="simple">
+<li><p>annual deferred annuity due as the difference of annual whole life annuities due</p></li>
+</ul>
+<p><strong>Certain and life annuity</strong>:</p>
+<p>A common feature of pension benefits is that the pension annuity is guaranteed to be paid for some period even if the annuitant dies before the end of the period.</p>
+<p><span class="math notranslate nohighlight">\(Y = ~ \overline{a}_{\overline{n|}}\)</span> when <span class="math notranslate nohighlight">\(T_x \le n\)</span>, else <span class="math notranslate nohighlight">\(\overline{a}_{\overline{T_x|}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\overline{a}_{\overline{x:\overline{n|}}} = \overline{a}_{\overline{n|}} + ~_{n|}\overline{a}_{x}\)</span></p>
+<ul class="simple">
+<li><p>is a continuous temporary certain annuity plus a deferred continuous whole life annuity</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Y = \ddot{a}_{\overline{n|}}\)</span> when <span class="math notranslate nohighlight">\(K_x &lt; n\)</span>, else <span class="math notranslate nohighlight">\(\ddot{a}_{\overline{K_x+1|}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\ddot{a}_{\overline{x:\overline{n|}}} = \ddot{a}_{\overline{n|}} + ~_{n|}\ddot{a}_{x}\)</span></p>
+<ul class="simple">
+<li><p>is an annual temporary certain annuity due, plus a deferred annual life annuity due</p></li>
+</ul>
+</section>
+<section id="life-insurance-twin">
+<h2>Life insurance twin<a class="headerlink" href="#life-insurance-twin" title="Permalink to this heading">#</a></h2>
+<p><em>Whole</em> and <em>Temporary Life Annuities</em> (and <em>Whole Life</em> and <em>Endowment Insurance</em>) <strong>ONLY</strong>:</p>
+<p><span class="math notranslate nohighlight">\(\overline{a}_x = \dfrac{1 - \overline{A}_x}{\delta}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\overline{A}_x = 1 - \delta ~ \overline{a}_x\)</span></p>
+<ul class="simple">
+<li><p>continuous whole life insurance twin for continuous whole life annuity</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\ddot{a}_x = \dfrac{1 - A_x}{d}\)</span></p>
+<p><span class="math notranslate nohighlight">\(A_x = 1 - d ~ \ddot{a}_x\)</span></p>
+<ul class="simple">
+<li><p>annual whole life insurance twin for annual life annuity due</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\overline{a}_{x:\overline{t|}} = \dfrac{1 - \overline{A}_{x:\overline{t|}}}{\delta}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\overline{A}_{x:\overline{t|}} = 1 - \delta ~ \overline{a}_{x:\overline{t|}}\)</span></p>
+<ul class="simple">
+<li><p>continuous endowment insurance twin for continuous temporary life annuity</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\ddot{a}_{x:\overline{t|}} = \dfrac{1 - A_{x:\overline{t|}}}{d}\)</span></p>
+<p><span class="math notranslate nohighlight">\(A_{x:\overline{t|}} = 1 - d ~ \ddot{a}_{x:\overline{t|}}\)</span></p>
+<ul class="simple">
+<li><p>annual endowment insurance twin for annual temporary life annuity due</p></li>
+</ul>
+</section>
+<section id="variances">
+<h2>Variances<a class="headerlink" href="#variances" title="Permalink to this heading">#</a></h2>
+<p><strong>Whole life annuity</strong></p>
+<p><span class="math notranslate nohighlight">\({^2}\overline{a}_x = \dfrac{1 - {^2}\overline{A}_x}{2 \delta}\)</span></p>
+<p><span class="math notranslate nohighlight">\({^2}\overline{A}_x = 1 - (2 \delta) ~ {^2}\overline{a}_x\)</span></p>
+<p><span class="math notranslate nohighlight">\(Var(\overline{a}_{x}) =  \dfrac{{^2}\overline{A}_{x} - (\overline{A}_{x})^2}{d^2}\)</span></p>
+<ul class="simple">
+<li><p>from doubling the force of interest of continuous whole life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\({^2}\ddot{a}_x = \dfrac{1 - {^2}A_x}{2d - d^2}\)</span></p>
+<p><span class="math notranslate nohighlight">\({^2}A_x = 1 - (2d - d^2) ~ {^2}\ddot{a}_x\)</span></p>
+<p><span class="math notranslate nohighlight">\(Var(\ddot{a}_{x}) = \dfrac{{^2}\ddot{a}_{x} - ~(A_{x})^2}{\delta^2}\)</span></p>
+<ul class="simple">
+<li><p>from doubling the force of interest of annual whole life insurance</p></li>
+</ul>
+<p><strong>Temporary life annuity</strong></p>
+<p><span class="math notranslate nohighlight">\({^2}\overline{a}_{x:\overline{t|}} = \dfrac{1 - {^2}\overline{A}_{x:\overline{t|}}}{2 \delta}\)</span></p>
+<p><span class="math notranslate nohighlight">\({^2}\overline{A}_{x:\overline{t|}} = 1 - (2 \delta) ~ {^2}\overline{a}_{x:\overline{t|}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(Var(\overline{a}_{x:\overline{t|}}) =  \dfrac{{^2}\overline{A}_{x:\overline{t|}} - (\overline{A}_{x:\overline{t|}})^2}{d^2}\)</span></p>
+<ul class="simple">
+<li><p>from doubling the force of interest of continuous endowment insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\({^2}\ddot{a}_{x:\overline{t|}} = \dfrac{1 - {^2}A_{x:\overline{t|}}}{2d - d^2}\)</span></p>
+<p><span class="math notranslate nohighlight">\({^2}A_{x:\overline{t|}} = 1 - (2d - d^2) ~ {^2}\ddot{a}_{x:\overline{t|}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(Var(\ddot{a}_{x:\overline{t|}}) = \dfrac{{^2}A_{x:\overline{t|}} - ~(A_{x:\overline{t|}})^2}{\delta^2}\)</span></p>
+<ul class="simple">
+<li><p>from doubling the force of interest of annual endowment insurance</p></li>
+</ul>
+</section>
+<section id="immediate-life-annuity">
+<h2>Immediate life annuity<a class="headerlink" href="#immediate-life-annuity" title="Permalink to this heading">#</a></h2>
+<p>Benefit is paid at the <em>end of the year</em>, as long as the annuitant is alive, and can be relate to the value of an annual life annuity due:</p>
+<p><span class="math notranslate nohighlight">\(a_x = \ddot{a}_x - 1\)</span></p>
+<ul class="simple">
+<li><p>whole life annuities</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(a_{x:\overline{t|}} = \ddot{a}_{x:\overline{t|}} - 1 + ~_tE_x\)</span></p>
+<ul class="simple">
+<li><p>temporary life annuities</p></li>
+</ul>
+</section>
+<section id="varying-life-annuities">
+<h2>Varying life annuities<a class="headerlink" href="#varying-life-annuities" title="Permalink to this heading">#</a></h2>
+<p><strong>Increasing annuity</strong>:</p>
+<p>The amount of the annuity payment increases arithmetically with time.</p>
+<p><span class="math notranslate nohighlight">\((\overline{Ia})_{x} = \int_{t=0}^{\infty} ~ t ~ v^t ~ _tp_x  ~ dt\)</span></p>
+<ul class="simple">
+<li><p>increasing continuous whole life annuity</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\((I\ddot{a})_{x} = \sum_{k=0}^{\infty} ~ (k+1) ~ v^{k+1} ~ _{k}p_x\)</span></p>
+<ul class="simple">
+<li><p>increasing annual whole life annuity due</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\((\overline{Ia})_{x:\overline{t|}} = \int_{s=0}^{t} ~ s ~ v^s ~ _sp_x ~ ds\)</span></p>
+<ul class="simple">
+<li><p>increasing continuous temporary life annuity</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\((I\ddot{a})_{x:\overline{t|}} = \sum_{k=0}^{t-1} ~ (k+1) ~ v^{k+1} ~ _{k}p_x\)</span></p>
+<ul class="simple">
+<li><p>increasing annual temporary life annuity due</p></li>
+</ul>
+<p><strong>Decreasing annuity</strong>:</p>
+<p>The amount of the annuity payment decreases arithmetically with time.</p>
+<p><span class="math notranslate nohighlight">\((\overline{Da})_{x:\overline{t|}} = \int_{s=0}^{t} ~ (t-s) ~ v^s ~ _sp_x ~ ds\)</span></p>
+<ul class="simple">
+<li><p>decreasing continuous temporary life annuity (not defined for whole life)</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\((D\ddot{a})_{x:\overline{t|}} = \sum_{k=0}^{t-1} ~ (t-k) ~ v^{k+1} ~ _{k}p_x\)</span></p>
+<ul class="simple">
+<li><p>decreasing annual temporary life annuity due (not defined for whole life)</p></li>
+</ul>
+<p><strong>Identity relationships</strong>:</p>
+<p><span class="math notranslate nohighlight">\((\overline{Da})_{x:\overline{t|}} + (\overline{Ia})_{x:\overline{t|}} = t ~ \overline{a}_{x:\overline{t|}}\)</span></p>
+<ul class="simple">
+<li><p>relating continuous decreasing and increasing life annuities</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\((D\ddot{a})_{x:\overline{t|}} + (I\ddot{a})_{x:\overline{t|}} = (t+1) ~ \ddot{a}_{x:\overline{t|}} \)</span></p>
+<ul class="simple">
+<li><p>relating annual decreasing and increasing life annuities due</p></li>
+</ul>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Annuity</span></code> class implements methods to compute the present value of life annuities</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.annuity</span> <span class="kn">import</span> <span class="n">Annuity</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 5.6</strong></p>
+<p>For a group of 100 lives age x with independent future lifetimes, you are given:</p>
+<ul class="simple">
+<li><p>Each life is to be paid 1 at the beginning of each year, if alive</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_x = 0.45\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^2A_x = 0.22\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Y\)</span> is the present value random variable of the aggregate payments.</p></li>
+</ul>
+<p>Using the normal approximation to <span class="math notranslate nohighlight">\(Y\)</span>, calculate the initial size of the fund neededt o be 95% certain of being able to make the payments for these life annuities.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 5.6:  (D) 1200&quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Annuity</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">annuity_variance</span><span class="p">(</span><span class="n">A2</span><span class="o">=</span><span class="mf">0.22</span><span class="p">,</span> <span class="n">A1</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">annuity_twin</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">portfolio_percentile</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">mean</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="n">var</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">.95</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 5.6:  (D) 1200
+1200.6946732201702
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Plot annuity present value r.v. Y</strong>:</p>
+<p>Mortality follows Standard Ultimate Life Table. Indicate median lifetime of (20).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.sult</span> <span class="kn">import</span> <span class="n">SULT</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
+<span class="n">life</span><span class="o">.</span><span class="n">Y_plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">life</span><span class="o">.</span><span class="n">Y_t</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20.27530100523103
+</pre></div>
+</div>
+<img alt="_images/cc4bc9c23442087f76d3994aa284752bd452f630d4aa901a793d0dba56ddd95e.png" src="_images/cc4bc9c23442087f76d3994aa284752bd452f630d4aa901a793d0dba56ddd95e.png" />
+</div>
+</div>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Annuity</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Annuity - Compute present values and relationships of life annuities
+
+    Methods:
+    --------
+
+    a_x(x, s, t, u, benefit, discrete):
+      Numerically compute EPV of annuities from survival functions
+
+    immediate_annuity(x, s, t, b, variance):
+      Compute EPV of immediate life annuity
+
+    annuity_twin(A, discrete):
+      Returns annuity from its WL or Endowment Insurance twin&quot;
+
+    insurance_twin(a, moment, discrete):
+      Returns WL or Endowment Insurance twin from annuity
+
+    annuity_variance(A2, A1, b, discrete):
+      Compute variance from WL or endowment insurance twin
+
+    whole_life_annuity(x, s, b, variance, discrete):
+      Whole life annuity: a_x
+
+    temporary_annuity(x, s, t, b, variance, discrete):
+      Temporary life annuity: a_x:t
+
+    deferred_annuity(x, s, u, t, b, discrete):
+      Deferred life annuity n|t_a_x =  n+t_a_x - n_a_x
+
+    certain_life_annuity(x, s, u, t, b, discrete):
+      Certain and life annuity = certain + deferred
+
+    increasing_annuity(x, s, t, b, discrete):
+      Increasing annuity
+
+    decreasing_annuity(x, s, t, b, discrete):
+      Identity (Da)_x:n + (Ia)_x:n = (n+1) a_x:n temporary annuity
+
+    Y_t(x, prob, discrete):
+      T_x given percentile of the r.v. Y = PV of WL or Temporary Annuity
+
+    Y_from_t(t, discrete):
+      PV of insurance payment Y(t), given T_x (or K_x if discrete)
+
+    Y_from_prob(x, prob, discrete):
+      Percentile of annuity PV r.v. Y, given probability
+
+    Y_to_prob(x, Y):
+      Cumulative density of insurance PV r.v. Y, given percentile value
+
+    Y_x(x, s, t, discrete):
+      EPV of year t annuity benefit for life aged [x]+s: b_x[s]+s(t)
+
+    Y_plot(x, s, stop, benefit, T, discrete, ax, title, color):
+      Plot PV of annuity r.v. Y vs T
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="insurance.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Insurance</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="premiums.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Premiums</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#present-value-of-life-annuity-r-v-y">Present value of life annuity r.v. <span class="math notranslate nohighlight">\(Y\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-insurance-twin">Life insurance twin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variances">Variances</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#immediate-life-annuity">Immediate life annuity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-life-annuities">Varying life annuities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Terence Lim
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
