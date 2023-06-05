@@ -385,20 +385,19 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="sample-solutions-and-hints">
 <h1>Sample Solutions and Hints<a class="headerlink" href="#sample-solutions-and-hints" title="Permalink to this heading">#</a></h1>
+<p><strong>actuarialmath – Life Contingent Risks with Python</strong></p>
+<p>This package implements fundamental methods for modeling life contingent risks, and closely follows traditional topics covered in actuarial exams and standard texts such as the “Fundamentals of Actuarial Math - Long-term” exam syllabus by the Society of Actuaries, and “Actuarial Mathematics for Life Contingent Risks” by Dickson, Hardy and Waters.  These code chunks demonstrate how to solve each of the sample FAM-L exam questions released by the SOA.</p>
 <p>Sources:</p>
 <ul class="simple">
-<li><p>actuarialmath <a class="reference external" href="https://github.com/terence-lim/actuarialmath.git">github repo</a></p></li>
-<li><p><a class="reference external" href="https://terence-lim.github.io/actuarialmath-tutorial/">online tutorial</a> or <a class="reference external" href="https://terence-lim.github.io/notes/actuarialmath-tutorial.pdf/">pdf copy</a></p></li>
 <li><p>SOA FAM-L Sample Solutions: <a class="reference external" href="https://terence-lim.github.io/notes/2022-10-exam-fam-l-sol.pdf">copy retrieved Aug 2022</a></p></li>
 <li><p>SOA FAM-L Sample Questions: <a class="reference external" href="https://terence-lim.github.io/notes/2022-10-exam-fam-l-quest.pdf">copy retrieved Aug 2022</a></p></li>
+<li><p><a class="reference external" href="https://terence-lim.github.io/actuarialmath-tutorial/">Online tutorial</a>, or <a class="reference external" href="https://terence-lim.github.io/notes/actuarialmath-tutorial.pdf">download pdf</a></p></li>
+<li><p><a class="reference external" href="https://terence-lim.github.io/actuarialmath-docs">Code documentation</a></p></li>
+<li><p><a class="reference external" href="https://github.com/terence-lim/actuarialmath.git">Github repo</a> and <a class="reference external" href="https://github.com/terence-lim/actuarialmath/issues">issues</a></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#! rm -f -r actuarialmath_  ## uncomment to allow git clone download refresh</span>
-<span class="c1">#! rm -f -r actuarialmath</span>
-<span class="c1">#! git clone https://github.com/terence-lim/actuarialmath/</span>
-<span class="c1">#! mv actuarialmath actuarialmath_</span>
-<span class="c1">#! mv actuarialmath_/src/actuarialmath . </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#! pip install actuarialmath</span>
 </pre></div>
 </div>
 </div>
@@ -407,9 +406,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Solutions code and hints for SOA FAM-L sample questions</span>
 
-<span class="sd">Copyright 2022-2023, Terence Lim</span>
-
-<span class="sd">MIT License</span>
+<span class="sd">MIT License.  Copyright 2022-2023, Terence Lim</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -4178,7 +4175,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-04 13:24:08.494830
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-05 13:43:59.247011
 Passed: 136/136
 </pre></div>
 </div>
