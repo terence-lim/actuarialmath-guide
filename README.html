@@ -365,7 +365,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-and-classes">Concepts and Classes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
@@ -385,21 +384,16 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
 <p><strong>actuarialmath – Life Contingent Risks with Python</strong></p>
-<p>This package implements fundamental methods for modeling life contingent risks, and closely follows traditional topics covered in actuarial exams and standard texts such as the “Fundamentals of Actuarial Math - Long-term” exam syllabus by the Society of Actuaries, and “Actuarial Mathematics for Life Contingent Risks” by Dickson, Hardy and Waters.</p>
-<p>The actuarial concepts are introduced hierarchically, and realized by corresponding derivations of Python classes. It is hoped that the use of this package can support a learner’s journey through actuarial problem-solving and computing.</p>
-<p>The resources listed below should be helpful for getting started. In particular, you can run, and modify, the code chunks demonstrated in a <a class="reference external" href="https://terence-lim.github.io/actuarialmath-tutorial/_sources/faml.ipynb">Jupyter Notebook</a>, to solve each of the sample FAM-L exam questions released by the SOA.</p>
-<p>Enjoy!</p>
-<p>Terence Lim</p>
-<section id="concepts-and-classes">
-<h2>Concepts and Classes<a class="headerlink" href="#concepts-and-classes" title="Permalink to this heading">#</a></h2>
-<img alt="_images/FAM-L.png" id="label" src="_images/FAM-L.png" />
-</section>
+<p>This package implements fundamental methods for modeling life contingent risks, and closely follows traditional topics covered in actuarial exams and standard texts such as the “Fundamentals of Actuarial Math - Long-term” exam syllabus by the Society of Actuaries, and “Actuarial Mathematics for Life Contingent Risks” by Dickson, Hardy and Waters.
+The resources listed below should be helpful for getting started. The code chunks in a complete <a class="reference external" href="https://colab.research.google.com/drive/1TcNr1x5HbT2fF3iFMYGXdN_cvRKiSua4?usp=sharing">Colab</a>, or <a class="reference external" href="https://terence-lim.github.io/notes/faml.ipynb">Jupyter notebook</a>, demonstrate how to solve each of the sample FAM-L exam questions released by the SOA.</p>
+<p>The actuarial concepts, as shown in this graphic, are introduced and modeled hierarchically, and realized by corresponding derivations of Python classes.</p>
+<p><img alt="classes" src="_images/FAM-L.png" /></p>
 <section id="quick-start">
 <h2>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">actuarialmath</span></code></p></li>
 <li><p>Select a suitable subclass to initialize with your actuarial assumptions, such as <code class="docutils literal notranslate"><span class="pre">MortalityLaws</span></code> (or a special law like <code class="docutils literal notranslate"><span class="pre">ConstantForce</span></code>), <code class="docutils literal notranslate"><span class="pre">LifeTable</span></code>, <code class="docutils literal notranslate"><span class="pre">SULT</span></code>, <code class="docutils literal notranslate"><span class="pre">SelectTable</span></code> or <code class="docutils literal notranslate"><span class="pre">Recursion</span></code>.</p></li>
-<li><p>Call tappropriate methods to compute intermediate or final results, or to <code class="docutils literal notranslate"><span class="pre">solve</span></code> parameter values implicitly.</p></li>
+<li><p>Call appropriate methods to compute intermediate or final results, or to <code class="docutils literal notranslate"><span class="pre">solve</span></code> parameter values implicitly.</p></li>
 <li><p>If needed, adjust the answers with <code class="docutils literal notranslate"><span class="pre">ExtraRisk</span></code> or <code class="docutils literal notranslate"><span class="pre">Mthly</span></code> (or its <code class="docutils literal notranslate"><span class="pre">UDD</span></code> or <code class="docutils literal notranslate"><span class="pre">Woolhouse</span></code>) classes.</p></li>
 </ol>
 </section>
@@ -455,10 +449,10 @@ document.write(`
 <section id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p><a class="reference external" href="https://terence-lim.github.io/actuarialmath-tutorial/_sources/faml.ipynb">Jupyter Notebook</a>, or <a class="reference external" href="https://colab.research.google.com/drive/1TcNr1x5HbT2fF3iFMYGXdN_cvRKiSua4?usp=sharing">Colab</a>, with code chunks to solve all sample SOA FAM-L exam questions.</p></li>
-<li><p><a class="reference external" href="https://terence-lim.github.io/actuarialmath-tutorial/">Online tutorial</a> or <a class="reference external" href="https://terence-lim.github.io/notes/actuarialmath-tutorial.pdf">pdf version</a>.</p></li>
-<li><p><a class="reference external" href="https://github.com/terence-lim/actuarialmath">Github repo and issues</a>.</p></li>
-<li><p><a class="reference external" href="https://actuarialmath.readthedocs.io/en/latest/index.html">Code documentation</a>.</p></li>
+<li><p><a class="reference external" href="https://colab.research.google.com/drive/1TcNr1x5HbT2fF3iFMYGXdN_cvRKiSua4?usp=sharing">Colab</a> or <a class="reference external" href="https://terence-lim.github.io/notes/faml.ipynb">Jupyter notebook</a>, to solve all sample SOA FAM-L exam questions</p></li>
+<li><p><a class="reference external" href="https://terence-lim.github.io/actuarialmath-tutorial/">Online tutorial</a>, or <a class="reference external" href="https://terence-lim.github.io/notes/actuarialmath-tutorial.pdf">download pdf</a></p></li>
+<li><p><a class="reference external" href="https://actuarialmath.readthedocs.io/en/latest/index.html">Code documentation</a></p></li>
+<li><p><a class="reference external" href="https://github.com/terence-lim/actuarialmath.git">Github repo</a> and <a class="reference external" href="https://github.com/terence-lim/actuarialmath/issues">issues</a></p></li>
 </ol>
 </section>
 <section id="sources">
@@ -535,7 +529,6 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-and-classes">Concepts and Classes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
