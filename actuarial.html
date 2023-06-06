@@ -394,17 +394,11 @@ document.write(`
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>The package comprises three sets of classes, which:</p>
 <ol class="arabic simple">
-<li><p>Implement general actuarial concepts</p>
+<li><p>Implement general actuarial concepts, incrementally</p>
 <ol class="arabic simple">
 <li><p>Basic interest theory and probability laws</p></li>
 <li><p>Survival functions, future lifetimes and fractional ages</p></li>
 <li><p>Insurance, annuity, premiums, policy values, and reserves calculations</p></li>
-</ol>
-</li>
-<li><p>Adjust results for</p>
-<ol class="arabic simple">
-<li><p>Extra risks</p></li>
-<li><p>1/mthly payments using UDD or Woolhouse approaches</p></li>
 </ol>
 </li>
 <li><p>Specify and load a particular form of assumptions</p>
@@ -414,8 +408,14 @@ document.write(`
 <li><p>Recursion inputs</p></li>
 </ol>
 </li>
+<li><p>Adjust results for</p>
+<ol class="arabic simple">
+<li><p>Extra risks</p></li>
+<li><p>1/mthly payments using UDD or Woolhouse approaches</p></li>
 </ol>
-<p>A user should first initialize a class selected from the last set to load their actuarial assumptions, then call appropriate methods that are either specific to that class or inherited from other general classes, which make use of any shortcut formulas or survival distributions obtained from those assumptions.</p>
+</li>
+</ol>
+<p>This tutorial shall review each of the Python classes (and actuarial concepts applied) in the given group order. Ultimately to use this package, a user would initialize a class selected from the second set to load their actuarial assumptions, then call appropriate methods that are either specific to that class or inherited from other general classes, which make use of any shortcut formulas or survival distributions that can be obtained from those assumptions.</p>
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
