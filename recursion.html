@@ -385,7 +385,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="recursion">
 <h1>Recursion<a class="headerlink" href="#recursion" title="Permalink to this heading">#</a></h1>
-<p>Using annual values provided, such as in a life table, we can calculate other values at other ages and durations by repeatedly applying recursion formulas and other actuarial equations.</p>
+<p>Using annual values provided, such as in a life table, we can calculate other values at other ages and durations by applying recursion formulas and other actuarial identities.</p>
 <section id="chain-rule">
 <h2>Chain rule<a class="headerlink" href="#chain-rule" title="Permalink to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\(_{t+n}p_x =\ _np_x \cdot\ _tp_{x+n}\)</span></p>
@@ -467,9 +467,9 @@ document.write(`
 <p>The <code class="docutils literal notranslate"><span class="pre">Recursion</span></code> class implements methods to apply recursive, shortcut and actuarial formulas, and traces steps taken to find the solution.</p>
 <p><strong>Caveats</strong>:</p>
 <ol class="arabic simple">
-<li><p>Not all possible recursion rules and actuarial equations have (yet) been implemented in the current version of the package.</p></li>
+<li><p>Not all possible recursion rules and actuarial equations have (yet) been implemented in the present version of the package.</p></li>
 <li><p>You may set the recursion depth to a larger limit than the default of 3 (with the keyword argument <code class="docutils literal notranslate"><span class="pre">depth</span></code> when initializing a Recursion class object).</p></li>
-<li><p>But generally, the current implementation is fragile if the solution is not available within a relatively shallow search: future releases will enhance.</p></li>
+<li><p>But generally, the current implementation may be fragile if the solution is not available within a relatively shallow search.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

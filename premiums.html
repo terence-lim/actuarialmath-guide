@@ -439,7 +439,7 @@ The calculation of the premium may not explicitly allow for the insurance compan
 <li><p>fully continuous endowment insurance net premium</p></li>
 </ul>
 <p><strong>Shortcuts for whole life and endowment insurance only</strong>:</p>
-<p>For whole life and endowment insurance only, by plugging in the insurance or annuity twin, the following shortcuts are available for calculating net premiums from the insurance factor only or the annuity factor only.</p>
+<p>For whole life and endowment insurance only, by plugging in the insurance or annuity twin, the following shortcuts are available for calculating net premiums from only the life insurance or annuity factor.</p>
 <p><span class="math notranslate nohighlight">\(P = b ~ (\dfrac{1}{\ddot{a}_x} - d) = b ~ (\dfrac{dA_x}{1 - A_x})\ \)</span></p>
 <ul class="simple">
 <li><p>fully discrete whole life shortcut</p></li>
@@ -459,7 +459,7 @@ The calculation of the premium may not explicitly allow for the insurance compan
 </section>
 <section id="portfolio-percentile-premium">
 <h2>Portfolio Percentile Premium<a class="headerlink" href="#portfolio-percentile-premium" title="Permalink to this heading">#</a></h2>
-<p>The portfolio percentile premium principle is an alternative to the equivalence premium principle. We assume a large portfolio of <span class="math notranslate nohighlight">\(N\)</span> identical and independent policies. The present value of the total future loss <span class="math notranslate nohighlight">\(\overline{L}\)</span> of the portfolio can be approximated by a normal distribution over the sum of individual losses <span class="math notranslate nohighlight">\(L_i\)</span></p>
+<p>The portfolio percentile premium principle is an alternative to the equivalence premium principle. We assume a large portfolio of <span class="math notranslate nohighlight">\(N\)</span> identical and independent policies. The present value of the total future loss <span class="math notranslate nohighlight">\(\overline{L}\)</span> of the portfolio can be approximated by a normal distribution over the sum of the individual losses <span class="math notranslate nohighlight">\(L_i\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align}
 \overline{L} &amp; = L_1 + L_2 + \cdots + L_N\\
@@ -501,7 +501,7 @@ Pr \left[\dfrac{\overline{L} - E[\overline{L}]}{\sqrt{Var[\overline{L}]}}
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">Premiums</span></code> class implements methods for computing net and gross premiums under thethe equivalence principle</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Premiums</span></code> class implements methods for computing net and gross premiums under the equivalence principle</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -712,7 +712,7 @@ without interest</p></li>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.20:  (B) 459&quot;</span><span class="p">)</span>
 <span class="n">l</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="mi">75</span><span class="p">,</span> <span class="mi">76</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">78</span><span class="p">],</span>
-                            <span class="n">np</span><span class="o">.</span><span class="n">cumprod</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mf">.9</span><span class="p">,</span> <span class="mf">.88</span><span class="p">,</span> <span class="mf">.85</span><span class="p">])))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                         <span class="n">np</span><span class="o">.</span><span class="n">cumprod</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mf">.9</span><span class="p">,</span> <span class="mf">.88</span><span class="p">,</span> <span class="mf">.85</span><span class="p">])))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">life</span> <span class="o">=</span> <span class="n">Premiums</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="n">l</span><span class="p">)</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">temporary_annuity</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">IA</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">increasing_insurance</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
