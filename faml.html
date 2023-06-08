@@ -4104,9 +4104,9 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 <p>SOA Question 7.30:  (E) 9035</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">contract</span> <span class="o">=</span> <span class="n">Contract</span><span class="p">(</span><span class="n">premium</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>  <span class="c1"># premiums=0 after t=10</span>
-<span class="n">L</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span><span class="o">.</span><span class="n">gross_policy_value</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
-<span class="n">V</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">gross_policy_value</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span> <span class="c1"># 10000</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c1"># premiums=0 after t=10                                                 </span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span><span class="o">.</span><span class="n">whole_life_insurance</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">whole_life_insurance</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">)</span>
 <span class="n">isclose</span><span class="p">(</span><span class="mi">9035</span><span class="p">,</span> <span class="n">V</span> <span class="o">-</span> <span class="n">L</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="s2">&quot;Q7.30&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -4175,7 +4175,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-06 17:17:01.819281
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-08 14:42:32.768964
 Passed: 136/136
 </pre></div>
 </div>
