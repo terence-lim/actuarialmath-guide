@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'reserves';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Life Table" href="lifetable.html" />
+    <link rel="next" title="Mortality Laws" href="mortalitylaws.html" />
     <link rel="prev" title="Policy Values" href="policyvalues.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Introduction
+                    USER GUIDE
                 </a>
             </li>
         </ul>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -369,8 +369,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursion">Recursion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interim-reserves">Interim reserves</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modified-reserves">Modified reserves</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
             </nav>
         </div>
@@ -440,17 +440,62 @@ Modified premium reserves are computed without expenses, and modifies the net pr
 <li><p>since renewal FPT premium for (x) is net premium for (x+1) with term lengths adjusted</p></li>
 </ul>
 </section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Reserves</span></code> class implements methods to solve reserves by recursion, and compute interim and modified reserves.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.reserves</span> <span class="kn">import</span> <span class="n">Reserves</span>
-<span class="kn">from</span> <span class="nn">actuarialmath.policyvalues</span> <span class="kn">import</span> <span class="n">Contract</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">Reserves</span><span class="p">,</span> <span class="n">Contract</span>
+<span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Reserves</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Reserves - Compute recursive, interim and modified reserves
+
+    Methods:
+    --------
+
+    set_reserves(T, endowment, V):
+      Set values of the reserves table and the endowment benefit amount
+
+    fill_reserves(x, s, reserve_benefit, contract):
+      Iteratively fill in missing values in reserves table
+
+    t_V_forward(x, s, t, premium, benefit, per_premium, per_policy, reserve_benefit):
+      Forward recursion (with optional reserve benefit)
+
+    t_V_backward(x, s, t, premium, benefit, per_premium, per_policy, reserve_benefit):
+      Backward recursion (with optional reserve benefit)
+
+    t_V(x, s, t, premium, benefit, reserve_benefit, per_premium, per_policy):
+      Solve year-t reserves by forward or backward recursion
+
+    r_V_forward(x, s, r, premium, benefit):
+      Forward recursion for interim reserves
+
+    r_V_backward(x, s, r, benefit):
+      Backward recursion for interim reserves
+
+    FPT_premium(x, s, n, b, first):
+      Initial or renewal Full Preliminary Term premiums
+
+    FPT_policy_value(x, s, t, b, n, endowment, discrete):
+      Compute Full Preliminary Term policy value at time t
+
+    V_plot(ax, color, title):
+      Plot values from reserves tables
+
+    V_t():
+      Returns reserves table as a DataFrame
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
 <p><strong>SOA Question 7.31</strong></p>
 <p>For a fully discrete 3-year endowment insurance of 1000 on (x), you are given:</p>
 <ul class="simple">
@@ -538,58 +583,6 @@ Modified premium reserves are computed without expenses, and modifies the net pr
 </div>
 </div>
 </section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
-<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Reserves</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Reserves - Compute recursive, interim and modified reserves
-
-    Methods:
-    --------
-
-    set_reserves(T, endowment, V):
-      Set values of the reserves table and the endowment benefit amount
-
-    fill_reserves(x, s, reserve_benefit, contract):
-      Iteratively fill in missing values in reserves table
-
-    t_V_forward(x, s, t, premium, benefit, per_premium, per_policy, reserve_benefit):
-      Forward recursion (with optional reserve benefit)
-
-    t_V_backward(x, s, t, premium, benefit, per_premium, per_policy, reserve_benefit):
-      Backward recursion (with optional reserve benefit)
-
-    t_V(x, s, t, premium, benefit, reserve_benefit, per_premium, per_policy):
-      Solve year-t reserves by forward or backward recursion
-
-    r_V_forward(x, s, r, premium, benefit):
-      Forward recursion for interim reserves
-
-    r_V_backward(x, s, r, benefit):
-      Backward recursion for interim reserves
-
-    FPT_premium(x, s, n, b, first):
-      Initial or renewal Full Preliminary Term premiums
-
-    FPT_policy_value(x, s, t, b, n, endowment, discrete):
-      Compute Full Preliminary Term policy value at time t
-
-    V_plot(ax, color, title):
-      Plot values from reserves tables
-
-    V_t():
-      Returns reserves table as a DataFrame
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -633,11 +626,11 @@ Modified premium reserves are computed without expenses, and modifies the net pr
       </div>
     </a>
     <a class="right-next"
-       href="lifetable.html"
+       href="mortalitylaws.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Life Table</p>
+        <p class="prev-next-title">Mortality Laws</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -662,8 +655,8 @@ Modified premium reserves are computed without expenses, and modifies the net pr
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursion">Recursion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interim-reserves">Interim reserves</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modified-reserves">Modified reserves</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Introduction
+                    USER GUIDE
                 </a>
             </li>
         </ul>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -370,8 +370,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gross-policy-value">Gross policy value</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-future-loss">Variance of future loss</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expense-reserve">Expense reserve</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
             </nav>
         </div>
@@ -485,16 +485,62 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(~_tV &gt; ~_tV^g &gt; 0 &gt; ~_tV^e\)</span></p></li>
 </ul>
 </section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">PolicyValues</span></code> class implements methods for computing net and gross future losses, and policy values (expected present values).  The <code class="docutils literal notranslate"><span class="pre">Contract</span></code> class helps to store and retrieve policy contract terms, such as benefit amounts and various expenses.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.policyvalues</span> <span class="kn">import</span> <span class="n">PolicyValues</span><span class="p">,</span> <span class="n">Contract</span>
+<span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">PolicyValues</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class PolicyValues - Compute net and gross future losses and policy values
+
+    Methods:
+    --------
+
+    net_future_loss(A, A1, b):
+      Shortcuts for WL or Endowment Insurance net loss
+
+    net_variance_loss(A1, A2, A, b):
+      Shortcuts for variance of net loss of WL or Endowment Insurance
+
+    net_policy_variance(x, s, t, b, n, endowment, discrete):
+      Variance of future loss for WL or Endowment Ins assuming equivalence
+
+    gross_future_loss(A, a, contract):
+      Shortcut for WL or Endowment Insurance gross future loss
+
+    gross_policy_variance(x, s, t, n, contract):
+      Variance of gross policy value for WL and Endowment Insurance
+
+    gross_policy_value(x, s, t, n, contract):
+      Gross policy values for insurance: t_V = E[L_t]
+
+    L_from_t(t, contract):
+      PV of Loss L(t) at time of death t = T_x (or K_x if discrete)
+
+    L_to_t(L, contract):
+      Compute time of death T_x s.t. PV future loss is L
+
+    L_from_prob(x, prob, contract):
+      Compute PV of future loss at given percentile prob
+
+    L_to_prob(x, L, contract):
+      Compute percentile of L on the PV of future loss curve&quot;
+
+    L_plot(x, s, stop, T, contract, ax, title, color):
+      Plot PV of future loss r.v. L vs time of death T_x
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
 <p><strong>SOA Question 6.24</strong></p>
 <p>For a fully continuous whole life insurance of 1 on (x), you are given:</p>
 <ul class="simple">
@@ -680,108 +726,7 @@ determined by the equivalence principle</p></li>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.000695265147726408
 </pre></div>
 </div>
-<img alt="_images/85d4338a0015bcf6b0da287af8aa4c47282f3df525cc1d973a985f4d1eb22e28.png" src="_images/85d4338a0015bcf6b0da287af8aa4c47282f3df525cc1d973a985f4d1eb22e28.png" />
-</div>
-</div>
-</section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
-<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">PolicyValues</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class PolicyValues - Compute net and gross future losses and policy values
-
-    Methods:
-    --------
-
-    net_future_loss(A, A1, b):
-      Shortcuts for WL or Endowment Insurance net loss
-
-    net_variance_loss(A1, A2, A, b):
-      Shortcuts for variance of net loss of WL or Endowment Insurance
-
-    net_policy_variance(x, s, t, b, n, endowment, discrete):
-      Variance of future loss for WL or Endowment Ins assuming equivalence
-
-    gross_future_loss(A, a, contract):
-      Shortcut for WL or Endowment Insurance gross future loss
-
-    gross_policy_variance(x, s, t, n, contract):
-      Variance of gross policy value for WL and Endowment Insurance
-
-    gross_policy_value(x, s, t, n, contract):
-      Gross policy values for insurance: t_V = E[L_t]
-
-    L_from_t(t, contract):
-      PV of Loss L(t) at time of death t = T_x (or K_x if discrete)
-
-    L_to_t(L, contract):
-      Compute time of death T_x s.t. PV future loss is L
-
-    L_from_prob(x, prob, contract):
-      Compute PV of future loss at given percentile prob
-
-    L_to_prob(x, L, contract):
-      Compute percentile of L on the PV of future loss curve&quot;
-
-    L_plot(x, s, stop, T, contract, ax, title, color):
-      Plot PV of future loss r.v. L vs time of death T_x
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
-<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">PolicyValues</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class PolicyValues - Compute net and gross future losses and policy values
-
-    Methods:
-    --------
-
-    net_future_loss(A, A1, b):
-      Shortcuts for WL or Endowment Insurance net loss
-
-    net_variance_loss(A1, A2, A, b):
-      Shortcuts for variance of net loss of WL or Endowment Insurance
-
-    net_policy_variance(x, s, t, b, n, endowment, discrete):
-      Variance of future loss for WL or Endowment Ins assuming equivalence
-
-    gross_future_loss(A, a, contract):
-      Shortcut for WL or Endowment Insurance gross future loss
-
-    gross_policy_variance(x, s, t, n, contract):
-      Variance of gross policy value for WL and Endowment Insurance
-
-    gross_policy_value(x, s, t, n, contract):
-      Gross policy values for insurance: t_V = E[L_t]
-
-    L_from_t(t, contract):
-      PV of Loss L(t) at time of death t = T_x (or K_x if discrete)
-
-    L_to_t(L, contract):
-      Compute time of death T_x s.t. PV future loss is L
-
-    L_from_prob(x, prob, contract):
-      Compute PV of future loss at given percentile prob
-
-    L_to_prob(x, L, contract):
-      Compute percentile of L on the PV of future loss curve&quot;
-
-    L_plot(x, s, stop, T, contract, ax, title, color):
-      Plot PV of future loss r.v. L vs time of death T_x
-</pre></div>
-</div>
+<img alt="_images/a0f863a91d36d8cff32ec637188c316d98d4f2e523b09269121502eabd0f7515.png" src="_images/a0f863a91d36d8cff32ec637188c316d98d4f2e523b09269121502eabd0f7515.png" />
 </div>
 </div>
 </section>
@@ -858,8 +803,8 @@ determined by the equivalence principle</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gross-policy-value">Gross policy value</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-future-loss">Variance of future loss</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expense-reserve">Expense reserve</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

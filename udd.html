@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Introduction
+                    USER GUIDE
                 </a>
             </li>
         </ul>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">UDD M’thly</a></li>
@@ -370,8 +370,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-life-insurance">Continuous Life Insurance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interest-functions">Interest functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-annuities">Life annuities</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
             </nav>
         </div>
@@ -458,19 +458,42 @@ document.write(`
 <li><p>deferred whole life annuity</p></li>
 </ul>
 </section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">UDD</span></code> class implements methods to compute life insurance and annuities assuming a uniform distribution of deaths (UDD)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.udd</span> <span class="kn">import</span> <span class="n">UDD</span>
-<span class="kn">from</span> <span class="nn">actuarialmath.sult</span> <span class="kn">import</span> <span class="n">SULT</span>
-<span class="kn">from</span> <span class="nn">actuarialmath.recursion</span> <span class="kn">import</span> <span class="n">Recursion</span>
-<span class="kn">from</span> <span class="nn">actuarialmath.policyvalues</span> <span class="kn">import</span> <span class="n">Contract</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">UDD</span><span class="p">,</span> <span class="n">SULT</span><span class="p">,</span> <span class="n">Recursion</span><span class="p">,</span> <span class="n">Contract</span>
+<span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">UDD</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class UDD - 1/mthly shortcuts with UDD assumption
+
+    Args:
+      m : number of payments per year
+      life : original fractional survival and mortality functions
+
+    Methods:
+    --------
+
+    alpha(m, i):
+      Derive 1/mthly UDD interest rate beta function value
+
+    beta(m, i):
+      Derive 1/mthly UDD interest rate alpha function value
+
+    interest_frame(i):
+      Display 1/mthly UDD interest function values
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
 <p><strong>SOA Question 6.38</strong></p>
 <p>For an n-year endowment insurance of 1000 on (x), you are given:</p>
 <ul class="simple">
@@ -658,38 +681,6 @@ period of 20 years, you are given:</p>
 </div>
 </div>
 </section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
-<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">UDD</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class UDD - 1/mthly shortcuts with UDD assumption
-
-    Args:
-      m : number of payments per year
-      life : original fractional survival and mortality functions
-
-    Methods:
-    --------
-
-    alpha(m, i):
-      Derive 1/mthly UDD interest rate beta function value
-
-    beta(m, i):
-      Derive 1/mthly UDD interest rate alpha function value
-
-    interest_frame(i):
-      Display 1/mthly UDD interest function values
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -763,8 +754,8 @@ period of 20 years, you are given:</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-life-insurance">Continuous Life Insurance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interest-functions">Interest functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-annuities">Life annuities</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

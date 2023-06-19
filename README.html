@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Introduction &#8212; Solving Actuarial Math with Python</title>
+    <title>USER GUIDE &#8212; Solving Actuarial Math with Python</title>
   
   
   
@@ -145,7 +145,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    Introduction
+                    USER GUIDE
                 </a>
             </li>
         </ul>
@@ -161,12 +161,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -355,7 +355,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction</h1>
+    <h1>USER GUIDE</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -381,8 +381,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="user-guide">
+<h1>USER GUIDE<a class="headerlink" href="#user-guide" title="Permalink to this heading">#</a></h1>
 <p><strong>actuarialmath – Life Contingent Risks with Python</strong></p>
 <p>This Python package implements fundamental methods for modeling life contingent risks, and closely follows the coverage of traditional topics in actuarial exams and standard texts such as the “Fundamentals of Actuarial Math - Long-term” exam syllabus by the Society of Actuaries, and “Actuarial Mathematics for Life Contingent Risks” by Dickson, Hardy and Waters.
 The resources listed below should be helpful for getting started. The code chunks in this complete <a class="reference external" href="https://colab.research.google.com/drive/1TcNr1x5HbT2fF3iFMYGXdN_cvRKiSua4?usp=sharing">Colab</a>, or <a class="reference external" href="https://terence-lim.github.io/notes/faml.ipynb">Jupyter notebook</a>, demonstrate how to solve each of the sample FAM-L exam questions released by the SOA.</p>
@@ -400,7 +400,7 @@ The resources listed below should be helpful for getting started. The code chunk
 <ul class="simple">
 <li><p>Select and import a suitable subclass to initialize with your actuarial assumptions, such as <code class="docutils literal notranslate"><span class="pre">MortalityLaws</span></code> (or a special law like <code class="docutils literal notranslate"><span class="pre">ConstantForce</span></code>), <code class="docutils literal notranslate"><span class="pre">LifeTable</span></code>, <code class="docutils literal notranslate"><span class="pre">SULT</span></code>, <code class="docutils literal notranslate"><span class="pre">SelectLife</span></code> or <code class="docutils literal notranslate"><span class="pre">Recursion</span></code>.</p></li>
 <li><p>Call appropriate methods to compute intermediate or final results, or to <code class="docutils literal notranslate"><span class="pre">solve</span></code> parameter values implicitly.</p></li>
-<li><p>If needed, adjust the answers with <code class="docutils literal notranslate"><span class="pre">ExtraRisk</span></code> or <code class="docutils literal notranslate"><span class="pre">Mthly</span></code> (or its <code class="docutils literal notranslate"><span class="pre">UDD</span></code> or <code class="docutils literal notranslate"><span class="pre">Woolhouse</span></code>) classes.</p></li>
+<li><p>Adjust the answers with <code class="docutils literal notranslate"><span class="pre">ExtraRisk</span></code> or <code class="docutils literal notranslate"><span class="pre">Mthly</span></code> (or its <code class="docutils literal notranslate"><span class="pre">UDD</span></code> or <code class="docutils literal notranslate"><span class="pre">Woolhouse</span></code>) classes</p></li>
 </ul>
 </li>
 </ol>
@@ -409,8 +409,7 @@ The resources listed below should be helpful for getting started. The code chunk
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
 <p><strong>SOA FAM-L sample question 5.7</strong>:</p>
 <p>Given <span class="math notranslate nohighlight">\(A_{35} = 0.188\)</span>, <span class="math notranslate nohighlight">\(A_{65} = 0.498\)</span>, <span class="math notranslate nohighlight">\(S_{35}(30) = 0.883\)</span>, calculate the EPV of a temporary annuity <span class="math notranslate nohighlight">\(\ddot{a}^{(2)}_{35:\overline{30|}}\)</span> paid half-yearly using the Woolhouse approximation.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.recursion</span> <span class="kn">import</span> <span class="n">Recursion</span>
-<span class="kn">from</span> <span class="nn">actuarialmath.woolhouse</span> <span class="kn">import</span> <span class="n">Woolhouse</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">Recursion</span><span class="p">,</span> <span class="n">Woolhouse</span>
 <span class="c1"># initialize Recursion class with actuarial inputs</span>
 <span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>\
                   <span class="o">.</span><span class="n">set_A</span><span class="p">(</span><span class="mf">0.188</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">35</span><span class="p">)</span>\
@@ -435,8 +434,7 @@ The resources listed below should be helpful for getting started. The code chunk
 <li><p><em>i</em> = 0.05</p></li>
 </ul>
 <p>Calculate R − S</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.sult</span> <span class="kn">import</span> <span class="n">SULT</span>   <span class="c1"># use Standard Ultimate Life Table</span>
-<span class="kn">from</span> <span class="nn">actuarialmath.policyvalues</span> <span class="kn">import</span> <span class="n">Contract</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">SULT</span><span class="p">,</span> <span class="n">Contract</span>
 <span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
 <span class="c1"># compute the required FPT policy value</span>
 <span class="n">S</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">FPT_policy_value</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># is always 0 in year 1!</span>
@@ -458,7 +456,7 @@ The resources listed below should be helpful for getting started. The code chunk
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://colab.research.google.com/drive/1TcNr1x5HbT2fF3iFMYGXdN_cvRKiSua4?usp=sharing">Colab</a> or <a class="reference external" href="https://terence-lim.github.io/notes/faml.ipynb">Jupyter notebook</a>, to solve all sample SOA FAM-L exam questions</p></li>
-<li><p><a class="reference external" href="https://terence-lim.github.io/actuarialmath-tutorial/">Online tutorial</a>, or <a class="reference external" href="https://terence-lim.github.io/notes/actuarialmath-tutorial.pdf">download pdf</a></p></li>
+<li><p><a class="reference external" href="https://terence-lim.github.io/actuarialmath-guide/">User Guide</a>, or <a class="reference external" href="https://terence-lim.github.io/notes/actuarialmath-guide.pdf">download pdf</a></p></li>
 <li><p><a class="reference external" href="https://actuarialmath.readthedocs.io/en/latest/">Code documentation</a></p></li>
 <li><p><a class="reference external" href="https://github.com/terence-lim/actuarialmath.git">Github repo</a> and <a class="reference external" href="https://github.com/terence-lim/actuarialmath/issues">issues</a></p></li>
 </ol>

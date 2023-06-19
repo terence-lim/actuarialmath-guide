@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="SULT" href="sult.html" />
-    <link rel="prev" title="Reserves" href="reserves.html" />
+    <link rel="prev" title="Constant Force of Mortality" href="constantforce.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Introduction
+                    USER GUIDE
                 </a>
             </li>
         </ul>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -366,8 +366,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
             </nav>
         </div>
@@ -391,16 +391,53 @@ Let <span class="math notranslate nohighlight">\(l_{x_0}\)</span> be an arbitrar
 <ul class="simple">
 <li><p>the mortality rate can then be derived, which equals the probability that a life aged <span class="math notranslate nohighlight">\(x\)</span> dies within one year.</p></li>
 </ul>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">LifeTable</span></code> class implements methods to load, calculate and impute life table entries</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.lifetable</span> <span class="kn">import</span> <span class="n">LifeTable</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">LifeTable</span>
+<span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">LifeTable</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class LifeTable - Calculate life table, and iteratively fill in missing values
+
+    Args:
+      udd : assume UDD or constant force of mortality for fractional ages
+      verbose : whether to echo update steps
+
+    Notes:
+      4 types of information can be loaded and calculated in the life table:
+
+      - &#39;q&#39; : probability (x) dies in one year
+      - &#39;l&#39; : number of lives aged x
+      - &#39;d&#39; : number of deaths of age x
+      - &#39;p&#39; : probability (x) survives at least one year
+
+    Methods:
+    --------
+
+    set_table(fill, minage, maxage, l, d, p, q):
+      Update life table
+
+    fill_table(radix):
+      Iteratively fill in missing table cells (does not check consistency)
+
+    frame():
+      Return life table columns and values in a DataFrame
+
+    __getitem__(col):
+      Returns a column of the life table
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
 <p><strong>AMLCR2 Exercise 3.2</strong></p>
 <p>You are given the following life table extract.</p>
 <table class="table">
@@ -714,49 +751,6 @@ Calculate the probability that (50) dies during the next 2.5 years.</p></li>
 </div>
 </div>
 </section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
-<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">LifeTable</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class LifeTable - Calculate life table, and iteratively fill in missing values
-
-    Args:
-      udd : assume UDD or constant force of mortality for fractional ages
-      verbose : whether to echo update steps
-
-    Notes:
-      4 types of information can be loaded and calculated in the life table:
-
-      - &#39;q&#39; : probability (x) dies in one year
-      - &#39;l&#39; : number of lives aged x
-      - &#39;d&#39; : number of deaths of age x
-      - &#39;p&#39; : probability (x) survives at least one year
-
-    Methods:
-    --------
-
-    set_table(fill, minage, maxage, l, d, p, q):
-      Update life table
-
-    fill_table(radix):
-      Iteratively fill in missing table cells (does not check consistency)
-
-    frame():
-      Return life table columns and values in a DataFrame
-
-    __getitem__(col):
-      Returns a column of the life table
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -791,12 +785,12 @@ Calculate the probability that (50) dies during the next 2.5 years.</p></li>
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="reserves.html"
+       href="constantforce.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Reserves</p>
+        <p class="prev-next-title">Constant Force of Mortality</p>
       </div>
     </a>
     <a class="right-next"
@@ -826,8 +820,8 @@ Calculate the probability that (50) dies during the next 2.5 years.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

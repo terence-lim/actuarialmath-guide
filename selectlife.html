@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Introduction
+                    USER GUIDE
                 </a>
             </li>
         </ul>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Select Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -367,8 +367,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-and-ultimate-life-model">Select and ultimate life model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
             </nav>
         </div>
@@ -398,16 +398,76 @@ document.write(`
 </ul>
 <p>With a select period <span class="math notranslate nohighlight">\(d\)</span> and for <span class="math notranslate nohighlight">\(s \ge d\)</span> (i.e. durations beyond the select period) the values of <span class="math notranslate nohighlight">\(p_{[x-s]+s}, q_{[x-s]+s}, l_{[x-s]+s}\)</span> depend only on current age <span class="math notranslate nohighlight">\(x\)</span> and not on <span class="math notranslate nohighlight">\(s\)</span>. So for <span class="math notranslate nohighlight">\(s \ge d\)</span>, these terms are all equal to and can be written simply as <span class="math notranslate nohighlight">\(p_x, q_x, l_x\)</span> respectively.</p>
 </section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">SelectLife</span></code> class implements methods to calculate and fill in a select and ultimate mortality life table</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.selectlife</span> <span class="kn">import</span> <span class="n">SelectLife</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">SelectLife</span>
+<span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">SelectLife</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class SelectLife - Calculate select life table, and iteratively fill in missing values
+
+    Args:
+      periods : number of select period years
+      verbose : whether to echo update steps
+
+    Notes:
+      6 types of information can be loaded and calculated in the select table:
+
+      - &#39;q&#39; : probability [x]+s dies in one year
+      - &#39;l&#39; : number of lives aged [x]+s
+      - &#39;d&#39; : number of deaths of age [x]+s
+      - &#39;A&#39; : whole life insurance
+      - &#39;a&#39; : whole life annuity
+      - &#39;e&#39; : expected future curtate lifetime of [x]+s
+
+    Methods:
+    --------
+
+    set_table(fill, l, d, q, A, a, e):
+      Update from table, every age has row for all select durations
+
+    set_select(s, age_selected, fill, l, d, q, A, a, e):
+      Update a table column, for a particular duration s in the select period
+
+    fill_table(radix):
+      Fills in missing table values (does not check for consistency)
+
+    __getitem__(table):
+      Returns values from a select and ultimate table
+
+    frame(table):
+      Returns select and ultimate table values as a DataFrame
+
+    l_x(x, s):
+      Returns number of lives aged [x]+s computed from select table
+
+    p_x(x, s, t):
+      t_p_[x]+s by chain rule: prod(1_p_[x]+s+y) for y in range(t)
+
+    q_x(x, s, t, u):
+      t|u_q_[x]+s = [x]+s survives u years, does not survive next t
+
+    e_x(x, s, t, curtate):
+      Returns expected life time computed from select table
+
+    A_x(x, s, moment, discrete, kwargs):
+      Returns insurance value computed from select table
+
+    a_x(x, s, moment, discrete, kwargs):
+      Returns annuity value computed from select table
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
 <p>You are given:</p>
 <ul class="simple">
 <li><p>The following extract from a mortality table with a one-year select period:</p></li>
@@ -1084,72 +1144,6 @@ Age
 </div></div></div>
 </div>
 </section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
-<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">SelectLife</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class SelectLife - Calculate select life table, and iteratively fill in missing values
-
-    Args:
-      periods : number of select period years
-      verbose : whether to echo update steps
-
-    Notes:
-      6 types of information can be loaded and calculated in the select table:
-
-      - &#39;q&#39; : probability [x]+s dies in one year
-      - &#39;l&#39; : number of lives aged [x]+s
-      - &#39;d&#39; : number of deaths of age [x]+s
-      - &#39;A&#39; : whole life insurance
-      - &#39;a&#39; : whole life annuity
-      - &#39;e&#39; : expected future curtate lifetime of [x]+s
-
-    Methods:
-    --------
-
-    set_table(fill, l, d, q, A, a, e):
-      Update from table, every age has row for all select durations
-
-    set_select(s, age_selected, fill, l, d, q, A, a, e):
-      Update a table column, for a particular duration s in the select period
-
-    fill_table(radix):
-      Fills in missing table values (does not check for consistency)
-
-    __getitem__(table):
-      Returns values from a select and ultimate table
-
-    frame(table):
-      Returns select and ultimate table values as a DataFrame
-
-    l_x(x, s):
-      Returns number of lives aged [x]+s computed from select table
-
-    p_x(x, s, t):
-      t_p_[x]+s by chain rule: prod(1_p_[x]+s+y) for y in range(t)
-
-    q_x(x, s, t, u):
-      t|u_q_[x]+s = [x]+s survives u years, does not survive next t
-
-    e_x(x, s, t, curtate):
-      Returns expected life time computed from select table
-
-    A_x(x, s, moment, discrete, kwargs):
-      Returns insurance value computed from select table
-
-    a_x(x, s, moment, discrete, kwargs):
-      Returns annuity value computed from select table
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1220,8 +1214,8 @@ Age
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-and-ultimate-life-model">Select and ultimate life model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

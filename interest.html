@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Introduction
+                    USER GUIDE
                 </a>
             </li>
         </ul>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -367,8 +367,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interest-rates">Interest rates</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
             </nav>
         </div>
@@ -433,16 +433,55 @@ document.write(`
 <li><p>Continuous annuity certain: pays at a rate of $1 per year continuously.</p></li>
 </ul>
 </section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Interest</span></code> class implements methods to convert between nominal, discount, continuously-compounded and 1/m’thy rates of interest, and compute the value of an annuity certain.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.interest</span> <span class="kn">import</span> <span class="n">Interest</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">Interest</span>
+<span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Interest</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Interest - Converts interest rates, and computes value of annuity certain
+    
+    Args:
+      i : assumed annual interest rate
+      d : or assumed discount rate
+      v : or assumed discount factor
+      delta : or assumed continuously compounded interest rate
+      v_t : or assumed discount rate as a function of time
+      i_m : or assumed monthly interest rate
+      d_m : or assumed monthly discount rate
+      m : m&#39;thly frequency, if i_m or d_m are given
+
+    Attributes:
+      i (float) : interest rate
+      d (float) : discount rate
+      delta (float) :  continuously compounded interest rate
+      v (float) : discount factor
+      v_t (Callable) : discount factor as a function of time
+
+    Methods:
+    --------
+
+    annuity(t, m, due):
+      Compute value of the annuity certain factor
+
+    mthly(m, i, d, i_m, d_m):
+      Convert to or from m&#39;thly interest rates
+
+    double_force(i, delta, d, v):
+      Double the force of interest
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
 <p><strong>SOA Question 3.10</strong>:</p>
 <p>A group of 100 people start a Scissor Usage Support Group. The rate at which members enter and leave the group is dependent on whether they are right-handed or left-handed. You are given the following:</p>
 <ul class="simple">
@@ -491,51 +530,6 @@ Calculate the proportion of the Scissor Usage Support Group’s expected members
 i: 0.05 d: 0.047619047619047616
 i: 0.1025 0.1025
 d: 0.092971 0.092971
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
-<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Interest</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Interest - Converts interest rates, and computes value of annuity certain
-    
-    Args:
-      i : assumed annual interest rate
-      d : or assumed discount rate
-      v : or assumed discount factor
-      delta : or assumed continuously compounded interest rate
-      v_t : or assumed discount rate as a function of time
-      i_m : or assumed monthly interest rate
-      d_m : or assumed monthly discount rate
-      m : m&#39;thly frequency, if i_m or d_m are given
-
-    Attributes:
-      i (float) : interest rate
-      d (float) : discount rate
-      delta (float) :  continuously compounded interest rate
-      v (float) : discount factor
-      v_t (Callable) : discount factor as a function of time
-
-    Methods:
-    --------
-
-    annuity(t, m, due):
-      Compute value of the annuity certain factor
-
-    mthly(m, i, d, i_m, d_m):
-      Convert to or from m&#39;thly interest rates
-
-    double_force(i, delta, d, v):
-      Double the force of interest
 </pre></div>
 </div>
 </div>
@@ -611,8 +605,8 @@ d: 0.092971 0.092971
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interest-rates">Interest rates</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

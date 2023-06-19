@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'constantforce';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Extra Risk" href="extrarisk.html" />
+    <link rel="next" title="Life Table" href="lifetable.html" />
     <link rel="prev" title="Mortality Laws" href="mortalitylaws.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Introduction
+                    USER GUIDE
                 </a>
             </li>
         </ul>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -370,8 +370,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-endowment">Pure endowment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-insurance">Life insurance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-annuities">Life annuities</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
             </nav>
         </div>
@@ -422,18 +422,54 @@ document.write(`
 <li><p>because of memoryless property</p></li>
 </ul>
 </section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">ConstantForce</span></code> class implements methods that apply shortcut formulas available when assuming constant force of mortality for the distribution of future lifetime</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
-<span class="kn">from</span> <span class="nn">actuarialmath.constantforce</span> <span class="kn">import</span> <span class="n">ConstantForce</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">ConstantForce</span>
+<span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">ConstantForce</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class ConstantForce - Constant force of mortality - memoryless exponential distribution of lifetime
+
+    Args:
+      mu : constant value of force of mortality
+      udd : assume UDD (True) or CFM (False, default) between integer ages
+
+    Methods:
+    --------
+
+    e_x(x, s, t, curtate, moment):
+      Expected lifetime E[T_x] is memoryless: does not depend on (x)
+
+    E_x(x, s, t, endowment, moment):
+      Shortcut for pure endowment: does not depend on age x
+
+    whole_life_insurance(x, s, moment, b, discrete):
+      Shortcut for APV of whole life: does not depend on age x
+
+    temporary_annuity(x, s, t, b, variance, discrete):
+      Shortcut for temporary life annuity: does not depend on age x
+
+    term_insurance(x, s, t, b, moment, discrete):
+      Shortcut for APV of term life: does not depend on age x
+
+    Z_t(x, prob, discrete):
+      Shortcut for T_x (or K_x) given survival probability for insurance
+
+    Y_t(x, prob, discrete):
+      Shortcut for T_x (or K_x) given survival probability for annuity
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
 <p><strong>SOA Question 6.36</strong></p>
 <p>For a fully continuous 20-year term insurance policy of 100,000 on (50), you are given:</p>
 <ul class="simple">
@@ -601,50 +637,6 @@ payable for the lifetime of (x) with 10 years certain</p></li>
 </div>
 </div>
 </section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
-<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">ConstantForce</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class ConstantForce - Constant force of mortality - memoryless exponential distribution of lifetime
-
-    Args:
-      mu : constant value of force of mortality
-      udd : assume UDD (True) or CFM (False, default) between integer ages
-
-    Methods:
-    --------
-
-    e_x(x, s, t, curtate, moment):
-      Expected lifetime E[T_x] is memoryless: does not depend on (x)
-
-    E_x(x, s, t, endowment, moment):
-      Shortcut for pure endowment: does not depend on age x
-
-    whole_life_insurance(x, s, moment, b, discrete):
-      Shortcut for APV of whole life: does not depend on age x
-
-    temporary_annuity(x, s, t, b, variance, discrete):
-      Shortcut for temporary life annuity: does not depend on age x
-
-    term_insurance(x, s, t, b, moment, discrete):
-      Shortcut for APV of term life: does not depend on age x
-
-    Z_t(x, prob, discrete):
-      Shortcut for T_x (or K_x) given survival probability for insurance
-
-    Y_t(x, prob, discrete):
-      Shortcut for T_x (or K_x) given survival probability for annuity
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -688,11 +680,11 @@ payable for the lifetime of (x) with 10 years certain</p></li>
       </div>
     </a>
     <a class="right-next"
-       href="extrarisk.html"
+       href="lifetable.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Extra Risk</p>
+        <p class="prev-next-title">Life Table</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -718,8 +710,8 @@ payable for the lifetime of (x) with 10 years certain</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-endowment">Pure endowment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-insurance">Life insurance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-annuities">Life annuities</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

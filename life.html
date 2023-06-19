@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Introduction
+                    USER GUIDE
                 </a>
             </li>
         </ul>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -367,8 +367,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability">Probability</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
             </nav>
         </div>
@@ -407,7 +407,7 @@ document.write(`
 <p><strong>Conditional Variance</strong></p>
 <p><span class="math notranslate nohighlight">\(Var[Y] = Var(E[Y~|~p']) + E[Var (Y~|~p')]\)</span></p>
 <p><strong>Portfolio Percentile</strong> (<span class="math notranslate nohighlight">\(p, N, \mu, \sigma^2\)</span>)</p>
-<p><span class="math notranslate nohighlight">\(Y\)</span> is sum of <span class="math notranslate nohighlight">\(N\)</span> iid random variables, each with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance $\sigma^2</p>
+<p><span class="math notranslate nohighlight">\(Y\)</span> is sum of <span class="math notranslate nohighlight">\(N\)</span> iid random variables, each with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span></p>
 <p><span class="math notranslate nohighlight">\(Y \sim\)</span> Normal with</p>
 <ul class="simple">
 <li><p>mean <span class="math notranslate nohighlight">\(E[Y] = N\mu\)</span> and</p></li>
@@ -418,17 +418,57 @@ document.write(`
 <li><p>value of <span class="math notranslate nohighlight">\(y\)</span> at percentile <span class="math notranslate nohighlight">\(p\)</span></p></li>
 </ul>
 </section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Life</span></code> class implements methods for computing moments and probabilities of random variables – future lifetimes are modelled as random variables in actuarial math.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">actuarialmath.life</span> <span class="kn">import</span> <span class="n">Life</span>
+<span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">Life</span>
+<span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Life</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Life - Compute moments and probabilities
+
+    Methods:
+    --------
+
+    variance(a, b, var_a, var_b, cov_ab):
+      Variance of weighted sum of two r.v.
+
+    covariance(a, b, ab):
+      Covariance of two r.v.
+
+    bernoulli(p, a, b, variance):
+      Mean or variance of bernoulli r.v. with values {a, b}
+
+    binomial(p, N, variance):
+      Mean or variance of binomial r.v.
+
+    mixture(p, p1, p2, N, variance):
+      Mean or variance of binomial mixture
+
+    conditional_variance(p, p1, p2, N):
+      Conditional variance formula
+
+    portfolio_percentile(mean, variance, prob, N):
+      Probability percentile of the sum of N iid r.v.&#39;s
+
+    set_interest(interest):
+      Set interest rate, which can be given in any form
+
+    quantiles_frame(quantiles):
+      Display selected quantile values from Normal distribution table
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
 <p><strong>SOA Question 2.2</strong>:</p>
 <p>Scientists are searching for a vaccine for a disease. You are given:</p>
 <ul class="simple">
@@ -472,52 +512,6 @@ document.write(`
 -------------------------------------------
 z         0.842  1.036  1.282  1.645  1.960  2.326  2.576
 Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
-<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Life</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Life - Compute moments and probabilities
-
-    Methods:
-    --------
-
-    variance(a, b, var_a, var_b, cov_ab):
-      Variance of weighted sum of two r.v.
-
-    covariance(a, b, ab):
-      Covariance of two r.v.
-
-    bernoulli(p, a, b, variance):
-      Mean or variance of bernoulli r.v. with values {a, b}
-
-    binomial(p, N, variance):
-      Mean or variance of binomial r.v.
-
-    mixture(p, p1, p2, N, variance):
-      Mean or variance of binomial mixture
-
-    conditional_variance(p, p1, p2, N):
-      Conditional variance formula
-
-    portfolio_percentile(mean, variance, prob, N):
-      Probability percentile of the sum of N iid r.v.&#39;s
-
-    set_interest(interest):
-      Set interest rate, which can be given in any form
-
-    quantiles_frame(quantiles):
-      Display selected quantile values from Normal distribution table
 </pre></div>
 </div>
 </div>
@@ -593,8 +587,8 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability">Probability</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

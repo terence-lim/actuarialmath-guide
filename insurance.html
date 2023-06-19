@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Introduction
+                    USER GUIDE
                 </a>
             </li>
         </ul>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -370,8 +370,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-endowment">Pure endowment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variances">Variances</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-insurance">Varying insurance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
             </nav>
         </div>
@@ -568,19 +568,80 @@ insured is payable at the end of the <span class="math notranslate nohighlight">
 <li><p>relates annual increasing and decreasing insurances</p></li>
 </ul>
 </section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Insurance</span></code> class implements methods to compute the present value of life insurance</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">actuarialmath.insurance</span> <span class="kn">import</span> <span class="n">Insurance</span>
+<span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">Insurance</span>
+<span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Insurance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Insurance - Compute expected present values of life insurance
+
+    Methods:
+    --------
+
+    E_x(x, s, t, endowment, moment):
+      Pure endowment: t_E_x
+
+    A_x(x, s, t, u, benefit, endowment, moment, discrete):
+      Numerically compute EPV of insurance from basic survival functions
+
+    insurance_variance(A2, A1, b):
+      Compute variance of insurance given moments and benefit
+
+    whole_life_insurance(x, s, moment, b, discrete):
+      Whole life insurance: A_x
+
+    term_insurance(x, s, t, b, moment, discrete):
+      Term life insurance: A_x:t^1
+
+    deferred_insurance(x, s, u, t, b, moment, discrete):
+      Deferred insurance n|_A_x:t^1 = discounted term or whole life
+
+    endowment_insurance(x, s, t, b, endowment, moment, discrete):
+      Endowment insurance: A_x^1:t = term insurance + pure endowment
+
+    increasing_insurance(x, s, t, b, discrete):
+      Increasing life insurance: (IA)_x
+
+    decreasing_insurance(x, s, t, b, discrete):
+      Decreasing life insurance: (DA)_x
+
+    Z_t(x, prob, discrete):
+      T_x given percentile of the PV of WL or Term insurance, i.e. r.v. Z(t)
+
+    Z_from_t(t, discrete):
+      PV of insurance payment Z(t), given T_x (or K_x if discrete)
+
+    Z_to_t(Z):
+      T_x s.t. PV of insurance payment is Z
+
+    Z_from_prob(x, prob, discrete):
+      Percentile of insurance PV r.v. Z, given probability
+
+    Z_to_prob(x, Z):
+      Cumulative density of insurance PV r.v. Z, given percentile value
+
+    Z_x(x, s, t, discrete):
+      EPV of year t insurance death benefit for life aged [x]+s: b_x[s]+s(t)
+
+    Z_plot(x, s, stop, benefit, T, discrete, ax, title, color):
+      Plot of PV of insurance r.v. Z vs t
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
 <p><strong>SOA Question 6.33</strong></p>
 <p>An insurance company sells 15-year pure endowments of 10,000 to 500 lives, each age x, with independent future lifetimes. The single premium for each pure endowment is determined by the equivalence principle.</p>
 <ul class="simple">
@@ -594,7 +655,7 @@ insured is payable at the end of the <span class="math notranslate nohighlight">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.33:  (B) 0.13&quot;</span><span class="p">)</span>
 <span class="n">life</span> <span class="o">=</span> <span class="n">Insurance</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mf">0.02</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
-<span class="n">var</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">moment</span><span class="o">=</span><span class="n">life</span><span class="o">.</span><span class="n">_VARIANCE</span><span class="p">,</span> <span class="n">endowment</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">moment</span><span class="o">=</span><span class="n">life</span><span class="o">.</span><span class="n">VARIANCE</span><span class="p">,</span> <span class="n">endowment</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">life</span><span class="o">.</span><span class="n">portfolio_cdf</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="n">var</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 </pre></div>
@@ -694,12 +755,10 @@ Z &amp; =0, \quad \textrm{if } T_x \le 10\\
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 4.10:  (D)
+D
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D
-</pre></div>
-</div>
-<img alt="_images/3fafdb587400ef89e5dc00e80ccf91c3d6ed5972953078f4959617778fb3a671.png" src="_images/3fafdb587400ef89e5dc00e80ccf91c3d6ed5972953078f4959617778fb3a671.png" />
+<img alt="_images/aff82270348bdd20e263cfb698ae608233d43df075faea45d14c9c4cb2866a61.png" src="_images/aff82270348bdd20e263cfb698ae608233d43df075faea45d14c9c4cb2866a61.png" />
 </div>
 </div>
 <p><strong>SOA Question 4.12</strong></p>
@@ -838,74 +897,7 @@ Calculate Var(Z).</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/199f171472af59e6fdc443aea3bc451b7d0128be4bc2501c4bb3bb0f826347ba.png" src="_images/199f171472af59e6fdc443aea3bc451b7d0128be4bc2501c4bb3bb0f826347ba.png" />
-</div>
-</div>
-</section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
-<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Insurance</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Insurance - Compute expected present values of life insurance
-
-    Methods:
-    --------
-
-    E_x(x, s, t, endowment, moment):
-      Pure endowment: t_E_x
-
-    A_x(x, s, t, u, benefit, endowment, moment, discrete):
-      Numerically compute EPV of insurance from basic survival functions
-
-    insurance_variance(A2, A1, b):
-      Compute variance of insurance given moments and benefit
-
-    whole_life_insurance(x, s, moment, b, discrete):
-      Whole life insurance: A_x
-
-    term_insurance(x, s, t, b, moment, discrete):
-      Term life insurance: A_x:t^1
-
-    deferred_insurance(x, s, u, t, b, moment, discrete):
-      Deferred insurance n|_A_x:t^1 = discounted term or whole life
-
-    endowment_insurance(x, s, t, b, endowment, moment, discrete):
-      Endowment insurance: A_x^1:t = term insurance + pure endowment
-
-    increasing_insurance(x, s, t, b, discrete):
-      Increasing life insurance: (IA)_x
-
-    decreasing_insurance(x, s, t, b, discrete):
-      Decreasing life insurance: (DA)_x
-
-    Z_t(x, prob, discrete):
-      T_x given percentile of the PV of WL or Term insurance, i.e. r.v. Z(t)
-
-    Z_from_t(t, discrete):
-      PV of insurance payment Z(t), given T_x (or K_x if discrete)
-
-    Z_to_t(Z):
-      T_x s.t. PV of insurance payment is Z
-
-    Z_from_prob(x, prob, discrete):
-      Percentile of insurance PV r.v. Z, given probability
-
-    Z_to_prob(x, Z):
-      Cumulative density of insurance PV r.v. Z, given percentile value
-
-    Z_x(x, s, t, discrete):
-      EPV of year t insurance death benefit for life aged [x]+s: b_x[s]+s(t)
-
-    Z_plot(x, s, stop, benefit, T, discrete, ax, title, color):
-      Plot of PV of insurance r.v. Z vs t
-</pre></div>
-</div>
+<img alt="_images/18dac308967351d5334e026be351d2ee5210055db0e88ee96a27496aad5c9340.png" src="_images/18dac308967351d5334e026be351d2ee5210055db0e88ee96a27496aad5c9340.png" />
 </div>
 </div>
 </section>
@@ -982,8 +974,8 @@ Calculate Var(Z).</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-endowment">Pure endowment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variances">Variances</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-insurance">Varying insurance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

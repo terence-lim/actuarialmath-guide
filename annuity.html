@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Introduction
+                    USER GUIDE
                 </a>
             </li>
         </ul>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -371,8 +371,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variances">Variances</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#immediate-life-annuity">Immediate life annuity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-life-annuities">Varying life annuities</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
             </nav>
         </div>
@@ -555,66 +555,13 @@ document.write(`
 <li><p>relating annual decreasing and increasing life annuities due</p></li>
 </ul>
 </section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Annuity</span></code> class implements methods to compute the present value of life annuities</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.annuity</span> <span class="kn">import</span> <span class="n">Annuity</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>SOA Question 5.6</strong></p>
-<p>For a group of 100 lives age x with independent future lifetimes, you are given:</p>
-<ul class="simple">
-<li><p>Each life is to be paid 1 at the beginning of each year, if alive</p></li>
-<li><p><span class="math notranslate nohighlight">\(A_x = 0.45\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(^2A_x = 0.22\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(Y\)</span> is the present value random variable of the aggregate payments.</p></li>
-</ul>
-<p>Using the normal approximation to <span class="math notranslate nohighlight">\(Y\)</span>, calculate the initial size of the fund neededt o be 95% certain of being able to make the payments for these life annuities.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 5.6:  (D) 1200&quot;</span><span class="p">)</span>
-<span class="n">life</span> <span class="o">=</span> <span class="n">Annuity</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-<span class="n">var</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">annuity_variance</span><span class="p">(</span><span class="n">A2</span><span class="o">=</span><span class="mf">0.22</span><span class="p">,</span> <span class="n">A1</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
-<span class="n">mean</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">annuity_twin</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">portfolio_percentile</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">mean</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="n">var</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">.95</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 5.6:  (D) 1200
-1200.6946732201702
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>Plot annuity present value r.v. Y</strong>:</p>
-<p>Mortality follows Standard Ultimate Life Table. Indicate median lifetime of (20).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.sult</span> <span class="kn">import</span> <span class="n">SULT</span>
-<span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
-<span class="n">life</span><span class="o">.</span><span class="n">Y_plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">life</span><span class="o">.</span><span class="n">Y_t</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20.27530100523103
-</pre></div>
-</div>
-<img alt="_images/cc4bc9c23442087f76d3994aa284752bd452f630d4aa901a793d0dba56ddd95e.png" src="_images/cc4bc9c23442087f76d3994aa284752bd452f630d4aa901a793d0dba56ddd95e.png" />
-</div>
-</div>
-</section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">Annuity</span>
+<span class="kn">import</span> <span class="nn">describe</span>
 <span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Annuity</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -677,6 +624,53 @@ document.write(`
       Plot PV of annuity r.v. Y vs T
 </pre></div>
 </div>
+</div>
+</div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p><strong>SOA Question 5.6</strong></p>
+<p>For a group of 100 lives age x with independent future lifetimes, you are given:</p>
+<ul class="simple">
+<li><p>Each life is to be paid 1 at the beginning of each year, if alive</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_x = 0.45\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^2A_x = 0.22\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Y\)</span> is the present value random variable of the aggregate payments.</p></li>
+</ul>
+<p>Using the normal approximation to <span class="math notranslate nohighlight">\(Y\)</span>, calculate the initial size of the fund neededt o be 95% certain of being able to make the payments for these life annuities.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 5.6:  (D) 1200&quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Annuity</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">annuity_variance</span><span class="p">(</span><span class="n">A2</span><span class="o">=</span><span class="mf">0.22</span><span class="p">,</span> <span class="n">A1</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">annuity_twin</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">portfolio_percentile</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">mean</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="n">var</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">.95</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 5.6:  (D) 1200
+1200.6946732201702
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Plot annuity present value r.v. Y</strong>:</p>
+<p>Mortality follows Standard Ultimate Life Table. Indicate median lifetime of (20).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.sult</span> <span class="kn">import</span> <span class="n">SULT</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
+<span class="n">life</span><span class="o">.</span><span class="n">Y_plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">life</span><span class="o">.</span><span class="n">Y_t</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20.27530100523103
+</pre></div>
+</div>
+<img alt="_images/c47cfce2130d88c8706b938651107ac24d417d52d833a894afc0324ba5071223.png" src="_images/c47cfce2130d88c8706b938651107ac24d417d52d833a894afc0324ba5071223.png" />
 </div>
 </div>
 </section>
@@ -754,8 +748,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variances">Variances</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#immediate-life-annuity">Immediate life annuity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-life-annuities">Varying life annuities</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

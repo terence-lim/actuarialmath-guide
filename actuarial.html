@@ -63,7 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Interest Theory" href="interest.html" />
-    <link rel="prev" title="Introduction" href="README.html" />
+    <link rel="prev" title="USER GUIDE" href="README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -144,7 +144,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Introduction
+                    USER GUIDE
                 </a>
             </li>
         </ul>
@@ -160,12 +160,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -366,8 +366,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
             </nav>
         </div>
@@ -400,6 +400,12 @@ document.write(`
 <li><p>Insurance, annuity, premiums, policy values, and reserves calculations</p></li>
 </ul>
 </li>
+<li><p>Adjust results for</p>
+<ul class="simple">
+<li><p>Extra mortality risks</p></li>
+<li><p>1/mthly payment frequency using UDD or Woolhouse approaches</p></li>
+</ul>
+</li>
 <li><p>Specify and load a particular form of assumptions</p>
 <ul class="simple">
 <li><p>Life table, select life table, or standard ultimate life table</p></li>
@@ -407,29 +413,51 @@ document.write(`
 <li><p>Recursion inputs</p></li>
 </ul>
 </li>
-<li><p>Adjust results for</p>
-<ul class="simple">
-<li><p>Extra mortality risks</p></li>
-<li><p>1/mthly payment frequency using UDD or Woolhouse approaches</p></li>
-</ul>
-</li>
 </ol>
 </section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Actuarial</span></code> base class provides some common helpful utility functions and definitions of constants, that are needed by other classes in the package.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.actuarial</span> <span class="kn">import</span> <span class="n">Actuarial</span>
-<span class="n">actuarial</span> <span class="o">=</span> <span class="n">Actuarial</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">Actuarial</span>
+<span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Actuarial</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Actuarial - Define constants and common utility functions
+
+    Constants:
+      VARIANCE : select variance as the statistical moment to calculate
+
+      WHOLE : indicates that term of insurance or annuity is Whole Life
+
+    Methods:
+    --------
+
+    solve(fun, target, grid, mad):
+      Solve for the root of, or parameter value that minimizes, a function
+
+    add_term(t, n):
+      Add two terms, either term may be Whole Life
+
+    max_term(x, t, u):
+      Decrease term t if adding deferral period u to (x) exceeds maxage
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
 <p>For example, the constant <code class="docutils literal notranslate"><span class="pre">WHOLE</span></code> indicates the contract term of a whole life insurance or annuity policy, whenever we need to add to (or subtract from) finite periods of time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">as_term</span><span class="p">(</span><span class="n">t</span><span class="p">):</span> <span class="k">return</span> <span class="s2">&quot;WHOLE_LIFE&quot;</span> <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="n">Actuarial</span><span class="o">.</span><span class="n">WHOLE</span> <span class="k">else</span> <span class="n">t</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">actuarial</span> <span class="o">=</span> <span class="n">Actuarial</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">as_term</span><span class="p">(</span><span class="n">t</span><span class="p">):</span> <span class="k">return</span> <span class="s2">&quot;WHOLE_LIFE&quot;</span> <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="n">Actuarial</span><span class="o">.</span><span class="n">WHOLE</span> <span class="k">else</span> <span class="n">t</span>
 
 <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">3</span><span class="p">,</span> <span class="n">Actuarial</span><span class="o">.</span><span class="n">WHOLE</span><span class="p">),</span> <span class="p">(</span><span class="n">Actuarial</span><span class="o">.</span><span class="n">WHOLE</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)]:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">as_term</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">as_term</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="si">}</span><span class="s2"> =&quot;</span><span class="p">,</span> <span class="n">as_term</span><span class="p">(</span><span class="n">actuarial</span><span class="o">.</span><span class="n">add_term</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)))</span>
@@ -454,39 +482,6 @@ WHOLE_LIFE + -1 = WHOLE_LIFE
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20.0
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
-<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Actuarial</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Actuarial - Define constants and common utility functions
-
-    Constants:
-      VARIANCE : select variance as the statistical moment to calculate
-
-      WHOLE : indicates that term of insurance or annuity is Whole Life
-
-    Methods:
-    --------
-
-    solve(fun, target, grid, mad):
-      Solve for the root of, or parameter value that minimizes, a function
-
-    add_term(t, n):
-      Add two terms, either term may be Whole Life
-
-    max_term(x, t, u):
-      Decrease term t if deferral period u to (x) exceeds maxage
 </pre></div>
 </div>
 </div>
@@ -531,7 +526,7 @@ WHOLE_LIFE + -1 = WHOLE_LIFE
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Introduction</p>
+        <p class="prev-next-title">USER GUIDE</p>
       </div>
     </a>
     <a class="right-next"
@@ -563,8 +558,8 @@ WHOLE_LIFE + -1 = WHOLE_LIFE
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Introduction
+                    USER GUIDE
                 </a>
             </li>
         </ul>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -368,8 +368,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uniform-distribution-of-deaths">Uniform distribution of deaths</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-force-of-mortality">Constant force of mortality</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
             </nav>
         </div>
@@ -447,41 +447,13 @@ Such fractional age assumptions may be specified in terms of the force of mortal
 <li><p>relate lifetime density of (x) to constant force of mortality assumption</p></li>
 </ul>
 </section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Fractional</span></code> class implements methods to compute survival and mortality functions between integer ages, assuming either uniform distribution of deaths or constant force of mortality</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.fractional</span> <span class="kn">import</span> <span class="n">Fractional</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>Compare assumptions</strong>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life1</span> <span class="o">=</span> <span class="n">Fractional</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mi">50</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
-<span class="n">life2</span> <span class="o">=</span> <span class="n">Fractional</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mi">50</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mortality rate    &#39;</span><span class="p">,</span> <span class="n">life1</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">life2</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;force of mortality&#39;</span><span class="p">,</span> <span class="n">life1</span><span class="o">.</span><span class="n">mu_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">life2</span><span class="o">.</span><span class="n">mu_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lifetime density  &#39;</span><span class="p">,</span> <span class="n">life1</span><span class="o">.</span><span class="n">f_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">life2</span><span class="o">.</span><span class="n">f_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mortality rate     0.05131670194948623 0.04999999999999999
-force of mortality 0.10536051565782628 0.10526315789473682
-lifetime density   0.10536051565782628 0.09999999999999998
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">Fractional</span>
+<span class="kn">import</span> <span class="nn">describe</span>
 <span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Fractional</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -518,6 +490,32 @@ lifetime density   0.10536051565782628 0.09999999999999998
 
     e_approximate(e_complete, e_curtate):
       Convert between curtate and complete expectations assuming UDD shortcut
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p><strong>Compare assumptions</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life1</span> <span class="o">=</span> <span class="n">Fractional</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mi">50</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
+<span class="n">life2</span> <span class="o">=</span> <span class="n">Fractional</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mi">50</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;           Constant Force of Mortality           UDD&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;           ---------------------------          -----&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mortality rate    &#39;</span><span class="p">,</span> <span class="n">life1</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">life2</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;force of mortality&#39;</span><span class="p">,</span> <span class="n">life1</span><span class="o">.</span><span class="n">mu_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">life2</span><span class="o">.</span><span class="n">mu_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lifetime density  &#39;</span><span class="p">,</span> <span class="n">life1</span><span class="o">.</span><span class="n">f_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">life2</span><span class="o">.</span><span class="n">f_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           Constant Force of Mortality           UDD
+           ---------------------------          -----
+mortality rate     0.05131670194948623 0.04999999999999999
+force of mortality 0.10536051565782628 0.10526315789473682
+lifetime density   0.10536051565782628 0.09999999999999998
 </pre></div>
 </div>
 </div>
@@ -594,8 +592,8 @@ lifetime density   0.10536051565782628 0.09999999999999998
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uniform-distribution-of-deaths">Uniform distribution of deaths</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-force-of-mortality">Constant force of mortality</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'recursion';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Mortality Laws" href="mortalitylaws.html" />
+    <link rel="next" title="Extra Risk" href="extrarisk.html" />
     <link rel="prev" title="Select Life Table" href="selectlife.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Introduction
+                    USER GUIDE
                 </a>
             </li>
         </ul>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Recursion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -370,8 +370,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-future-lifetime">Expected future lifetime</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-insurance">Life insurance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-annuities">Life annuities</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
             </nav>
         </div>
@@ -462,24 +462,74 @@ document.write(`
 <li><p>temporary annuity recursion</p></li>
 </ul>
 </section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Recursion</span></code> class implements methods to apply recursive, shortcut and actuarial formulas, and traces steps taken to find the solution.</p>
 <p><strong>Caveats</strong>:</p>
 <ol class="arabic simple">
 <li><p>Not all possible recursion rules and actuarial equations have (yet) been implemented in the present version of the package.</p></li>
-<li><p>You may set the recursion depth to a larger limit than the default of 3 (with the keyword argument <code class="docutils literal notranslate"><span class="pre">depth</span></code> when initializing a Recursion class object).</p></li>
+<li><p>You may set the recursion depth to a larger limit than the default of 5 (with the keyword argument <code class="docutils literal notranslate"><span class="pre">depth</span></code> when initializing a Recursion class object).</p></li>
 <li><p>But generally, the current implementation may be fragile if the solution is not available within a relatively shallow search.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.recursion</span> <span class="kn">import</span> <span class="n">Recursion</span>
-<span class="kn">from</span> <span class="nn">actuarialmath.constantforce</span> <span class="kn">import</span> <span class="n">ConstantForce</span>
-<span class="kn">from</span> <span class="nn">actuarialmath.policyvalues</span> <span class="kn">import</span> <span class="n">Contract</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">Recursion</span><span class="p">,</span> <span class="n">ConstantForce</span><span class="p">,</span> <span class="n">Contract</span>
+<span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Recursion</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Recursion - Solve by appling recursive, shortcut and actuarial formulas repeatedly
+
+    Args:
+      depth : maximum depth of recursions (default is 3)
+      verbose : whether to echo recursion steps (True, default)
+
+    Notes:
+      7 types of information can be loaded and calculated in recursions:
+
+      - &#39;q&#39; : (deferred) probability (x) dies in t years
+      - &#39;p&#39; : probability (x) survives t years
+      - &#39;e&#39; : (temporary) expected future lifetime, and moments
+      - &#39;A&#39; : deferred, term, endowment or whole life insurance, and moments
+      - &#39;IA&#39; : decreasing life insurance of t years
+      - &#39;DA&#39; : increasing life insurance of t years
+      - &#39;a&#39; : deferred, temporary or whole life annuity of t years, and moments
+
+    Methods:
+    --------
+
+    set_q(val, x, s, t, u):
+      Set mortality rate u|t_q_[x]+s to given value
+
+    set_p(val, x, s, t):
+      Set survival probability t_p_[x]+s to given value
+
+    set_e(val, x, s, t, curtate, moment):
+      Set expected future lifetime e_[x]+s:t to given value
+
+    set_E(val, x, s, t, endowment, moment):
+      Set pure endowment t_E_[x]+s to given value
+
+    set_A(val, x, s, t, u, b, moment, endowment, discrete):
+      Set insurance u|_A_[x]+s:t to given value
+
+    set_IA(val, x, s, t, b, discrete):
+      Set increasing insurance IA_[x]+s:t to given value
+
+    set_DA(val, x, s, t, b, discrete):
+      Set decreasing insurance DA_[x]+s:t to given value
+
+    set_a(val, x, s, t, u, b, variance, discrete):
+      Set annuity u|_a_[x]+s:t to given value
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
 <p><strong>AMLCR2 Exercise 2.6</strong></p>
 <p>Given <span class="math notranslate nohighlight">\(P_x =0.99\)</span> , <span class="math notranslate nohighlight">\(P_{x+1} = 0.985\)</span>, <span class="math notranslate nohighlight">\(_3P_{x+1} = 0.95\)</span>, <span class="math notranslate nohighlight">\(q_{x+3} = 0.02\)</span>,</p>
 <p>Calculate (a) <span class="math notranslate nohighlight">\(P_{x+3}\)</span>, (b) <span class="math notranslate nohighlight">\(_2P_x\)</span>, (c) <span class="math notranslate nohighlight">\(_2P_{x+1}\)</span>, (d) <span class="math notranslate nohighlight">\(_3P_x\)</span>, (e) <span class="math notranslate nohighlight">\(_{1|2}q_x\)</span>.</p>
@@ -681,64 +731,6 @@ equivalence principle</p></li>
 </div>
 </div>
 </section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
-<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Recursion</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Recursion - Solve by appling recursive, shortcut and actuarial formulas repeatedly
-
-    Args:
-      depth : maximum depth of recursions (default is 3)
-      verbose : whether to echo recursion steps (True, default)
-
-    Notes:
-      7 types of information can be loaded and calculated in recursions:
-
-      - &#39;q&#39; : (deferred) probability (x) dies in t years
-      - &#39;p&#39; : probability (x) survives t years
-      - &#39;e&#39; : (temporary) expected future lifetime, and moments
-      - &#39;A&#39; : deferred, term, endowment or whole life insurance, and moments
-      - &#39;IA&#39; : decreasing life insurance of t years
-      - &#39;DA&#39; : increasing life insurance of t years
-      - &#39;a&#39; : deferred, temporary or whole life annuity of t years, and moments
-
-    Methods:
-    --------
-
-    set_q(val, x, s, t, u):
-      Set mortality rate u|t_q_[x]+s to given value
-
-    set_p(val, x, s, t):
-      Set survival probability t_p_[x]+s to given value
-
-    set_e(val, x, s, t, curtate, moment):
-      Set expected future lifetime e_[x]+s:t to given value
-
-    set_E(val, x, s, t, endowment, moment):
-      Set pure endowment t_E_[x]+s to given value
-
-    set_A(val, x, s, t, u, b, moment, endowment, discrete):
-      Set insurance u|_A_[x]+s:t to given value
-
-    set_IA(val, x, s, t, b, discrete):
-      Set increasing insurance IA_[x]+s:t to given value
-
-    set_DA(val, x, s, t, b, discrete):
-      Set decreasing insurance DA_[x]+s:t to given value
-
-    set_a(val, x, s, t, u, b, variance, discrete):
-      Set annuity u|_a_[x]+s:t to given value
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -782,11 +774,11 @@ equivalence principle</p></li>
       </div>
     </a>
     <a class="right-next"
-       href="mortalitylaws.html"
+       href="extrarisk.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Mortality Laws</p>
+        <p class="prev-next-title">Extra Risk</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -812,8 +804,8 @@ equivalence principle</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-future-lifetime">Expected future lifetime</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-insurance">Life insurance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-annuities">Life annuities</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 

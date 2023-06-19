@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Introduction
+                    USER GUIDE
                 </a>
             </li>
         </ul>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -369,8 +369,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-ultimate-life-table">Standard ultimate life table</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-endowment">Pure endowment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporary-annuity">Temporary Annuity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
             </nav>
         </div>
@@ -403,18 +403,43 @@ document.write(`
 <p><span class="math notranslate nohighlight">\(A^ {1}_{x:\overline{t|}} = A_x - ~_tE_x ~ A_{x+t} = A_{x:\overline{t|}} - ~_tE_x\)</span></p>
 <p><span class="math notranslate nohighlight">\({^2}A^ {1}_{x:\overline{t|}} = {^2}A_x - ~{^2_t}E_x ~ {^2}A_{x+t} = {^2}A_x - ~v^{t} ~ _tE_x ~ {^2}A_{x+t}\)</span></p>
 </section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">SULT</span></code> class generates and uses the standard ultimate life table, which is constructed, by default, from Makeham’s Law and parameters in SOA’s “Excel Workbook for FAM-L Tables”</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">actuarialmath.sult</span> <span class="kn">import</span> <span class="n">SULT</span>
-<span class="kn">from</span> <span class="nn">actuarialmath.interest</span> <span class="kn">import</span> <span class="n">Interest</span>
+<span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">SULT</span>
+<span class="kn">import</span> <span class="nn">describe</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">SULT</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class SULT - Generates and uses a standard ultimate life table
+
+    Args:
+      i : interest rate
+      radix : initial number of lives
+      minage : minimum age
+      maxage : maximum age
+      S : survival function, default is Makeham with SOA FAM-L parameters
+
+    Methods:
+    --------
+
+    frame(minage, maxage):
+      Derive FAM-L exam table columns of SULT as a DataFrame
+
+    __getitem__(col):
+      Returns a column of the sult table
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
 <p><strong>SOA Question 6.52</strong></p>
 <p>for a fully discrete 10-payment whole life insurance of H on (45), you are given:</p>
 <ul class="simple">
@@ -1069,38 +1094,6 @@ mortality for each member follows the Standard Ultimate Life Table.</p>
 </div></div></div>
 </div>
 </section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">describe</span>
-<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">SULT</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class SULT - Generates and uses a standard ultimate life table
-
-    Args:
-      i : interest rate
-      radix : initial number of lives
-      minage : minimum age
-      maxage : maximum age
-      S : survival function, default is Makeham with SOA FAM-L parameters
-
-    Methods:
-    --------
-
-    frame(minage, maxage):
-      Derive FAM-L exam table columns of SULT as a DataFrame
-
-    __getitem__(col):
-      Returns a column of the sult table
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1173,8 +1166,8 @@ mortality for each member follows the Standard Ultimate Life Table.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-ultimate-life-table">Standard ultimate life table</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-endowment">Pure endowment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporary-annuity">Temporary Annuity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
   </nav></div>
 
