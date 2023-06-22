@@ -468,6 +468,7 @@ document.write(`
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p><strong>SOA Question 3.2</strong>:</p>
 <p>You are given:</p>
 <ul class="simple">
 <li><p>The following extract from a mortality table with a one-year select period:</p></li>
@@ -506,10 +507,10 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 3.2:  (D) 14.7&quot;</span><span class="p">)</span>
 <span class="n">e_curtate</span> <span class="o">=</span> <span class="n">SelectLife</span><span class="o">.</span><span class="n">e_approximate</span><span class="p">(</span><span class="n">e_complete</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 <span class="n">life</span> <span class="o">=</span> <span class="n">SelectLife</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_table</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="p">{</span><span class="mi">65</span><span class="p">:</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="kc">None</span><span class="p">,],</span>
-                                       <span class="mi">66</span><span class="p">:</span> <span class="p">[</span><span class="mi">955</span><span class="p">,</span> <span class="kc">None</span><span class="p">]},</span>
-                                    <span class="n">e</span><span class="o">=</span><span class="p">{</span><span class="mi">65</span><span class="p">:</span> <span class="p">[</span><span class="n">e_curtate</span><span class="p">,</span> <span class="kc">None</span><span class="p">]},</span>
-                                    <span class="n">d</span><span class="o">=</span><span class="p">{</span><span class="mi">65</span><span class="p">:</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="kc">None</span><span class="p">,],</span>
-                                       <span class="mi">66</span><span class="p">:</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="kc">None</span><span class="p">]})</span>
+                                         <span class="mi">66</span><span class="p">:</span> <span class="p">[</span><span class="mi">955</span><span class="p">,</span> <span class="kc">None</span><span class="p">]},</span>
+                                      <span class="n">e</span><span class="o">=</span><span class="p">{</span><span class="mi">65</span><span class="p">:</span> <span class="p">[</span><span class="n">e_curtate</span><span class="p">,</span> <span class="kc">None</span><span class="p">]},</span>
+                                      <span class="n">d</span><span class="o">=</span><span class="p">{</span><span class="mi">65</span><span class="p">:</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="kc">None</span><span class="p">,],</span>
+                                         <span class="mi">66</span><span class="p">:</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="kc">None</span><span class="p">]})</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">e_r</span><span class="p">(</span><span class="mi">66</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">))</span>
 </pre></div>

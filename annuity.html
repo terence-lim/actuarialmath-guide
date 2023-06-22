@@ -389,25 +389,25 @@ document.write(`
 <p>A life annuity is a regular sequence of payments as long as the annuitant is alive on the payment date.</p>
 <section id="present-value-of-life-annuity-r-v-y">
 <h2>Present value of life annuity r.v. <span class="math notranslate nohighlight">\(Y\)</span><a class="headerlink" href="#present-value-of-life-annuity-r-v-y" title="Permalink to this heading">#</a></h2>
-<p>Valuation functions for the present value of annuity benefits, denoted by Y, are based on the continuous future lifetime random variable, <span class="math notranslate nohighlight">\(T_x\)</span>, and the curtate future lifetime random variable, <span class="math notranslate nohighlight">\(K_x\)</span>. The expected present value of annuity benefits is denoted and solved by EPV(Y)</p>
+<p>Valuation functions for the present value of annuity benefits, denoted by Y, are based on the continuous future lifetime random variable, <span class="math notranslate nohighlight">\(T_x\)</span>, or the curtate future lifetime random variable, <span class="math notranslate nohighlight">\(K_x\)</span>. The expected present value of annuity benefits is denoted and solved by EPV(Y)</p>
 <p><strong>Whole life annuity</strong>:</p>
-<p><span class="math notranslate nohighlight">\(Y = ~ \overline{a}_{\overline{T_x|}} = \dfrac{1 - v^{T_x}}{\delta} =\)</span> present value of annuity certain due through <span class="math notranslate nohighlight">\(T_x\)</span></p>
+<p><span class="math notranslate nohighlight">\(Y = ~ \overline{a}_{\overline{T_x|}} = \dfrac{1 - v^{T_x}}{\delta} =\)</span> present value of continuous annuity certain through <span class="math notranslate nohighlight">\(T_x\)</span></p>
 <p><span class="math notranslate nohighlight">\(\overline{a}_x = EPV[\overline{a}_{\overline{T_x|}}] = \int_{t=0}^{\infty} ~ v^t ~ _tp_x  ~ dt\)</span></p>
 <ul class="simple">
 <li><p>continuous whole life annuity, benefit is payable up to the moment of death</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(\overline{a}_x = \overset{\circ}{e}_x\)</span></p>
 <ul class="simple">
-<li><p>when interest rate is 0</p></li>
+<li><p>special case when interest rate is 0</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(Y = \ddot{a}_{\overline{K_x + 1|}} = \dfrac{1 - v^{K_x + 1}}{d} =\)</span> present value of continuous annuity certain through <span class="math notranslate nohighlight">\(K_x + 1\)</span></p>
+<p><span class="math notranslate nohighlight">\(Y = \ddot{a}_{\overline{K_x + 1|}} = \dfrac{1 - v^{K_x + 1}}{d} =\)</span> present value of certain annuity due through <span class="math notranslate nohighlight">\(K_x + 1\)</span></p>
 <p><span class="math notranslate nohighlight">\(\ddot{a}_x = EPV[\ddot{a}_{\overline{K_x+1|}}] = \sum_{k=0}^{\infty} ~ v^k ~ _{k|}p_x\)</span></p>
 <ul class="simple">
 <li><p>annual life annuity due, benefit is payable up to the beginning of the year of death</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(\ddot{a}_x = 1 + e_x\)</span></p>
 <ul class="simple">
-<li><p>when interest rate is 0</p></li>
+<li><p>special case when interest rate is 0</p></li>
 </ul>
 <p><strong>Temporary annuity</strong>:</p>
 <p><span class="math notranslate nohighlight">\(Y = ~ \overline{a}_{\overline{t|}}\)</span> when or <span class="math notranslate nohighlight">\(T_x &gt; t\)</span>, else <span class="math notranslate nohighlight">\(\overline{a}_{\overline{T_x|}}\)</span></p>

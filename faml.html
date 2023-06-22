@@ -391,8 +391,8 @@ document.write(`
 <ul class="simple">
 <li><p>SOA FAM-L Sample Solutions: <a class="reference external" href="https://terence-lim.github.io/notes/2022-10-exam-fam-l-sol.pdf">copy retrieved Aug 2022</a></p></li>
 <li><p>SOA FAM-L Sample Questions: <a class="reference external" href="https://terence-lim.github.io/notes/2022-10-exam-fam-l-quest.pdf">copy retrieved Aug 2022</a></p></li>
-<li><p><a class="reference external" href="https://terence-lim.github.io/actuarialmath-guide/">User Guide</a>, or <a class="reference external" href="https://terence-lim.github.io/notes/actuarialmath-guide.pdf">download pdf</a></p></li>
-<li><p><a class="reference external" href="https://terence-lim.github.io/actuarialmath-docs">Code documentation</a></p></li>
+<li><p><a class="reference external" href="https://terence-lim.github.io/actuarialmath-guide/">Online User Guide</a>, or <a class="reference external" href="https://terence-lim.github.io/notes/actuarialmath-guide.pdf">download pdf</a></p></li>
+<li><p><a class="reference external" href="https://terence-lim.github.io/actuarialmath-docs">API reference</a></p></li>
 <li><p><a class="reference external" href="https://github.com/terence-lim/actuarialmath.git">Github repo</a> and <a class="reference external" href="https://github.com/terence-lim/actuarialmath/issues">issues</a></p></li>
 </ul>
 <div class="cell docutils container">
@@ -809,7 +809,14 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </section>
 <section id="survival-models">
 <h2>2 Survival models<a class="headerlink" href="#survival-models" title="Permalink to this heading">#</a></h2>
-<p>SOA Question 2.1: (B) 2.5</p>
+<p><strong>SOA Question 2.1</strong> : (B) 2.5</p>
+<p>You are given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(S0(t) = \left(1 - \frac{t}{\omega} \right)^{\frac{1}{4}}, \quad 0 \le t \le \omega\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu_{65} = \frac{1}{180} \)</span></p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(e_{106}\)</span>, the curtate expectation of life at age 106.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>derive formula for <span class="math notranslate nohighlight">\(\mu\)</span> from given survival function</p></li>
 <li><p>solve for <span class="math notranslate nohighlight">\(\omega\)</span> given <span class="math notranslate nohighlight">\(\mu_{65}\)</span></p></li>
@@ -836,7 +843,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 2.2: (D) 400</p>
+<p><strong>SOA Question 2.2</strong> : (D) 400</p>
+<p>Scientists are searching for a vaccine for a disease. You are given:</p>
+<ol class="arabic simple">
+<li><p>100,000 lives age x are exposed to the disease</p></li>
+<li><p>Future lifetimes are independent, except that the vaccine, if available, will be given to all at the end of year 1</p></li>
+<li><p>The probability that the vaccine will be available is 0.2</p></li>
+<li><p>For each life during year 1, <span class="math notranslate nohighlight">\(q_x\)</span> = 0.02</p></li>
+<li><p>For each life during year 2, <span class="math notranslate nohighlight">\(q_{x+1}\)</span> = 0.01 if the vaccine has been given and <span class="math notranslate nohighlight">\(q_{x+1}\)</span> = 0.02 if it has not been given</p></li>
+</ol>
+<p>Calculate the standard deviation of the number of survivors at the end of year 2.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>calculate survival probabilities for the two scenarios</p></li>
 <li><p>apply conditional variance formula (or mixed distribution)</p></li>
@@ -859,10 +876,13 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 2.3: (A) 0.0483</p>
-<ol class="arabic simple">
+<p><strong>SOA Question 2.3</strong> : (A) 0.0483</p>
+<p>You are given that mortality follows Gompertz Law with B = 0.00027 and c = 1.1.</p>
+<p>Calculate <span class="math notranslate nohighlight">\(f_{50}(10)\)</span>.</p>
+<p><em>hints:</em></p>
+<ul class="simple">
 <li><p>Derive formula for <span class="math notranslate nohighlight">\(f\)</span> given survival function</p></li>
-</ol>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">0.00027</span><span class="p">,</span> <span class="mf">1.1</span>
@@ -882,7 +902,10 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 2.4: (E) 8.2</p>
+<p><strong>SOA Question 2.4</strong> : (E) 8.2</p>
+<p>You are given <span class="math notranslate nohighlight">\(_tq_0 = \frac{t^2}{10,000} \quad 0 &lt; t &lt; 100\)</span>. Calculate
+<span class="math notranslate nohighlight">\(\overset{\circ}{e}_{75:\overline{10|}}\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>derive survival probability function <span class="math notranslate nohighlight">\(_tp_x\)</span> given <span class="math notranslate nohighlight">\(_tq_0\)</span></p></li>
 <li><p>compute <span class="math notranslate nohighlight">\(\overset{\circ}{e}\)</span> by integration</p></li>
@@ -904,7 +927,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 2.5:  (B) 37.1</p>
+<p><strong>SOA Question 2.5</strong> :  (B) 37.1</p>
+<p>You are given the following:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(e_{40:20} = 18\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(e_{60} = 25\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(_{20}q_{40} = 0.2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{40} = 0.003\)</span></p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(e_{41}\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>solve for <span class="math notranslate nohighlight">\(e_{40}\)</span> from limited lifetime formula</p></li>
 <li><p>compute <span class="math notranslate nohighlight">\(e_{41}\)</span> using backward recursion</p></li>
@@ -934,7 +966,11 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 2.6: (C) 13.3</p>
+<p><strong>SOA Question 2.6</strong> : (C) 13.3</p>
+<p>You are given the survival function:</p>
+<p><span class="math notranslate nohighlight">\(S_0(x) = \left( 1 − \frac{x}{60} \right)^{\frac{1}{3}}, \quad 0 \le x \le 60\)</span></p>
+<p>Calculate <span class="math notranslate nohighlight">\(1000 \mu_{35}\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>derive force of mortality function <span class="math notranslate nohighlight">\(\mu\)</span> from given survival function</p></li>
 </ul>
@@ -955,7 +991,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 2.7: (B) 0.1477</p>
+<p><strong>SOA Question 2.7</strong> : (B) 0.1477</p>
+<p>You are given the following survival function of a newborn:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+S_0(x) &amp; = 1 - \frac{x}{250}, \quad 0 \le x &lt; 40 \\
+&amp; = 1 - \left( \frac{x}{100} \right)^2, \quad 40 \le x \le 100
+\end{align*}
+\end{split}\]</div>
+<p>Calculate the probability that (30) dies within the next 20 years.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>calculate from given survival function</p></li>
 </ul>
@@ -976,7 +1022,15 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 2.8: (C) 0.94</p>
+<p><strong>SOA Question 2.8</strong> : (C) 0.94</p>
+<p>In a population initially consisting of 75% females and 25% males, you are given:</p>
+<ol class="arabic simple">
+<li><p>For a female, the force of mortality is constant and equals <span class="math notranslate nohighlight">\(\mu\)</span></p></li>
+<li><p>For a male, the force of mortality is constant and equals 1.5 <span class="math notranslate nohighlight">\(\mu\)</span></p></li>
+<li><p>At the end of 20 years, the population is expected to consist of 85% females and 15% males</p></li>
+</ol>
+<p>Calculate the probability that a female survives one year.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>relate <span class="math notranslate nohighlight">\(p_{male}\)</span> and <span class="math notranslate nohighlight">\(p_{female}\)</span> through the common term <span class="math notranslate nohighlight">\(\mu\)</span> and the given proportions</p></li>
 </ul>
@@ -1004,7 +1058,57 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </section>
 <section id="life-tables-and-selection">
 <h2>3 Life tables and selection<a class="headerlink" href="#life-tables-and-selection" title="Permalink to this heading">#</a></h2>
-<p>SOA Question 3.1:  (B) 117</p>
+<p><strong>SOA Question 3.1</strong> :  (B) 117</p>
+<p>You are given:</p>
+<ol class="arabic simple">
+<li><p>An excerpt from a select and ultimate life table with a select period of 3 years:</p></li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ell_{[ x ]}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ell_{[x]+1}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ell_{[x]+2}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ell_{x+3}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x+3\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>60</p></td>
+<td><p>80,000</p></td>
+<td><p>79,000</p></td>
+<td><p>77,000</p></td>
+<td><p>74,000</p></td>
+<td><p>63</p></td>
+</tr>
+<tr class="row-odd"><td><p>61</p></td>
+<td><p>78,000</p></td>
+<td><p>76,000</p></td>
+<td><p>73,000</p></td>
+<td><p>70,000</p></td>
+<td><p>64</p></td>
+</tr>
+<tr class="row-even"><td><p>62</p></td>
+<td><p>75,000</p></td>
+<td><p>72,000</p></td>
+<td><p>69,000</p></td>
+<td><p>67,000</p></td>
+<td><p>65</p></td>
+</tr>
+<tr class="row-odd"><td><p>63</p></td>
+<td><p>71,000</p></td>
+<td><p>68,000</p></td>
+<td><p>66,000</p></td>
+<td><p>65,000</p></td>
+<td><p>66</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li><p>Deaths follow a constant force of mortality over each year of age</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(1000~ _{23}q_{[60] + 0.75}\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>interpolate with constant force of maturity</p></li>
 </ul>
@@ -1028,7 +1132,41 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 3.2:  (D) 14.7</p>
+<p><strong>SOA Question 3.2</strong> :  (D) 14.7</p>
+<p>You are given:</p>
+<ol class="arabic simple">
+<li><p>The following extract from a mortality table with a one-year select period:</p></li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(l_{[x]}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(d_{[x]}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(l_{x+1}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x + 1\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>65</p></td>
+<td><p>1000</p></td>
+<td><p>40</p></td>
+<td><p>−</p></td>
+<td><p>66</p></td>
+</tr>
+<tr class="row-odd"><td><p>66</p></td>
+<td><p>955</p></td>
+<td><p>45</p></td>
+<td><p>−</p></td>
+<td><p>67</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+</ol>
+<p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{[65]} = 15.0\)</span></p>
+<p>Calculate <span class="math notranslate nohighlight">\(\overset{\circ}{e}_{[66]}\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>UDD <span class="math notranslate nohighlight">\(\Rightarrow \overset{\circ}{e}_{x} = e_x + 0.5\)</span></p></li>
 <li><p>fill select table using curtate expectations</p></li>
@@ -1055,7 +1193,52 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 3.3:  (E) 1074</p>
+<p><strong>SOA Question 3.3</strong> :  (E) 1074</p>
+<p>You are given:</p>
+<ol class="arabic simple">
+<li><p>An excerpt from a select and ultimate life table with a select period of 2 years:</p></li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ell_{[ x ]}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ell_{[ x ] + 1}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ell_{x + 2}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x + 2\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>50</p></td>
+<td><p>99,000</p></td>
+<td><p>96,000</p></td>
+<td><p>93,000</p></td>
+<td><p>52</p></td>
+</tr>
+<tr class="row-odd"><td><p>51</p></td>
+<td><p>97,000</p></td>
+<td><p>93,000</p></td>
+<td><p>89,000</p></td>
+<td><p>53</p></td>
+</tr>
+<tr class="row-even"><td><p>52</p></td>
+<td><p>93,000</p></td>
+<td><p>88,000</p></td>
+<td><p>83,000</p></td>
+<td><p>54</p></td>
+</tr>
+<tr class="row-odd"><td><p>53</p></td>
+<td><p>90,000</p></td>
+<td><p>84,000</p></td>
+<td><p>78,000</p></td>
+<td><p>55</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(10,000 ~ _{2.2}q_{[51]+0.5}\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>interpolate lives between integer ages with UDD</p></li>
 </ul>
@@ -1079,7 +1262,11 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 3.4:  (B) 815</p>
+<p><strong>SOA Question 3.4</strong> :  (B) 815</p>
+<p>The SULT Club has 4000 members all age 25 with independent future lifetimes. The
+mortality for each member follows the Standard Ultimate Life Table.</p>
+<p>Calculate the largest integer N, using the normal approximation, such that the probability that there are at least N survivors at age 95 is at least 90%.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>compute portfolio percentile with N=4000, and mean and variance  from binomial distribution</p></li>
 </ul>
@@ -1102,7 +1289,38 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 3.5:  (E) 106</p>
+<p><strong>SOA Question 3.5</strong> :  (E) 106</p>
+<p>You are given:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p>60</p></th>
+<th class="head"><p>61</p></th>
+<th class="head"><p>62</p></th>
+<th class="head"><p>63</p></th>
+<th class="head"><p>64</p></th>
+<th class="head"><p>65</p></th>
+<th class="head"><p>66</p></th>
+<th class="head"><p>67</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(l_x\)</span></p></td>
+<td><p>99,999</p></td>
+<td><p>88,888</p></td>
+<td><p>77,777</p></td>
+<td><p>66,666</p></td>
+<td><p>55,555</p></td>
+<td><p>44,444</p></td>
+<td><p>33,333</p></td>
+<td><p>22,222</p></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math notranslate nohighlight">\(a =~ _{3.4|2.5}q_{60}\)</span> assuming a uniform distribution of deaths over each year of age</p>
+<p><span class="math notranslate nohighlight">\(b =~ _{3.4|2.5}q_{60}\)</span> assuming a constant force of mortality over each year of age</p>
+<p>Calculate <span class="math notranslate nohighlight">\(100,000( a − b )\)</span></p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>compute mortality rates by interpolating lives between integer ages, with UDD and constant force of mortality assumptions</p></li>
 </ul>
@@ -1126,7 +1344,59 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 3.6:  (D) 15.85</p>
+<p><strong>SOA Question 3.6</strong> :  (D) 15.85</p>
+<p>You are given the following extract from a table with a 3-year select period:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(q_{[x]}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(q_{[x]+1}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(q_{[x]+2}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(q_{x+3}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x+3\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>60</p></td>
+<td><p>0.09</p></td>
+<td><p>0.11</p></td>
+<td><p>0.13</p></td>
+<td><p>0.15</p></td>
+<td><p>63</p></td>
+</tr>
+<tr class="row-odd"><td><p>61</p></td>
+<td><p>0.10</p></td>
+<td><p>0.12</p></td>
+<td><p>0.14</p></td>
+<td><p>0.16</p></td>
+<td><p>64</p></td>
+</tr>
+<tr class="row-even"><td><p>62</p></td>
+<td><p>0.11</p></td>
+<td><p>0.13</p></td>
+<td><p>0.15</p></td>
+<td><p>0.17</p></td>
+<td><p>65</p></td>
+</tr>
+<tr class="row-odd"><td><p>63</p></td>
+<td><p>0.12</p></td>
+<td><p>0.14</p></td>
+<td><p>0.16</p></td>
+<td><p>0.18</p></td>
+<td><p>66</p></td>
+</tr>
+<tr class="row-even"><td><p>64</p></td>
+<td><p>0.13</p></td>
+<td><p>0.15</p></td>
+<td><p>0.17</p></td>
+<td><p>0.19</p></td>
+<td><p>67</p></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math notranslate nohighlight">\(e_{64} = 5.10\)</span></p>
+<p>Calculate <span class="math notranslate nohighlight">\(e_{[61]}\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>apply recursion formulas for curtate expectation</p></li>
 </ul>
@@ -1152,7 +1422,47 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 3.7: (b) 16.4</p>
+<p><strong>SOA Question 3.7</strong> : (b) 16.4</p>
+<p>For a mortality table with a select period of two years, you are given:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(q_{[x]}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(q_{[x]+1}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(q_{x+2}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x+2\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>50</p></td>
+<td><p>0.0050</p></td>
+<td><p>0.0063</p></td>
+<td><p>0.0080</p></td>
+<td><p>52</p></td>
+</tr>
+<tr class="row-odd"><td><p>51</p></td>
+<td><p>0.0060</p></td>
+<td><p>0.0073</p></td>
+<td><p>0.0090</p></td>
+<td><p>53</p></td>
+</tr>
+<tr class="row-even"><td><p>52</p></td>
+<td><p>0.0070</p></td>
+<td><p>0.0083</p></td>
+<td><p>0.0100</p></td>
+<td><p>54</p></td>
+</tr>
+<tr class="row-odd"><td><p>53</p></td>
+<td><p>0.0080</p></td>
+<td><p>0.0093</p></td>
+<td><p>0.0110</p></td>
+<td><p>55</p></td>
+</tr>
+</tbody>
+</table>
+<p>The force of mortality is constant between integral ages.</p>
+<p>Calculate <span class="math notranslate nohighlight">\(1000 ~_{2.5}q_{[50]+0.4}\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>use deferred mortality formula</p></li>
 <li><p>use chain rule for survival probabilities,</p></li>
@@ -1178,7 +1488,15 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 3.8:  (B) 1505</p>
+<p><strong>SOA Question 3.8</strong> :  (B) 1505</p>
+<p>A club is established with 2000 members, 1000 of exact age 35 and 1000 of exact age 45. You are given:</p>
+<ol class="arabic simple">
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p>Future lifetimes are independent</p></li>
+<li><p>N is the random variable for the number of members still alive 40 years after the club is established</p></li>
+</ol>
+<p>Using the normal approximation, without the continuity correction, calculate the smallest <span class="math notranslate nohighlight">\(n\)</span> such that <span class="math notranslate nohighlight">\(Pr( N \ge n ) \le 0.05\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>compute portfolio means and variances from sum of 2000 independent members’ means and variances of survival.</p></li>
 </ul>
@@ -1204,7 +1522,15 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 3.9:  (E) 3850</p>
+<p><strong>SOA Question 3.9</strong> :  (E) 3850</p>
+<p>A father-son club has 4000 members, 2000 of which are age 20 and the other 2000 are age 45. In 25 years, the members of the club intend to hold a reunion.</p>
+<p>You are given:</p>
+<ol class="arabic simple">
+<li><p>All lives have independent future lifetimes.</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table.</p></li>
+</ol>
+<p>Using the normal approximation, without the continuity correction, calculate the 99th percentile of the number of surviving members at the time of the reunion.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>compute portfolio means and variances as sum of 4000 independent members’ means and variances (of survival)</p></li>
 <li><p>retrieve normal percentile</p></li>
@@ -1231,7 +1557,24 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 3.10:  (C) 0.86</p>
+<p><strong>SOA Question 3.10</strong> :  (C) 0.86</p>
+<p>A group of 100 people start a Scissor Usage Support Group. The
+rate at which members
+enter and leave the group is dependent on whether they are right-handed or left-handed.</p>
+<p>You are given the following:</p>
+<ol class="arabic simple">
+<li><p>The initial membership is made up of 75% left-handed members (L)
+and 25% right-handed members (R)</p></li>
+<li><p>After the group initially forms, 35 new (L) and 15 new (R) join
+the group at the
+start of each subsequent year</p></li>
+<li><p>Members leave the group only at the end of each year</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_L\)</span> = 0.25 for all years</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_R\)</span> = 0.50 for all years</p></li>
+</ol>
+<p>Calculate the proportion of the Scissor Usage Support Group’s expected
+membership that is left-handed at the start of the group’s 6th year, before any new members join for that year.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>reformulate the problem by reversing time: survival to year 6 is calculated in reverse as discounting by the same number of years.</p></li>
 </ul>
@@ -1254,7 +1597,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 3.11:  (B) 0.03</p>
+<p><strong>SOA Question 3.11</strong> :  (B) 0.03</p>
+<p>For the country of Bienna, you are given:</p>
+<ol class="arabic simple">
+<li><p>Bienna publishes mortality rates in biennial form, that is, mortality rates are of the form: <span class="math notranslate nohighlight">\(_2q_{2x},\)</span> for <span class="math notranslate nohighlight">\(x = 0,1, 2,...\)</span></p></li>
+<li><p>Deaths are assumed to be uniformly distributed between ages <span class="math notranslate nohighlight">\(2x\)</span> and <span class="math notranslate nohighlight">\(2x + 2\)</span>, for <span class="math notranslate nohighlight">\(x = 0,1, 2,...\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(_2q_{50} = 0.02\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(_2q_{52} = 0.04\)</span></p></li>
+</ol>
+<p>Calculate the probability that (50) dies during the next 2.5 years.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>calculate mortality rate by interpolating lives assuming UDD</p></li>
 </ul>
@@ -1275,7 +1627,53 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 3.12: (C) 0.055</p>
+<p><strong>SOA Question 3.12</strong> : (C) 0.055</p>
+<p>X and Y are both age 61. X has just purchased a whole life insurance policy. Y purchased a whole life insurance policy one year ago.</p>
+<p>Both X and Y are subject to the following 3-year select and ultimate table:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ell_{[x]}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ell_{[x]+1}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ell_{[x] + 2}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ell_{x+3}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x+3\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>60</p></td>
+<td><p>10,000</p></td>
+<td><p>9,600</p></td>
+<td><p>8,640</p></td>
+<td><p>7,771</p></td>
+<td><p>63</p></td>
+</tr>
+<tr class="row-odd"><td><p>61</p></td>
+<td><p>8,654</p></td>
+<td><p>8,135</p></td>
+<td><p>6,996</p></td>
+<td><p>5,737</p></td>
+<td><p>64</p></td>
+</tr>
+<tr class="row-even"><td><p>62</p></td>
+<td><p>7,119</p></td>
+<td><p>6,549</p></td>
+<td><p>5,501</p></td>
+<td><p>4,016</p></td>
+<td><p>65</p></td>
+</tr>
+<tr class="row-odd"><td><p>63</p></td>
+<td><p>5,760</p></td>
+<td><p>4,954</p></td>
+<td><p>3,765</p></td>
+<td><p>2,410</p></td>
+<td><p>66</p></td>
+</tr>
+</tbody>
+</table>
+<p>The force of mortality is constant over each year of age.</p>
+<p>Calculate the difference in the probability of survival to age 64.5 between X and Y.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>compute survival probability by interpolating lives assuming constant force</p></li>
 </ul>
@@ -1299,7 +1697,56 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 3.13:  (B) 1.6</p>
+<p><strong>SOA Question 3.13</strong> :  (B) 1.6</p>
+<p>A life is subject to the following 3-year select and ultimate table:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\([x]\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ell_{[x]}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ell_{[x]+1}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ell_{[x]+2}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ell_{x+3}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x+3\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>55</p></td>
+<td><p>10,000</p></td>
+<td><p>9,493</p></td>
+<td><p>8,533</p></td>
+<td><p>7,664</p></td>
+<td><p>58</p></td>
+</tr>
+<tr class="row-odd"><td><p>56</p></td>
+<td><p>8,547</p></td>
+<td><p>8,028</p></td>
+<td><p>6,889</p></td>
+<td><p>5,630</p></td>
+<td><p>59</p></td>
+</tr>
+<tr class="row-even"><td><p>57</p></td>
+<td><p>7,011</p></td>
+<td><p>6,443</p></td>
+<td><p>5,395</p></td>
+<td><p>3,904</p></td>
+<td><p>60</p></td>
+</tr>
+<tr class="row-odd"><td><p>58</p></td>
+<td><p>5,853</p></td>
+<td><p>4,846</p></td>
+<td><p>3,548</p></td>
+<td><p>2,210</p></td>
+<td><p>61</p></td>
+</tr>
+</tbody>
+</table>
+<p>You are also given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(e_{60} = 1\)</span></p></li>
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(\overset{\circ}{e}_{[58]+2}\)</span> .</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>compute curtate expectations using recursion formulas</p></li>
 <li><p>convert to complete expectation assuming UDD</p></li>
@@ -1325,7 +1772,45 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 3.14:  (C) 0.345</p>
+<p><strong>SOA Question 3.14</strong> :  (C) 0.345</p>
+<p>You are given the following information from a life table:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>x</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(l_x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(d_x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(p_x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(q_x\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>95</p></td>
+<td><p>−</p></td>
+<td><p>−</p></td>
+<td><p>−</p></td>
+<td><p>0.40</p></td>
+</tr>
+<tr class="row-odd"><td><p>96</p></td>
+<td><p>−</p></td>
+<td><p>−</p></td>
+<td><p>0.20</p></td>
+<td><p>−</p></td>
+</tr>
+<tr class="row-even"><td><p>97</p></td>
+<td><p>−</p></td>
+<td><p>72</p></td>
+<td><p>−</p></td>
+<td><p>1.00</p></td>
+</tr>
+</tbody>
+</table>
+<p>You are also given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(l_{90} = 1000\)</span> and <span class="math notranslate nohighlight">\(l_{93} = 825\)</span></p></li>
+<li><p>Deaths are uniformly distributed over each year of age.</p></li>
+</ol>
+<p>Calculate the probability that (90) dies between ages 93 and 95.5.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>compute mortality by interpolating lives between integer ages assuming UDD</p></li>
 </ul>
@@ -1352,7 +1837,41 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </section>
 <section id="insurance-benefits">
 <h2>4 Insurance benefits<a class="headerlink" href="#insurance-benefits" title="Permalink to this heading">#</a></h2>
-<p>SOA Question 4.1:  (A) 0.27212</p>
+<p><strong>SOA Question 4.1</strong> :  (A) 0.27212</p>
+<p>For a special whole life insurance policy issued on (40), you
+are given:</p>
+<ol class="arabic simple">
+<li><p>Death benefits are payable at the end of the year of death</p></li>
+<li><p>The amount of benefit is 2 if death occurs within the first 20
+years and is 1 thereafter</p></li>
+<li><p><em>Z</em> is the present value random variable for the payments
+under this insurance</p></li>
+<li><p><em>i</em> = 0.03</p></li>
+<li></li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>x</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(A_x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(_{20}E_x\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>40</p></td>
+<td><p>0.36987</p></td>
+<td><p>0.51276</p></td>
+</tr>
+<tr class="row-odd"><td><p>60</p></td>
+<td><p>0.62567</p></td>
+<td><p>0.17878</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="6">
+<li><p><span class="math notranslate nohighlight">\(E[Z^2] =0.24954\)</span></p></li>
+</ol>
+<p>Calculate the standard deviation of <em>Z</em>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>solve EPV as sum of term and deferred insurance</p></li>
 <li><p>compute variance as difference of second moment and first moment squared</p></li>
@@ -1378,7 +1897,21 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.2:  (D) 0.18</p>
+<p><strong>SOA Question 4.2</strong> :  (D) 0.18</p>
+<p>or a special 2-year term insurance policy on (<em>x</em>), you are
+given:</p>
+<ol class="arabic simple">
+<li><p>Death benefits are payable at the end of the half-year of death</p></li>
+<li><p>The amount of the death benefit is 300,000 for the first
+half-year and increases by 30,000 per half-year thereafter</p></li>
+<li><p><em>q</em> = <em>x</em> 0.16 and <em>q</em> + = 0.23</p></li>
+<li><p><em>i</em> (2) = 0.18</p></li>
+<li><p>Deaths are assumed to follow a constant force of mortality
+between integral ages</p></li>
+<li><p><em>Z</em> is the present value random variable for this insurance</p></li>
+</ol>
+<p>Calculate Pr( <em>Z</em> &gt; 277,000) .</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>calculate Z(t) and deferred mortality for each half-yearly t</p></li>
 <li><p>sum the deferred mortality probabilities for periods when PV &gt; 277000</p></li>
@@ -1403,7 +1936,14 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.3: (D) 0.878</p>
+<p><strong>SOA Question 4.3</strong> : (D) 0.878</p>
+<p>You are given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(q_{60} = 0.01\)</span></p></li>
+<li><p>Using <span class="math notranslate nohighlight">\(i = 0.05, ~ A_{60:\overline{3|}} = 0.86545\)</span></p></li>
+<li><p>Using <span class="math notranslate nohighlight">\(i = 0.045\)</span> calculate <span class="math notranslate nohighlight">\(A_{60:\overline{3|}}\)</span></p></li>
+</ol>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>solve <span class="math notranslate nohighlight">\(q_{61}\)</span> from endowment insurance EPV formula</p></li>
 <li><p>solve <span class="math notranslate nohighlight">\(A_{60:\overline{3|}}\)</span> with new <span class="math notranslate nohighlight">\(i=0.045\)</span> as EPV of endowment insurance benefits.</p></li>
@@ -1428,7 +1968,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.4  (A) 0.036</p>
+<p>__SOA Question 4.4  (A) 0.036</p>
+<p>For a special increasing whole life insurance on (40), payable at the moment of death, you are given__ :</p>
+<ol class="arabic simple">
+<li><p>The death benefit at time t is <span class="math notranslate nohighlight">\(b_t = 1 + 0.2 t, \quad t \ge 0\)</span></p></li>
+<li><p>The interest discount factor at time t is <span class="math notranslate nohighlight">\(v(t) = (1 + 0.2 t ) − 2, \quad t \ge 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(_tp_{40} ~ \mu_{40+t} = 0.025~\text{if} ~ 0 \le t &lt; 40\)</span>, otherwise <span class="math notranslate nohighlight">\(0\)</span></p></li>
+<li><p>Z is the present value random variable for this insurance</p></li>
+</ol>
+<p>Calculate Var(Z).</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>integrate to find EPV of <span class="math notranslate nohighlight">\(Z\)</span> and <span class="math notranslate nohighlight">\(Z^2\)</span></p></li>
 <li><p>variance is difference of second moment and first moment squared</p></li>
@@ -1455,7 +2004,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.5:  (C) 35200</p>
+<p><strong>SOA Question 4.5</strong> :  (C) 35200</p>
+<p>For a 30-year term life insurance of 100,000 on (45), you are given:</p>
+<ol class="arabic simple">
+<li><p>The death benefit is payable at the moment of death</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><span class="math notranslate nohighlight">\(\delta = 0.05\)</span></p></li>
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+</ol>
+<p>Calculate the 95th percentile of the present value of benefits random variable for this insurance</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>interpolate between integer ages with UDD, and find lifetime that mortality rate exceeded</p></li>
 <li><p>compute PV of death benefit paid at that time.</p></li>
@@ -1477,7 +2035,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.6:  (B) 29.85</p>
+<p><strong>SOA Question 4.6</strong> :  (B) 29.85</p>
+<p>For a 3-year term insurance of 1000 on (70), you are given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(q^{SULT}_{70+k}\)</span> is the mortality rate from the Standard Ultimate Life Table, for k = 0,1,2</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{70 + k}\)</span> is the mortality rate used to price this insurance, for k = 0,1, 2</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{70 + k} = (0.95)^k q_{70+k}^{SULT}\)</span>, for k = 0,1, 2</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+</ol>
+<p>Calculate the single net premium.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>calculate adjusted mortality rates</p></li>
 <li><p>compute term insurance as EPV of benefits</p></li>
@@ -1501,7 +2068,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.7:  (B) 0.06</p>
+<p><strong>SOA Question 4.7</strong> :  (B) 0.06</p>
+<p>For a 25-year pure endowment of 1 on (<em>x</em>), you are given:</p>
+<ol class="arabic simple">
+<li><p><em>Z</em> is the present value random variable at issue of the benefit
+payment</p></li>
+<li><p><em>Var (Z)</em> = 0.10 <em>E[Z]</em></p></li>
+<li><p><span class="math notranslate nohighlight">\(_{25}p_x = 0.57\)</span></p></li>
+</ol>
+<p>Calculate the annual effective interest rate.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>use Bernoulli shortcut formula for variance of pure endowment Z</p></li>
 <li><p>solve for <span class="math notranslate nohighlight">\(i\)</span>, since <span class="math notranslate nohighlight">\(p\)</span> is given.</p></li>
@@ -1526,7 +2102,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.8  (C) 191</p>
+<p>__SOA Question 4.8  (C) 191</p>
+<p>For a whole life insurance of 1000 on (50), you are given__ :</p>
+<ol class="arabic simple">
+<li><p>The death benefit is payable at the end of the year of death</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.04 in the first year, and <em>i</em> = 0.05 in subsequent
+years</p></li>
+</ol>
+<p>Calculate the actuarial present value of this insurance.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>use insurance recursion with special interest rate <span class="math notranslate nohighlight">\(i=0.04\)</span> in first year.</p></li>
 </ul>
@@ -1547,7 +2132,15 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.9:  (D) 0.5</p>
+<p><strong>SOA Question 4.9</strong> :  (D) 0.5</p>
+<p>You are given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(A_{35:\overline{15|}} = 0.39\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A^1_{35:\overline{15|}} = 0.25\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{35} = 0.32\)</span></p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(A_{50}\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>use whole-life, term and endowment insurance relationships.</p></li>
 </ul>
@@ -1589,9 +2182,23 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.10:  (D)</p>
+<p><strong>SOA Question 4.10</strong> :  (D)</p>
+<p>The present value random variable for an insurance policy on (x) is expressed as:
+$<span class="math notranslate nohighlight">\(\begin{align*}
+Z &amp; =0, \quad \textrm{if } T_x \le 10\\
+&amp; =v^T, \quad \textrm{if } 10 &lt; T_x \le 20\\
+&amp; =2v^T, \quad \textrm{if } 20 &lt; T_x \le 30\\
+&amp; =0, \quad \textrm{thereafter}
+\end{align*}\)</span>$</p>
+<p>Determine which of the following is a correct expression for <span class="math notranslate nohighlight">\(E[Z]\)</span>.</p>
+<p>(A) <span class="math notranslate nohighlight">\(_{10|}\overline{A}_x + _{20|}\overline{A}_x - _{30|}\overline{A}_x\)</span></p>
+<p>(B) <span class="math notranslate nohighlight">\(\overline{A}_x + _{20}E_x \overline{A}_{x+20} - 2~_{30}E_x \overline{A}_{x +30}\)</span></p>
+<p>(C) <span class="math notranslate nohighlight">\(_{10}E_x \overline{A}_x + _{20}E_x \overline{A}_{x+20} - 2 ~_{30}E_x \overline{A}_{x +30}\)</span></p>
+<p>(D) <span class="math notranslate nohighlight">\(_{10}E_x \overline{A}_{x+10} + _{20}E_x \overline{A}_{x+20} - 2~ _{30}E_x \overline{A}_{x+30}\)</span></p>
+<p>(E) <span class="math notranslate nohighlight">\(_{10}E_x [\overline{A}_{x} + _{10}E_{x+10} + \overline{A}_{x+20} - _{10}E_{x+20} + \overline{A}_{x+30}]\)</span></p>
+<p><em>hints:</em></p>
 <ul class="simple">
-<li><p>draw and compared benefit diagrams</p></li>
+<li><p>draw and compare benefit diagrams</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1640,7 +2247,21 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 <img alt="_images/aff82270348bdd20e263cfb698ae608233d43df075faea45d14c9c4cb2866a61.png" src="_images/aff82270348bdd20e263cfb698ae608233d43df075faea45d14c9c4cb2866a61.png" />
 </div>
 </div>
-<p>SOA Question 4.11:  (A) 143385</p>
+<p><strong>SOA Question 4.11</strong> :  (A) 143385</p>
+<p>You are given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(Z_1\)</span> is the present value random variable for an n-year term insurance of 1000
+issued to (x)</p></li>
+<li><p><span class="math notranslate nohighlight">\(Z_2\)</span> is the present value random variable for an n-year endowment insurance of
+1000 issued to (x)</p></li>
+<li><p>For both <span class="math notranslate nohighlight">\(Z_1\)</span> and <span class="math notranslate nohighlight">\(Z_2\)</span> the death benefit is payable at the end of the year of death</p></li>
+<li><p><span class="math notranslate nohighlight">\(E [ Z_1 ] = 528\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Var ( Z_2 ) = 15,000\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A^{~~~~1}_{x:{\overline{n|}}} = 0.209\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^2A^{~~~~1}_{x:{\overline{n|}}} = 0.136\)</span></p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(Var(Z_1)\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>compute endowment insurance = term insurance + pure endowment</p></li>
 <li><p>apply formula of variance as the difference of second moment and first moment squared.</p></li>
@@ -1669,7 +2290,18 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.12:  (C) 167</p>
+<p><strong>SOA Question 4.12</strong> :  (C) 167</p>
+<p>For three fully discrete insurance products on the same (x), you are given:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Z_1\)</span> is the present value random variable for a 20-year term insurance of 50</p></li>
+<li><p><span class="math notranslate nohighlight">\(Z_2\)</span> is the present value random variable for a 20-year deferred whole life
+insurance of 100</p></li>
+<li><p><span class="math notranslate nohighlight">\(Z_3\)</span> is the present value random variable for a whole life insurance of 100.</p></li>
+<li><p><span class="math notranslate nohighlight">\(E[Z_1] = 1.65\)</span> and <span class="math notranslate nohighlight">\(E[Z_2] = 10.75\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Var(Z_1) = 46.75\)</span> and <span class="math notranslate nohighlight">\(Var(Z_2) = 50.78\)</span></p></li>
+</ul>
+<p>Calculate <span class="math notranslate nohighlight">\(Var(Z_3)\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>since <span class="math notranslate nohighlight">\(Z_1,~Z_2\)</span> are non-overlapping, <span class="math notranslate nohighlight">\(E[Z_1~ Z_2] = 0\)</span> for computing <span class="math notranslate nohighlight">\(Cov(Z_1, Z_2)\)</span></p></li>
 <li><p>whole life is sum of term and deferred, hence equals variance of components plus twice their covariance</p></li>
@@ -1691,7 +2323,65 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.13:  (C) 350</p>
+<p><strong>SOA Question 4.13</strong> :  (C) 350</p>
+<p>For a 2-year deferred, 2-year term insurance of 2000 on [65], you are given:</p>
+<ol class="arabic simple">
+<li><p>The following select and ultimate mortality table with a 3-year select period:</p></li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(q_{[x]}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(q_{[x]+1}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(q_{[x]+2}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(q_{x+3}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x+3\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>65</p></td>
+<td><p>0.08</p></td>
+<td><p>0.10</p></td>
+<td><p>0.12</p></td>
+<td><p>0.14</p></td>
+<td><p>68</p></td>
+</tr>
+<tr class="row-odd"><td><p>66</p></td>
+<td><p>0.09</p></td>
+<td><p>0.11</p></td>
+<td><p>0.13</p></td>
+<td><p>0.15</p></td>
+<td><p>69</p></td>
+</tr>
+<tr class="row-even"><td><p>67</p></td>
+<td><p>0.10</p></td>
+<td><p>0.12</p></td>
+<td><p>0.14</p></td>
+<td><p>0.16</p></td>
+<td><p>70</p></td>
+</tr>
+<tr class="row-odd"><td><p>68</p></td>
+<td><p>0.11</p></td>
+<td><p>0.13</p></td>
+<td><p>0.15</p></td>
+<td><p>0.17</p></td>
+<td><p>71</p></td>
+</tr>
+<tr class="row-even"><td><p>69</p></td>
+<td><p>0.12</p></td>
+<td><p>0.14</p></td>
+<td><p>0.16</p></td>
+<td><p>0.18</p></td>
+<td><p>72</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li><p><span class="math notranslate nohighlight">\(i = 0.04\)</span></p></li>
+<li><p>The death benefit is payable at the end of the year of death</p></li>
+</ol>
+<p>Calculate the actuarial present value of this insurance.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>compute term insurance as EPV of benefits</p></li>
 </ul>
@@ -1717,7 +2407,13 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.14:  (E) 390000</p>
+<p><strong>SOA Question 4.14</strong> :  (E) 390000</p>
+<p>A fund is established for the benefit of 400 workers all age 60 with independent future lifetimes. When they reach age 85, the fund will be dissolved and distributed to the survivors.</p>
+<p>The fund will earn interest at a rate of 5% per year.</p>
+<p>The initial fund balance, <span class="math notranslate nohighlight">\(F\)</span>, is determined so that the probability that the fund will pay at least 5000 to each survivor is 86%, using the normal approximation.</p>
+<p>Mortality follows the Standard Ultimate Life Table.</p>
+<p>Calculate <span class="math notranslate nohighlight">\(F\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>discount (by interest rate <span class="math notranslate nohighlight">\(i=0.05\)</span>) the value at the portfolio percentile, of the sum of 400 bernoulli r.v. with survival probability <span class="math notranslate nohighlight">\(_{25}p_{60}\)</span></p></li>
 </ul>
@@ -1742,7 +2438,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.15  (E) 0.0833</p>
+<p>__SOA Question 4.15  (E) 0.0833</p>
+<p>For a special whole life insurance on (x), you are given__ :</p>
+<ul class="simple">
+<li><p>Death benefits are payable at the moment of death</p></li>
+<li><p>The death benefit at time <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(b_t = e^{0.02t}\)</span>, for <span class="math notranslate nohighlight">\(t \ge 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu_{x+t} = 0.04\)</span>, for <span class="math notranslate nohighlight">\(t \ge 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\delta = 0.06\)</span></p></li>
+<li><p>Z is the present value at issue random variable for this insurance.</p></li>
+</ul>
+<p>Calculate <span class="math notranslate nohighlight">\(Var(Z)\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>this special benefit function has effect of reducing actuarial discount rate to use in constant force of mortality shortcut formulas</p></li>
 </ul>
@@ -1766,7 +2472,37 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.16:  (D) 0.11</p>
+<p><strong>SOA Question 4.16</strong> :  (D) 0.11</p>
+<p>You are given the following extract of ultimate mortality rates from a two-year select and ultimate mortality table:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(q_x\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>50</p></td>
+<td><p>0.045</p></td>
+</tr>
+<tr class="row-odd"><td><p>51</p></td>
+<td><p>0.050</p></td>
+</tr>
+<tr class="row-even"><td><p>52</p></td>
+<td><p>0.055</p></td>
+</tr>
+<tr class="row-odd"><td><p>53</p></td>
+<td><p>0.060</p></td>
+</tr>
+</tbody>
+</table>
+<p>The select mortality rates satisfy the following:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(q_{[x]} = 0.7 q_x\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{[x]+1} = 0.8 q_{x + 1}\)</span></p></li>
+</ol>
+<p>You are also given that <span class="math notranslate nohighlight">\(i = 0.04\)</span>.</p>
+<p>Calculate <span class="math notranslate nohighlight">\(A^1_{[50]:\overline{3|}}\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>compute EPV of future benefits with adjusted mortality rates</p></li>
 </ul>
@@ -1792,7 +2528,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.17:  (A) 1126.7</p>
+<p><strong>SOA Question 4.17</strong> :  (A) 1126.7</p>
+<p>For a special whole life policy on (48), you are given:</p>
+<ol class="arabic simple">
+<li><p>The policy pays 5000 if the insured’s death is before the median curtate future
+lifetime at issue and 10,000 if death is after the median curtate future lifetime at issue</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p>Death benefits are paid at the end of the year of death</p></li>
+<li><p>i = 0.05</p></li>
+</ol>
+<p>Calculate the actuarial present value of benefits for this policy.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>find future lifetime with 50% survival probability</p></li>
 <li><p>compute EPV of special whole life as sum of term and deferred insurance, that have different benefit amounts before and after median lifetime.</p></li>
@@ -1816,7 +2562,19 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.18  (A) 81873</p>
+<p>__SOA Question 4.18  (A) 81873</p>
+<p>You are given that T, the time to first failure of an industrial robot, has a density f(t) given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+f(t) &amp;= 0.1, \quad 0 \le t &lt; 2\\
+ &amp;= 0.4t^{-2}, \quad t \le t &lt; 10
+\end{align*}
+\end{split}\]</div>
+<p>with <span class="math notranslate nohighlight">\(f(t)\)</span> undetermined on <span class="math notranslate nohighlight">\([10, \infty)\)</span>.</p>
+<p>Consider a supplemental warranty on this robot that pays 100,000 at the time T of its first failure if <span class="math notranslate nohighlight">\(2 \le T \le 10\)</span> , with no benefits payable otherwise.
+You are also given that <span class="math notranslate nohighlight">\(\delta = 5\%\)</span>. Calculate the 90th percentile of the present value of the future benefits under this warranty.</p>
+<p><em>hints__ :</em></p>
 <ul class="simple">
 <li><p>find values of limits such that integral of lifetime density function equals required survival probability</p></li>
 </ul>
@@ -1842,7 +2600,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 4.19:  (B) 59050</p>
+<p><strong>SOA Question 4.19</strong> :  (B) 59050</p>
+<p>(80) purchases a whole life insurance policy of 100,000. You are given:</p>
+<ol class="arabic simple">
+<li><p>The policy is priced with a select period of one year</p></li>
+<li><p>The select mortality rate equals 80% of the mortality rate from the Standard
+Ultimate Life Table</p></li>
+<li><p>Ultimate mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+</ol>
+<p>Calculate the actuarial present value of the death benefits for this insurance</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>calculate adjusted mortality for the one-year select period</p></li>
 <li><p>compute whole life insurance using backward recursion formula</p></li>
@@ -1872,10 +2640,19 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </section>
 <section id="annuities">
 <h2>5 Annuities<a class="headerlink" href="#annuities" title="Permalink to this heading">#</a></h2>
-<p>SOA Question 5.1: (A) 0.705</p>
+<p><strong>SOA Question 5.1</strong> : (A) 0.705</p>
+<p>You are given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\delta_t = 0.06, \quad t \ge 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu_x(t) = 0.01, \quad t \ge 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Y\)</span> is the present value random variable for a continuous annuity of 1 per year,
+payable for the lifetime of (x) with 10 years certain</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(Pr( Y &gt; E[Y])\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
-<li><p>sum of annuity certain and deferred life annuity with constant force of mortality shortcut</p></li>
-<li><p>use equation for PV annuity r.v. Y to infer lifetime</p></li>
+<li><p>sum annuity certain and deferred life annuity with constant force of mortality shortcut</p></li>
+<li><p>apply equation for PV annuity r.v. Y to infer lifetime</p></li>
 <li><p>compute survival probability from constant force of mortality function.</p></li>
 </ul>
 <div class="cell docutils container">
@@ -1896,7 +2673,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 5.2:  (B) 9.64</p>
+<p><strong>SOA Question 5.2</strong> :  (B) 9.64</p>
+<p>You are given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(A_x = 0.30\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{x + n} = 0.40\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A^{~~~~1}_{x:\overline{n|}} = 0.35\)</span></p></li>
+<li><p><em>i</em> = 0.05</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(a_{x:\overline{n|}}\)</span>.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>compute term life as difference of whole life and deferred insurance</p></li>
 <li><p>compute twin annuity-due, and adjust to an immediate annuity.</p></li>
@@ -1938,9 +2724,18 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 5.3:  (C) 6.239</p>
+<p><strong>SOA Question 5.3</strong> :  (C) 6.239</p>
+<p>You are given:</p>
 <ul class="simple">
-<li><p>Differential reduces to the the EPV of the benefit payment at the upper time limit.</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+<li><p>i = 0.05</p></li>
+</ul>
+<p>Calculate
+<span class="math notranslate nohighlight">\(\frac{d}{dt}(\overline{I}\overline{a})_{40:\overline{t|}}\)</span> at <span class="math notranslate nohighlight">\(t = 10.5\)</span>.</p>
+<p><em>hints:</em></p>
+<ul class="simple">
+<li><p>Differential reduces to be the EPV of the benefit payment at the upper time limit.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1959,7 +2754,21 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 5.4:  (A) 213.7</p>
+<p><strong>SOA Question 5.4</strong> :  (A) 213.7</p>
+<p>(40) wins the SOA lottery and will receive both:</p>
+<ul class="simple">
+<li><p>A deferred life annuity of K per year, payable continuously, starting at age
+<span class="math notranslate nohighlight">\(40 + \overset{\circ}{e}_{40}\)</span> and</p></li>
+<li><p>An annuity certain of K per year, payable continuously, for <span class="math notranslate nohighlight">\(\overset{\circ}{e}_{40}\)</span> years</p></li>
+</ul>
+<p>You are given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\mu = 0.02\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\delta = 0.01\)</span></p></li>
+<li><p>The actuarial present value of the payments is 10,000</p></li>
+</ol>
+<p>Calculate K.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>compute certain and life annuity factor as the sum of a certain annuity and a deferred life annuity.</p></li>
 <li><p>solve for amount of annual benefit that equals given EPV</p></li>
@@ -1982,7 +2791,23 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 5.5: (A) 1699.6</p>
+<p><strong>SOA Question 5.5</strong> : (A) 1699.6</p>
+<p>For an annuity-due that pays 100 at the beginning of each year that (45) is alive, you are given:</p>
+<ol class="arabic simple">
+<li><p>Mortality for standard lives follows the Standard Ultimate Life Table</p></li>
+<li><p>The force of mortality for standard lives age 45 + t is represented as <span class="math notranslate nohighlight">\(\mu_{45+t}^{SULT}\)</span></p></li>
+<li><p>The force of mortality for substandard lives age 45 + t, <span class="math notranslate nohighlight">\(\mu_{45+t}^{S}\)</span>, is defined as:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+\mu_{45+t}^{S} &amp;= \mu_{45+t}^{SULT} + 0.05, \quad 0 \le t &lt; 1\\
+&amp;= \mu_{45+t}^{SULT}, \quad t \ge 1
+\end{align*}\end{split}\]</div>
+<ol class="arabic simple" start="4">
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+</ol>
+<p>Calculate the actuarial present value of this annuity for a substandard life age 45.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>adjust mortality rate for the extra risk</p></li>
 <li><p>compute annuity by backward recursion.</p></li>
@@ -2009,7 +2834,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 5.6:  (D) 1200</p>
+<p><strong>SOA Question 5.6</strong> :  (D) 1200</p>
+<p>For a group of 100 lives age x with independent future lifetimes, you are given:</p>
+<ol class="arabic simple">
+<li><p>Each life is to be paid 1 at the beginning of each year, if alive</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_x = 0.45\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^2A_x = 0.22\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Y\)</span> is the present value random variable of the aggregate payments.</p></li>
+</ol>
+<p>Using the normal approximation to <span class="math notranslate nohighlight">\(Y\)</span>, calculate the initial size of the fund needed to be 95% certain of being able to make the payments for these life annuities.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>compute mean and variance of EPV of whole life annuity from whole life insurance twin and variance identities.</p></li>
 <li><p>portfolio percentile of the sum of <span class="math notranslate nohighlight">\(N=100\)</span> life annuity payments</p></li>
@@ -2033,7 +2868,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 5.7:  (C)</p>
+<p><strong>SOA Question 5.7</strong> :  (C)</p>
+<p>You are given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(A_{35} = 0.188\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{65} = 0.498\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(_{30}p_{35} = 0.883\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.04\)</span></p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(1000 \ddot{a}^{(2)}_{35:\overline{30|}}\)</span> using the two-term Woolhouse approximation.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>compute endowment insurance from relationships of whole life, temporary and deferred insurances.</p></li>
 <li><p>compute temporary annuity from insurance twin</p></li>
@@ -2078,7 +2922,14 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 5.8: (C) 0.92118</p>
+<p><strong>SOA Question 5.8</strong> : (C) 0.92118</p>
+<p>For an annual whole life annuity-due of 1 with a 5-year certain period on (55), you are given:</p>
+<ol class="arabic simple">
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p>i = 0.05</p></li>
+</ol>
+<p>Calculate the probability that the sum of the undiscounted payments actually made under this annuity will exceed the expected present value, at issue, of the annuity.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>calculate EPV of certain and life annuity.</p></li>
 <li><p>find survival probability of lifetime s.t. sum of annual payments exceeds EPV</p></li>
@@ -2101,7 +2952,8 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 5.9:  (C) 0.015</p>
+<p><strong>SOA Question 5.9</strong> :  (C) 0.015</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>express both EPV’s expressed as forward recursions</p></li>
 <li><p>solve for unknown constant <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
@@ -2139,10 +2991,18 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </section>
 <section id="premium-calculation">
 <h2>6 Premium Calculation<a class="headerlink" href="#premium-calculation" title="Permalink to this heading">#</a></h2>
-<p>SOA Question 6.1: (D) 35.36</p>
+<p><strong>SOA Question 6.1</strong> : (D) 35.36</p>
+<p><strong>6.1.</strong> You are given the following information about a special fully discrete 2-payment, 2-year term insurance on (80):</p>
+<p>(i) Mortality follows the Standard Ultimate Life Table</p>
+<p>(ii) <em>i</em> = 0.03</p>
+<p>(iii) The death benefit is 1000 plus a return of all premiums paid
+without interest</p>
+<p>(iv) Level premiums are calculated using the equivalence principle</p>
+<p>Calculate the net premium for this special insurance.</p>
+<p>[A modified version of Question 22 on the Fall 2012 exam]</p>
+<p><em>hints:</em></p>
 <ul class="simple">
-<li><p>calculate IA factor for return of premiums without interest</p></li>
-<li><p>solve net premium such that EPV benefits = EPV premium</p></li>
+<li><p>solve net premium such that EPV annuity = EPV insurance + IA factor for returns of premiums without interest</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2161,7 +3021,18 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.2: (E) 3604</p>
+<p><strong>SOA Question 6.2</strong> : (E) 3604</p>
+<p><strong>6.2.</strong> For a fully discrete 10-year term life insurance policy on (<em>x</em>), you are given:</p>
+<p>(i) Death benefits are 100,000 plus the return of all gross premiums paid without interest</p>
+<p>(ii) Expenses are 50% of the first year’s gross premium, 5% of
+renewal gross premiums and 200 per policy expenses each year</p>
+<p>(iii) Expenses are payble at the beginnig of the year</p>
+<p>(iv) <span class="math notranslate nohighlight">\(A^1_{x:\overline{10|}} = 0.17094\)</span></p>
+<p>(v) <span class="math notranslate nohighlight">\((IA)^1_{x:\overline{10|}} = 0.96728\)</span></p>
+<p>(vi) <span class="math notranslate nohighlight">\(\ddot{a}^1_{x:\overline{10|}} = 6.8865\)</span></p>
+<p>Calculate the gross premium using the equivalence principle.</p>
+<p>[Question 25 on the Fall 2012 exam]</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>EPV return of premiums without interest = Premium <span class="math notranslate nohighlight">\(\times\)</span> IA factor</p></li>
 <li><p>solve for gross premiums such that EPV premiums = EPV benefits and expenses</p></li>
@@ -2186,7 +3057,24 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.3:  (C) 0.390</p>
+<p><strong>SOA Question 6.3</strong> :  (C) 0.390</p>
+<p>S, now age 65, purchased a 20-year deferred whole life
+annuity-due of 1 per year at age
+45. You are given:</p>
+<ol class="arabic simple">
+<li><p>Equal annual premiums, determined using the equivalence
+principle, were paid at
+the beginning of each year during the deferral period</p></li>
+<li><p>Mortality at ages 65 and older follows the Standard Ultimate
+Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+<li><p><em>Y</em> is the present value random variable at age 65 for S’s
+annuity benefits</p></li>
+</ol>
+<p>Calculate the probability that <em>Y</em> is less than the actuarial
+accumulated value of S’s
+premiums.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>solve lifetime <span class="math notranslate nohighlight">\(t\)</span> such that PV annuity certain = PV whole life annuity at age 65</p></li>
 <li><p>calculate mortality rate through the year before curtate lifetime</p></li>
@@ -2209,7 +3097,18 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.4:  (E) 1890</p>
+<p><strong>SOA Question 6.4</strong> :  (E) 1890</p>
+<p>For whole life annuities-due of 15 per month on each of 200
+lives age 62 with
+independent future lifetimes, you are given:</p>
+<ol class="arabic simple">
+<li><p><em>i</em> = 0.06</p></li>
+<li><p><span class="math notranslate nohighlight">\(A^{12}_{62} = 0.4075\)</span> and <span class="math notranslate nohighlight">\(^2A^{(12)}_{62} = 0.2105\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi\)</span> is the single premium to be paid by each of the 200 lives</p></li>
+<li><p><em>S</em> is the present value random variable at time 0 of total
+payments made to the 200 lives</p></li>
+</ol>
+<p>Using the normal approximation, calculate <span class="math notranslate nohighlight">\(\pi\)</span> such at <span class="math notranslate nohighlight">\(Pr(200 \pi &gt; S) = 0.90\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mthly</span> <span class="o">=</span> <span class="n">Mthly</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">life</span><span class="o">=</span><span class="n">Annuity</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.06</span><span class="p">))</span>
@@ -2230,7 +3129,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.5:  (D) 33</p>
+<p><strong>SOA Question 6.5</strong> :  (D) 33</p>
+<p>For a fully discrete whole life insurance of 1000 on (30), you
+are given:</p>
+<ol class="arabic simple">
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+<li><p>The premium is the net premium</p></li>
+</ol>
+<p>Calculate the first year for which the expected present value at issue
+of that year’s premium is less than the expected present value at issue of that
+year’s benefit.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -2250,7 +3159,20 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.6:  (B) 0.79</p>
+<p><strong>SOA Question 6.6</strong> :  (B) 0.79</p>
+<p>For fully discrete whole life insurance policies of 10,000 issued on 600 lives with independent future lifetimes, each age 62, you are given:</p>
+<ol class="arabic simple">
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+<li><p>Expenses of 5% of the first year gross premium are incurred at
+issue</p></li>
+<li><p>Expenses of 5 per policy are incurred at the beginning of each
+policy year</p></li>
+<li><p>The gross premium is 103% of the net premium.</p></li>
+<li><p><span class="math notranslate nohighlight">\(_0L\)</span> is the aggregate present value of future loss at issue
+random variable</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(Pr( _0L &lt; 40,000)\)</span>, using the normal approximation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -2276,7 +3198,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.7:  (C) 2880</p>
+<p><strong>SOA Question 6.7</strong> :  (C) 2880</p>
+<p>For a special fully discrete 20-year endowment insurance on
+(40), you are given:</p>
+<ol class="arabic simple">
+<li><p>The only death benefit is the return of annual net premiums
+accumulated with interest at 5% to the end of the year of death</p></li>
+<li><p>The endowment benefit is 100,000</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+</ol>
+<p>Calculate the annual net premium.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -2297,7 +3229,24 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.8:  (B) 9.5</p>
+<p><strong>SOA Question 6.8</strong> :  (B) 9.5</p>
+<p>For a fully discrete whole life insurance on (60), you are
+given:</p>
+<ol class="arabic simple">
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+<li><p>The expected company expenses, payable at the beginning of the
+year, are:</p></li>
+</ol>
+<ul class="simple">
+<li><p>50 in the first year</p></li>
+<li><p>10 in years 2 through 10</p></li>
+<li><p>5 in years 11 through 20</p></li>
+<li><p>0 after year 20</p></li>
+</ul>
+<p>Calculate the level annual amount that is actuarially equivalent to
+the expected company expenses.</p>
+<p><em>hints:</em></p>
 <ul class="simple">
 <li><p>calculate EPV of expenses as deferred life annuities</p></li>
 <li><p>solve for level premium</p></li>
@@ -2321,7 +3270,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.9:  (D) 647</p>
+<p><strong>SOA Question 6.9</strong> :  (D) 647</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -2344,7 +3293,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.10:  (D) 0.91</p>
+<p><strong>SOA Question 6.10</strong> :  (D) 0.91</p>
+<p>For a fully discrete 3-year term insurance of 1000 on (<em>x</em>),
+you are given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(p_x\)</span> = 0.975</p></li>
+<li><p><em>i</em> = 0.06</p></li>
+<li><p>The actuarial present value of the death benefit is 152.85</p></li>
+<li><p>The annual net premium is 56.05</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(p_{x+2}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -2387,7 +3345,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.11:  (C) 0.041</p>
+<p><strong>SOA Question 6.11</strong> :  (C) 0.041</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
@@ -2420,7 +3378,37 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.12:  (E) 88900</p>
+<p><strong>SOA Question 6.12</strong> :  (E) 88900</p>
+<p>For a fully discrete whole life insurance of 1000 on (x), you are given:</p>
+<ol class="arabic simple">
+<li><p>The following expenses are incurred at the beginning of each year:</p></li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Year 1</p></th>
+<th class="head"><p>Years 2+</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Percent of premium</p></td>
+<td><p>75%</p></td>
+<td><p>10%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Maintenance expenses</p></td>
+<td><p>10</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li><p>An additional expense of 20 is paid when the death benefit is paid</p></li>
+<li><p>The gross premium is determined using the equivalence principle</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.06\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\ddot{a}_x = 12.0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^2A_x = 0.14\)</span></p></li>
+</ol>
+<p>Calculate the variance of the loss at issue random variable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">PolicyValues</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>
@@ -2444,7 +3432,18 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.13:  (D) -400</p>
+<p><strong>SOA Question 6.13</strong> :  (D) -400</p>
+<p>For a fully discrete whole life insurance of 10,000 on (45),
+you are given:</p>
+<ol class="arabic simple">
+<li><p>Commissions are 80% of the first year premium and 10% of
+subsequent premiums. There are no other expenses</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+<li><p><span class="math notranslate nohighlight">\(_0L\)</span> denotes the loss at issue random variable</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(T_{45} = 10.5\)</span>, then <span class="math notranslate nohighlight">\(_0L = 4953\)</span></p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(E[_0L]\)</span> .</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
@@ -2469,7 +3468,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 <img alt="_images/8ecba602090dee0c1d5e68faa2441f1fa14891a9753bd0cfd6864391d530867c.png" src="_images/8ecba602090dee0c1d5e68faa2441f1fa14891a9753bd0cfd6864391d530867c.png" />
 </div>
 </div>
-<p>SOA Question 6.14  (D) 1150</p>
+<p>__SOA Question 6.14  (D) 1150</p>
+<p>For a special fully discrete whole life insurance of 100,000
+on (40), you are given__ :</p>
+<ol class="arabic simple">
+<li><p>The annual net premium is <em>P</em> for years 1 through 10, 0.5<em>P</em> for
+years 11 through 20, and 0 thereafter</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+</ol>
+<p>Calculate <em>P</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
@@ -2489,7 +3497,15 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.15:  (B) 1.002</p>
+<p><strong>SOA Question 6.15</strong> :  (B) 1.002</p>
+<p>For a fully discrete whole life insurance of 1000 on (x) with net premiums payable quarterly, you are given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\ddot{a}_x = 3.4611\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P^{(W)}\)</span> and <span class="math notranslate nohighlight">\(P^{(UDD)}\)</span> are the annualized net premiums calculated using the 2-term Woolhouse (W) and the uniform distribution of deaths (UDD) assumptions,
+respectively</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(\dfrac{P^{(UDD)}}{P^{(W)}}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span><span class="o">.</span><span class="n">set_a</span><span class="p">(</span><span class="mf">3.4611</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -2512,7 +3528,52 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.16: (A) 2408.6</p>
+<p><strong>SOA Question 6.16</strong> : (A) 2408.6</p>
+<p>For a fully discrete 20-year endowment insurance of 100,000 on (30), you are given:</p>
+<ol class="arabic simple">
+<li><p>d = 0.05</p></li>
+<li><p>Expenses, payable at the beginning of each year, are:</p></li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>First Year</p></th>
+<th class="head"><p>First Year</p></th>
+<th class="head"><p>Renewal Years</p></th>
+<th class="head"><p>Renewal Years</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p></p></td>
+<td><p>Percent of Premium</p></td>
+<td><p>Per Policy</p></td>
+<td><p>Percent of Premium</p></td>
+<td><p>Per Policy</p></td>
+</tr>
+<tr class="row-odd"><td><p>Taxes</p></td>
+<td><p>4%</p></td>
+<td><p>0</p></td>
+<td><p>4%</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Sales Commission</p></td>
+<td><p>35%</p></td>
+<td><p>0</p></td>
+<td><p>2%</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Policy Maintenance</p></td>
+<td><p>0%</p></td>
+<td><p>250</p></td>
+<td><p>0%</p></td>
+<td><p>50</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="3">
+<li><p>The net premium is 2143</p></li>
+</ol>
+<p>Calculate the gross premium using the equivalence principle.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Premiums</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
@@ -2534,7 +3595,18 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.17:  (A) -30000</p>
+<p><strong>SOA Question 6.17</strong> :  (A) -30000</p>
+<p>An insurance company sells special fully discrete two-year endowment insurance policies to smokers (S) and non-smokers (NS) age x. You are given:</p>
+<ol class="arabic simple">
+<li><p>The death benefit is 100,000; the maturity benefit is 30,000</p></li>
+<li><p>The level annual premium for non-smoker policies is determined by the
+equivalence principle</p></li>
+<li><p>The annual premium for smoker policies is twice the non-smoker annual premium</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu^{NS}_{x+t} = 0.1.\quad t &gt; 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(q^S_{x+k} = 1.5 q_{x+k}^{NS}\)</span>, for <span class="math notranslate nohighlight">\(k = 0, 1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.08\)</span></p></li>
+</ol>
+<p>Calculate the expected present value of the loss at issue random variable on a smoker policy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -2602,7 +3674,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.18:  (D) 166400</p>
+<p><strong>SOA Question 6.18</strong> :  (D) 166400</p>
+<p>For a 20-year deferred whole life annuity-due with annual
+payments of 30,000 on (40), you are given:</p>
+<ol class="arabic simple">
+<li><p>The single net premium is refunded without interest at the end of
+the year of death if death occurs during the deferral period</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+</ol>
+<p>Calculate the single net premium for this annuity.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
@@ -2624,7 +3705,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.19:  (B) 0.033</p>
+<p><strong>SOA Question 6.19</strong> :  (B) 0.033</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -2646,7 +3727,35 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.20:  (B) 459</p>
+<p><strong>SOA Question 6.20</strong> :  (B) 459</p>
+<p>For a special fully discrete 3-year term insurance on (75), you are given:</p>
+<ol class="arabic simple">
+<li><p>The death benefit during the first two years is the sum of the net premiums paid
+without interest</p></li>
+<li><p>The death benefit in the third year is 10,000</p></li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(p_x\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>75</p></td>
+<td><p>0.90</p></td>
+</tr>
+<tr class="row-odd"><td><p>76</p></td>
+<td><p>0.88</p></td>
+</tr>
+<tr class="row-even"><td><p>77</p></td>
+<td><p>0.85</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="3">
+<li><p><span class="math notranslate nohighlight">\(i = 0.04\)</span></p></li>
+</ol>
+<p>Calculate the annual net premium.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">LifeTable</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">.04</span><span class="p">)</span><span class="o">.</span><span class="n">set_table</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="p">{</span><span class="mi">75</span><span class="p">:</span> <span class="mf">.9</span><span class="p">,</span> <span class="mi">76</span><span class="p">:</span> <span class="mf">.88</span><span class="p">,</span> <span class="mi">77</span><span class="p">:</span> <span class="mf">.85</span><span class="p">})</span>
@@ -2668,7 +3777,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.21:  (C) 100</p>
+<p><strong>SOA Question 6.21</strong> :  (C) 100</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
@@ -2691,7 +3800,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.22:  (C) 102</p>
+<p><strong>SOA Question 6.22</strong> :  (C) 102</p>
+<p>For a whole life insurance of 100,000 on (45) with premiums payable monthly for a
+period of 20 years, you are given:</p>
+<ol class="arabic simple">
+<li><p>The death benefit is paid immediately upon death</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+</ol>
+<p>Calculate the monthly net premium.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span><span class="o">=</span><span class="n">SULT</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -2711,7 +3829,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.23:  (D) 44.7</p>
+<p><strong>SOA Question 6.23</strong> :  (D) 44.7</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -2738,7 +3856,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.24:  (E) 0.30</p>
+<p><strong>SOA Question 6.24</strong> :  (E) 0.30</p>
+<p>For a fully continuous whole life insurance of 1 on (x), you are given:</p>
+<ol class="arabic simple">
+<li><p>L is the present value of the loss at issue random variable if the premium rate is
+determined by the equivalence principle</p></li>
+<li><p>L^* is the present value of the loss at issue random variable if the premium rate is 0.06</p></li>
+<li><p><span class="math notranslate nohighlight">\(\delta = 0.07\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline{A}_x = 0.30\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Var(L) = 0.18\)</span></p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(Var(L^*)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">PolicyValues</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="mf">0.07</span><span class="p">)</span>
@@ -2764,7 +3892,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.25:  (C) 12330</p>
+<p><strong>SOA Question 6.25</strong> :  (C) 12330</p>
+<p>For a fully discrete 10-year deferred whole life annuity-due of 1000 per month on (55), you are given:</p>
+<ol class="arabic simple">
+<li><p>The premium, <span class="math notranslate nohighlight">\(G\)</span>, will be paid annually at the beginning of each year during the deferral period</p></li>
+<li><p>Expenses are expected to be 300 per year for all years, payable at the beginning of the year</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+<li><p>Using the two-term Woolhouse approximation, the expected loss at issue is -800</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(G\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -2789,7 +3926,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.26  (D) 180</p>
+<p>__SOA Question 6.26  (D) 180</p>
+<p>For a special fully discrete whole life insurance policy of
+1000 on (90), you are given__ :</p>
+<ol class="arabic simple">
+<li><p>The first year premium is 0</p></li>
+<li><p><em>P</em> is the renewal premium</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+<li><p>Premiums are calculated using the equivalence principle</p></li>
+</ol>
+<p>Calculate <em>P</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
@@ -2809,7 +3956,34 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.27:  (D) 10310</p>
+<p><strong>SOA Question 6.27</strong> :  (D) 10310</p>
+<p>For a special fully continuous whole life insurance on (x), you are given:</p>
+<ol class="arabic simple">
+<li><p>Premiums and benefits:</p></li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>First 20 years</p></th>
+<th class="head"><p>After 20 years</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Premium Rate</p></td>
+<td><p>3P</p></td>
+<td><p>P</p></td>
+</tr>
+<tr class="row-odd"><td><p>Benefit</p></td>
+<td><p>1,000,000</p></td>
+<td><p>500,000</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li><p><span class="math notranslate nohighlight">\(\mu_{x+t} = 0.03, \quad t \ge 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\delta = 0.06\)</span></p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(P\)</span> using the equivalence principle.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">ConstantForce</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>
@@ -2832,7 +4006,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.28  (B) 36</p>
+<p><strong>SOA Question 6.28</strong> :  (B) 36</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
@@ -2854,7 +4028,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.29  (B) 20.5</p>
+<p>__SOA Question 6.29  (B) 20.5</p>
+<p>(35) purchases a fully discrete whole life insurance policy of 100,000.
+You are given__ :</p>
+<ol class="arabic simple">
+<li><p>The annual gross premium, calculated using the equivalence principle, is 1770</p></li>
+<li><p>The expenses in policy year 1 are 50% of premium and 200 per policy</p></li>
+<li><p>The expenses in policy years 2 and later are 10% of premium and 50 per policy</p></li>
+<li><p>All expenses are incurred at the beginning of the policy year</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.035\)</span></p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(\ddot{a}_{35}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Premiums</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.035</span><span class="p">)</span>
@@ -2877,7 +4061,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.30:  (A) 900</p>
+<p><strong>SOA Question 6.30</strong> :  (A) 900</p>
+<p>For a fully discrete whole life insurance of 100 on (x), you are given:</p>
+<ol class="arabic simple">
+<li><p>The first year expense is 10% of the gross annual premium</p></li>
+<li><p>Expenses in subsequent years are 5% of the gross annual premium</p></li>
+<li><p>The gross premium calculated using the equivalence principle is 2.338</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.04\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\ddot{a}_x = 16.50\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(^2A_x = 0.17\)</span></p></li>
+</ol>
+<p>Calculate the variance of the loss at issue random variable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">PolicyValues</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
@@ -2900,7 +4094,18 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.31:  (D) 1330</p>
+<p><strong>SOA Question 6.31</strong> :  (D) 1330</p>
+<p>For a fully continuous whole life insurance policy of 100,000 on (35), you are given:</p>
+<ol class="arabic simple">
+<li><p>The density function of the future lifetime of a newborn:
+$<span class="math notranslate nohighlight">\(\begin{align*}
+f(t) &amp; = 0.01 e^{-0.01 t}, \quad 0 \le t &lt; 70\\
+&amp; = g(t), \quad t \ge 70
+\end{align*}\)</span>$</p></li>
+<li><p><span class="math notranslate nohighlight">\(\delta = 0.05\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline{A}_{70} = 0.51791\)</span></p></li>
+</ol>
+<p>Calculate the annual net premium rate for this policy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">ConstantForce</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
@@ -2920,7 +4125,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.32:  (C) 550</p>
+<p><strong>SOA Question 6.32</strong> :  (C) 550</p>
+<p>For a whole life insurance of 100,000 on (x), you are given:</p>
+<ol class="arabic simple">
+<li><p>Death benefits are payable at the moment of death</p></li>
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+<li><p>Premiums are payable monthly</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\ddot{a}_x = 9.19\)</span></p></li>
+</ol>
+<p>Calculate the monthly net premium.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -2951,7 +4165,15 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.33:  (B) 0.13</p>
+<p><strong>SOA Question 6.33</strong> :  (B) 0.13</p>
+<p>An insurance company sells 15-year pure endowments of 10,000 to 500 lives, each age x, with independent future lifetimes. The single premium for each pure endowment is determined by the equivalence principle.</p>
+<p>You are given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(i\)</span> = 0.03</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu_x(t) = 0.02 t, \quad t \ge 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(_0L\)</span> is the aggregate loss at issue random variable for these pure endowments.</p></li>
+</ol>
+<p>Using the normal approximation without continuity correction, calculate <span class="math notranslate nohighlight">\(Pr(_0L) &gt; 50,000)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Insurance</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mf">0.02</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
@@ -2971,7 +4193,19 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.34:  (A) 23300</p>
+<p><strong>SOA Question 6.34</strong> :  (A) 23300</p>
+<p>For a fully discrete whole life insurance policy on (61), you
+are given:</p>
+<ol class="arabic simple">
+<li><p>The annual gross premium using the equivalence principle is 500</p></li>
+<li><p>Initial expenses, incurred at policy issue, are 15% of the
+premium</p></li>
+<li><p>Renewal expenses, incurred at the beginning of each year after
+the first, are 3% of the premium</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+</ol>
+<p>Calculate the amount of the death benefit.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -2994,7 +4228,15 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.35:  (D) 530</p>
+<p><strong>SOA Question 6.35</strong> :  (D) 530</p>
+<p>For a fully discrete whole life insurance policy of 100,000 on (35), you are given:</p>
+<ol class="arabic simple">
+<li><p>First year commissions are 19% of the annual gross premium</p></li>
+<li><p>Renewal year commissions are 4% of the annual gross premium</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+</ol>
+<p>Calculate the annual gross premium for this policy using the equivalence principle.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sult</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -3014,7 +4256,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.36:  (B) 500</p>
+<p><strong>SOA Question 6.36</strong> :  (B) 500</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">ConstantForce</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="mf">0.08</span><span class="p">)</span>
@@ -3037,7 +4279,14 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.37:  (D) 820</p>
+<p><strong>SOA Question 6.37</strong> :  (D) 820</p>
+<p>For a fully discrete whole life insurance policy of 50,000 on (35), with premiums payable for a maximum of 10 years, you are given:</p>
+<ol class="arabic simple">
+<li><p>Expenses of 100 are payable at the end of each year including the year of death</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+</ol>
+<p>Calculate the annual gross premium using the equivalence principle.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sult</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -3058,7 +4307,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.38:  (B) 11.3</p>
+<p><strong>SOA Question 6.38</strong> :  (B) 11.3</p>
+<p>For an n-year endowment insurance of 1000 on (x), you are given:</p>
+<ol class="arabic simple">
+<li><p>Death benefits are payable at the moment of death</p></li>
+<li><p>Premiums are payable annually at the beginning of each year</p></li>
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(_nE_x = 0.172\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline{A}_{x:\overline{n|}} = 0.192\)</span></p></li>
+</ol>
+<p>Calculate the annual net premium for this insurance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span>
@@ -3094,7 +4353,15 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.39:  (A) 29</p>
+<p><strong>SOA Question 6.39</strong> :  (A) 29</p>
+<p>XYZ Insurance writes 10,000 fully discrete whole life insurance policies of 1000 on lives age 40 and an additional 10,000 fully discrete whole life policies of 1000 on lives age 80.</p>
+<p>XYZ used the following assumptions to determine the net premiums for these policies:</p>
+<ol class="arabic simple">
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p>i = 0.05</p></li>
+</ol>
+<p>During the first ten years, mortality did follow the Standard Ultimate Life Table.</p>
+<p>Calculate the average net premium per policy in force received at the beginning of the eleventh year.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sult</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -3116,7 +4383,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.40: (C) 116</p>
+<p><strong>SOA Question 6.40</strong> : (C) 116</p>
+<p>For a special fully discrete whole life insurance, you are given:</p>
+<ol class="arabic simple">
+<li><p>The death benefit is <span class="math notranslate nohighlight">\(1000(1.03)^k\)</span> for death in policy year k, for <span class="math notranslate nohighlight">\(k = 1, 2, 3...\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(q_x = 0.05\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.06\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\ddot{a}_{x+1} = 7.00\)</span></p></li>
+<li><p>The annual net premium for this insurance at issue age x is 110</p></li>
+</ol>
+<p>Calculate the annual net premium for this insurance at issue age <span class="math notranslate nohighlight">\(x + 1\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># - standard formula discounts/accumulates by too much (i should be smaller)</span>
@@ -3149,7 +4425,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.41:  (B) 1417</p>
+<p><strong>SOA Question 6.41</strong> :  (B) 1417</p>
+<p>For a special fully discrete 2-year term insurance on (x), you are given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(q_x = 0.01\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{x + 1} = 0.02\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+<li><p>The death benefit in the first year is 100,000</p></li>
+<li><p>Both the benefits and premiums increase by 1% in the second year</p></li>
+</ol>
+<p>Calculate the annual net premium in the first year.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -3170,7 +4455,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.42:  (D) 0.113</p>
+<p><strong>SOA Question 6.42</strong> :  (D) 0.113</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -3194,7 +4479,53 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.43:  (C) 170</p>
+<p><strong>SOA Question 6.43</strong> :  (C) 170</p>
+<p>For a fully discrete, 5-payment 10-year term insurance of 200,000 on (30), you are given:</p>
+<ol class="arabic simple">
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p>The following expenses are incurred at the beginning of each respective year:</p></li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Percent of Premium</p></th>
+<th class="head"><p>Per Policy</p></th>
+<th class="head"><p>Percent of Premium</p></th>
+<th class="head"><p>Per Policy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p></p></td>
+<td><p>Year 1</p></td>
+<td><p>Year 1</p></td>
+<td><p>Years 2 - 10</p></td>
+<td><p>Years 2 - 10</p></td>
+</tr>
+<tr class="row-odd"><td><p>Taxes</p></td>
+<td><p>5%</p></td>
+<td><p>0</p></td>
+<td><p>5%</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Commissions</p></td>
+<td><p>30%</p></td>
+<td><p>0</p></td>
+<td><p>10%</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Maintenance</p></td>
+<td><p>0%</p></td>
+<td><p>8</p></td>
+<td><p>0%</p></td>
+<td><p>4</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="3">
+<li><p>i = 0.05</p></li>
+<li><p><span class="math notranslate nohighlight">\(\ddot{a}_{30:\overline{5|}} = 4.5431\)</span></p></li>
+</ol>
+<p>Calculate the annual gross premium using the equivalence principle.</p>
 <ul class="simple">
 <li><p>although 10-year term, premiums only paid first first years: separately calculate the EPV of per-policy maintenance expenses in years 6-10 and treat as additional initial expense</p></li>
 </ul>
@@ -3220,7 +4551,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.44:  (D) 2.18</p>
+<p><strong>SOA Question 6.44</strong> :  (D) 2.18</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>\
@@ -3247,7 +4578,9 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
         a_62(t=1) = 1                               ~one-year discrete annuity
         a_60(t=1) = 1                               ~one-year discrete annuity
         a_61(t=1) = 1                               ~one-year discrete annuity
- *Whole Life Insurance A_60(t=WL) &lt;--
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Whole Life Insurance A_60(t=WL) &lt;--
    A_x = 1 - d * a_x                                             ~annuity twin
         a_57(t=1) = 1                               ~one-year discrete annuity
         a_64(t=1) = 1                               ~one-year discrete annuity
@@ -3277,7 +4610,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.45:  (E) 690</p>
+<p><strong>SOA Question 6.45</strong> :  (E) 690</p>
+<p>For a fully continuous whole life insurance of 100,000 on
+(35), you are given:</p>
+<ol class="arabic simple">
+<li><p>The annual rate of premium is 560</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+</ol>
+<p>Calculate the 75th percentile of the loss at issue random variable for
+this policy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -3299,7 +4642,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 <img alt="_images/e92e6534254fc529fa050266127b8d49394c885a068e00851cf9393f587a6ac4.png" src="_images/e92e6534254fc529fa050266127b8d49394c885a068e00851cf9393f587a6ac4.png" />
 </div>
 </div>
-<p>SOA Question 6.46:  (E) 208</p>
+<p><strong>SOA Question 6.46</strong> :  (E) 208</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>\
@@ -3330,7 +4673,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.47:  (D) 66400</p>
+<p><strong>SOA Question 6.47</strong> :  (D) 66400</p>
+<p>For a 10-year deferred whole life annuity-due with payments of 100,000 per year on (70), you are given:</p>
+<ol class="arabic simple">
+<li><p>Annual gross premiums of <span class="math notranslate nohighlight">\(G\)</span> are payable for 10 years</p></li>
+<li><p>First year expenses are 75% of premium</p></li>
+<li><p>Renewal expenses for years 2 and later are 5% of premium during the premium paying period</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p>i = 0.05</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(G\)</span> using the equivalence principle.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sult</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -3351,7 +4703,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.48:  (A) 3195 – example of deep insurance recursion</p>
+<p><strong>SOA Question 6.48</strong> :  (A) 3195</p>
+<p>For a special fully discrete 5-year deferred 3-year term insurance of 100,000 on (x) you are given:</p>
+<ol class="arabic simple">
+<li><p>There are two premium payments, each equal to P . The first is paid at the beginning of the first year and the second is paid at the end of the 5-year deferral period</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_x = 0.95\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{x + 5} = 0.02\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{x + 6} = 0.03\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{x + 7} = 0.04\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.06\)</span></p></li>
+</ol>
+<p>Calculate P using the equivalence principle.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -3426,7 +4788,19 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.49:  (C) 86</p>
+<p><strong>SOA Question 6.49</strong> :  (C) 86</p>
+<p>For a special whole life insurance of 100,000 on (40), you are given:</p>
+<ol class="arabic simple">
+<li><p>The death benefit is payable at the moment of death</p></li>
+<li><p>Level gross premiums are payable monthly for a maximum of 20 years</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+<li><p>Initial expenses are 200</p></li>
+<li><p>Renewal expenses are 4% of each premium including the first</p></li>
+<li><p>Gross premiums are calculated using the equivalence principle</p></li>
+</ol>
+<p>Calculate the monthly gross premium.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sult</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -3447,7 +4821,18 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.50:  (A) -47000</p>
+<p><strong>SOA Question 6.50</strong> :  (A) -47000</p>
+<p>On July 15, 2017, XYZ Corp buys fully discrete whole life
+insurance policies of 1,000 on each
+of its 10,000 workers, all age 35. It uses the death benefits to partially pay the premiums for the following year.</p>
+<p>You are given:</p>
+<ol class="arabic simple">
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+<li><p>The insurance is priced using the equivalence principle</p></li>
+</ol>
+<p>Calculate XYZ Corp’s expected net cash flow from these policies during
+July 2018.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -3468,7 +4853,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.51:  (D) 34700</p>
+<p><strong>SOA Question 6.51</strong> :  (D) 34700</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">()</span><span class="o">.</span><span class="n">set_DA</span><span class="p">(</span><span class="mf">0.4891</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">62</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>\
@@ -3501,7 +4886,38 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.52:  (D) 50.80</p>
+<p><strong>SOA Question 6.52</strong> :  (D) 50.80</p>
+<p>For a fully discrete 10-payment whole life insurance of H on (45), you are given:</p>
+<ol class="arabic simple">
+<li><p>Expenses payable at the beginning of each year are as follows:</p></li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Expense Type</p></th>
+<th class="head"><p>First Year</p></th>
+<th class="head"><p>Years 2-10</p></th>
+<th class="head"><p>Years 11+</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Per policy</p></td>
+<td><p>100</p></td>
+<td><p>20</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>% of Premium</p></td>
+<td><p>105%</p></td>
+<td><p>5%</p></td>
+<td><p>0%</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p>i = 0.05</p></li>
+<li><p>The gross annual premium, calculated using the equivalence principle, is of the form <span class="math notranslate nohighlight">\(G = gH + f\)</span>, where <span class="math notranslate nohighlight">\(g\)</span> is the premium rate per 1 of insurance and <span class="math notranslate nohighlight">\(f\)</span> is the per policy fee</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(f\)</span>.</p>
 <ul class="simple">
 <li><p>set face value benefits to 0</p></li>
 </ul>
@@ -3526,7 +4942,18 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.53:  (D) 720</p>
+<p><strong>SOA Question 6.53</strong> :  (D) 720</p>
+<p>A warranty pays 2000 at the end of the year of the first failure if a washing machine fails within
+three years of purchase. The warranty is purchased with a single premium, G, paid at the time of
+purchase of the washing machine.
+You are given:</p>
+<ol class="arabic simple">
+<li><p>10% of the washing machines that are working at the start of each year fail by the end of that year</p></li>
+<li><p><em>i</em> = 0.08</p></li>
+<li><p>The sales commission is 35% of G</p></li>
+<li><p>G is calculated using the equivalence principle</p></li>
+</ol>
+<p>Calculate G.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -3546,7 +4973,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 6.54:  (A) 25440</p>
+<p><strong>SOA Question 6.54</strong> :  (A) 25440</p>
+<p>For a fully discrete whole life insurance of 200,000 on (45),
+you are given:</p>
+<ol class="arabic simple">
+<li><p>Mortality follows the Standard Ultimate Life Table.</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+<li><p>The annual premium is determined using the equivalencep rinciple.</p></li>
+</ol>
+<p>Calculate the standard deviation of
+<span class="math notranslate nohighlight">\(_0L\)</span> , the present value random variable for the loss at issue.</p>
+<p>[A modified version of Question 12 on the Fall 2017 exam]</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -3567,7 +5004,18 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </section>
 <section id="policy-values">
 <h2>7 Policy Values<a class="headerlink" href="#policy-values" title="Permalink to this heading">#</a></h2>
-<p>SOA Question 7.1:  (C) 11150</p>
+<p><strong>SOA Question 7.1</strong> :  (C) 11150</p>
+<p>For a special fully discrete whole life insurance on (40), you
+are given:</p>
+<ol class="arabic simple">
+<li><p>The death benefit is 50,000 in the first 20 years and 100,000
+thereafter</p></li>
+<li><p>Level net premiums of 875 are payable for 20 years</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(_{10}V\)</span> the net premium policy value at the end of year 10
+for this insurance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -3589,7 +5037,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.2:  (C) 1152</p>
+<p><strong>SOA Question 7.2</strong> :  (C) 1152</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -3615,7 +5063,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.3:  (E) 730</p>
+<p><strong>SOA Question 7.3</strong> :  (E) 730</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># x=0 is (90) and interpret every 3 months as t=1 year</span>
@@ -3638,7 +5086,27 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.4:  (B) -74 – split benefits into two policies</p>
+<p><strong>SOA Question 7.4</strong> :  (B) -74</p>
+<p>For a special fully discrete whole life insurance on (40), you
+are given:</p>
+<ol class="arabic simple">
+<li><p>The death benefit is 1000 during the first 11 years and 5000
+thereafter</p></li>
+<li><p>Expenses, payable at the beginning of the year, are 100 in year
+1 and 10 in years 2 and later</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi\)</span> is the level annual premium, determined using the
+equivalence principle</p></li>
+<li><p><span class="math notranslate nohighlight">\(G = 1.02 \times \pi\)</span> is the level annual gross premium</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+<li><p><span class="math notranslate nohighlight">\(_{11}E_{40} = 0.57949\)</span></p></li>
+</ol>
+<p>Calculate the gross premium policy value at the end of year 1 for this
+insurance.</p>
+<p><em>hints:</em></p>
+<ul class="simple">
+<li><p>split benefits into two policies</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -3668,7 +5136,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.5:  (E) 1900</p>
+<p><strong>SOA Question 7.5</strong> :  (E) 1900</p>
+<p>For a fully discrete whole life insurance of 10,000 on (<em>x</em>),
+you are given:</p>
+<ol class="arabic simple">
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+<li><p>The net premium is 647.46</p></li>
+<li><p>The net premium policy value at the end of year 4 is 1405.08</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{x+4}\)</span> = 0.04561</p></li>
+<li><p><em>i</em> = 0.03</p></li>
+</ol>
+<p>Calculate the net premium policy value at the end of 4.5 years.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -3713,7 +5191,18 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.7:  (D) 1110</p>
+<p><strong>SOA Question 7.7</strong> :  (D) 1110</p>
+<p>For a whole life insurance of 10,000 on (x), you are given:</p>
+<ol class="arabic simple">
+<li><p>Death benefits are payable at the end of the year of death</p></li>
+<li><p>A premium of 30 is payable at the start of each month</p></li>
+<li><p>Commissions are 5% of each premium</p></li>
+<li><p>Expenses of 100 are payable at the start of each year</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(1000 A_{x+10} = 400\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(_{10} V\)</span> is the gross premium policy value at the end of year 10 for this insurance</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(_{10} V\)</span> using the two-term Woolhouse formula for annuities.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -3744,7 +5233,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.8:  (C) 29.85</p>
+<p><strong>SOA Question 7.8</strong> :  (C) 29.85</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sult</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -3769,7 +5258,15 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.9:  (A) 38100</p>
+<p><strong>SOA Question 7.9</strong> :  (A) 38100</p>
+<p>For a semi-continuous 20-year endowment insurance of 100,000 on (45), you are given:</p>
+<ol class="arabic simple">
+<li><p>Net premiums of 253 are payable monthly</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(_{10}V\)</span>, the net premium policy value at the end of year 10 for this insurance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sult</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -3791,7 +5288,22 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.10: (C) -970</p>
+<p><strong>SOA Question 7.10</strong> : (C) -970</p>
+<p>For a fully discrete whole life insurance of 100,000 on (45),
+you are given:</p>
+<ol class="arabic simple">
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+<li><p>Commission expenses are 60% of the first year’s gross premium
+and 2% of renewal gross premiums</p></li>
+<li><p>Administrative expenses are 500 in the first year and 50 in
+each renewal year</p></li>
+<li><p>All expenses are payable at the start of the year</p></li>
+<li><p>The gross premium, calculated using the equivalence principle,
+is 977.60</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(_5V^e\)</span>, the expense reserve at the end of year 5 for this
+insurance.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -3812,7 +5324,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.11:  (B) 1460</p>
+<p><strong>SOA Question 7.11</strong> :  (B) 1460</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span><span class="o">.</span><span class="n">set_a</span><span class="p">(</span><span class="mf">13.4205</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">55</span><span class="p">)</span>
@@ -3836,9 +5348,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
         a_57(t=1) = 1                               ~one-year discrete annuity
         a_55(t=1) = 1                               ~one-year discrete annuity
         a_56(t=1) = 1                               ~one-year discrete annuity
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q7.11 1460: 1459.9818035330218 [OK] -----
+----- Q7.11 1460: 1459.9818035330218 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -3846,7 +5356,22 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.12:  (E) 4.09</p>
+<p><strong>SOA Question 7.12</strong> :  (E) 4.09</p>
+<p>For a special fully discrete 25-year endowment insurance on
+(44), you are given:</p>
+<ol class="arabic simple">
+<li><p>The death benefit is ( 26−<em>k</em> ) for death in year ,<em>k</em> for <em>k</em> =
+1,2,3,…,25</p></li>
+<li><p>The endowment benefit in year 25 is 1</p></li>
+<li><p>Net premiums are level</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{55}\)</span>= 0.15</p></li>
+<li><p><em>i</em> = 0.04</p></li>
+<li><p><span class="math notranslate nohighlight">\(_{11}V\)</span> the net premium policy value at the end of year 11, is
+5.00</p></li>
+<li><p><span class="math notranslate nohighlight">\(_{24}V\)</span> the net premium policy value at the end of year 24, is
+0.60</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(_{12}V\)</span> the net premium policy value at end of year 12.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">benefit</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="mi">26</span> <span class="o">-</span> <span class="n">k</span>
@@ -3891,7 +5416,18 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.14:  (A) 2200</p>
+<p><strong>SOA Question 7.14</strong> :  (A) 2200</p>
+<p>For a fully discrete whole life insurance of 100,000 on (45),
+you are given:</p>
+<ol class="arabic simple">
+<li><p>The gross premium policy value at duration 5 is 5500 and at
+duration 6 is 7100</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{50}\)</span> = 0.009</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+<li><p>Renewal expenses at the start of each year are 50 plus 4% of the gross premium.</p></li>
+<li><p>Claim expenses are 200.</p></li>
+</ol>
+<p>Calculate the gross premium.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">45</span>
@@ -3914,7 +5450,17 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.15:  (E) 50.91</p>
+<p><strong>SOA Question 7.15</strong> :  (E) 50.91</p>
+<p>For a fully discrete whole life insurance of 100 on (<em>x</em>), you
+are given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(q_{x+ 15} = 0.10\)</span></p></li>
+<li><p>Deaths are uniformly distributed over each year of age</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+<li><p><span class="math notranslate nohighlight">\(_tV\)</span> denotes the net premium policy value at time <em>t</em></p></li>
+<li><p><span class="math notranslate nohighlight">\(_{16}V\)</span> = 49.78</p></li>
+</ol>
+<p>Calculate 15.6.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -3935,7 +5481,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.16:  (D) 380</p>
+<p><strong>SOA Question 7.16</strong> :  (D) 380</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SelectLife</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="mf">.95</span><span class="p">)</span>\
@@ -3958,7 +5504,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.17:  (D) 1.018</p>
+<p><strong>SOA Question 7.17</strong> :  (D) 1.018</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -3993,7 +5539,15 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.18:  (A) 17.1</p>
+<p><strong>SOA Question 7.18</strong> :  (A) 17.1</p>
+<p>For a fully discrete whole life insurance of 1 on (<em>x</em>), you
+are given:</p>
+<ol class="arabic simple">
+<li><p>The net premium policy value at the end of the first year is 0.012</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_x\)</span> = 0.009</p></li>
+<li><p><em>i</em> = 0.04</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(\ddot{a}_x\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
@@ -4014,7 +5568,20 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.19:  (D) 720</p>
+<p><strong>SOA Question 7.19</strong> :  (D) 720</p>
+<p>For a fully discrete whole life insurance of 100,000 on (40)
+you are given:</p>
+<ol class="arabic simple">
+<li><p>Expenses incurred at the beginning of the first year are 300
+plus 50% of the first year premium</p></li>
+<li><p>Renewal expenses, incurred at the beginning of the year, are
+10% of each of the renewal premiums</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+<li><p>Gross premiums are calculated using the equivalence principle</p></li>
+</ol>
+<p>Calculate the gross premium policy value for this insurance immediately
+after the second premium and associated renewal expenses are paid.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -4041,7 +5608,22 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.20: (E) -277.23</p>
+<p><strong>SOA Question 7.20</strong> : (E) -277.23</p>
+<p>For a fully discrete whole life insurance of 1000 on (35), you
+are given:</p>
+<ol class="arabic simple">
+<li><p>First year expenses are 30% of the gross premium plus 300</p></li>
+<li><p>Renewal expenses are 4% of the gross premium plus 30</p></li>
+<li><p>All expenses are incurred at the beginning of the policy year</p></li>
+<li><p>Gross premiums are calculated using the equivalence principle</p></li>
+<li><p>The gross premium policy value at the end of the first policy
+year is <em>R</em></p></li>
+<li><p>Using the Full Preliminary Term Method, the modified reserve at
+the end of the first policy year is <em>S</em></p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+</ol>
+<p>Calculate <em>R</em>−<em>S</em> .</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -4066,7 +5648,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.21:  (D) 11866</p>
+<p><strong>SOA Question 7.21</strong> :  (D) 11866</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -4094,7 +5676,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.22:  (C) 46.24</p>
+<p><strong>SOA Question 7.22</strong> :  (C) 46.24</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">PolicyValues</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>
@@ -4117,7 +5699,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.23:  (D) 233</p>
+<p><strong>SOA Question 7.23</strong> :  (D) 233</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span><span class="o">.</span><span class="n">set_p</span><span class="p">(</span><span class="mf">0.995</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
@@ -4141,7 +5723,16 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.24:  (C) 680</p>
+<p><strong>SOA Question 7.24</strong> :  (C) 680</p>
+<p>For a fully discrete whole life insurance policy of 1,000,000
+on (50), you are given:</p>
+<ol class="arabic simple">
+<li><p>The annual gross premium, calculated using the equivalence
+principle, is 11,800</p></li>
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+</ol>
+<p>Calculate the expense loading, <em>P</em> for this policy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -4159,7 +5750,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.25:  (B) 3947.37</p>
+<p><strong>SOA Question 7.25</strong> :  (B) 3947.37</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SelectLife</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">.04</span><span class="p">)</span>\
@@ -4181,7 +5772,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.26:  (D) 28540</p>
+<p><strong>SOA Question 7.26</strong> :  (D) 28540</p>
 <ul class="simple">
 <li><p>backward = forward reserve recursion</p></li>
 </ul>
@@ -4210,7 +5801,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.27:  (B) 213</p>
+<p><strong>SOA Question 7.27</strong> :  (B) 213</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -4234,7 +5825,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.28:  (D) 24.3</p>
+<p><strong>SOA Question 7.28</strong> :  (D) 24.3</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -4253,7 +5844,20 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.29:  (E) 2270</p>
+<p><strong>SOA Question 7.29</strong> :  (E) 2270</p>
+<p>For a fully discrete whole life insurance of <em>B</em> on  <em>(x)</em>,
+you are given:</p>
+<ol class="arabic simple">
+<li><p>Expenses, incurred at the beginning of each year, equal 30 in
+the first year and 5 in subsequent years</p></li>
+<li><p>The net premium policy value at the end of year 10 is 2290</p></li>
+<li><p>Gross premiums are calculated using the equivalence principle</p></li>
+<li><p><em>i</em> = 0.04</p></li>
+<li><p><span class="math notranslate nohighlight">\(\ddot{a}_x\)</span> = 14.8</p></li>
+<li><p><span class="math notranslate nohighlight">\(\ddot{a}_{x+10}\)</span> = 11.4</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(_{10}V^{g}\)</span>, the gross premium policy value at the end of year
+10.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -4279,7 +5883,24 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.30:  (E) 9035</p>
+<p><strong>SOA Question 7.30</strong> :  (E) 9035</p>
+<p>Ten years ago J, then age 25, purchased a fully discrete
+10-payment whole life policy of 10,000.</p>
+<p>All actuarial calculations for this policy were based on the
+following:</p>
+<ol class="arabic simple">
+<li><p>Mortality follows the Standard Ultimate Life Table</p></li>
+<li><p><em>i</em> = 0.05</p></li>
+<li><p>The equivalence principle</p></li>
+</ol>
+<p>In addition:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(L_{10}\)</span> is the present value of future losses random variable at
+time 10</p></li>
+<li><p>At the end of policy year 10, the interest rate used to
+calculate <span class="math notranslate nohighlight">\(L_{10}\)</span> is changed to 0%</p></li>
+</ol>
+<p>Calculate the increase in <span class="math notranslate nohighlight">\(E[L_{10}]\)</span> that results from this change.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c1"># premiums=0 after t=10</span>
@@ -4298,7 +5919,35 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.31:  (E) 0.310</p>
+<p><strong>SOA Question 7.31</strong> :  (E) 0.310</p>
+<p>For a fully discrete 3-year endowment insurance of 1000 on (x), you are given:</p>
+<ol class="arabic simple">
+<li><p>Expenses, payable at the beginning of the year, are:</p></li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Year(s)</p></th>
+<th class="head"><p>Percent of Premium</p></th>
+<th class="head"><p>Per Policy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>20%</p></td>
+<td><p>15</p></td>
+</tr>
+<tr class="row-odd"><td><p>2 and 3</p></td>
+<td><p>8%</p></td>
+<td><p>5</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li><p>The expense reserve at the end of year 2 is –23.64</p></li>
+<li><p>The gross annual premium calculated using the equivalence principle is G = 368.</p></li>
+<li><p><span class="math notranslate nohighlight">\(G = 1000 P_{x:\overline{3|}} + P^e\)</span> , where <span class="math notranslate nohighlight">\(P^e\)</span> is the expense loading</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(P_{x:\overline{3|}}\)</span> .</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -4320,7 +5969,33 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 </div>
-<p>SOA Question 7.32:  (B) 1.4</p>
+<p><strong>SOA Question 7.32</strong> :  (B) 1.4</p>
+<p>For two fully continuous whole life insurance policies on (x), you are given:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Death Benefit</p></th>
+<th class="head"><p>Annual Premium Rate</p></th>
+<th class="head"><p>Variance of the PV of Future Loss at t</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Policy A</p></td>
+<td><p>1</p></td>
+<td><p>0.10</p></td>
+<td><p>0.455</p></td>
+</tr>
+<tr class="row-odd"><td><p>Policy B</p></td>
+<td><p>2</p></td>
+<td><p>0.16</p></td>
+<td><p>-</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\delta= 0.06\)</span></p></li>
+</ul>
+<p>Calculate the variance of the present value of future loss at <span class="math notranslate nohighlight">\(t\)</span> for Policy B.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">PolicyValues</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>
@@ -4353,7 +6028,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-19 08:40:20.639734
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-21 23:07:53.899391
 Passed: 136/136
 </pre></div>
 </div>
