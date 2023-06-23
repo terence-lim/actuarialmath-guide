@@ -397,7 +397,7 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#! pip install actuarialmath==0.0.9</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#! pip install actuarialmath==0.0.11</span>
 </pre></div>
 </div>
 </div>
@@ -943,21 +943,24 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_e</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>\
-                               <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>\
-                               <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.003</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>   <span class="c1"># solve e_40 from e_40:20 = e_40 - 20_p_40 e_60</span>
-    <span class="k">return</span> <span class="n">life</span><span class="o">.</span><span class="n">set_e</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>\
-               <span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">e40</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="p">[</span><span class="mi">36</span><span class="p">,</span> <span class="mi">41</span><span class="p">])</span>
-<span class="n">life</span><span class="o">.</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
-<span class="n">fun</span><span class="p">(</span><span class="n">e40</span><span class="p">)</span>
-<span class="n">e41</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="mi">41</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">isclose</span><span class="p">(</span><span class="mf">37.1</span><span class="p">,</span> <span class="n">e41</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="s2">&quot;Q2.5&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_e</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>\
+                              <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>\
+                              <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.003</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>\
+                              <span class="o">.</span><span class="n">set_e</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="mi">41</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">isclose</span><span class="p">(</span><span class="mf">37.1</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="s2">&quot;Q2.5&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Lifetime}~e_{{x+41}}~:=\\
+~~~\overset{{\circ}}{{e}}_{{x+41}} = [ ~\overset{{\circ}}{{e}}_{{x+40}} - ~\overset{{\circ}}{{e}}_{{x+40:\overline{1|}}} ] / ~p_{x+40}&amp; \quad \texttt{forward recursion}\\
+~~~~~\overset{{\circ}}{{e}}_{{x+40}} = ~\overset{{\circ}}{{e}}_{{x+40:\overline{20|}}} + ~_{20}p_{x+40} * ~\overset{{\circ}}{{e}}_{{x+60}}&amp; \quad \texttt{backward recursion}\\
+~~~~~~~~~_{20}p_{x+40} = 1 - ~_{{20}}q_{x+40}&amp; \quad \texttt{complement of mortality}\\
+~~~~~~~e_{{x+40:\overline{1|}}} = ~p_{x+40}&amp; \quad \texttt{1-year curtate shortcut}\\
+~~~~~~~~~p_{x+40} = 1 - ~q_{x+40}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q2.5 37.1: 37.11434302908726 [OK] -----
 </pre></div>
 </div>
@@ -1950,16 +1953,34 @@ between integral ages</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span><span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>   <span class="c1"># solve for q_61</span>
-    <span class="k">return</span> <span class="n">life</span><span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">61</span><span class="p">)</span><span class="o">.</span><span class="n">endowment_insurance</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">life</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mf">0.86545</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.045</span><span class="p">)</span><span class="o">.</span><span class="n">endowment_insurance</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>\
+                              <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>\
+                              <span class="o">.</span><span class="n">set_A</span><span class="p">(</span><span class="mf">0.86545</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">endowment</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">61</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.045</span><span class="p">)</span>\
+                           <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>\
+                           <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">61</span><span class="p">)</span>\
+                           <span class="o">.</span><span class="n">endowment_insurance</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">isclose</span><span class="p">(</span><span class="mf">0.878</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="s2">&quot;Q4.3&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Mortality}~q_{x+61}~:=\\
+~~~q_{x+61} = ~_{0}p_{x+61} - ~p_{x+61}&amp; \quad \texttt{complement survival}\\
+~~~~~p_{x+61} = [ v - ~A_{{x+61:\overline{2|}}} ] / [v * [ 1 - ~A_{{x+62:\overline{1|}}} ]]&amp; \quad \texttt{insurance recursion}\\
+~~~~~~~A^1_{{x+61:\overline{2|}}} = [ ~A^1_{{x+60:\overline{3|}}} / v - ~q_{x+61} * b ] / ~p_{x+61}&amp; \quad \texttt{forward recursion}\\
+~~~~~~~~~p_{x+60} = 1 - ~q_{x+60}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Endowment Insurance}~A_{{x+60:\overline{3|}}}~:=\\
+~~~A^1_{{x+60:\overline{3|}}} = v * [ ~q_{x+60} * b + ~p_{x+60} * ~A^1_{{x+61:\overline{2|}}} ]&amp; \quad \texttt{backward recursion}\\
+~~~~~A^1_{{x+61:\overline{2|}}} = v * [ ~q_{x+61} * b + ~p_{x+61} * ~A^1_{{x+62:\overline{1|}}} ]&amp; \quad \texttt{backward recursion}\\
+~~~~~~~p_{x+61} = 1 - ~q_{x+61}&amp; \quad \texttt{complement of mortality}\\
+~~~~~~~E_{x+60} = ~p_{x+60} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~~~p_{x+60} = 1 - ~q_{x+60}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q4.3 0.878: 0.8777667236003878 [OK] -----
 </pre></div>
 </div>
@@ -2142,15 +2163,16 @@ years</p></li>
 <p>Calculate <span class="math notranslate nohighlight">\(A_{50}\)</span>.</p>
 <p><em>hints:</em></p>
 <ul class="simple">
-<li><p>use whole-life, term and endowment insurance relationships.</p></li>
+<li><p>solve <span class="math notranslate nohighlight">\(_{15}E_{35}\)</span> from endowment insurance minus term insurance</p></li>
+<li><p>solve implicitly from whole life as term plus deferred insurance</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">()</span><span class="o">.</span><span class="n">set_A</span><span class="p">(</span><span class="mf">0.39</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">endowment</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>\
                <span class="o">.</span><span class="n">set_A</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>\
                <span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">()</span><span class="o">.</span><span class="n">set_A</span><span class="p">(</span><span class="mf">0.32</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">35</span><span class="p">)</span>\
-                  <span class="o">.</span><span class="n">set_E</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_A</span><span class="p">(</span><span class="mf">0.32</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">35</span><span class="p">)</span>\
+                               <span class="o">.</span><span class="n">set_E</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">A</span><span class="p">):</span> <span class="k">return</span> <span class="n">life</span><span class="o">.</span><span class="n">set_A</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">term_insurance</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="p">[</span><span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">])</span>
 <span class="n">isclose</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="s2">&quot;Q4.9&quot;</span><span class="p">)</span>
@@ -3419,10 +3441,7 @@ subsequent premiums. There are no other expenses</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Q6.13 -400: -400.94447599879277 [OK] -----
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.13 -400: -400.94447599879277 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -4649,7 +4668,7 @@ this policy.</p>
 <div class="output text_latex math notranslate nohighlight">
 \[\begin{split}\begin{array}{lr}
 ~\texttt{Term Insurance}~A^1_{{x+5:\overline{3|}}}~:=\\
-~~~~~~~~~~~\ddot{a}_{{x+5:\overline{2|}}} = 1 + ~E_{x+5} * ~\ddot{a}_{{x+6:\overline{1|}}}&amp; \quad \texttt{backward recursion}\\
+~~~~~~~~~~~A^1_{{x+5:\overline{1|}}} = ~A_{{x+5:\overline{1|}}} - ~E_{x+5}&amp; \quad \texttt{endowment insurance - pure}\\
 ~~~~~A_{{x+5:\overline{3|}}} = ~A^1_{{x+5:\overline{3|}}} + ~_{3}E_{x+5}&amp; \quad \texttt{term plus pure endowment}\\
 ~~~~~~~_{3}E_{x+5} = ~_{3}p_{x+5} * v^{3}&amp; \quad \texttt{pure endowment}\\
 ~~~~~~~~~_{3}p_{x+5} = ~_{2}p_{x+6} * ~p_{x+5}&amp; \quad \texttt{survival chain rule}\\
@@ -4668,7 +4687,7 @@ this policy.</p>
 <div class="output text_latex math notranslate nohighlight">
 \[\begin{split}\begin{array}{lr}
 ~\texttt{Term Insurance}~A^1_{{x+5:\overline{3|}}}~:=\\
-~~~~~~~~~~~\ddot{a}_{{x+5:\overline{2|}}} = 1 + ~E_{x+5} * ~\ddot{a}_{{x+6:\overline{1|}}}&amp; \quad \texttt{backward recursion}\\
+~~~~~~~~~~~A^1_{{x+5:\overline{1|}}} = ~A_{{x+5:\overline{1|}}} - ~E_{x+5}&amp; \quad \texttt{endowment insurance - pure}\\
 ~~~~~A_{{x+5:\overline{3|}}} = ~A^1_{{x+5:\overline{3|}}} + ~_{3}E_{x+5}&amp; \quad \texttt{term plus pure endowment}\\
 ~~~~~~~_{3}E_{x+5} = ~_{3}p_{x+5} * v^{3}&amp; \quad \texttt{pure endowment}\\
 ~~~~~~~~~_{3}p_{x+5} = ~_{2}p_{x+6} * ~p_{x+5}&amp; \quad \texttt{survival chain rule}\\
@@ -5923,7 +5942,7 @@ calculate <span class="math notranslate nohighlight">\(L_{10}\)</span> is change
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-23 12:06:31.492254
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-23 17:15:01.360812
 Passed: 136/136
 </pre></div>
 </div>

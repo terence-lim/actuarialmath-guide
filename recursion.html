@@ -866,6 +866,49 @@ equivalence principle</p></li>
 </div>
 </div>
 </div>
+<p><strong>SOA Question 2.5</strong> :  (B) 37.1</p>
+<p>You are given the following:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(e_{40:20} = 18\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(e_{60} = 25\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(_{20}q_{40} = 0.2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{40} = 0.003\)</span></p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(e_{41}\)</span>.</p>
+<p><em>hints:</em></p>
+<ul class="simple">
+<li><p>solve for <span class="math notranslate nohighlight">\(e_{40}\)</span> from limited lifetime formula</p></li>
+<li><p>compute <span class="math notranslate nohighlight">\(e_{41}\)</span> using backward recursion</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 2.5:  (B) 7.1&quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_e</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>\
+                              <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>\
+                              <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.003</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>\
+                              <span class="o">.</span><span class="n">set_e</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="mi">41</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 2.5:  (B) 7.1
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Lifetime}~e_{{x+41}}~:=\\
+~~~\overset{{\circ}}{{e}}_{{x+41}} = [ ~\overset{{\circ}}{{e}}_{{x+40}} - ~\overset{{\circ}}{{e}}_{{x+40:\overline{1|}}} ] / ~p_{x+40}&amp; \quad \texttt{forward recursion}\\
+~~~~~\overset{{\circ}}{{e}}_{{x+40}} = ~\overset{{\circ}}{{e}}_{{x+40:\overline{20|}}} + ~_{20}p_{x+40} * ~\overset{{\circ}}{{e}}_{{x+60}}&amp; \quad \texttt{backward recursion}\\
+~~~~~~~~~_{20}p_{x+40} = 1 - ~_{{20}}q_{x+40}&amp; \quad \texttt{complement of mortality}\\
+~~~~~~~e_{{x+40:\overline{1|}}} = ~p_{x+40}&amp; \quad \texttt{1-year curtate shortcut}\\
+~~~~~~~~~p_{x+40} = 1 - ~q_{x+40}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>37.11434302908726
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
