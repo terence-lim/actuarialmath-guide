@@ -1904,8 +1904,8 @@ given:</p>
 <li><p>Death benefits are payable at the end of the half-year of death</p></li>
 <li><p>The amount of the death benefit is 300,000 for the first
 half-year and increases by 30,000 per half-year thereafter</p></li>
-<li><p><em>q</em> = <em>x</em> 0.16 and <em>q</em> + = 0.23</p></li>
-<li><p><em>i</em> (2) = 0.18</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_x\)</span> = 0.16 and <span class="math notranslate nohighlight">\(q_{x+1}\)</span> = 0.23</p></li>
+<li><p><span class="math notranslate nohighlight">\(i^{(2)}\)</span> = 0.18</p></li>
 <li><p>Deaths are assumed to follow a constant force of mortality
 between integral ages</p></li>
 <li><p><em>Z</em> is the present value random variable for this insurance</p></li>
@@ -2158,22 +2158,10 @@ years</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Pure Endowment E_35(t=15) &lt;--
-   E_35(t=15) = A_35(t=15,endow=1) - A_35(t=15)     ~endowment insurance minus term
-        a_48(t=1) = 1                               ~one-year discrete annuity
-        a_38(t=1) = 1                               ~one-year discrete annuity
-        a_53(t=1) = 1                               ~one-year discrete annuity
-        a_37(t=1) = 1                               ~one-year discrete annuity
-        a_49(t=1) = 1                               ~one-year discrete annuity
-        a_36(t=1) = 1                               ~one-year discrete annuity
-        a_52(t=1) = 1                               ~one-year discrete annuity
-        a_35(t=1) = 1                               ~one-year discrete annuity
-        a_50(t=1) = 1                               ~one-year discrete annuity
-        a_34(t=1) = 1                               ~one-year discrete annuity
-        a_51(t=1) = 1                               ~one-year discrete annuity
-        a_33(t=1) = 1                               ~one-year discrete annuity
-</pre></div>
-</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Pure Endowment}~_{15}E_{x+35}~:=\\
+~~~_{15}E_{x+35} = ~A_{{x+35:\overline{15|}}} - ~A^1_{{x+35:\overline{15|}}}&amp; \quad \texttt{endowment insurance minus term}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q4.9 0.5: 0.5 [OK] -----
 </pre></div>
 </div>
@@ -2700,23 +2688,15 @@ payable for the lifetime of (x) with 10 years certain</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Whole Life Annuity a_0(t=WL) &lt;--
-   a_x = (1-A_x) / d                                           ~insurance twin
-        a_-2(t=1) = 1                               ~one-year discrete annuity
-        a_-1(t=1) = 1                               ~one-year discrete annuity
-        a_0(t=1) = 1                                ~one-year discrete annuity
-        a_1(t=1) = 1                                ~one-year discrete annuity
-        a_2(t=1) = 1                                ~one-year discrete annuity
-        a_3(t=1) = 1                                ~one-year discrete annuity
- *Whole Life Annuity a_10(t=WL) &lt;--
-   a_x = (1-A_x) / d                                           ~insurance twin
-        a_8(t=1) = 1                                ~one-year discrete annuity
-        a_9(t=1) = 1                                ~one-year discrete annuity
-        a_10(t=1) = 1                               ~one-year discrete annuity
-        a_11(t=1) = 1                               ~one-year discrete annuity
-        a_12(t=1) = 1                               ~one-year discrete annuity
-        a_13(t=1) = 1                               ~one-year discrete annuity
------ Q5.2 9.64: 9.639999999999999 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Annuity}~\ddot{a}_{{x}}~:=\\
+~~~\ddot{a}_{{x}} = [1 - ~A_{{x}} ] / d&amp; \quad \texttt{insurance twin}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Annuity}~\ddot{a}_{{x+10}}~:=\\
+~~~\ddot{a}_{{x+10}} = [1 - ~A_{{x+10}} ] / d&amp; \quad \texttt{insurance twin}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q5.2 9.64: 9.639999999999999 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -2896,25 +2876,19 @@ payable for the lifetime of (x) with 10 years certain</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Whole Life Annuity a_35(t=WL) &lt;--
-   a_x = (1-A_x) / d                                           ~insurance twin
-        a_33(t=1) = 1                               ~one-year discrete annuity
-        a_34(t=1) = 1                               ~one-year discrete annuity
-        a_35(t=1) = 1                               ~one-year discrete annuity
-        a_36(t=1) = 1                               ~one-year discrete annuity
-        a_37(t=1) = 1                               ~one-year discrete annuity
-        a_38(t=1) = 1                               ~one-year discrete annuity
- *Whole Life Annuity a_65(t=WL) &lt;--
-   a_x = (1-A_x) / d                                           ~insurance twin
-        a_63(t=1) = 1                               ~one-year discrete annuity
-        a_64(t=1) = 1                               ~one-year discrete annuity
-        a_65(t=1) = 1                               ~one-year discrete annuity
-        a_66(t=1) = 1                               ~one-year discrete annuity
-        a_67(t=1) = 1                               ~one-year discrete annuity
-        a_68(t=1) = 1                               ~one-year discrete annuity
- *Pure Endowment E_35(t=30) &lt;--
-   E_35(t=30) = p_35(t=30) * v(t=30)                           ~pure endowment
------ Q5.7 17376.7: 17376.71459632958 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Annuity}~\ddot{a}_{{x+35}}~:=\\
+~~~\ddot{a}_{{x+35}} = [1 - ~A_{{x+35}} ] / d&amp; \quad \texttt{insurance twin}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Annuity}~\ddot{a}_{{x+65}}~:=\\
+~~~\ddot{a}_{{x+65}} = [1 - ~A_{{x+65}} ] / d&amp; \quad \texttt{insurance twin}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Pure Endowment}~_{30}E_{x+35}~:=\\
+~~~_{30}E_{x+35} = ~_{30}p_{x+35} * v^{30}&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q5.7 17376.7: 17376.71459632958 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -2972,15 +2946,12 @@ payable for the lifetime of (x) with 10 years certain</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Whole Life Annuity a_1(t=WL) &lt;--
-       A_0(t=2) = v * [ q_0 * b + p_0 * A_1(t=1) ]         ~backward recursion
-        a_0(t=1) = 1                                ~one-year discrete annuity
-        a_2(t=1) = 1                                ~one-year discrete annuity
-        a_3(t=1) = 1                                ~one-year discrete annuity
-       a_1(t=WL) = [ a_0(t=WL) - 1 ] / E_0(t=1)             ~forward recursion
-        E_0(t=1) = p_0 * v(t=1)                                ~pure endowment
-        a_4(t=1) = 1                                ~one-year discrete annuity
------ Q5.9 0.015: 0.015009110961925157 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Annuity}~\ddot{a}_{{x+1}}~:=\\
+~~~\ddot{a}_{{x+1}} = [ ~\ddot{a}_{{x}} - 1 ] / ~E_{x}&amp; \quad \texttt{forward recursion}\\
+~~~~~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q5.9 0.015: 0.015009110961925157 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -3306,38 +3277,27 @@ you are given:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>\
-                              <span class="o">.</span><span class="n">set_p</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>\
-                              <span class="o">.</span><span class="n">set_a</span><span class="p">(</span><span class="mf">152.85</span><span class="o">/</span><span class="mf">56.05</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>\
-                              <span class="o">.</span><span class="n">set_A</span><span class="p">(</span><span class="mf">152.85</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>\
+                         <span class="o">.</span><span class="n">set_p</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>\
+                         <span class="o">.</span><span class="n">set_a</span><span class="p">(</span><span class="mf">152.85</span><span class="o">/</span><span class="mf">56.05</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>\
+                         <span class="o">.</span><span class="n">set_A</span><span class="p">(</span><span class="mf">152.85</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">isclose</span><span class="p">(</span><span class="mf">0.91</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="s2">&quot;Q6.10&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Survival p_2 &lt;--
-   p_2 = E_2(t=1) /v                                       ~one-year endowment
-    E_2(t=1) = A_2(t=1,endow=1) - A_2(t=1)     ~endowment insurance minus term
-     A_2(t=1) = [ A_1(t=2) /v - q_2 * b ] / p_2             ~forward recursion
-      A_1(t=2) = [ A_0(t=3) /v - q_1 * b ] / p_1            ~forward recursion
-        a_7(t=1) = 1                                ~one-year discrete annuity
-    p_1 = p_0(t=2) / p_0                                  ~survival chain rule
-     p_0(t=2) = p_1 * p_0                                 ~survival chain rule
-      p_1 = [ a_1(t=2) - 1 ] / [ v * a_2(t=1) ]             ~annuity recursion
-       a_1(t=2) = [ a_0(t=WL) - 1 ] / E_0(t=1)              ~forward recursion
-        a_6(t=1) = 1                                ~one-year discrete annuity
-        a_2(t=1) = 1                                ~one-year discrete annuity
-        a_5(t=1) = 1                                ~one-year discrete annuity
-       A_0(t=1) = A_0(t=1,endow=1) - E_0(t=1)      ~endowment insurance - pure
-       a_0(t=2) = 1 + E_0(t=1) * a_1(t=1)                  ~backward recursion
-        a_1(t=1) = 1                                ~one-year discrete annuity
-        E_0(t=1) = p_0 * v(t=1)                                ~pure endowment
-        a_3(t=1) = 1                                ~one-year discrete annuity
-        a_0(t=1) = 1                                ~one-year discrete annuity
-        a_4(t=1) = 1                                ~one-year discrete annuity
-        a_-1(t=1) = 1                               ~one-year discrete annuity
------ Q6.10 0.91: 0.9097382950525702 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Survival}~p_{x+2}~:=\\
+~~~p_{x+2} = ~E_{x+2} /v&amp; \quad \texttt{one-year pure endowment}\\
+~~~~~E_{x+2} = ~A_{{x+2:\overline{1|}}} - ~A^1_{{x+2:\overline{1|}}}&amp; \quad \texttt{endowment insurance minus term}\\
+~~~~~~~A^1_{{x+2:\overline{1|}}} = [ ~A^1_{{x+1:\overline{2|}}} / v - ~q_{x+2} * b ] / ~p_{x+2}&amp; \quad \texttt{forward recursion}\\
+~~~~~~~~~p_{x+1} = [ ~\ddot{a}_{{x+1:\overline{2|}}} - 1 ] / [ v * ~\ddot{a}_{{x+2:\overline{1|}}} ]&amp; \quad \texttt{annuity recursion}\\
+~~~~~~~~~~~\ddot{a}_{{x+1:\overline{2|}}} = [ ~\ddot{a}_{{x:\overline{3|}}} - 1 ] / ~E_{x}&amp; \quad \texttt{forward recursion}\\
+~~~~~~~~~A^1_{{x+1:\overline{2|}}} = [ ~A^1_{{x:\overline{3|}}} / v - ~q_{x+1} * b ] / ~p_{x+1}&amp; \quad \texttt{forward recursion}\\
+~~~~~~~~~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.10 0.91: 0.9097382950525702 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -3360,17 +3320,17 @@ you are given:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Whole Life Insurance A_50(t=WL) &lt;--
-     A_50(t=WL) = A_50(t=WL,endow=1) - E_50(t=WL)     ~endowment insurance - pure
-      A_50(t=WL,endow=1) = A_50(t=WL) + E_50(t=WL)     ~term plus pure endowment
-       A_50(t=WL) = v * [ q_50 * b + p_50 * A_51(t=WL) ]     ~backward recursion
-        p_50 = 1 - q_50                               ~complement of mortality
- *Whole Life Insurance A_50(t=WL) &lt;--
-     A_50(t=WL) = A_50(t=WL,endow=1) - E_50(t=WL)     ~endowment insurance - pure
-      A_50(t=WL,endow=1) = A_50(t=WL) + E_50(t=WL)     ~term plus pure endowment
-       A_50(t=WL) = v * [ q_50 * b + p_50 * A_51(t=WL) ]     ~backward recursion
-        p_50 = 1 - q_50                               ~complement of mortality
------ Q6.11 0.041: 0.04069206883563675 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Insurance}~A_{{x+50}}~:=\\
+~~~A_{{x+50}} = v * [ ~q_{x+50} * b + ~p_{x+50} * ~A_{{x+51}} ]&amp; \quad \texttt{backward recursion}\\
+~~~~~p_{x+50} = 1 - ~q_{x+50}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Insurance}~A_{{x+50}}~:=\\
+~~~A_{{x+50}} = v * [ ~q_{x+50} * b + ~p_{x+50} * ~A_{{x+51}} ]&amp; \quad \texttt{backward recursion}\\
+~~~~~p_{x+50} = 1 - ~q_{x+50}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.11 0.041: 0.04069206883563675 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -3459,7 +3419,10 @@ subsequent premiums. There are no other expenses</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.13 -400: -400.94447599879277 [OK] -----
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Q6.13 -400: -400.94447599879277 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -3624,49 +3587,30 @@ equivalence principle</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Term Insurance A_0(t=2) &lt;--
-        a_4(t=1) = 1                                ~one-year discrete annuity
-       A_0(t=1) = A_0(t=1,endow=1) - E_0(t=1)      ~endowment insurance - pure
-       a_0(t=2) = 1 + E_0(t=1) * a_1(t=1)                  ~backward recursion
-        a_1(t=1) = 1                                ~one-year discrete annuity
-        a_-1(t=1) = 1                               ~one-year discrete annuity
-    A_0(t=2,endow=1) = A_0(t=2) + E_0(t=2)           ~term plus pure endowment
-        a_3(t=1) = 1                                ~one-year discrete annuity
-        a_0(t=1) = 1                                ~one-year discrete annuity
-     A_0(t=2) = A_0(t=2,endow=1) - E_0(t=2)        ~endowment insurance - pure
-      E_0(t=2) = p_0(t=2) * v(t=2)                             ~pure endowment
-       p_0(t=2) = p_1 * p_0                               ~survival chain rule
-      A_0(t=2) = v * [ q_0 * b + p_0 * A_1(t=1) ]          ~backward recursion
-       E_0(t=2) = E_0(t=1) * E_1(t=1) * (endow)     ~pure endowment chain rule
-        E_1(t=1) = p_1 * v(t=1)                                ~pure endowment
-       p_1 = 1 - q_1                                  ~complement of mortality
-        E_0(t=1) = p_0 * v(t=1)                                ~pure endowment
-        p_0 = 1 - q_0                                 ~complement of mortality
- *Temporary Annuity a_0(t=2) &lt;--
-   a_0(t=2) = 1 + E_0(t=1) * a_1(t=1)                      ~backward recursion
-    E_0(t=1) = p_0 * v(t=1)                                    ~pure endowment
-     p_0 = 1 - q_0                                    ~complement of mortality
-    a_1(t=1) = 1                                    ~one-year discrete annuity
- *Pure Endowment E_0(t=2) &lt;--
-   E_0(t=2) = p_0(t=2) * v(t=2)                                ~pure endowment
-        a_5(t=1) = 1                                ~one-year discrete annuity
-      A_0(t=2) = A_0(t=2,endow=1) - E_0(t=2)       ~endowment insurance - pure
-       E_0(t=2) = E_0(t=1) * E_1(t=1) * (endow)     ~pure endowment chain rule
-       A_0(t=2) = v * [ q_0 * b + p_0 * A_1(t=1) ]         ~backward recursion
-       A_0(t=1) = A_0(t=1,endow=1) - E_0(t=1)      ~endowment insurance - pure
-       a_0(t=2) = 1 + E_0(t=1) * a_1(t=1)                  ~backward recursion
-        a_1(t=1) = 1                                ~one-year discrete annuity
-        E_0(t=1) = p_0 * v(t=1)                                ~pure endowment
-      p_0(t=2) = p_1 * p_0                                ~survival chain rule
-        E_1(t=1) = p_1 * v(t=1)                                ~pure endowment
-        a_4(t=1) = 1                                ~one-year discrete annuity
-        a_0(t=1) = 1                                ~one-year discrete annuity
-        p_0 = 1 - q_0                                 ~complement of mortality
-        a_-1(t=1) = 1                               ~one-year discrete annuity
-        a_3(t=1) = 1                                ~one-year discrete annuity
-        a_-2(t=1) = 1                               ~one-year discrete annuity
-        p_1 = 1 - q_1                                 ~complement of mortality
------ Q6.17 -30000: -30107.42633581125 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Term Insurance}~A^1_{{x:\overline{2|}}}~:=\\
+~~~A^1_{{x:\overline{2|}}} = ~A_{{x:\overline{2|}}} - ~_{2}E_{x}&amp; \quad \texttt{endowment insurance - pure}\\
+~~~~~_{2}E_{x} = ~_{2}p_{x} * v^{2}&amp; \quad \texttt{pure endowment}\\
+~~~~~~~_{2}p_{x} = ~p_{x+1} * ~p_{x}&amp; \quad \texttt{survival chain rule}\\
+~~~~~A^1_{{x:\overline{2|}}} = v * [ ~q_{x} * b + ~p_{x} * ~A^1_{{x+1:\overline{1|}}} ]&amp; \quad \texttt{backward recursion}\\
+~~~~~~~p_{x+1} = 1 - ~q_{x+1}&amp; \quad \texttt{complement of mortality}\\
+~~~~~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Temporary Annuity}~\ddot{a}_{{x:\overline{2|}}}~:=\\
+~~~\ddot{a}_{{x:\overline{2|}}} = 1 + ~E_{x} * ~\ddot{a}_{{x+1:\overline{1|}}}&amp; \quad \texttt{backward recursion}\\
+~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Pure Endowment}~_{2}E_{x}~:=\\
+~~~_{2}E_{x} = ~_{2}p_{x} * v^{2}&amp; \quad \texttt{pure endowment}\\
+~~~~~_{2}p_{x} = ~p_{x+1} * ~p_{x}&amp; \quad \texttt{survival chain rule}\\
+~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\\
+~~~~~~~~~p_{x+1} = 1 - ~q_{x+1}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.17 -30000: -30107.42633581125 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -4147,17 +4091,11 @@ f(t) &amp; = 0.01 e^{-0.01 t}, \quad 0 \le t &lt; 70\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Whole Life Insurance A_0(t=WL) &lt;--
-   A_x = 1 - d * a_x                                             ~annuity twin
-        a_-3(t=1) = 1                               ~one-year discrete annuity
-        a_4(t=1) = 1                                ~one-year discrete annuity
-        a_-2(t=1) = 1                               ~one-year discrete annuity
-        a_3(t=1) = 1                                ~one-year discrete annuity
-        a_-1(t=1) = 1                               ~one-year discrete annuity
-        a_2(t=1) = 1                                ~one-year discrete annuity
-        a_0(t=1) = 1                                ~one-year discrete annuity
-        a_1(t=1) = 1                                ~one-year discrete annuity
------ Q6.32 550: 550.4356936711871 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Insurance}~A_{{x}}~:=\\
+~~~\ddot{a}_{{x}} = [ 1 - ~A_{{x}} ] / d&amp; \quad \texttt{annuity twin}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.32 550: 550.4356936711871 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -4327,8 +4265,9 @@ the first, are 3% of the premium</p></li>
 <span class="n">a</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">temporary_annuity</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>   <span class="c1"># solve for discrete annuity, given continuous</span>
-    <span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-    <span class="n">life</span><span class="o">.</span><span class="n">set_a</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">set_E</span><span class="p">(</span><span class="mf">0.172</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>\
+                                   <span class="o">.</span><span class="n">set_a</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>\
+                                   <span class="o">.</span><span class="n">set_E</span><span class="p">(</span><span class="mf">0.172</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">UDD</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">life</span><span class="o">=</span><span class="n">life</span><span class="p">)</span><span class="o">.</span><span class="n">temporary_annuity</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># discrete annuity</span>
 <span class="n">P</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">gross_premium</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="mf">0.192</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
@@ -4337,15 +4276,11 @@ the first, are 3% of the premium</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Temporary Annuity a_0(t=10) &lt;--
-   a_0(t=10) = [ 1 - A_0(t=10) ] / d(t=10)                       ~annuity twin
-        a_-2(t=1) = 1                               ~one-year discrete annuity
-        a_-1(t=1) = 1                               ~one-year discrete annuity
-        a_0(t=1) = 1                                ~one-year discrete annuity
-        a_1(t=1) = 1                                ~one-year discrete annuity
-        a_2(t=1) = 1                                ~one-year discrete annuity
-        a_3(t=1) = 1                                ~one-year discrete annuity
------ Q6.38 11.3: 11.308644185253657 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Temporary Annuity}~a_{{x:\overline{10|}}}~:=\\
+~~~\ddot{a}_{{x:\overline{10|}}} = [ 1 - ~A_{{x:\overline{10|}}} ] / d&amp; \quad \texttt{annuity twin}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.38 11.3: 11.308644185253657 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -4408,16 +4343,18 @@ the first, are 3% of the premium</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Whole Life Annuity a_0(t=WL) &lt;--
-   a_0(t=WL) = 1 + E_0(t=1) * a_1(t=WL)                    ~backward recursion
-    E_0(t=1) = p_0 * v(t=1)                                    ~pure endowment
-     p_0 = 1 - q_0                                    ~complement of mortality
- *Whole Life Insurance A_1(t=WL) &lt;--
-     A_1(t=WL) = A_1(t=WL,endow=1) - E_1(t=WL)     ~endowment insurance - pure
-      A_1(t=WL,endow=1) = A_1(t=WL) + E_1(t=WL)      ~term plus pure endowment
-       A_1(t=WL) = [ A_0(t=WL) /v - q_1 * b ] / p_1         ~forward recursion
-        p_0 = 1 - q_0                                 ~complement of mortality
------ Q6.40 116: 116.51945397474269 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Annuity}~\ddot{a}_{{x}}~:=\\
+~~~\ddot{a}_{{x}} = 1 + ~E_{x} * ~\ddot{a}_{{x+1}}&amp; \quad \texttt{backward recursion}\\
+~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Insurance}~A_{{x+1}}~:=\\
+~~~A_{{x+1}} = [ ~A_{{x}} / v - ~q_{x+1} * b ] / ~p_{x+1}&amp; \quad \texttt{forward recursion}\\
+~~~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.40 116: 116.51945397474269 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -4568,40 +4505,18 @@ the first, are 3% of the premium</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Whole Life Insurance A_60(t=WL) &lt;--
-   A_x = 1 - d * a_x                                             ~annuity twin
-        a_57(t=1) = 1                               ~one-year discrete annuity
-        a_64(t=1) = 1                               ~one-year discrete annuity
-        a_58(t=1) = 1                               ~one-year discrete annuity
-        a_63(t=1) = 1                               ~one-year discrete annuity
-        a_59(t=1) = 1                               ~one-year discrete annuity
-        a_62(t=1) = 1                               ~one-year discrete annuity
-        a_60(t=1) = 1                               ~one-year discrete annuity
-        a_61(t=1) = 1                               ~one-year discrete annuity
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Whole Life Insurance A_60(t=WL) &lt;--
-   A_x = 1 - d * a_x                                             ~annuity twin
-        a_57(t=1) = 1                               ~one-year discrete annuity
-        a_64(t=1) = 1                               ~one-year discrete annuity
-        a_58(t=1) = 1                               ~one-year discrete annuity
-        a_63(t=1) = 1                               ~one-year discrete annuity
-        a_59(t=1) = 1                               ~one-year discrete annuity
-        a_62(t=1) = 1                               ~one-year discrete annuity
-        a_60(t=1) = 1                               ~one-year discrete annuity
-        a_61(t=1) = 1                               ~one-year discrete annuity
- *Whole Life Insurance A_60(t=WL) &lt;--
-   A_x = 1 - d * a_x                                             ~annuity twin
-        a_57(t=1) = 1                               ~one-year discrete annuity
-        a_64(t=1) = 1                               ~one-year discrete annuity
-        a_58(t=1) = 1                               ~one-year discrete annuity
-        a_63(t=1) = 1                               ~one-year discrete annuity
-        a_59(t=1) = 1                               ~one-year discrete annuity
-        a_62(t=1) = 1                               ~one-year discrete annuity
-        a_60(t=1) = 1                               ~one-year discrete annuity
-        a_61(t=1) = 1                               ~one-year discrete annuity
-</pre></div>
-</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Insurance}~A_{{x+60}}~:=\\
+~~~\ddot{a}_{{x+60}} = [ 1 - ~A_{{x+60}} ] / d&amp; \quad \texttt{annuity twin}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Insurance}~A_{{x+60}}~:=\\
+~~~\ddot{a}_{{x+60}} = [ 1 - ~A_{{x+60}} ] / d&amp; \quad \texttt{annuity twin}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Insurance}~A_{{x+60}}~:=\\
+~~~\ddot{a}_{{x+60}} = [ 1 - ~A_{{x+60}} ] / d&amp; \quad \texttt{annuity twin}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.44 2.2: 2.183803457688809 [OK] -----
 </pre></div>
 </div>
@@ -4658,14 +4573,7 @@ this policy.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Deferred Annuity a_55(t=WL,u=10) &lt;--
-        a_53(t=1) = 1                               ~one-year discrete annuity
-        a_54(t=1) = 1                               ~one-year discrete annuity
-        a_55(t=1) = 1                               ~one-year discrete annuity
-        a_56(t=1) = 1                               ~one-year discrete annuity
-        a_57(t=1) = 1                               ~one-year discrete annuity
-        a_58(t=1) = 1                               ~one-year discrete annuity
------ Q6.46 208: 208.12282139036515 [OK] -----
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.46 208: 208.12282139036515 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -4717,11 +4625,11 @@ this policy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>\
-                  <span class="o">.</span><span class="n">set_p</span><span class="p">(</span><span class="mf">.95</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>\
-                  <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">.02</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>\
-                  <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">.03</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">6</span><span class="p">)</span>\
-                  <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">.04</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>\
+                         <span class="o">.</span><span class="n">set_p</span><span class="p">(</span><span class="mf">.95</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>\
+                         <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">.02</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>\
+                         <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">.03</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">6</span><span class="p">)</span>\
+                         <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">.04</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">7</span><span class="p">)</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">deferred_insurance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">P</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">gross_premium</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
@@ -4730,57 +4638,53 @@ this policy.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Pure Endowment E_0(t=5) &lt;--
-   E_0(t=5) = p_0(t=5) * v(t=5)                                ~pure endowment
- *Pure Endowment E_0(t=5) &lt;--
-   E_0(t=5) = p_0(t=5) * v(t=5)                                ~pure endowment
- *Term Insurance A_5(t=3) &lt;--
-        a_10(t=1) = 1                               ~one-year discrete annuity
-       A_5(t=1) = A_5(t=1,endow=1) - E_5(t=1)      ~endowment insurance - pure
-       a_5(t=2) = 1 + E_5(t=1) * a_6(t=1)                  ~backward recursion
-        a_6(t=1) = 1                                ~one-year discrete annuity
-        a_4(t=1) = 1                                ~one-year discrete annuity
-    A_5(t=3,endow=1) = A_5(t=3) + E_5(t=3)           ~term plus pure endowment
-     E_5(t=3) = p_5(t=3) * v(t=3)                              ~pure endowment
-      p_5(t=3) = p_6(t=2) * p_5                           ~survival chain rule
-       p_6(t=2) = p_7 * p_6                               ~survival chain rule
-        a_9(t=1) = 1                                ~one-year discrete annuity
-        a_5(t=1) = 1                                ~one-year discrete annuity
-     A_5(t=3) = A_5(t=3,endow=1) - E_5(t=3)        ~endowment insurance - pure
-      E_5(t=3) = E_5(t=1) * E_6(t=2) * (endow)      ~pure endowment chain rule
-       E_6(t=2) = E_6(t=1) * E_7(t=1) * (endow)     ~pure endowment chain rule
-        E_7(t=1) = p_7 * v(t=1)                                ~pure endowment
-        E_6(t=1) = p_6 * v(t=1)                                ~pure endowment
-        p_7 = 1 - q_7                                 ~complement of mortality
-      A_5(t=3) = v * [ q_5 * b + p_5 * A_6(t=2) ]          ~backward recursion
-       A_6(t=2) = v * [ q_6 * b + p_6 * A_7(t=1) ]         ~backward recursion
-        p_6 = 1 - q_6                                 ~complement of mortality
-        E_5(t=1) = p_5 * v(t=1)                                ~pure endowment
-        p_5 = 1 - q_5                                 ~complement of mortality
- *Term Insurance A_5(t=3) &lt;--
-        a_10(t=1) = 1                               ~one-year discrete annuity
-       A_5(t=1) = A_5(t=1,endow=1) - E_5(t=1)      ~endowment insurance - pure
-       a_5(t=2) = 1 + E_5(t=1) * a_6(t=1)                  ~backward recursion
-        a_6(t=1) = 1                                ~one-year discrete annuity
-        a_4(t=1) = 1                                ~one-year discrete annuity
-    A_5(t=3,endow=1) = A_5(t=3) + E_5(t=3)           ~term plus pure endowment
-     E_5(t=3) = p_5(t=3) * v(t=3)                              ~pure endowment
-      p_5(t=3) = p_6(t=2) * p_5                           ~survival chain rule
-       p_6(t=2) = p_7 * p_6                               ~survival chain rule
-        a_9(t=1) = 1                                ~one-year discrete annuity
-        a_5(t=1) = 1                                ~one-year discrete annuity
-     A_5(t=3) = A_5(t=3,endow=1) - E_5(t=3)        ~endowment insurance - pure
-      E_5(t=3) = E_5(t=1) * E_6(t=2) * (endow)      ~pure endowment chain rule
-       E_6(t=2) = E_6(t=1) * E_7(t=1) * (endow)     ~pure endowment chain rule
-        E_7(t=1) = p_7 * v(t=1)                                ~pure endowment
-        E_6(t=1) = p_6 * v(t=1)                                ~pure endowment
-        p_7 = 1 - q_7                                 ~complement of mortality
-      A_5(t=3) = v * [ q_5 * b + p_5 * A_6(t=2) ]          ~backward recursion
-       A_6(t=2) = v * [ q_6 * b + p_6 * A_7(t=1) ]         ~backward recursion
-        p_6 = 1 - q_6                                 ~complement of mortality
-        E_5(t=1) = p_5 * v(t=1)                                ~pure endowment
-        p_5 = 1 - q_5                                 ~complement of mortality
------ Q6.48 3195: 3195.118917658744 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Pure Endowment}~_{5}E_{x}~:=\\
+~~~_{5}E_{x} = ~_{5}p_{x} * v^{5}&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Pure Endowment}~_{5}E_{x}~:=\\
+~~~_{5}E_{x} = ~_{5}p_{x} * v^{5}&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Term Insurance}~A^1_{{x+5:\overline{3|}}}~:=\\
+~~~~~~~~~~~\ddot{a}_{{x+5:\overline{2|}}} = 1 + ~E_{x+5} * ~\ddot{a}_{{x+6:\overline{1|}}}&amp; \quad \texttt{backward recursion}\\
+~~~~~A_{{x+5:\overline{3|}}} = ~A^1_{{x+5:\overline{3|}}} + ~_{3}E_{x+5}&amp; \quad \texttt{term plus pure endowment}\\
+~~~~~~~_{3}E_{x+5} = ~_{3}p_{x+5} * v^{3}&amp; \quad \texttt{pure endowment}\\
+~~~~~~~~~_{3}p_{x+5} = ~_{2}p_{x+6} * ~p_{x+5}&amp; \quad \texttt{survival chain rule}\\
+~~~~~~~~~~~_{2}p_{x+6} = ~p_{x+7} * ~p_{x+6}&amp; \quad \texttt{survival chain rule}\\
+~~~~~~~A^1_{{x+5:\overline{3|}}} = ~A_{{x+5:\overline{3|}}} - ~_{3}E_{x+5}&amp; \quad \texttt{endowment insurance - pure}\\
+~~~~~~~~~_{3}E_{x+5} = ~E_{x+5} * ~_{2}E_{x+6}&amp; \quad \texttt{pure endowment chain rule}\\
+~~~~~~~~~~~_{2}E_{x+6} = ~E_{x+6} * ~E_{x+7}&amp; \quad \texttt{pure endowment chain rule}\\
+~~~~~~~~~~~~~E_{x+7} = ~p_{x+7} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~~~~~~~E_{x+6} = ~p_{x+6} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~~~~~E_{x+5} = ~p_{x+5} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~~~~~~~p_{x+7} = 1 - ~q_{x+7}&amp; \quad \texttt{complement of mortality}\\
+~~~~~~~~~A^1_{{x+5:\overline{3|}}} = v * [ ~q_{x+5} * b + ~p_{x+5} * ~A^1_{{x+6:\overline{2|}}} ]&amp; \quad \texttt{backward recursion}\\
+~~~~~~~~~~~A^1_{{x+6:\overline{2|}}} = v * [ ~q_{x+6} * b + ~p_{x+6} * ~A^1_{{x+7:\overline{1|}}} ]&amp; \quad \texttt{backward recursion}\\
+~~~~~~~~~~~~~p_{x+6} = 1 - ~q_{x+6}&amp; \quad \texttt{complement of mortality}\\
+~~~~~~~~~~~~~p_{x+5} = 1 - ~q_{x+5}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Term Insurance}~A^1_{{x+5:\overline{3|}}}~:=\\
+~~~~~~~~~~~\ddot{a}_{{x+5:\overline{2|}}} = 1 + ~E_{x+5} * ~\ddot{a}_{{x+6:\overline{1|}}}&amp; \quad \texttt{backward recursion}\\
+~~~~~A_{{x+5:\overline{3|}}} = ~A^1_{{x+5:\overline{3|}}} + ~_{3}E_{x+5}&amp; \quad \texttt{term plus pure endowment}\\
+~~~~~~~_{3}E_{x+5} = ~_{3}p_{x+5} * v^{3}&amp; \quad \texttt{pure endowment}\\
+~~~~~~~~~_{3}p_{x+5} = ~_{2}p_{x+6} * ~p_{x+5}&amp; \quad \texttt{survival chain rule}\\
+~~~~~~~~~~~_{2}p_{x+6} = ~p_{x+7} * ~p_{x+6}&amp; \quad \texttt{survival chain rule}\\
+~~~~~~~A^1_{{x+5:\overline{3|}}} = ~A_{{x+5:\overline{3|}}} - ~_{3}E_{x+5}&amp; \quad \texttt{endowment insurance - pure}\\
+~~~~~~~~~_{3}E_{x+5} = ~E_{x+5} * ~_{2}E_{x+6}&amp; \quad \texttt{pure endowment chain rule}\\
+~~~~~~~~~~~_{2}E_{x+6} = ~E_{x+6} * ~E_{x+7}&amp; \quad \texttt{pure endowment chain rule}\\
+~~~~~~~~~~~~~E_{x+7} = ~p_{x+7} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~~~~~~~E_{x+6} = ~p_{x+6} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~~~~~E_{x+5} = ~p_{x+5} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~~~~~~~p_{x+7} = 1 - ~q_{x+7}&amp; \quad \texttt{complement of mortality}\\
+~~~~~~~~~A^1_{{x+5:\overline{3|}}} = v * [ ~q_{x+5} * b + ~p_{x+5} * ~A^1_{{x+6:\overline{2|}}} ]&amp; \quad \texttt{backward recursion}\\
+~~~~~~~~~~~A^1_{{x+6:\overline{2|}}} = v * [ ~q_{x+6} * b + ~p_{x+6} * ~A^1_{{x+7:\overline{1|}}} ]&amp; \quad \texttt{backward recursion}\\
+~~~~~~~~~~~~~p_{x+6} = 1 - ~q_{x+6}&amp; \quad \texttt{complement of mortality}\\
+~~~~~~~~~~~~~p_{x+5} = 1 - ~q_{x+5}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.48 3195: 3195.118917658744 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -4869,16 +4773,11 @@ July 2018.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Increasing Insurance IA_62(t=10) &lt;--
-   IA_62(t=10) = 11 A_62(t=10) - DA_62(t=10)       ~varying insurance identity
- *Deferred Annuity a_62(t=WL,u=10) &lt;--
-        a_60(t=1) = 1                               ~one-year discrete annuity
-        a_61(t=1) = 1                               ~one-year discrete annuity
-        a_62(t=1) = 1                               ~one-year discrete annuity
-        a_63(t=1) = 1                               ~one-year discrete annuity
-        a_64(t=1) = 1                               ~one-year discrete annuity
-        a_65(t=1) = 1                               ~one-year discrete annuity
------ Q6.51 34700: 34687.207544453246 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Increasing Insurance}~(IA)_{{x+62:\overline{10|}}}~:=\\
+~~~(IA)_{{x+62:\overline{10|}}} = 11 ~A^1_{{x+62:\overline{10|}}} - ~(DA)_{{x+62:\overline{10|}}}&amp; \quad \texttt{varying insurance identity}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.51 34700: 34687.207544453246 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -5217,15 +5116,11 @@ you are given:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Whole Life Annuity a_10(t=WL) &lt;--
-   a_x = (1-A_x) / d                                           ~insurance twin
-        a_8(t=1) = 1                                ~one-year discrete annuity
-        a_9(t=1) = 1                                ~one-year discrete annuity
-        a_10(t=1) = 1                               ~one-year discrete annuity
-        a_11(t=1) = 1                               ~one-year discrete annuity
-        a_12(t=1) = 1                               ~one-year discrete annuity
-        a_13(t=1) = 1                               ~one-year discrete annuity
------ Q7.7 1110: 1107.9718253968258 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Annuity}~\ddot{a}_{{x+10}}~:=\\
+~~~\ddot{a}_{{x+10}} = [1 - ~A_{{x+10}} ] / d&amp; \quad \texttt{insurance twin}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q7.7 1110: 1107.9718253968258 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -5248,9 +5143,11 @@ you are given:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Survival p_70 &lt;--
-   p_70 = 1 - q_70                                    ~complement of mortality
------ Q7.8 29.85: 29.85469179271202 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Survival}~p_{x+70}~:=\\
+~~~p_{x+70} = 1 - ~q_{x+70}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q7.8 29.85: 29.85469179271202 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -5271,8 +5168,8 @@ you are given:</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sult</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">10</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">UDD</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">life</span><span class="o">=</span><span class="n">sult</span><span class="p">)</span><span class="o">.</span><span class="n">temporary_annuity</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">UDD</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">life</span><span class="o">=</span><span class="n">sult</span><span class="p">)</span><span class="o">.</span><span class="n">endowment_insurance</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">UDD</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">life</span><span class="o">=</span><span class="n">sult</span><span class="p">)</span><span class="o">.</span><span class="n">temporary_annuity</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">UDD</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">life</span><span class="o">=</span><span class="n">sult</span><span class="p">)</span><span class="o">.</span><span class="n">endowment_insurance</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
 <span class="n">contract</span> <span class="o">=</span> <span class="n">Contract</span><span class="p">(</span><span class="n">premium</span><span class="o">=</span><span class="mi">253</span><span class="o">*</span><span class="mi">12</span><span class="p">,</span> <span class="n">endowment</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
 <span class="n">V</span> <span class="o">=</span> <span class="n">sult</span><span class="o">.</span><span class="n">gross_future_loss</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
 <span class="n">isclose</span><span class="p">(</span><span class="mi">38100</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="s2">&quot;Q7.9&quot;</span><span class="p">)</span>
@@ -5338,17 +5235,11 @@ insurance.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Whole Life Insurance A_55(t=WL) &lt;--
-   A_x = 1 - d * a_x                                             ~annuity twin
-        a_52(t=1) = 1                               ~one-year discrete annuity
-        a_59(t=1) = 1                               ~one-year discrete annuity
-        a_53(t=1) = 1                               ~one-year discrete annuity
-        a_58(t=1) = 1                               ~one-year discrete annuity
-        a_54(t=1) = 1                               ~one-year discrete annuity
-        a_57(t=1) = 1                               ~one-year discrete annuity
-        a_55(t=1) = 1                               ~one-year discrete annuity
-        a_56(t=1) = 1                               ~one-year discrete annuity
------ Q7.11 1460: 1459.9818035330218 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Insurance}~A_{{x+55}}~:=\\
+~~~\ddot{a}_{{x+55}} = [ 1 - ~A_{{x+55}} ] / d&amp; \quad \texttt{annuity twin}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q7.11 1460: 1459.9818035330218 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -5388,9 +5279,11 @@ insurance.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Survival p_55 &lt;--
-   p_55 = 1 - q_55                                    ~complement of mortality
------ Q7.12 4.09: 4.089411764705883 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Survival}~p_{x+55}~:=\\
+~~~p_{x+55} = 1 - ~q_{x+55}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q7.12 4.09: 4.089411764705883 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -5521,17 +5414,17 @@ are given:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Whole Life Insurance A_10(t=WL) &lt;--
-     A_10(t=WL) = A_10(t=WL,endow=1) - E_10(t=WL)     ~endowment insurance - pure
-      A_10(t=WL,endow=1) = A_10(t=WL) + E_10(t=WL)     ~term plus pure endowment
-       A_10(t=WL) = v * [ q_10 * b + p_10 * A_11(t=WL) ]     ~backward recursion
-        p_10 = 1 - q_10                               ~complement of mortality
- *Whole Life Insurance A_10(t=WL,mom=2) &lt;--
-     A_10(t=WL,mom=2) = A_10(t=WL,endow=1,mom=2) - E_10(t=WL,mom=2)     ~endowment insurance - pure
-      A_10(t=WL,endow=1,mom=2) = A_10(t=WL,mom=2) + E_10(t=WL,mom=2)     ~term plus pure endowment
-       A_10(t=WL,mom=2) = v^2 * [ q_10 * b^2 + p_10 * A_11(t=WL,mom=2) ]     ~backward recursion
-        p_10 = 1 - q_10                               ~complement of mortality
------ Q7.17 1.018: 1.0182465434445054 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Insurance}~A_{{x+10}}~:=\\
+~~~A_{{x+10}} = v * [ ~q_{x+10} * b + ~p_{x+10} * ~A_{{x+11}} ]&amp; \quad \texttt{backward recursion}\\
+~~~~~p_{x+10} = 1 - ~q_{x+10}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Insurance}~^2A_{{x+10}}~:=\\
+~~~^2A_{{x+10}} = v^{2} * [ ~q_{x+10} * b^{2} + ~p_{x+10} * ~^2A_{{x+11}} ]&amp; \quad \texttt{backward recursion}\\
+~~~~~p_{x+10} = 1 - ~q_{x+10}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q7.17 1.018: 1.0182465434445054 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -5712,10 +5605,12 @@ the end of the first policy year is <em>S</em></p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Term Insurance A_25(t=1,b=10000) &lt;--
-   A_25(t=1) = A_25(t=1,endow=10000) - E_25(t=1,endow=10000)     ~endowment insurance - pure
-    E_25(t=1) = p_25 * v(t=1)                                  ~pure endowment
------ Q7.23 233: 232.64747466274176 [OK] -----
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Term Insurance}~A^1_{{x+25:\overline{1|}}}* 10000~:=\\
+~~~A^1_{{x+25:\overline{1|}}} = ~A_{{x+25:\overline{1|}}} - ~E_{x+25}&amp; \quad \texttt{endowment insurance - pure}\\
+~~~~~E_{x+25} = ~p_{x+25} * v&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q7.23 233: 232.64747466274176 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -6028,7 +5923,7 @@ calculate <span class="math notranslate nohighlight">\(L_{10}\)</span> is change
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-21 23:42:09.817660
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-23 12:06:31.492254
 Passed: 136/136
 </pre></div>
 </div>

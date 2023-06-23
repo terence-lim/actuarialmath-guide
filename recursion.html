@@ -399,29 +399,33 @@ document.write(`
 </section>
 <section id="expected-future-lifetime">
 <h2>Expected future lifetime<a class="headerlink" href="#expected-future-lifetime" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(e_{x} = e_{x:\overline{m|}} +\ _mp_x\ e_{x+m}\)</span></p>
+<ul class="simple">
+<li><p>curtate expectation of lifetime</p></li>
+</ul>
 <p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x} = \overset{\circ}{e}_{x:\overline{m|}} +\ _mp_x\ \overset{\circ}{e}_{x+m}\)</span></p>
 <ul class="simple">
 <li><p>complete expectation of lifetime</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x} = \overset{\circ}{e}_{x:\overline{1|}} + p_x\ \overset{\circ}{e}_{x+1}\)</span></p>
+<p><span class="math notranslate nohighlight">\(e_{x:\overline{m+n|}} = e_{x:\overline{m|}} +\ _mp_x\ e_{x:\overline{n|}}\)</span></p>
 <ul class="simple">
-<li><p>one-year recursion for complete expectation of lifetime</p></li>
+<li><p>limited curtate expectation of lifetime</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x:\overline{m+n|}} = \overset{\circ}{e}_{x:\overline{m|}} +\ _mp_x\ \overset{\circ}{e}_{x+m:\overline{n|}}\)</span></p>
 <ul class="simple">
-<li><p>temporary complete expectation of lifetime</p></li>
-</ul>
-<p><span class="math notranslate nohighlight">\(e_{x} = e_{x:\overline{m|}} +\ _mp_x\ e_{x+m}\)</span></p>
-<ul class="simple">
-<li><p>curtate expectation of lifetime</p></li>
+<li><p>limited complete expectation of lifetime</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(e_{x} = p_x(1 + e_{x+1})\)</span></p>
 <ul class="simple">
 <li><p>one-year recursion for curtate expectaion of lifetime</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(e_{x:\overline{m+n|}} = e_{x:\overline{m|}} +\ _mp_x\ e_{x:\overline{n|}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x} = \overset{\circ}{e}_{x:\overline{1|}} + p_x\ \overset{\circ}{e}_{x+1}\)</span></p>
 <ul class="simple">
-<li><p>temporary curtate expectation of lifetime</p></li>
+<li><p>one-year recursion for complete expectation of lifetime</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(e_{x:\overline{1|}} = p_x\)</span></p>
+<ul class="simple">
+<li><p>shortcut for one-year limited curtate expectaion of lifetime</p></li>
 </ul>
 </section>
 <section id="life-insurance">
@@ -434,13 +438,25 @@ document.write(`
 <ul class="simple">
 <li><p>term life insurance recursion</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(A_{x:\overline{0|}} = b\)</span></p>
+<p><span class="math notranslate nohighlight">\(A^{1}_{x:\overline{1|}} = v ~ q_x \)</span></p>
 <ul class="simple">
-<li><p>endowment insurance at at end of term</p></li>
+<li><p>shortcut for one-year term life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(^{2}A^{1}_{x:\overline{1|}} = v^2 ~ q_x ~b^2\)</span></p>
+<ul class="simple">
+<li><p>shortcut for second moment of one-year term life insurance, with benefit = <span class="math notranslate nohighlight">\(b\)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(A_{x:\overline{0|}} =~ _0E_x = b\)</span></p>
+<ul class="simple">
+<li><p>endowment insurance (and pure endowment) at end of term, with benefit = <span class="math notranslate nohighlight">\(b\)</span></p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(A_{x:\overline{1|}} = q_x ~ v ~ b + p_x ~ v ~ b = v ~ b\)</span></p>
 <ul class="simple">
-<li><p>one-year endowment insurance</p></li>
+<li><p>shortcut for one-year endowment insurance, with benefit = <span class="math notranslate nohighlight">\(b\)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(^2A_{x:\overline{1|}} =  v^2 ~ b^2\)</span></p>
+<ul class="simple">
+<li><p>shortcut for second moment of one-year endowment insurance, with benefit = <span class="math notranslate nohighlight">\(b\)</span></p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(IA^{1}_{x:\overline{t|}} = v ~ q_x + v ~ p_x ~ (A_{x+1} + IA^{1}_{x+1:\overline{t-1|}})\)</span></p>
 <ul class="simple">
@@ -461,16 +477,25 @@ document.write(`
 <ul class="simple">
 <li><p>temporary annuity recursion</p></li>
 </ul>
+<p><span class="math notranslate nohighlight">\(\ddot{a}_{x:\overline{1|}} = b \)</span></p>
+<ul class="simple">
+<li><p>shortcut for one-year temporary annuity, with benefit = <span class="math notranslate nohighlight">\(b\)</span></p></li>
+</ul>
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">Recursion</span></code> class implements methods to apply recursive, shortcut and actuarial formulas, and traces steps taken to find the solution.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Recursion</span></code> class implements methods to apply recursive, shortcut and actuarial formulas, and traces the steps taken to find the solution.</p>
 <p><strong>Caveats</strong>:</p>
 <ol class="arabic simple">
 <li><p>Not all possible recursion rules and actuarial equations have (yet) been implemented in the present version of the package.</p></li>
-<li><p>You may set the recursion depth to a larger limit than the default of 5 (with the keyword argument <code class="docutils literal notranslate"><span class="pre">depth</span></code> when initializing a Recursion class object).</p></li>
+<li><p>You may set the recursion depth to a larger limit than the default of 3 (with the keyword argument <code class="docutils literal notranslate"><span class="pre">depth</span></code> when initializing a Recursion class object).</p></li>
 <li><p>But generally, the current implementation may be fragile if the solution is not available within a relatively shallow search.</p></li>
 </ol>
+<p><strong>Notes</strong>:</p>
+<ul class="simple">
+<li><p>If a colab or jupyter notebook is auto-detected, the steps are displayed in latex format; else as raw text.</p></li>
+<li><p>These display options can be changed by calling the <code class="docutils literal notranslate"><span class="pre">blog_options</span></code> method</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">Recursion</span><span class="p">,</span> <span class="n">ConstantForce</span><span class="p">,</span> <span class="n">Contract</span>
@@ -497,32 +522,45 @@ document.write(`
       - &#39;DA&#39; : increasing life insurance of t years
       - &#39;a&#39; : deferred, temporary or whole life annuity of t years, and moments
 
+    Examples:
+      &gt;&gt;&gt; x = 0
+      &gt;&gt;&gt; life = Recursion().set_interest(i=0.06).set_a(7, x=x+1).set_q(0.05, x=x)
+      &gt;&gt;&gt; a = life.whole_life_annuity(x)
+      &gt;&gt;&gt; A = 110 * a / 1000
+      &gt;&gt;&gt; print(a, A)
+      &gt;&gt;&gt; life = Recursion().set_interest(i=0.06).set_A(A, x=x).set_q(0.05, x=x)
+      &gt;&gt;&gt; A1 = life.whole_life_insurance(x+1)
+      &gt;&gt;&gt; P = life.gross_premium(A=A1 / 1.03, a=7) * 1000
+
     Methods:
     --------
 
     set_q(val, x, s, t, u):
-      Set mortality rate u|t_q_[x]+s to given value
+      Set mortality rate u|t_q_[x+s] to given value
 
     set_p(val, x, s, t):
-      Set survival probability t_p_[x]+s to given value
+      Set survival probability t_p_[x+s] to given value
 
     set_e(val, x, s, t, curtate, moment):
-      Set expected future lifetime e_[x]+s:t to given value
+      Set expected future lifetime e_[x+s]:t to given value
 
     set_E(val, x, s, t, endowment, moment):
-      Set pure endowment t_E_[x]+s to given value
+      Set pure endowment t_E_[x+s] to given value
 
     set_A(val, x, s, t, u, b, moment, endowment, discrete):
-      Set insurance u|_A_[x]+s:t to given value
+      Set insurance u|_A_[x+s]:t to given value
 
     set_IA(val, x, s, t, b, discrete):
-      Set increasing insurance IA_[x]+s:t to given value
+      Set increasing insurance IA_[x+s]:t to given value
 
     set_DA(val, x, s, t, b, discrete):
-      Set decreasing insurance DA_[x]+s:t to given value
+      Set decreasing insurance DA_[x+s]:t to given value
 
     set_a(val, x, s, t, u, b, variance, discrete):
-      Set annuity u|_a_[x]+s:t to given value
+      Set annuity u|_a_[x+s]:t to given value
+
+    blog_options(latex, notebook):
+      Static method to change display options for tracing the recursion steps taken
 </pre></div>
 </div>
 </div>
@@ -538,100 +576,66 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.recursion</span> <span class="kn">import</span> <span class="n">Recursion</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>\
-                          <span class="o">.</span><span class="n">set_p</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>\
-                          <span class="o">.</span><span class="n">set_p</span><span class="p">(</span><span class="mf">0.985</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>\
-                          <span class="o">.</span><span class="n">set_p</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>\
-                          <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span>
+                         <span class="o">.</span><span class="n">set_p</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>\
+                         <span class="o">.</span><span class="n">set_p</span><span class="p">(</span><span class="mf">0.985</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>\
+                         <span class="o">.</span><span class="n">set_p</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>\
+                         <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="p">))</span>  <span class="c1"># 0.98</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># 0.97515</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># 0.96939</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>  <span class="c1"># 0.95969</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># 0.03031</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="p">),</span> <span class="mf">0.98</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>  <span class="mf">0.97515</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="mf">0.96939</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="mf">0.95969</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>  <span class="mf">0.03031</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> *Survival p_3 &lt;--
-   p_3 = 1 - q_3                                      ~complement of mortality
-0.98
- *Survival p_0(t=2) &lt;--
-    p_0(t=3) = p_0(t=4) / p_3                             ~survival chain rule
-     p_0(t=4) = p_1(t=3) * p_0                            ~survival chain rule
-     p_0(t=2) = p_1 * p_0                                 ~survival chain rule
-      p_3 = 1 - q_3                                   ~complement of mortality
-0.97515
- *Survival p_1(t=2) &lt;--
-   p_1(t=2) = p_0(t=3) / p_0                              ~survival chain rule
-    p_0(t=3) = p_0(t=4) / p_3                             ~survival chain rule
-     p_0(t=4) = p_1(t=3) * p_0                            ~survival chain rule
-      p_3 = 1 - q_3                                   ~complement of mortality
-0.9693877551020409
- *Survival p_0(t=3) &lt;--
-   p_0(t=3) = p_0(t=4) / p_3                              ~survival chain rule
-    p_0(t=4) = p_1(t=3) * p_0                             ~survival chain rule
-      p_3 = 1 - q_3                                   ~complement of mortality
-0.9596938775510204
- *Mortality q_0(t=2,defer=1) &lt;--
-   q_0(t=2,defer=1) = p_0 - p_0(t=3)                      ~complement survival
-    p_0(t=3) = p_0(t=4) / p_3                             ~survival chain rule
-     p_0(t=4) = p_1(t=3) * p_0                            ~survival chain rule
-      p_3 = 1 - q_3                                   ~complement of mortality
-0.030306122448979567
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Survival}~p_{x+3}~:=\\
+~~~p_{x+3} = 1 - ~q_{x+3}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.98 0.98
 </pre></div>
 </div>
-</div>
-</div>
-<p><strong>SOA Question 6.48</strong></p>
-<p>For a special fully discrete 5-year deferred 3-year term insurance of 100,000 on (x) you are given:</p>
-<ul class="simple">
-<li><p>There are two premium payments, each equal to P . The first is paid at the beginning of the first year and the second is paid at the end of the 5-year deferral period</p></li>
-<li><p><span class="math notranslate nohighlight">\(p_x = 0.95\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(q_{x + 5} = 0.02\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(q_{x + 6} = 0.03\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(q_{x + 7} = 0.04\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(i = 0.06\)</span></p></li>
-</ul>
-<p>Calculate P using the equivalence principle.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.48:  (A) 3195&quot;</span><span class="p">)</span>
-<span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">life</span><span class="o">.</span><span class="n">set_p</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">life</span><span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">life</span><span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">life</span><span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">7</span><span class="p">)</span>
-<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">deferred_insurance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">P</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">gross_premium</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Survival}~_{2}p_{x}~:=\\
+~~~_{2}p_{x} = ~_{3}p_{x} / ~p_{x+2}&amp; \quad \texttt{survival chain rule}\\
+~~~~~p_{x+2} = ~_{2}p_{x+1} / ~p_{x+1}&amp; \quad \texttt{survival chain rule}\\
+~~~~~~~_{2}p_{x+1} = ~_{3}p_{x+1} / ~p_{x+3}&amp; \quad \texttt{survival chain rule}\\
+~~~~~_{3}p_{x} = ~_{4}p_{x} / ~p_{x+3}&amp; \quad \texttt{survival chain rule}\\
+~~~~~~~_{4}p_{x} = ~_{3}p_{x+1} * ~p_{x}&amp; \quad \texttt{survival chain rule}\\
+~~~~~~~~~p_{x+3} = 1 - ~q_{x+3}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9751500000000001 0.97515
 </pre></div>
 </div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Survival}~_{2}p_{x+1}~:=\\
+~~~_{2}p_{x+1} = ~_{3}p_{x} / ~p_{x}&amp; \quad \texttt{survival chain rule}\\
+~~~~~_{3}p_{x} = ~_{4}p_{x} / ~p_{x+3}&amp; \quad \texttt{survival chain rule}\\
+~~~~~~~_{4}p_{x} = ~_{3}p_{x+1} * ~p_{x}&amp; \quad \texttt{survival chain rule}\\
+~~~~~~~~~p_{x+3} = 1 - ~q_{x+3}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9693877551020409 0.96939
+</pre></div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.48:  (A) 3195
- *Pure Endowment E_0(t=5) &lt;--
-   E_0(t=5) = p_0(t=5) * v(t=5)                                ~pure endowment
- *Pure Endowment E_0(t=5) &lt;--
-   E_0(t=5) = p_0(t=5) * v(t=5)                                ~pure endowment
- *Term Insurance A_5(t=3) &lt;--
-   A_5(t=3) = v * [ q_5 * b + p_5 * A_6(t=2) ]             ~backward recursion
-    p_5 = 1 - q_5                                     ~complement of mortality
-    A_6(t=2) = v * [ q_6 * b + p_6 * A_7(t=1) ]            ~backward recursion
-     p_6 = 1 - q_6                                    ~complement of mortality
-     A_7(t=1) = A_7(t=1,endow=1) - E_7(t=1)        ~endowment insurance - pure
-      E_7(t=1) = p_7 * v(t=1)                                  ~pure endowment
-     p_7 = 1 - q_7                                    ~complement of mortality
- *Term Insurance A_5(t=3) &lt;--
-   A_5(t=3) = v * [ q_5 * b + p_5 * A_6(t=2) ]             ~backward recursion
-    p_5 = 1 - q_5                                     ~complement of mortality
-    A_6(t=2) = v * [ q_6 * b + p_6 * A_7(t=1) ]            ~backward recursion
-     p_6 = 1 - q_6                                    ~complement of mortality
-     A_7(t=1) = A_7(t=1,endow=1) - E_7(t=1)        ~endowment insurance - pure
-      E_7(t=1) = p_7 * v(t=1)                                  ~pure endowment
-     p_7 = 1 - q_7                                    ~complement of mortality
-3195.1189176587473
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Survival}~_{3}p_{x}~:=\\
+~~~_{3}p_{x} = ~_{4}p_{x} / ~p_{x+3}&amp; \quad \texttt{survival chain rule}\\
+~~~~~_{4}p_{x} = ~_{3}p_{x+1} * ~p_{x}&amp; \quad \texttt{survival chain rule}\\
+~~~~~~~~~p_{x+3} = 1 - ~q_{x+3}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9596938775510204 0.95969
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Mortality}~_{{1|2}}q_{x}~:=\\
+~~~_{{1|2}}q_{x} = ~p_{x} - ~_{3}p_{x}&amp; \quad \texttt{complement survival}\\
+~~~~~_{3}p_{x} = ~_{4}p_{x} / ~p_{x+3}&amp; \quad \texttt{survival chain rule}\\
+~~~~~~~_{4}p_{x} = ~_{3}p_{x+1} * ~p_{x}&amp; \quad \texttt{survival chain rule}\\
+~~~~~~~~~p_{x+3} = 1 - ~q_{x+3}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.030306122448979567 0.03031
 </pre></div>
 </div>
 </div>
@@ -663,15 +667,137 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.40: (C) 116 
- *Whole Life Annuity a_0(t=WL) &lt;--
-   a_0(t=WL) = 1 + E_0(t=1) * a_1(t=WL)                    ~backward recursion
-    E_0(t=1) = p_0 * v(t=1)                                    ~pure endowment
-     p_0 = 1 - q_0                                    ~complement of mortality
-7.2735849056603765 0.8000943396226414
- *Whole Life Insurance A_1(t=WL) &lt;--
-     A_1(t=WL) = [ A_0(t=WL) /v - q_1 * b ] / p_1           ~forward recursion
-      p_0 = 1 - q_0                                   ~complement of mortality
-116.51945397474269
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Annuity}~\ddot{a}_{{x}}~:=\\
+~~~\ddot{a}_{{x}} = 1 + ~E_{x} * ~\ddot{a}_{{x+1}}&amp; \quad \texttt{backward recursion}\\
+~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.2735849056603765 0.8000943396226414
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Whole Life Insurance}~A_{{x+1}}~:=\\
+~~~A_{{x+1}} = [ ~A_{{x}} / v - ~q_{x+1} * b ] / ~p_{x+1}&amp; \quad \texttt{forward recursion}\\
+~~~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>116.51945397474269
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 6.10</strong> :  (D) 0.91</p>
+<p>For a fully discrete 3-year term insurance of 1000 on (<em>x</em>),
+you are given:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(p_x\)</span> = 0.975</p></li>
+<li><p><em>i</em> = 0.06</p></li>
+<li><p>The actuarial present value of the death benefit is 152.85</p></li>
+<li><p>The annual net premium is 56.05</p></li>
+</ol>
+<p>Calculate <span class="math notranslate nohighlight">\(p_{x+2}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.10: (D) 0.91&quot;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>\
+                         <span class="o">.</span><span class="n">set_p</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>\
+                         <span class="o">.</span><span class="n">set_a</span><span class="p">(</span><span class="mf">152.85</span><span class="o">/</span><span class="mf">56.05</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>\
+                         <span class="o">.</span><span class="n">set_A</span><span class="p">(</span><span class="mf">152.85</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.10: (D) 0.91
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Survival}~p_{x+2}~:=\\
+~~~p_{x+2} = ~E_{x+2} /v&amp; \quad \texttt{one-year pure endowment}\\
+~~~~~E_{x+2} = ~A_{{x+2:\overline{1|}}} - ~A^1_{{x+2:\overline{1|}}}&amp; \quad \texttt{endowment insurance minus term}\\
+~~~~~~~A^1_{{x+2:\overline{1|}}} = [ ~A^1_{{x+1:\overline{2|}}} / v - ~q_{x+2} * b ] / ~p_{x+2}&amp; \quad \texttt{forward recursion}\\
+~~~~~~~~~p_{x+1} = [ ~\ddot{a}_{{x+1:\overline{2|}}} - 1 ] / [ v * ~\ddot{a}_{{x+2:\overline{1|}}} ]&amp; \quad \texttt{annuity recursion}\\
+~~~~~~~~~~~\ddot{a}_{{x+1:\overline{2|}}} = [ ~\ddot{a}_{{x:\overline{3|}}} - 1 ] / ~E_{x}&amp; \quad \texttt{forward recursion}\\
+~~~~~~~~~A^1_{{x+1:\overline{2|}}} = [ ~A^1_{{x:\overline{3|}}} / v - ~q_{x+1} * b ] / ~p_{x+1}&amp; \quad \texttt{forward recursion}\\
+~~~~~~~~~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9097382950525702
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 6.48</strong></p>
+<p>For a special fully discrete 5-year deferred 3-year term insurance of 100,000 on (x) you are given:</p>
+<ul class="simple">
+<li><p>There are two premium payments, each equal to P . The first is paid at the beginning of the first year and the second is paid at the end of the 5-year deferral period</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_x = 0.95\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{x + 5} = 0.02\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{x + 6} = 0.03\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{x + 7} = 0.04\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.06\)</span></p></li>
+</ul>
+<p>Calculate P using the equivalence principle.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.48:  (A) 3195&quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">life</span><span class="o">.</span><span class="n">set_p</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">life</span><span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">life</span><span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">life</span><span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.04</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">deferred_insurance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">gross_premium</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.48:  (A) 3195
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Pure Endowment}~_{5}E_{x}~:=\\
+~~~_{5}E_{x} = ~_{5}p_{x} * v^{5}&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Pure Endowment}~_{5}E_{x}~:=\\
+~~~_{5}E_{x} = ~_{5}p_{x} * v^{5}&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Term Insurance}~A^1_{{x+5:\overline{3|}}}~:=\\
+~~~A^1_{{x+5:\overline{3|}}} = ~A_{{x+5:\overline{3|}}} - ~_{3}E_{x+5}&amp; \quad \texttt{endowment insurance - pure}\\
+~~~~~_{3}E_{x+5} = ~E_{x+5} * ~_{2}E_{x+6}&amp; \quad \texttt{pure endowment chain rule}\\
+~~~~~~~_{2}E_{x+6} = ~E_{x+6} * ~E_{x+7}&amp; \quad \texttt{pure endowment chain rule}\\
+~~~~~~~~~E_{x+7} = ~p_{x+7} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~~~E_{x+6} = ~p_{x+6} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~E_{x+5} = ~p_{x+5} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~~~p_{x+7} = 1 - ~q_{x+7}&amp; \quad \texttt{complement of mortality}\\
+~~~~~A^1_{{x+5:\overline{3|}}} = v * [ ~q_{x+5} * b + ~p_{x+5} * ~A^1_{{x+6:\overline{2|}}} ]&amp; \quad \texttt{backward recursion}\\
+~~~~~~~A^1_{{x+6:\overline{2|}}} = v * [ ~q_{x+6} * b + ~p_{x+6} * ~A^1_{{x+7:\overline{1|}}} ]&amp; \quad \texttt{backward recursion}\\
+~~~~~~~~~p_{x+6} = 1 - ~q_{x+6}&amp; \quad \texttt{complement of mortality}\\
+~~~~~~~~~p_{x+5} = 1 - ~q_{x+5}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Term Insurance}~A^1_{{x+5:\overline{3|}}}~:=\\
+~~~A^1_{{x+5:\overline{3|}}} = ~A_{{x+5:\overline{3|}}} - ~_{3}E_{x+5}&amp; \quad \texttt{endowment insurance - pure}\\
+~~~~~_{3}E_{x+5} = ~E_{x+5} * ~_{2}E_{x+6}&amp; \quad \texttt{pure endowment chain rule}\\
+~~~~~~~_{2}E_{x+6} = ~E_{x+6} * ~E_{x+7}&amp; \quad \texttt{pure endowment chain rule}\\
+~~~~~~~~~E_{x+7} = ~p_{x+7} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~~~E_{x+6} = ~p_{x+6} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~E_{x+5} = ~p_{x+5} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~~~p_{x+7} = 1 - ~q_{x+7}&amp; \quad \texttt{complement of mortality}\\
+~~~~~A^1_{{x+5:\overline{3|}}} = v * [ ~q_{x+5} * b + ~p_{x+5} * ~A^1_{{x+6:\overline{2|}}} ]&amp; \quad \texttt{backward recursion}\\
+~~~~~~~A^1_{{x+6:\overline{2|}}} = v * [ ~q_{x+6} * b + ~p_{x+6} * ~A^1_{{x+7:\overline{1|}}} ]&amp; \quad \texttt{backward recursion}\\
+~~~~~~~~~p_{x+6} = 1 - ~q_{x+6}&amp; \quad \texttt{complement of mortality}\\
+~~~~~~~~~p_{x+5} = 1 - ~q_{x+5}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3195.118917658744
 </pre></div>
 </div>
 </div>
@@ -699,8 +825,8 @@ equivalence principle</p></li>
 <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
 
 <span class="n">life1</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.08</span><span class="p">)</span>\
-                    <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>\
-                    <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                   <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>\
+                   <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">contract</span> <span class="o">=</span> <span class="n">Contract</span><span class="p">(</span><span class="n">premium</span><span class="o">=</span><span class="n">P</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">endowment</span><span class="o">=</span><span class="mi">30000</span><span class="p">)</span>
 <span class="n">L</span> <span class="o">=</span> <span class="n">life1</span><span class="o">.</span><span class="n">gross_policy_value</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
@@ -710,23 +836,32 @@ equivalence principle</p></li>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.17:  (A) -30000
 37251.49857703497 1.8378124241073728 20269.478042694187
- *Term Insurance A_0(t=2) &lt;--
-   A_0(t=2) = v * [ q_0 * b + p_0 * A_1(t=1) ]             ~backward recursion
-    p_0 = 1 - q_0                                     ~complement of mortality
-    A_1(t=1) = A_1(t=1,endow=1) - E_1(t=1)         ~endowment insurance - pure
-     E_1(t=1) = p_1 * v(t=1)                                   ~pure endowment
-    p_1 = 1 - q_1                                     ~complement of mortality
- *Temporary Annuity a_0(t=2) &lt;--
-   a_0(t=2) = 1 + E_0(t=1) * a_1(t=1)                      ~backward recursion
-    E_0(t=1) = p_0 * v(t=1)                                    ~pure endowment
-     p_0 = 1 - q_0                                    ~complement of mortality
-    a_1(t=1) = 1                                    ~one-year discrete annuity
- *Pure Endowment E_0(t=2) &lt;--
-   E_0(t=2) = p_0(t=2) * v(t=2)                                ~pure endowment
-    p_0(t=2) = p_1 * p_0                                  ~survival chain rule
-      p_0 = 1 - q_0                                   ~complement of mortality
-      p_1 = 1 - q_1                                   ~complement of mortality
--30107.42633581125
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Term Insurance}~A^1_{{x:\overline{2|}}}~:=\\
+~~~A^1_{{x:\overline{2|}}} = ~A_{{x:\overline{2|}}} - ~_{2}E_{x}&amp; \quad \texttt{endowment insurance - pure}\\
+~~~~~_{2}E_{x} = ~_{2}p_{x} * v^{2}&amp; \quad \texttt{pure endowment}\\
+~~~~~~~_{2}p_{x} = ~p_{x+1} * ~p_{x}&amp; \quad \texttt{survival chain rule}\\
+~~~~~A^1_{{x:\overline{2|}}} = v * [ ~q_{x} * b + ~p_{x} * ~A^1_{{x+1:\overline{1|}}} ]&amp; \quad \texttt{backward recursion}\\
+~~~~~~~p_{x+1} = 1 - ~q_{x+1}&amp; \quad \texttt{complement of mortality}\\
+~~~~~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Temporary Annuity}~\ddot{a}_{{x:\overline{2|}}}~:=\\
+~~~\ddot{a}_{{x:\overline{2|}}} = 1 + ~E_{x} * ~\ddot{a}_{{x+1:\overline{1|}}}&amp; \quad \texttt{backward recursion}\\
+~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\\
+~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{lr}
+~\texttt{Pure Endowment}~_{2}E_{x}~:=\\
+~~~_{2}E_{x} = ~_{2}p_{x} * v^{2}&amp; \quad \texttt{pure endowment}\\
+~~~~~_{2}p_{x} = ~p_{x+1} * ~p_{x}&amp; \quad \texttt{survival chain rule}\\
+~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\\
+~~~~~~~~~p_{x+1} = 1 - ~q_{x+1}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-30107.42633581125
 </pre></div>
 </div>
 </div>
