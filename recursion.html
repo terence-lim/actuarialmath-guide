@@ -681,7 +681,7 @@ document.write(`
 <div class="output text_latex math notranslate nohighlight">
 \[\begin{split}\begin{array}{lr}
 ~\texttt{Whole Life Insurance}~A_{{x+1}}~:=\\
-~~~A_{{x+1}} = [ ~A_{{x}} / v - ~q_{x+1} * b ] / ~p_{x+1}&amp; \quad \texttt{forward recursion}\\
+~~~A_{{x+1}} = [ ~A_{{x}} / v - ~q_{x} * b ] / ~p_{x}&amp; \quad \texttt{forward recursion}\\
 ~~~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>116.51945397474269
 </pre></div>
@@ -720,10 +720,10 @@ you are given:</p>
 ~\texttt{Survival}~p_{x+2}~:=\\
 ~~~p_{x+2} = ~E_{x+2} /v&amp; \quad \texttt{one-year pure endowment}\\
 ~~~~~E_{x+2} = ~A_{{x+2:\overline{1|}}} - ~A^1_{{x+2:\overline{1|}}}&amp; \quad \texttt{endowment insurance minus term}\\
-~~~~~~~A^1_{{x+2:\overline{1|}}} = [ ~A^1_{{x+1:\overline{2|}}} / v - ~q_{x+2} * b ] / ~p_{x+2}&amp; \quad \texttt{forward recursion}\\
+~~~~~~~A^1_{{x+2:\overline{1|}}} = [ ~A^1_{{x+1:\overline{2|}}} / v - ~q_{x+1} * b ] / ~p_{x+1}&amp; \quad \texttt{forward recursion}\\
 ~~~~~~~~~p_{x+1} = [ ~\ddot{a}_{{x+1:\overline{2|}}} - 1 ] / [ v * ~\ddot{a}_{{x+2:\overline{1|}}} ]&amp; \quad \texttt{annuity recursion}\\
 ~~~~~~~~~~~\ddot{a}_{{x+1:\overline{2|}}} = [ ~\ddot{a}_{{x:\overline{3|}}} - 1 ] / ~E_{x}&amp; \quad \texttt{forward recursion}\\
-~~~~~~~~~A^1_{{x+1:\overline{2|}}} = [ ~A^1_{{x:\overline{3|}}} / v - ~q_{x+1} * b ] / ~p_{x+1}&amp; \quad \texttt{forward recursion}\\
+~~~~~~~~~A^1_{{x+1:\overline{2|}}} = [ ~A^1_{{x:\overline{3|}}} / v - ~q_{x} * b ] / ~p_{x}&amp; \quad \texttt{forward recursion}\\
 ~~~~~~~~~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9097382950525702
 </pre></div>
@@ -882,7 +882,7 @@ equivalence principle</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 2.5:  (B) 7.1&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 2.5:  (B) 37.1&quot;</span><span class="p">)</span>
 <span class="n">life</span> <span class="o">=</span> <span class="n">Recursion</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_e</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>\
                               <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>\
                               <span class="o">.</span><span class="n">set_q</span><span class="p">(</span><span class="mf">0.003</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>\
@@ -893,7 +893,7 @@ equivalence principle</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 2.5:  (B) 7.1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 2.5:  (B) 37.1
 </pre></div>
 </div>
 <div class="output text_latex math notranslate nohighlight">

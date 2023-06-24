@@ -939,7 +939,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 <p><em>hints:</em></p>
 <ul class="simple">
 <li><p>solve for <span class="math notranslate nohighlight">\(e_{40}\)</span> from limited lifetime formula</p></li>
-<li><p>compute <span class="math notranslate nohighlight">\(e_{41}\)</span> using backward recursion</p></li>
+<li><p>compute <span class="math notranslate nohighlight">\(e_{41}\)</span> using forward recursion</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -956,8 +956,8 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 <div class="output text_latex math notranslate nohighlight">
 \[\begin{split}\begin{array}{lr}
 ~\texttt{Lifetime}~e_{{x+41}}~:=\\
-~~~\overset{{\circ}}{{e}}_{{x+41}} = [ ~\overset{{\circ}}{{e}}_{{x+40}} - ~\overset{{\circ}}{{e}}_{{x+40:\overline{1|}}} ] / ~p_{x+40}&amp; \quad \texttt{forward recursion}\\
-~~~~~\overset{{\circ}}{{e}}_{{x+40}} = ~\overset{{\circ}}{{e}}_{{x+40:\overline{20|}}} + ~_{20}p_{x+40} * ~\overset{{\circ}}{{e}}_{{x+60}}&amp; \quad \texttt{backward recursion}\\
+~~~e_{{x+41}} = [ ~e_{{x+40}} - ~e_{{x+40:\overline{1|}}} ] / ~p_{x+40}&amp; \quad \texttt{forward recursion}\\
+~~~~~e_{{x+40}} = ~e_{{x+40:\overline{20|}}} + ~_{20}p_{x+40} * ~e_{{x+60}}&amp; \quad \texttt{backward recursion}\\
 ~~~~~~~~~_{20}p_{x+40} = 1 - ~_{{20}}q_{x+40}&amp; \quad \texttt{complement of mortality}\\
 ~~~~~~~e_{{x+40:\overline{1|}}} = ~p_{x+40}&amp; \quad \texttt{1-year curtate shortcut}\\
 ~~~~~~~~~p_{x+40} = 1 - ~q_{x+40}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
@@ -1969,9 +1969,9 @@ between integral ages</p></li>
 <div class="output text_latex math notranslate nohighlight">
 \[\begin{split}\begin{array}{lr}
 ~\texttt{Mortality}~q_{x+61}~:=\\
-~~~q_{x+61} = ~_{0}p_{x+61} - ~p_{x+61}&amp; \quad \texttt{complement survival}\\
+~~~q_{x+61} = ~1 - ~p_{x+61}&amp; \quad \texttt{complement survival}\\
 ~~~~~p_{x+61} = [ v - ~A_{{x+61:\overline{2|}}} ] / [v * [ 1 - ~A_{{x+62:\overline{1|}}} ]]&amp; \quad \texttt{insurance recursion}\\
-~~~~~~~A^1_{{x+61:\overline{2|}}} = [ ~A^1_{{x+60:\overline{3|}}} / v - ~q_{x+61} * b ] / ~p_{x+61}&amp; \quad \texttt{forward recursion}\\
+~~~~~~~A^1_{{x+61:\overline{2|}}} = [ ~A^1_{{x+60:\overline{3|}}} / v - ~q_{x+60} * b ] / ~p_{x+60}&amp; \quad \texttt{forward recursion}\\
 ~~~~~~~~~p_{x+60} = 1 - ~q_{x+60}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
 \[\begin{split}\begin{array}{lr}
@@ -3314,10 +3314,10 @@ you are given:</p>
 ~\texttt{Survival}~p_{x+2}~:=\\
 ~~~p_{x+2} = ~E_{x+2} /v&amp; \quad \texttt{one-year pure endowment}\\
 ~~~~~E_{x+2} = ~A_{{x+2:\overline{1|}}} - ~A^1_{{x+2:\overline{1|}}}&amp; \quad \texttt{endowment insurance minus term}\\
-~~~~~~~A^1_{{x+2:\overline{1|}}} = [ ~A^1_{{x+1:\overline{2|}}} / v - ~q_{x+2} * b ] / ~p_{x+2}&amp; \quad \texttt{forward recursion}\\
+~~~~~~~A^1_{{x+2:\overline{1|}}} = [ ~A^1_{{x+1:\overline{2|}}} / v - ~q_{x+1} * b ] / ~p_{x+1}&amp; \quad \texttt{forward recursion}\\
 ~~~~~~~~~p_{x+1} = [ ~\ddot{a}_{{x+1:\overline{2|}}} - 1 ] / [ v * ~\ddot{a}_{{x+2:\overline{1|}}} ]&amp; \quad \texttt{annuity recursion}\\
 ~~~~~~~~~~~\ddot{a}_{{x+1:\overline{2|}}} = [ ~\ddot{a}_{{x:\overline{3|}}} - 1 ] / ~E_{x}&amp; \quad \texttt{forward recursion}\\
-~~~~~~~~~A^1_{{x+1:\overline{2|}}} = [ ~A^1_{{x:\overline{3|}}} / v - ~q_{x+1} * b ] / ~p_{x+1}&amp; \quad \texttt{forward recursion}\\
+~~~~~~~~~A^1_{{x+1:\overline{2|}}} = [ ~A^1_{{x:\overline{3|}}} / v - ~q_{x} * b ] / ~p_{x}&amp; \quad \texttt{forward recursion}\\
 ~~~~~~~~~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.10 0.91: 0.9097382950525702 [OK] -----
 </pre></div>
@@ -4371,7 +4371,7 @@ the first, are 3% of the premium</p></li>
 <div class="output text_latex math notranslate nohighlight">
 \[\begin{split}\begin{array}{lr}
 ~\texttt{Whole Life Insurance}~A_{{x+1}}~:=\\
-~~~A_{{x+1}} = [ ~A_{{x}} / v - ~q_{x+1} * b ] / ~p_{x+1}&amp; \quad \texttt{forward recursion}\\
+~~~A_{{x+1}} = [ ~A_{{x}} / v - ~q_{x} * b ] / ~p_{x}&amp; \quad \texttt{forward recursion}\\
 ~~~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.40 116: 116.51945397474269 [OK] -----
 </pre></div>
@@ -5942,7 +5942,7 @@ calculate <span class="math notranslate nohighlight">\(L_{10}\)</span> is change
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-23 17:15:01.360812
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-24 09:31:20.605269
 Passed: 136/136
 </pre></div>
 </div>
