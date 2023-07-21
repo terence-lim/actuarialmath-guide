@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="1/M’thly" href="mthly.html" />
-    <link rel="prev" title="Recursion" href="recursion.html" />
+    <link rel="prev" title="Constant Force of Mortality" href="constantforce.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -366,7 +366,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjust-mortality-risk">Adjust mortality risk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#age-rating">Age rating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-of-mortality-rate">Multiple of mortality rate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#force-of-mortality">Force of mortality</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
@@ -383,23 +385,32 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="extra-risk">
 <h1>Extra Risk<a class="headerlink" href="#extra-risk" title="Permalink to this heading">#</a></h1>
 <p>If underwriting determines that an individual should offered insurance but at above standard rates, there are different ways in which we can model the extra mortality risk in a premium calculation.</p>
-<section id="adjust-mortality-risk">
-<h2>Adjust mortality risk<a class="headerlink" href="#adjust-mortality-risk" title="Permalink to this heading">#</a></h2>
-<p><span class="math notranslate nohighlight">\(\mu_{x+t} + k \Rightarrow ~_tp_x \gets ~_tp_x ~ e^{-kt}\)</span></p>
+<section id="age-rating">
+<h2>Age rating<a class="headerlink" href="#age-rating" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\((x) \gets (x+k)\)</span></p>
 <ul class="simple">
-<li><p>add constant to force of mortality:</p></li>
+<li><p>add years to age, referred to as age rating: the insurer may compensate
+for extra risk by treating the individual as being older, for example, an
+impaired life aged 40 might be asked to pay the same premium paid by a non-
+impaired life aged 45.</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(\mu_{x+t} \cdot k \Rightarrow ~_tp_x \gets ~(_tp_x)^{k}\)</span></p>
-<ul class="simple">
-<li><p>multiply force of mortality by constant:</p></li>
-</ul>
+</section>
+<section id="multiple-of-mortality-rate">
+<h2>Multiple of mortality rate<a class="headerlink" href="#multiple-of-mortality-rate" title="Permalink to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\(q_{x} \gets q_{x} \cdot k\)</span></p>
 <ul class="simple">
-<li><p>multiply mortality rate by a constant</p></li>
+<li><p>multiply mortality rate by a constant, which assumes that lives are subject to mortality rates that are higher than the standard lives’ mortality rates.</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(\Rightarrow (x) \gets (x+k)\)</span></p>
+</section>
+<section id="force-of-mortality">
+<h2>Force of mortality<a class="headerlink" href="#force-of-mortality" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(\mu_{x+t} \gets \mu_{x+t} + k \Rightarrow ~_tp_x \gets ~_tp_x ~ e^{-kt}\)</span></p>
 <ul class="simple">
-<li><p>add years to age, referred to as age rating</p></li>
+<li><p>add constant to force of mortality, when the extra risk is largely independent of age</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\mu_{x+t} \gets \mu_{x+t} \cdot k \Rightarrow ~_tp_x \gets ~(_tp_x)^{k}\)</span></p>
+<ul class="simple">
+<li><p>multiply force of mortality by constant</p></li>
 </ul>
 </section>
 <section id="methods">
@@ -417,9 +428,9 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class ExtraRisk - Adjust mortality by extra risk
 
     Args:
-      life : original survival and mortality rates
+      life : contains original survival and mortality rates
       extra : amount of extra risk to adjust
-      risk : adjust by {&quot;ADD_FORCE&quot; &quot;MULTIPLY_FORCE&quot; &quot;ADD_AGE&quot; &quot;MULTIPLY_RATE&quot;}
+      risk : adjust by {&quot;ADD_FORCE&quot;, &quot;MULTIPLY_FORCE&quot;, &quot;ADD_AGE&quot; or &quot;MULTIPLY_RATE&quot;}
 
     Methods:
     --------
@@ -557,12 +568,12 @@ Ultimate Life Table</p></li>
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="recursion.html"
+       href="constantforce.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Recursion</p>
+        <p class="prev-next-title">Constant Force of Mortality</p>
       </div>
     </a>
     <a class="right-next"
@@ -592,7 +603,9 @@ Ultimate Life Table</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjust-mortality-risk">Adjust mortality risk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#age-rating">Age rating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-of-mortality-rate">Multiple of mortality rate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#force-of-mortality">Force of mortality</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>

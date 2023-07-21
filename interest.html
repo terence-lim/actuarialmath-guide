@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -382,17 +382,18 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="interest-theory">
 <h1>Interest Theory<a class="headerlink" href="#interest-theory" title="Permalink to this heading">#</a></h1>
+<p>Interest theory functions, that are in common actuarial and financial use, are reviewed.  Interest rates are generally assumed to be fixed and constant.</p>
 <section id="interest-rates">
 <h2>Interest rates<a class="headerlink" href="#interest-rates" title="Permalink to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\(i\)</span> is the amount earned on $1 after one year</p>
 <ul class="simple">
 <li><p>effective annual <em>interest rate</em></p></li>
-<li><p><span class="math notranslate nohighlight">\(i^{(m)}\)</span> is nominal interest rate stated on annual basis, compounded <em>m</em> times per year</p></li>
+<li><p><span class="math notranslate nohighlight">\(i^{(m)}\)</span> denotes the nominal interest rate, stated on annual basis, compounded <em>m</em> times per year</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(d = \dfrac{i}{1 + i}\)</span></p>
 <ul class="simple">
 <li><p>annual <em>discount rate</em> of interest</p></li>
-<li><p><span class="math notranslate nohighlight">\(d^{(m)}\)</span> is nominal discount rate stated on annual basis, compounded <em>m</em> times per year</p></li>
+<li><p><span class="math notranslate nohighlight">\(d^{(m)}\)</span> denotes the nominal discount rate, stated on annual basis, compounded <em>m</em> times per year</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(v = \dfrac{1}{1 + i}\)</span></p>
 <ul class="simple">
@@ -400,7 +401,7 @@ document.write(`
 </ul>
 <p><span class="math notranslate nohighlight">\(\delta = \log(1+i)\)</span></p>
 <ul class="simple">
-<li><p><em>continuosly-compounded rate</em> of interest</p></li>
+<li><p><em>continuosly-compounded rate</em> of interest, or <em>force of interest per year</em></p></li>
 </ul>
 <p><strong>Relationships between interest rates</strong></p>
 <div class="math notranslate nohighlight">
@@ -419,7 +420,7 @@ document.write(`
 <p><span class="math notranslate nohighlight">\(d' \leftarrow 2 d - d^2\)</span></p>
 <p><span class="math notranslate nohighlight">\(v' \leftarrow v^2\)</span></p>
 <p><strong>Annuity certain</strong></p>
-<p>Pays <span class="math notranslate nohighlight">\(1 per year for \)</span>n$ years</p>
+<p>Pays $1 per year for <span class="math notranslate nohighlight">\(n\)</span> years</p>
 <p><span class="math notranslate nohighlight">\(\ddot{a}_{\overline{n|}} = \dfrac{1 - v^{n}}{d}\)</span></p>
 <ul class="simple">
 <li><p>Annuity certain due: pays $1 at the beginning of the year</p></li>

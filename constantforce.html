@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'constantforce';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Life Table" href="lifetable.html" />
+    <link rel="next" title="Extra Risk" href="extrarisk.html" />
     <link rel="prev" title="Mortality Laws" href="mortalitylaws.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -449,6 +449,10 @@ document.write(`
       mu : constant value of force of mortality
       udd : assume UDD (True) or CFM (False, default) between integer ages
 
+    Examples:
+      &gt;&gt;&gt; life = ConstantForce(mu=0.01).set_interest(delta=0.05)
+      &gt;&gt;&gt; life.term_insurance(35, t=35, discrete=False) + life.E_x(35, t=35)*0.51791
+
     Methods:
     --------
 
@@ -689,11 +693,11 @@ payable for the lifetime of (x) with 10 years certain</p></li>
       </div>
     </a>
     <a class="right-next"
-       href="lifetable.html"
+       href="extrarisk.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Life Table</p>
+        <p class="prev-next-title">Extra Risk</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

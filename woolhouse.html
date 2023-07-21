@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -382,7 +382,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="woolhouse-m-thly">
 <h1>Woolhouse M’thly<a class="headerlink" href="#woolhouse-m-thly" title="Permalink to this heading">#</a></h1>
-<p>Woolhouse’s formula is a method of approximating 1/mthly life annuities from annual factors that does not depend on a fractional age assumption. It is based on the Euler-Maclaurin series expansion for the integral of a function.</p>
+<p>Woolhouse’s formula is a method of approximating 1/mthly life annuities from annual factors that does not depend on a fractional age assumption. It is based on the Euler-Maclaurin series expansion for the integral of a function. Life insurances may then be computed from twin relationships.</p>
 <section id="life-annuities">
 <h2>Life Annuities<a class="headerlink" href="#life-annuities" title="Permalink to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\(\ddot{a}^{(m)}_{x} \approx \ddot{a}_{x} - \dfrac{m-1}{2m} - \dfrac{m^2 - 1}{12m^2}(\mu_x + \delta)\)</span></p>
@@ -420,13 +420,13 @@ document.write(`
       m : number of payments per year
       life : original fractional survival and mortality functions
       three_term : whether to include (True) or ignore (False) third term
-      approximate_mu : function to approximate mu_x for third term
+      approximate_mu : exact (False), approximate (True) or function for third term
 
     Methods:
     --------
 
     mu_x(x, s):
-      Approximates or computes mu_x for third term
+      Computes mu_x or calls approximate_mu for third term
 </pre></div>
 </div>
 </div>
@@ -463,11 +463,13 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 7.7:  (D) 1110
- *Whole Life Annuity a_10(t=WL) &lt;--
-   a_x = (1-A_x) / d                                           ~insurance twin
-      a_10(t=1) = 1                                 ~one-year discrete annuity
-      a_11(t=1) = 1                                 ~one-year discrete annuity
-12.141666666666666
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{llll}
+~\texttt{Whole Life Annuity}~\ddot{a}_{{x+10}}~:=\\
+~~~\ddot{a}_{{x+10}} = [1 - ~A_{{x+10}} ] / d&amp; \quad \texttt{insurance twin}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.141666666666666
 5260.0 -4152.028174603174 1107.9718253968258
 </pre></div>
 </div>
@@ -562,28 +564,36 @@ respectively</p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 5.7:  (C) 17376.7
- *Whole Life Annuity a_35(t=WL) &lt;--
-   a_x = (1-A_x) / d                                           ~insurance twin
-      a_35(t=1) = 1                                 ~one-year discrete annuity
-      a_36(t=1) = 1                                 ~one-year discrete annuity
- *Whole Life Annuity a_65(t=WL) &lt;--
-   a_x = (1-A_x) / d                                           ~insurance twin
-      a_65(t=1) = 1                                 ~one-year discrete annuity
-      a_66(t=1) = 1                                 ~one-year discrete annuity
- *Pure Endowment E_35(t=30) &lt;--
-   E_35(t=30) = p_35(t=30) * v(t=30)                           ~pure endowment
-17.37671459632958
- *Whole Life Annuity a_35(t=WL) &lt;--
-   a_x = (1-A_x) / d                                           ~insurance twin
-      a_35(t=1) = 1                                 ~one-year discrete annuity
-      a_36(t=1) = 1                                 ~one-year discrete annuity
- *Whole Life Annuity a_65(t=WL) &lt;--
-   a_x = (1-A_x) / d                                           ~insurance twin
-      a_65(t=1) = 1                                 ~one-year discrete annuity
-      a_66(t=1) = 1                                 ~one-year discrete annuity
- *Pure Endowment E_35(t=30) &lt;--
-   E_35(t=30) = p_35(t=30) * v(t=30)                           ~pure endowment
-17376.71459632958
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{llll}
+~\texttt{Whole Life Annuity}~\ddot{a}_{{x+35}}~:=\\
+~~~\ddot{a}_{{x+35}} = [1 - ~A_{{x+35}} ] / d&amp; \quad \texttt{insurance twin}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{llll}
+~\texttt{Whole Life Annuity}~\ddot{a}_{{x+65}}~:=\\
+~~~\ddot{a}_{{x+65}} = [1 - ~A_{{x+65}} ] / d&amp; \quad \texttt{insurance twin}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{llll}
+~\texttt{Pure Endowment}~_{30}E_{x+35}~:=\\
+~~~_{30}E_{x+35} = ~_{30}p_{x+35} * v^{30}&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17.37671459632958
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{llll}
+~\texttt{Whole Life Annuity}~\ddot{a}_{{x+35}}~:=\\
+~~~\ddot{a}_{{x+35}} = [1 - ~A_{{x+35}} ] / d&amp; \quad \texttt{insurance twin}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{llll}
+~\texttt{Whole Life Annuity}~\ddot{a}_{{x+65}}~:=\\
+~~~\ddot{a}_{{x+65}} = [1 - ~A_{{x+65}} ] / d&amp; \quad \texttt{insurance twin}\end{array}\end{split}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{array}{llll}
+~\texttt{Pure Endowment}~_{30}E_{x+35}~:=\\
+~~~_{30}E_{x+35} = ~_{30}p_{x+35} * v^{30}&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17376.71459632958
 </pre></div>
 </div>
 </div>

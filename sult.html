@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -368,7 +368,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-ultimate-life-table">Standard ultimate life table</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-endowment">Pure endowment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporary-annuity">Temporary Annuity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#term-life-insurance">Term life insurance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
@@ -386,20 +386,22 @@ document.write(`
 <h1>SULT<a class="headerlink" href="#sult" title="Permalink to this heading">#</a></h1>
 <section id="standard-ultimate-life-table">
 <h2>Standard ultimate life table<a class="headerlink" href="#standard-ultimate-life-table" title="Permalink to this heading">#</a></h2>
+<p>This tabulates single net premiums and basic functions (whole life and endowment insurances,  whole life and temporary annuities and pure endowments) for several time periods at integer ages between 20 and 100 years. According to the SOA’s “Excel Workbook for FAM-L Tables”, this table was developed from the following assumptions:</p>
 <ul class="simple">
-<li><p>interest rate <span class="math notranslate nohighlight">\(i=0.05\)</span></p></li>
-<li><p>100000 initial lives aged 20</p></li>
-<li><p>Makeham’s Law with <span class="math notranslate nohighlight">\(A = 0.00022,~ B = 0.0000027, ~ c = 1.124\)</span></p></li>
+<li><p>constant interest rate <span class="math notranslate nohighlight">\(i=0.05\)</span></p></li>
+<li><p>radix of 100000 initial lives aged 20</p></li>
+<li><p>incorporates Makeham’s Law as its survival model with <span class="math notranslate nohighlight">\(A = 0.00022,~ B = 0.0000027, ~ c = 1.124\)</span></p></li>
 </ul>
-<p>Source: SOA’s “Excel Workbook for FAM-L Tables”</p>
 </section>
 <section id="pure-endowment">
 <h2>Pure endowment<a class="headerlink" href="#pure-endowment" title="Permalink to this heading">#</a></h2>
+<p>Pure endowment functions can be calculated from numbers of lives survived and compounded interest rates.</p>
 <p><span class="math notranslate nohighlight">\(_tE_x = v^t ~ \dfrac{l_{x+t}}{l_x}\)</span></p>
 <p><span class="math notranslate nohighlight">\({^2_t}E_x = v^{2t} ~ \dfrac{l_{x+t}}{l_x} = v^t ~ _tE_x\)</span></p>
 </section>
-<section id="temporary-annuity">
-<h2>Temporary Annuity<a class="headerlink" href="#temporary-annuity" title="Permalink to this heading">#</a></h2>
+<section id="term-life-insurance">
+<h2>Term life insurance<a class="headerlink" href="#term-life-insurance" title="Permalink to this heading">#</a></h2>
+<p>Term life insurance functions can be calculated from whole life insurance and pure endowment table columns.</p>
 <p><span class="math notranslate nohighlight">\(A^ {1}_{x:\overline{t|}} = A_x - ~_tE_x ~ A_{x+t} = A_{x:\overline{t|}} - ~_tE_x\)</span></p>
 <p><span class="math notranslate nohighlight">\({^2}A^ {1}_{x:\overline{t|}} = {^2}A_x - ~{^2_t}E_x ~ {^2}A_{x+t} = {^2}A_x - ~v^{t} ~ _tE_x ~ {^2}A_{x+t}\)</span></p>
 </section>
@@ -1165,7 +1167,7 @@ mortality for each member follows the Standard Ultimate Life Table.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-ultimate-life-table">Standard ultimate life table</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-endowment">Pure endowment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporary-annuity">Temporary Annuity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#term-life-insurance">Term life insurance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>

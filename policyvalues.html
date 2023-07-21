@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -387,7 +387,7 @@ document.write(`
 <h1>Policy Values<a class="headerlink" href="#policy-values" title="Permalink to this heading">#</a></h1>
 <p>Policy value at time <span class="math notranslate nohighlight">\(t\)</span> is the present value, at time <span class="math notranslate nohighlight">\(t\)</span>, of the future loss random variable</p>
 <p><strong>Net future loss at issue</strong></p>
-<p>For net future loss, we consider benefit payments and net premiums only.</p>
+<p>For net future loss at time <span class="math notranslate nohighlight">\(t=0\)</span>, we consider benefit payments and net premiums only.</p>
 <p><span class="math notranslate nohighlight">\(_0L = b~v^{K_x + 1} - P\ddot{a}_{\overline{K_x + 1|}} = (b + \dfrac{P}{d})~v^{K_x+1} - \dfrac{P}{d}\)</span></p>
 <ul class="simple">
 <li><p>net future loss at issue of fully discrete whole life insurance</p></li>
@@ -397,7 +397,7 @@ document.write(`
 <li><p>net future loss at issue of fully continuous whole life insurance</p></li>
 </ul>
 <p><strong>Gross future loss at issue</strong></p>
-<p>For gross future loss, expenses are included along with benefits payments and gross premiums.</p>
+<p>For gross future loss at time <span class="math notranslate nohighlight">\(t=0\)</span>, expenses are included along with benefits payments and gross premiums.</p>
 <p><span class="math notranslate nohighlight">\(_0L = (b + E + \dfrac{G - e_r}{d})~v^{K_x+1} - \dfrac{G - e_r}{d} + (e_i - e_r)\)</span></p>
 <ul class="simple">
 <li><p>gross future loss at issue of fully discrete whole life insurance</p></li>
@@ -473,11 +473,11 @@ document.write(`
 <h2>Expense reserve<a class="headerlink" href="#expense-reserve" title="Permalink to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\(P^e = P^g - P^n\)</span></p>
 <ul class="simple">
-<li><p>expense premium (sometimes, expense loading) is defined as the difference of gross premium and net premium</p></li>
+<li><p>expense premium (sometimes, expense loading) is defined as the difference of gross premium and net premium: if expenses are weighted to the start of the contract, as is normally the case, then <span class="math notranslate nohighlight">\(P^e\)</span> will be greater than the renewal expense as it must fund both the renewal and initial expenses.</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(_tV^e = ~_tV^g - ~_tV = EPV_t(\textsf{future expenses}) -  EPV_t(\textsf{future expense loadings})\)</span></p>
 <ul class="simple">
-<li><p>expense reserves, defined as the difference between gross reserves and net reserves, equals the expected present value of future expenses less the expected present value of future expense loadings (or expense premiums)</p></li>
+<li><p>expense reserves, defined as the difference between gross reserves and net reserves, also equals the expected present value of future expenses less the expected present value of future expense loadings (or expense premiums)</p></li>
 </ul>
 <p>Generally:</p>
 <ul class="simple">
@@ -487,7 +487,7 @@ document.write(`
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">PolicyValues</span></code> class implements methods for computing net and gross future losses, and policy values (expected present values).  The <code class="docutils literal notranslate"><span class="pre">Contract</span></code> class helps to store and retrieve policy contract terms, such as benefit amounts and various expenses.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">PolicyValues</span></code> class implements methods for computing net and gross future losses, and policy values (expected present values).  The <code class="docutils literal notranslate"><span class="pre">Contract</span></code> class is used store and retrieve policy contract terms, such as benefit amounts and the various types of expenses.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.policyvalues</span> <span class="kn">import</span> <span class="n">PolicyValues</span><span class="p">,</span> <span class="n">Contract</span>
@@ -534,6 +534,52 @@ document.write(`
 
     L_plot(x, s, stop, T, contract, ax, title, color):
       Plot PV of future loss r.v. L vs time of death T_x
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Contract</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Contract - Set and retrieve policy contract terms
+
+    Args:
+      premium : level premium amount
+      benefit : insurance death benefit amount
+      settlement_policy : settlement expense per policy
+      endowment : endowment benefit amount
+      initial_policy : first year total expense per policy
+      initial_premium : first year total premium per $ of gross premium
+      renewal_policy : renewal expense per policy
+      renewal_premium : renewal premium per $ of gross premium
+      discrete : annuity due (True) or continuous (False)
+      T : term of insurance
+      discrete : annuity due (True) or continuous (False)
+
+    Methods:
+    --------
+
+    set_contract(terms):
+      Update any existing policy contract terms
+
+    premium_terms():
+      Getter returns dict of terms required for calculating gross premiums
+
+    renewal_profit():
+      Getter returns renewal dollar profit (premium less renewal expenses)
+
+    initial_cost():
+      Getter returns total initial cost (excludes renewal expenses)
+
+    claims_cost():
+      Getter returns total claims cost (death benefit + settlement expense)
+
+    renewals(t):
+      Returns contract object with initial terms set to renewal terms
 </pre></div>
 </div>
 </div>

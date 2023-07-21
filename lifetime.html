@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -458,6 +458,41 @@ part of future lifetime.  For some lifetime distributions we are able to integra
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p><strong>AMLCR Exericse 2.1</strong></p>
+<p>Let <span class="math notranslate nohighlight">\(F_0(t) = 1 - (1 - t /105)^{1/5}\)</span> for <span class="math notranslate nohighlight">\(0 \le t \le 105\)</span>. Calculate</p>
+<p>(a) the probability that a newborn life dies before age 60 [0.1559]</p>
+<p>(b) the probability that a life aged 30 survives to at least age 70 [0/8586]</p>
+<p>(c) the probability that a life aged 20 dies between ages 90 and 100 [0.1394]</p>
+<p>(d) the force of mortality at age 50 [0.0036]</p>
+<p>(e) the median future lifetime at age 50 [53.28]</p>
+<p>(f) the complete expectation of life at age 50 [45.83]</p>
+<p>(g) the curtate expectation of life at age 50 [45.18]</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">F</span><span class="p">(</span><span class="n">t</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="o">/</span><span class="mi">105</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="mi">105</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Lifetime</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">S</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">F</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="o">+</span><span class="n">t</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">F</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(a)&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">60</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(b)&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">70</span><span class="o">-</span><span class="mi">30</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(c)&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mi">90</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">100</span><span class="o">-</span><span class="mi">90</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(d)&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">mu_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(e)&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">),</span> <span class="n">target</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">55</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(f)&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(g)&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(a) 0.1558791201558899
+(b) 0.8586207034844889
+(c) 0.13943444007155992
+(d) 0.003636764417087519
+(e) 53.28124999999994
+(f) 45.833333333333336
+(g) 45.17675143564247
+</pre></div>
+</div>
+</div>
+</div>
 <p><strong>SOA Question 2.1</strong></p>
 <p>You are given:</p>
 <ul class="simple">

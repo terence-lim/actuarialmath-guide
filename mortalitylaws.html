@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Constant Force of Mortality" href="constantforce.html" />
-    <link rel="prev" title="Reserves" href="reserves.html" />
+    <link rel="prev" title="Select Life Table" href="selectlife.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -466,6 +466,12 @@ class Beta - Shortcuts with beta distribution of deaths (is Uniform when alpha =
       alpha : alpha paramter of beta distribution
       lives : assumed starting number of lives for survival function
 
+    Examples:
+      &gt;&gt;&gt; life = Beta(omega=100, alpha=0.5)
+      &gt;&gt;&gt; print(life.q_x(25, t=1, u=10))     # 0.0072
+      &gt;&gt;&gt; print(life.e_x(25))                # 50
+      &gt;&gt;&gt; print(Beta(omega=60, alpha=1/3).mu_x(35) * 1000)
+
 
 class Uniform - Shortcuts with uniform distribution of deaths aka DeMoivre&#39;s Law
 
@@ -473,17 +479,34 @@ class Uniform - Shortcuts with uniform distribution of deaths aka DeMoivre&#39;s
       omega : maximum age
       udd : assume UDD (True, default) or CFM (False) between integer ages
 
+    Examples:
+      &gt;&gt;&gt; uniform = Uniform(80).set_interest(delta=0.04)
+      &gt;&gt;&gt; print(uniform.whole_life_annuity(20, discrete=False))        # 15.53
+      &gt;&gt;&gt; print(uniform.temporary_annuity(20, t=5, discrete=False))   # 4.35
+      &gt;&gt;&gt; print(Uniform(161).p_x(70, t=1)) # 0.98901
+      &gt;&gt;&gt; print(Uniform(95).e_x(30, t=40, curtate=False)) # 27.692
+
 
 class Makeham - Includes element in force of mortality that does not depend on age
 
     Args:
       A, B, c : parameters of Makeham distribution
 
+    Examples:
+      &gt;&gt;&gt; life = Makeham(A=0.00022, B=2.7e-6, c=1.124)
+      &gt;&gt;&gt; print(life.mu_x(60) * 0.9803)  # 0.00316
+
 
 class Gompertz - Is Makeham&#39;s Law with A = 0
 
     Args:
       B, c : parameters of Gompertz distribution
+
+    Examples:
+      &gt;&gt;&gt; life = Gompertz(B=0.000005, c=1.10)
+      &gt;&gt;&gt; p = life.p_x(80, t=10)  # 869.4
+      &gt;&gt;&gt; print(life.portfolio_percentile(N=1000, mean=p, variance=p*(1-p), prob=0.99)) 
+      &gt;&gt;&gt; print(Gompertz(B=0.00027, c=1.1).f_x(50, t=10)) # 0.04839
 </pre></div>
 </div>
 </div>
@@ -636,12 +659,12 @@ Calculate <span class="math notranslate nohighlight">\(f_{50}(10)\)</span>.</p>
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="reserves.html"
+       href="selectlife.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Reserves</p>
+        <p class="prev-next-title">Select Life Table</p>
       </div>
     </a>
     <a class="right-next"

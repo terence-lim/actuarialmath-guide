@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'reserves';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Mortality Laws" href="mortalitylaws.html" />
+    <link rel="next" title="Recursion" href="recursion.html" />
     <link rel="prev" title="Policy Values" href="policyvalues.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -419,10 +419,9 @@ greater than or less than the policy value.</p>
 </section>
 <section id="modified-reserves">
 <h2>Modified reserves<a class="headerlink" href="#modified-reserves" title="Permalink to this heading">#</a></h2>
-<p>Because acquisition expenses are large relative to the renewal and claims expenses, accounting with level net premiums typically results in large negative values for expense reserves (called deferred acquisition costs or DAC) particularly at issue.<br />
-Modified premium reserves are computed without expenses, and modifies the net premium method to assume a lower initial premium that allow implicitly for the DAC.</p>
+<p>Because acquisition expenses are large relative to the renewal and claims expenses, accounting with level net premiums typically results in large negative values for expense reserves (called deferred acquisition costs or DAC) particularly at issue. Modified premium reserves are computed without expenses, and modifies the net premium method to assume a lower initial net premium that allow implicitly for the DAC.</p>
 <p><strong>Full Preliminary Term</strong></p>
-<p>FPT is the most common method for modifying reserves. It treats the insurance policy as one-year term insurance combined with a policy as if it were issued one year later.</p>
+<p>FPT is the most common method for modifying net premium policy value. It treats the insurance policy as one-year term insurance combined with a policy as if it were issued one year later.</p>
 <p><span class="math notranslate nohighlight">\(\alpha = A^{1}_{x:\overline{1|}} = v ~ q_x\)</span></p>
 <ul class="simple">
 <li><p>initial FPT premium</p></li>
@@ -452,7 +451,7 @@ Modified premium reserves are computed without expenses, and modifies the net pr
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Reserves - Compute recursive, interim and modified reserves
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Reserves - Compute recursive, interim or modified reserves
 
     Methods:
     --------
@@ -561,7 +560,7 @@ Modified premium reserves are computed without expenses, and modifies the net pr
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b08c6d94c6b80e1888bcd198cf7b8838d437a5ed1f5a2949aca68da71ec6a58d.png" src="_images/b08c6d94c6b80e1888bcd198cf7b8838d437a5ed1f5a2949aca68da71ec6a58d.png" />
+<img alt="_images/85d8c1ea6199d13585ceb3dde189e1546368891a78fec823125a96952be94b06.png" src="_images/85d8c1ea6199d13585ceb3dde189e1546368891a78fec823125a96952be94b06.png" />
 </div>
 </div>
 <p><strong>AMLCR2 Figure 7.3</strong>:</p>
@@ -579,7 +578,7 @@ Modified premium reserves are computed without expenses, and modifies the net pr
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d9176af9f1c22875c183b220d88738a4758f9b573150616a2428ec78b7c89ece.png" src="_images/d9176af9f1c22875c183b220d88738a4758f9b573150616a2428ec78b7c89ece.png" />
+<img alt="_images/0300960dc20a35343f415acf343d1dba4ba2ff7b32c1eca0fad7b0322b15aa39.png" src="_images/0300960dc20a35343f415acf343d1dba4ba2ff7b32c1eca0fad7b0322b15aa39.png" />
 </div>
 </div>
 </section>
@@ -626,11 +625,11 @@ Modified premium reserves are computed without expenses, and modifies the net pr
       </div>
     </a>
     <a class="right-next"
-       href="mortalitylaws.html"
+       href="recursion.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Mortality Laws</p>
+        <p class="prev-next-title">Recursion</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

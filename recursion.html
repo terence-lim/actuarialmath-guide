@@ -64,8 +64,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'recursion';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Extra Risk" href="extrarisk.html" />
-    <link rel="prev" title="Select Life Table" href="selectlife.html" />
+    <link rel="next" title="Life Table" href="lifetable.html" />
+    <link rel="prev" title="Reserves" href="reserves.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -385,7 +385,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="recursion">
 <h1>Recursion<a class="headerlink" href="#recursion" title="Permalink to this heading">#</a></h1>
-<p>Using annual values provided, such as in a life table, we can calculate other values at other ages and durations by applying recursion formulas and other actuarial identities.</p>
+<p>Using annual values provided we can calculate other values at other ages and durations by applying recursion formulas and other actuarial identities.</p>
 <section id="chain-rule">
 <h2>Chain rule<a class="headerlink" href="#chain-rule" title="Permalink to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\(_{t+n}p_x =\ _np_x \cdot\ _tp_{x+n}\)</span></p>
@@ -442,21 +442,21 @@ document.write(`
 <ul class="simple">
 <li><p>shortcut for one-year term life insurance</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(^{2}A^{1}_{x:\overline{1|}} = v^2 ~ q_x ~b^2\)</span></p>
+<p><span class="math notranslate nohighlight">\(^{2}A^{1}_{x:\overline{1|}} = v^2 ~ q_x\)</span></p>
 <ul class="simple">
-<li><p>shortcut for second moment of one-year term life insurance, with benefit = <span class="math notranslate nohighlight">\(b\)</span></p></li>
+<li><p>shortcut for second moment of one-year term life insurance</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(A_{x:\overline{0|}} =~ _0E_x = b\)</span></p>
+<p><span class="math notranslate nohighlight">\(A_{x:\overline{0|}} =~ _0E_x = 1\)</span></p>
 <ul class="simple">
-<li><p>endowment insurance (and pure endowment) at end of term, with benefit = <span class="math notranslate nohighlight">\(b\)</span></p></li>
+<li><p>endowment insurance at end of term is pure endowment</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(A_{x:\overline{1|}} = q_x ~ v ~ b + p_x ~ v ~ b = v ~ b\)</span></p>
+<p><span class="math notranslate nohighlight">\(A_{x:\overline{1|}} = q_x ~ v + p_x ~ v = v\)</span></p>
 <ul class="simple">
-<li><p>shortcut for one-year endowment insurance, with benefit = <span class="math notranslate nohighlight">\(b\)</span></p></li>
+<li><p>shortcut for one-year endowment insurance</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(^2A_{x:\overline{1|}} =  v^2 ~ b^2\)</span></p>
+<p><span class="math notranslate nohighlight">\(^2A_{x:\overline{1|}} =  v^2\)</span></p>
 <ul class="simple">
-<li><p>shortcut for second moment of one-year endowment insurance, with benefit = <span class="math notranslate nohighlight">\(b\)</span></p></li>
+<li><p>shortcut for second moment of one-year endowment insurance</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(IA^{1}_{x:\overline{t|}} = v ~ q_x + v ~ p_x ~ (A_{x+1} + IA^{1}_{x+1:\overline{t-1|}})\)</span></p>
 <ul class="simple">
@@ -477,9 +477,9 @@ document.write(`
 <ul class="simple">
 <li><p>temporary annuity recursion</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(\ddot{a}_{x:\overline{1|}} = b \)</span></p>
+<p><span class="math notranslate nohighlight">\(\ddot{a}_{x:\overline{1|}} = 1\)</span></p>
 <ul class="simple">
-<li><p>shortcut for one-year temporary annuity, with benefit = <span class="math notranslate nohighlight">\(b\)</span></p></li>
+<li><p>shortcut for one-year temporary annuity</p></li>
 </ul>
 </section>
 <section id="methods">
@@ -591,14 +591,14 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Survival}~p_{x+3}~:=\\
 ~~~p_{x+3} = 1 - ~q_{x+3}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.98 0.98
 </pre></div>
 </div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Survival}~_{2}p_{x}~:=\\
 ~~~_{2}p_{x} = ~_{3}p_{x} / ~p_{x+2}&amp; \quad \texttt{survival chain rule}\\
 ~~~~~p_{x+2} = ~_{2}p_{x+1} / ~p_{x+1}&amp; \quad \texttt{survival chain rule}\\
@@ -610,7 +610,7 @@ document.write(`
 </pre></div>
 </div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Survival}~_{2}p_{x+1}~:=\\
 ~~~_{2}p_{x+1} = ~_{3}p_{x} / ~p_{x}&amp; \quad \texttt{survival chain rule}\\
 ~~~~~_{3}p_{x} = ~_{4}p_{x} / ~p_{x+3}&amp; \quad \texttt{survival chain rule}\\
@@ -620,7 +620,7 @@ document.write(`
 </pre></div>
 </div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Survival}~_{3}p_{x}~:=\\
 ~~~_{3}p_{x} = ~_{4}p_{x} / ~p_{x+3}&amp; \quad \texttt{survival chain rule}\\
 ~~~~~_{4}p_{x} = ~_{3}p_{x+1} * ~p_{x}&amp; \quad \texttt{survival chain rule}\\
@@ -629,7 +629,7 @@ document.write(`
 </pre></div>
 </div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Mortality}~_{{1|2}}q_{x}~:=\\
 ~~~_{{1|2}}q_{x} = ~p_{x} - ~_{3}p_{x}&amp; \quad \texttt{complement survival}\\
 ~~~~~_{3}p_{x} = ~_{4}p_{x} / ~p_{x+3}&amp; \quad \texttt{survival chain rule}\\
@@ -670,7 +670,7 @@ document.write(`
 </pre></div>
 </div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Annuity}~\ddot{a}_{{x}}~:=\\
 ~~~\ddot{a}_{{x}} = 1 + ~E_{x} * ~\ddot{a}_{{x+1}}&amp; \quad \texttt{backward recursion}\\
 ~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\\
@@ -679,7 +679,7 @@ document.write(`
 </pre></div>
 </div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Insurance}~A_{{x+1}}~:=\\
 ~~~A_{{x+1}} = [ ~A_{{x}} / v - ~q_{x} * b ] / ~p_{x}&amp; \quad \texttt{forward recursion}\\
 ~~~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
@@ -716,7 +716,7 @@ you are given:</p>
 </pre></div>
 </div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Survival}~p_{x+2}~:=\\
 ~~~p_{x+2} = ~E_{x+2} /v&amp; \quad \texttt{one-year pure endowment}\\
 ~~~~~E_{x+2} = ~A_{{x+2:\overline{1|}}} - ~A^1_{{x+2:\overline{1|}}}&amp; \quad \texttt{endowment insurance minus term}\\
@@ -762,15 +762,15 @@ you are given:</p>
 </pre></div>
 </div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Pure Endowment}~_{5}E_{x}~:=\\
 ~~~_{5}E_{x} = ~_{5}p_{x} * v^{5}&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Pure Endowment}~_{5}E_{x}~:=\\
 ~~~_{5}E_{x} = ~_{5}p_{x} * v^{5}&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Term Insurance}~A^1_{{x+5:\overline{3|}}}~:=\\
 ~~~A^1_{{x+5:\overline{3|}}} = ~A_{{x+5:\overline{3|}}} - ~_{3}E_{x+5}&amp; \quad \texttt{endowment insurance - pure}\\
 ~~~~~_{3}E_{x+5} = ~E_{x+5} * ~_{2}E_{x+6}&amp; \quad \texttt{pure endowment chain rule}\\
@@ -784,7 +784,7 @@ you are given:</p>
 ~~~~~~~~~p_{x+6} = 1 - ~q_{x+6}&amp; \quad \texttt{complement of mortality}\\
 ~~~~~~~~~p_{x+5} = 1 - ~q_{x+5}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Term Insurance}~A^1_{{x+5:\overline{3|}}}~:=\\
 ~~~A^1_{{x+5:\overline{3|}}} = ~A_{{x+5:\overline{3|}}} - ~_{3}E_{x+5}&amp; \quad \texttt{endowment insurance - pure}\\
 ~~~~~_{3}E_{x+5} = ~E_{x+5} * ~_{2}E_{x+6}&amp; \quad \texttt{pure endowment chain rule}\\
@@ -839,7 +839,7 @@ equivalence principle</p></li>
 </pre></div>
 </div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Term Insurance}~A^1_{{x:\overline{2|}}}~:=\\
 ~~~A^1_{{x:\overline{2|}}} = ~A_{{x:\overline{2|}}} - ~_{2}E_{x}&amp; \quad \texttt{endowment insurance - pure}\\
 ~~~~~_{2}E_{x} = ~_{2}p_{x} * v^{2}&amp; \quad \texttt{pure endowment}\\
@@ -849,13 +849,13 @@ equivalence principle</p></li>
 ~~~~~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\\
 ~~~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Temporary Annuity}~\ddot{a}_{{x:\overline{2|}}}~:=\\
 ~~~\ddot{a}_{{x:\overline{2|}}} = 1 + ~E_{x} * ~\ddot{a}_{{x+1:\overline{1|}}}&amp; \quad \texttt{backward recursion}\\
 ~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\\
 ~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Pure Endowment}~_{2}E_{x}~:=\\
 ~~~_{2}E_{x} = ~_{2}p_{x} * v^{2}&amp; \quad \texttt{pure endowment}\\
 ~~~~~_{2}p_{x} = ~p_{x+1} * ~p_{x}&amp; \quad \texttt{survival chain rule}\\
@@ -897,10 +897,10 @@ equivalence principle</p></li>
 </pre></div>
 </div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Lifetime}~e_{{x+41}}~:=\\
-~~~\overset{{\circ}}{{e}}_{{x+41}} = [ ~\overset{{\circ}}{{e}}_{{x+40}} - ~\overset{{\circ}}{{e}}_{{x+40:\overline{1|}}} ] / ~p_{x+40}&amp; \quad \texttt{forward recursion}\\
-~~~~~\overset{{\circ}}{{e}}_{{x+40}} = ~\overset{{\circ}}{{e}}_{{x+40:\overline{20|}}} + ~_{20}p_{x+40} * ~\overset{{\circ}}{{e}}_{{x+60}}&amp; \quad \texttt{backward recursion}\\
+~~~e_{{x+41}} = [ ~e_{{x+40}} - ~e_{{x+40:\overline{1|}}} ] / ~p_{x+40}&amp; \quad \texttt{forward recursion}\\
+~~~~~e_{{x+40}} = ~e_{{x+40:\overline{20|}}} + ~_{20}p_{x+40} * ~e_{{x+60}}&amp; \quad \texttt{backward recursion}\\
 ~~~~~~~~~_{20}p_{x+40} = 1 - ~_{{20}}q_{x+40}&amp; \quad \texttt{complement of mortality}\\
 ~~~~~~~e_{{x+40:\overline{1|}}} = ~p_{x+40}&amp; \quad \texttt{1-year curtate shortcut}\\
 ~~~~~~~~~p_{x+40} = 1 - ~q_{x+40}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
@@ -944,20 +944,20 @@ equivalence principle</p></li>
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="selectlife.html"
+       href="reserves.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Select Life Table</p>
+        <p class="prev-next-title">Reserves</p>
       </div>
     </a>
     <a class="right-next"
-       href="extrarisk.html"
+       href="lifetable.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Extra Risk</p>
+        <p class="prev-next-title">Life Table</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -405,7 +405,8 @@ The calculation of the premium may not explicitly allow for the insurance compan
 </section>
 <section id="net-premium">
 <h2>Net premium<a class="headerlink" href="#net-premium" title="Permalink to this heading">#</a></h2>
-<p>The net premium, excluding expenses, is determined under the equivalence principle</p>
+<p>For net premiums, we take into consideration outgoing benefit payments only:
+expenses are not a part of the calculation. The benefit may be a death benefit or a survival benefit or a combination. Under the equivalence principle, the net premium is set such that the expected value of the future loss is zero at the start of the contract, <span class="math notranslate nohighlight">\(E[L_0] = 0\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(P_{x} = \dfrac{A_{x}}{\ddot{a}_{x}}\)</span></p>
 <ul class="simple">
 <li><p>fully discrete whole life insurance net premium</p></li>
@@ -459,14 +460,14 @@ The calculation of the premium may not explicitly allow for the insurance compan
 </section>
 <section id="portfolio-percentile-premium">
 <h2>Portfolio Percentile Premium<a class="headerlink" href="#portfolio-percentile-premium" title="Permalink to this heading">#</a></h2>
-<p>The portfolio percentile premium principle is an alternative to the equivalence premium principle. We assume a large portfolio of <span class="math notranslate nohighlight">\(N\)</span> identical and independent policies. The present value of the total future loss <span class="math notranslate nohighlight">\(\overline{L}\)</span> of the portfolio can be approximated by a normal distribution over the sum of the individual losses <span class="math notranslate nohighlight">\(L_i\)</span></p>
+<p>The portfolio percentile premium principle is an alternative to the equivalence premium principle. Using the mean and variance of the future loss random variable, the portfolio percentile premium principle can be used to determine a premium. We assume a large portfolio of <span class="math notranslate nohighlight">\(N\)</span> identical and independent policies. The present value of the total future loss <span class="math notranslate nohighlight">\(\overline{L}\)</span> of the portfolio can be approximated by a normal distribution over the sum of the individual losses <span class="math notranslate nohighlight">\(L_i\)</span></p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{align}
+\[\begin{split}\begin{align*}
 \overline{L} &amp; = L_1 + L_2 + \cdots + L_N\\
 E[\overline{L}] &amp;= N ~ E[L]\\
 Var[\overline{L}] &amp;= N ~ Var[L]\\
-\end{align}\end{split}\]</div>
-<p>Note <span class="math notranslate nohighlight">\(E[\overline{L}]\)</span> and <span class="math notranslate nohighlight">\(Var[\overline{L}]\)</span> are functions of the unspecified premium <span class="math notranslate nohighlight">\(P\)</span>. Some probability percentile <span class="math notranslate nohighlight">\(q\)</span> (say, 95% confidence) and threshold <span class="math notranslate nohighlight">\(L^*\)</span> (say, 0) are chosen, then <span class="math notranslate nohighlight">\(P\)</span> is solved for implicitly from the following equation, such that the probability of <span class="math notranslate nohighlight">\(\overline{L}\)</span> not exceeding <span class="math notranslate nohighlight">\(L^*\)</span> is <span class="math notranslate nohighlight">\(q\)</span></p>
+\end{align*}\end{split}\]</div>
+<p>Note <span class="math notranslate nohighlight">\(E[\overline{L}]\)</span> and <span class="math notranslate nohighlight">\(Var[\overline{L}]\)</span> are functions of the unspecified premium <span class="math notranslate nohighlight">\(P\)</span>. A probability percentile <span class="math notranslate nohighlight">\(q\)</span> (say, 95% confidence) and a threshold <span class="math notranslate nohighlight">\(L^*\)</span> (say, 0) are chosen, then <span class="math notranslate nohighlight">\(P\)</span> is solved for implicitly from the following equation, such that the probability of <span class="math notranslate nohighlight">\(\overline{L}\)</span> not exceeding <span class="math notranslate nohighlight">\(L^*\)</span> is <span class="math notranslate nohighlight">\(q\)</span></p>
 <div class="math notranslate nohighlight">
 \[Pr[\overline{L} &lt; L^*] = 
 Pr \left[\dfrac{\overline{L} - E[\overline{L}]}{\sqrt{Var[\overline{L}]}}
@@ -475,17 +476,18 @@ Pr \left[\dfrac{\overline{L} - E[\overline{L}]}{\sqrt{Var[\overline{L}]}}
 </section>
 <section id="gross-premium">
 <h2>Gross premium<a class="headerlink" href="#gross-premium" title="Permalink to this heading">#</a></h2>
-<p>Gross premiums account for expenses.</p>
-<p>If gross premiums are set under equivalence principle, then expected gross future loss at issue equals zero:</p>
-<p><span class="math notranslate nohighlight">\(~ E[_0L^g] = EPV_0 (\textsf{future benefits}) + EPV_0 (\textsf{future expenses})- EPV_0 (\textsf{future premiums}) = 0\)</span></p>
+<p>When we calculate a gross premium for an insurance policy or an annuity, we
+take account of the expenses the insurer incurs. There are three main types
+of expense associated with policies – initial expenses, renewal expenses and
+termination or claim expenses.</p>
 <p><strong>Expenses</strong>:</p>
 <p><span class="math notranslate nohighlight">\(e_i = \)</span> initial_per_policy + initial_per_premium <span class="math notranslate nohighlight">\(\times\)</span> gross_premium</p>
 <ul class="simple">
-<li><p>initial expenses at the beginning of year 1 when a policy is issued, includes both per policy and percent of premium</p></li>
+<li><p>initial expenses at the beginning of year 1 when a policy is issued, which may be both proportional to premiums or may be ‘per policy’, meaning that the amount is fixed for all policies, and is not related to the size of the contract.</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(e_r = \)</span> renewal_per_policy + renewal_per_premium <span class="math notranslate nohighlight">\(\times\)</span> gross_premium</p>
 <ul class="simple">
-<li><p>renewal expenses in the beginning of each year 2+, includes both per policy or percent of premium</p></li>
+<li><p>renewal expenses in the beginning of each year 2+, may be both per policy or percent of premium.</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(E =\)</span> settlement expense</p>
 <ul>
@@ -498,6 +500,9 @@ Pr \left[\dfrac{\overline{L} - E[\overline{L}]}{\sqrt{Var[\overline{L}]}}
 <ul class="simple">
 <li><p>an additional benefit in some insurance policies, whose EPV can be calculated using an increasing insurance factor</p></li>
 </ul>
+<p><strong>Equivalence principle</strong>:</p>
+<p>If gross premiums are set under equivalence principle, then expected gross future loss at issue equals zero:</p>
+<p><span class="math notranslate nohighlight">\(~ E[_0L^g] = EPV_0 (\textsf{future benefits}) + EPV_0 (\textsf{future expenses})- EPV_0 (\textsf{future premiums}) = 0\)</span></p>
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>

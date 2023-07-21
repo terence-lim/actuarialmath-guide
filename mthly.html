@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -367,8 +367,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-insurance">Life Insurance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-annuity-twin">Life Annuity Twin</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#immediate-life-annuity">Immediate Life Annuity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-annuity">Life Annuity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-insurance-twin">Life Insurance Twin</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
@@ -390,20 +390,28 @@ document.write(`
 <li><p>1/mthly curtate future lifetime random variable,
 where <span class="math notranslate nohighlight">\(m &gt; 1\)</span> is an integer, is the future lifetime of (x) in years rounded to the lower <span class="math notranslate nohighlight">\(\frac{1}{m}\)</span> th of a year.</p></li>
 </ul>
+<p><span class="math notranslate nohighlight">\(Pr[K_x^{(m)} = k] = Pr [k \le T_x \le k + \dfrac{1}{m}] = ~_{k|\frac{1}{m}} q_x = ~_kp_x - ~_{k+\frac{1}{m}} p_x\)</span></p>
+<ul class="simple">
+<li><p>the probability function for <span class="math notranslate nohighlight">\(K_x^{(m)}\)</span> can be derived from the associated probabilities for <span class="math notranslate nohighlight">\(T_x\)</span>.</p></li>
+</ul>
 <section id="life-insurance">
 <h2>Life Insurance<a class="headerlink" href="#life-insurance" title="Permalink to this heading">#</a></h2>
 <p><strong>Whole life insurance</strong></p>
 <p><span class="math notranslate nohighlight">\(Z = v^{K_x^{(k)}+1/m}\)</span></p>
 <ul class="simple">
-<li><p>present value random variable of whole life insurance</p></li>
+<li><p>present value random variable of 1/mthly whole life insurance</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(A^{(m)}_x = E[Z] = \sum_{k=0}^{\infty} ~ v^{\frac{k+1}{m}} ~ _{\frac{k}{m}|\frac{1}{m}}q_x\)</span></p>
 <ul class="simple">
 <li><p>1/m’thly  whole life insurance</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(E[Z^2] = E[(v^2)^{K_x^{(k)}+1/m}] = ^2A^{(m)}_x\)</span></p>
+<p><span class="math notranslate nohighlight">\(E[Z^2] = E[(v^2)^{K_x^{(k)}+1/m}] =~ ^2A^{(m)}_x\)</span></p>
 <ul class="simple">
 <li><p>second moment is also obtained from <span class="math notranslate nohighlight">\(A^{(m)}_x\)</span> at double the force of interest</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var(Z) = E[Z^2] - E[Z]^2 = ~^2A^{(m)}_x - (A^{(m)}_x)^2\)</span></p>
+<ul class="simple">
+<li><p>the variance of the present value of the 1/<span class="math notranslate nohighlight">\(m\)</span>’thly insurance benefit can be derived by adjusting the interest rate in the first time</p></li>
 </ul>
 <p><strong>Term life insurance</strong></p>
 <p><span class="math notranslate nohighlight">\(Z = 0\)</span> if <span class="math notranslate nohighlight">\(K_x^{(m)} \ge t\)</span>, else <span class="math notranslate nohighlight">\(v^{K_x^{(k)}+1/m}\)</span></p>
@@ -415,19 +423,16 @@ where <span class="math notranslate nohighlight">\(m &gt; 1\)</span> is an integ
 <li><p>EPV of 1/m-thly term insurance benefits</p></li>
 </ul>
 </section>
-<section id="life-annuity-twin">
-<h2>Life Annuity Twin<a class="headerlink" href="#life-annuity-twin" title="Permalink to this heading">#</a></h2>
-<p><span class="math notranslate nohighlight">\(A^{(m)}_{x} = 1 - d^{(m)} ~ \ddot{a}^{(m)}_{x} ~ \Longleftrightarrow ~ \ddot{a}^{(m)}_{x} = \dfrac{1 - A^{(m)}_{x}}{d^{(m)}}\)</span></p>
+<section id="life-annuity">
+<h2>Life Annuity<a class="headerlink" href="#life-annuity" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(\ddot{a}^{(m)}_x =\sum_{k=0}^{\infty} \dfrac{1}{m} ~ v^{\frac{k}{m}} ~ _{\frac{k}{m}}p_x\)</span></p>
 <ul class="simple">
-<li><p>1/m’thly  whole life annuity due</p></li>
+<li><p>1/mthly  whole life annuity</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(A^{(m)}_{x:\overline {t|}} = 1 - d^{(m)} ~ \ddot{a}^{(m)}_{x:\overline {t|}} ~ \Longleftrightarrow ~ \ddot{a}^{(m)}_{x:\overline {t|}} = \dfrac{1 - A^{(m)}_{x:\overline {t|}}}{d^{(m)}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\ddot{a}^{(m)}_{x:\overline{t|}} = \sum_{k=0}^{mt-1} \dfrac{1}{m} ~ v^{\frac{k}{m}} ~ _{\frac{k}{m}}p_x \)</span></p>
 <ul class="simple">
-<li><p>1/m’thly temporary annuity due and endowment insurance</p></li>
+<li><p>1/mthly temporary life annuity</p></li>
 </ul>
-</section>
-<section id="immediate-life-annuity">
-<h2>Immediate Life Annuity<a class="headerlink" href="#immediate-life-annuity" title="Permalink to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\(a^{(m)}_{x} = \ddot{a}^{(m)}_{x} - \dfrac{1}{m}\)</span></p>
 <ul class="simple">
 <li><p>immediate 1/m’thly whole life annuity</p></li>
@@ -437,8 +442,21 @@ where <span class="math notranslate nohighlight">\(m &gt; 1\)</span> is an integ
 <li><p>immediate 1/m’thly temporary life annuity</p></li>
 </ul>
 </section>
+<section id="life-insurance-twin">
+<h2>Life Insurance Twin<a class="headerlink" href="#life-insurance-twin" title="Permalink to this heading">#</a></h2>
+<p><em>Whole</em> and <em>Temporary Life Annuities</em> (and <em>Whole Life</em> and <em>Endowment Insurance</em>) <strong>ONLY</strong>:</p>
+<p><span class="math notranslate nohighlight">\(A^{(m)}_{x} = 1 - d^{(m)} ~ \ddot{a}^{(m)}_{x} ~ \Longleftrightarrow ~ \ddot{a}^{(m)}_{x} = \dfrac{1 - A^{(m)}_{x}}{d^{(m)}}\)</span></p>
+<ul class="simple">
+<li><p>1/m’thly  whole life annuity due</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(A^{(m)}_{x:\overline {t|}} = 1 - d^{(m)} ~ \ddot{a}^{(m)}_{x:\overline {t|}} ~ \Longleftrightarrow ~ \ddot{a}^{(m)}_{x:\overline {t|}} = \dfrac{1 - A^{(m)}_{x:\overline {t|}}}{d^{(m)}}\)</span></p>
+<ul class="simple">
+<li><p>1/m’thly temporary annuity due and endowment insurance</p></li>
+</ul>
+</section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
+<p>Ths <code class="docutils literal notranslate"><span class="pre">Mthly</span></code> class implements methods to compute life insurance and annuity values with 1/mthly benefits.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">Mthly</span><span class="p">,</span> <span class="n">Premiums</span><span class="p">,</span> <span class="n">LifeTable</span>
@@ -517,7 +535,6 @@ where <span class="math notranslate nohighlight">\(m &gt; 1\)</span> is an integ
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
-<p>Ths <code class="docutils literal notranslate"><span class="pre">Mthly</span></code> class implements methods to compute life insurance and annuity values with m’thly-pay.</p>
 <p><strong>SOA Question 6.4</strong></p>
 <p>For whole life annuities-due of 15 per month on each of 200 lives age 62 with
 independent future lifetimes, you are given:</p>
@@ -655,8 +672,8 @@ m
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-insurance">Life Insurance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-annuity-twin">Life Annuity Twin</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#immediate-life-annuity">Immediate Life Annuity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-annuity">Life Annuity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-insurance-twin">Life Insurance Twin</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>

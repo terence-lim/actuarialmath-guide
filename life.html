@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -367,6 +367,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability">Probability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portfolio-percentile">Portfolio Percentile</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
@@ -382,9 +383,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="life-contingent-risks">
 <h1>Life Contingent Risks<a class="headerlink" href="#life-contingent-risks" title="Permalink to this heading">#</a></h1>
+<p>By modeling future lifetimes as random variables, probabilities of survival or death can be calculated. This section reviews essential probability relationships and the moments of common distributions.</p>
 <section id="probability">
 <h2>Probability<a class="headerlink" href="#probability" title="Permalink to this heading">#</a></h2>
-<p><span class="math notranslate nohighlight">\(Var(aX, bY) = a^2~Var(X) + b^2~Var(Y) + 2~a~b~Cov(X,Y)\)</span></p>
+<p><span class="math notranslate nohighlight">\(Var(aX + bY) = a^2~Var(X) + b^2~Var(Y) + 2~a~b~Cov(X,Y)\)</span></p>
 <p><span class="math notranslate nohighlight">\(Cov(X, Y) = E[XY] - E[X] \cdot E[Y]\)</span></p>
 <p><strong>Bernoulli</strong> <span class="math notranslate nohighlight">\((p)\)</span> distribution</p>
 <p><span class="math notranslate nohighlight">\(Y \in \{a,~b\}\)</span> w.p. <span class="math notranslate nohighlight">\((p,~1-p)\)</span></p>
@@ -398,29 +400,37 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(E[Y] = N~p\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(Var[Y] = N~p~(1-p)\)</span></p></li>
 </ul>
-<p><strong>Mixture</strong> <span class="math notranslate nohighlight">\((p,~p_1,~p_2)\)</span> of binomial distributions</p>
-<p>Y is Binomial <span class="math notranslate nohighlight">\((p',~N)\)</span>, where <span class="math notranslate nohighlight">\(p' \in (p_1,~p_2)\)</span> w.p. <span class="math notranslate nohighlight">\((p,~1-p)\)</span></p>
+<p><strong>Mixture</strong></p>
+<p>A mixture distribution is a random variable <span class="math notranslate nohighlight">\(Y\)</span> whose distribution function can be expressed as a weighted average of the distribution functions of <span class="math notranslate nohighlight">\(n\)</span> random variables <span class="math notranslate nohighlight">\(Y_1, \cdots, Y_n\)</span></p>
+<p>e.g. Y is mixture of two Binomial distributions <span class="math notranslate nohighlight">\((p',~N)\)</span>, where <span class="math notranslate nohighlight">\(p' \in (p_1,~p_2)\)</span> w.p. <span class="math notranslate nohighlight">\((p,~1-p)\)</span></p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(E[Y] = p~N~p_1 + (1-p)~N~p_2\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(Var[Y] = E[Y^2] - E[Y]^2 = E[Var(Y~|~p') + E(Y~|~p')^2] - E[Y]^2\)</span></p></li>
 </ul>
 <p><strong>Conditional Variance</strong></p>
-<p><span class="math notranslate nohighlight">\(Var[Y] = Var(E[Y~|~p']) + E[Var (Y~|~p')]\)</span></p>
-<p><strong>Portfolio Percentile</strong> (<span class="math notranslate nohighlight">\(p, N, \mu, \sigma^2\)</span>)</p>
-<p><span class="math notranslate nohighlight">\(Y\)</span> is sum of <span class="math notranslate nohighlight">\(N\)</span> iid random variables, each with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span></p>
-<p><span class="math notranslate nohighlight">\(Y \sim\)</span> Normal with</p>
+<p>Alternative calculation of the variance of a mixture by using conditional variance formula</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Var[Y] = Var(E[Y~|~p']) + E[Var (Y~|~p')]\)</span></p></li>
+</ul>
+</section>
+<section id="portfolio-percentile">
+<h2>Portfolio Percentile<a class="headerlink" href="#portfolio-percentile" title="Permalink to this heading">#</a></h2>
+<p><strong>Normal Approximation</strong></p>
+<p>A portfolio, <span class="math notranslate nohighlight">\(Y\)</span>, which is the sum of <span class="math notranslate nohighlight">\(N\)</span> iid random variables each with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>, has a normal distribution with</p>
 <ul class="simple">
 <li><p>mean <span class="math notranslate nohighlight">\(E[Y] = N\mu\)</span> and</p></li>
 <li><p>variance <span class="math notranslate nohighlight">\(Var[Y] = N\sigma^2\)</span></p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(Y_p = E[y] + z_p~\sqrt{Var[Y]}\)</span></p>
+<p><strong>Percentiles</strong></p>
+<p>Percentiles are essentially an inverse function of the cumulative probability distribution. If <span class="math notranslate nohighlight">\(F(y)\)</span> is the cdf for <span class="math notranslate nohighlight">\(Y\)</span>, then the p’th quantile is a number <span class="math notranslate nohighlight">\(y_p\)</span> such that <span class="math notranslate nohighlight">\(F(y)==p\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(Y_p = E[Y] + z_p~\sqrt{Var[Y]}\)</span></p>
 <ul class="simple">
-<li><p>value of <span class="math notranslate nohighlight">\(y\)</span> at percentile <span class="math notranslate nohighlight">\(p\)</span></p></li>
+<li><p>value of <span class="math notranslate nohighlight">\(Y\)</span> at percentile <span class="math notranslate nohighlight">\(p\)</span></p></li>
 </ul>
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">Life</span></code> class implements methods for computing moments and probabilities of random variables – future lifetimes are modelled as random variables in actuarial math.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Life</span></code> class implements methods for computing moments and probabilities of random variables.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
@@ -498,7 +508,7 @@ document.write(`
 </div>
 </div>
 <p><strong>Normal distribution table</strong>:</p>
-<p>Generate extract of normal distribution table</p>
+<p>Generate extract of normal distribution table (for SOA FAM-L exam)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Values of z for selected values of Pr(Z&lt;=z)&quot;</span><span class="p">)</span>
@@ -587,6 +597,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability">Probability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portfolio-percentile">Portfolio Percentile</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>

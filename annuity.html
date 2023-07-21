@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -391,7 +391,11 @@ document.write(`
 <h2>Present value of life annuity r.v. <span class="math notranslate nohighlight">\(Y\)</span><a class="headerlink" href="#present-value-of-life-annuity-r-v-y" title="Permalink to this heading">#</a></h2>
 <p>Valuation functions for the present value of annuity benefits, denoted by Y, are based on the continuous future lifetime random variable, <span class="math notranslate nohighlight">\(T_x\)</span>, or the curtate future lifetime random variable, <span class="math notranslate nohighlight">\(K_x\)</span>. The expected present value of annuity benefits is denoted and solved by EPV(Y)</p>
 <p><strong>Whole life annuity</strong>:</p>
-<p><span class="math notranslate nohighlight">\(Y = ~ \overline{a}_{\overline{T_x|}} = \dfrac{1 - v^{T_x}}{\delta} =\)</span> present value of continuous annuity certain through <span class="math notranslate nohighlight">\(T_x\)</span></p>
+<p><span class="math notranslate nohighlight">\(Y = ~ \overline{a}_{\overline{T_x|}} = \dfrac{1 - v^{T_x}}{\delta} =\)</span>
+present value of continuous annuity certain through <span class="math notranslate nohighlight">\(T_x\)</span></p>
+<ul class="simple">
+<li><p>present value random variable for continuous life annuity</p></li>
+</ul>
 <p><span class="math notranslate nohighlight">\(\overline{a}_x = EPV[\overline{a}_{\overline{T_x|}}] = \int_{t=0}^{\infty} ~ v^t ~ _tp_x  ~ dt\)</span></p>
 <ul class="simple">
 <li><p>continuous whole life annuity, benefit is payable up to the moment of death</p></li>
@@ -401,17 +405,23 @@ document.write(`
 <li><p>special case when interest rate is 0</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(Y = \ddot{a}_{\overline{K_x + 1|}} = \dfrac{1 - v^{K_x + 1}}{d} =\)</span> present value of certain annuity due through <span class="math notranslate nohighlight">\(K_x + 1\)</span></p>
+<ul class="simple">
+<li><p>present value random variable for annual life annuity due</p></li>
+</ul>
 <p><span class="math notranslate nohighlight">\(\ddot{a}_x = EPV[\ddot{a}_{\overline{K_x+1|}}] = \sum_{k=0}^{\infty} ~ v^k ~ _{k|}p_x\)</span></p>
 <ul class="simple">
-<li><p>annual life annuity due, benefit is payable up to the beginning of the year of death</p></li>
+<li><p>annual whole life annuity due, benefit is payable up to the beginning of the year of death</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(\ddot{a}_x = 1 + e_x\)</span></p>
 <ul class="simple">
 <li><p>special case when interest rate is 0</p></li>
 </ul>
 <p><strong>Temporary annuity</strong>:</p>
-<p><span class="math notranslate nohighlight">\(Y = ~ \overline{a}_{\overline{t|}}\)</span> when or <span class="math notranslate nohighlight">\(T_x &gt; t\)</span>, else <span class="math notranslate nohighlight">\(\overline{a}_{\overline{T_x|}}\)</span></p>
-<p><span class="math notranslate nohighlight">\(\overline{a}_{x:\overline{t|}} = \int_{s=0}^{t} ~ v^s ~ _sp_x  ~ ds = \overline{A}_x - ~_tE_x ~ \overline{a}_{x+t}\)</span></p>
+<p><span class="math notranslate nohighlight">\(Y = ~ \overline{a}_{\overline{t|}}\)</span> when or <span class="math notranslate nohighlight">\(T_x &gt; t\)</span>, else <span class="math notranslate nohighlight">\(Y = \overline{a}_{\overline{T_x|}}\)</span></p>
+<ul class="simple">
+<li><p>present value random variable for continuous life annuity</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\overline{a}_{x:\overline{t|}} = \int_{s=0}^{t} ~ v^s ~ _sp_x  ~ ds = \overline{a}_x - ~_tE_x ~ \overline{a}_{x+t}\)</span></p>
 <ul class="simple">
 <li><p>continuous temporary life annuity</p></li>
 </ul>
@@ -419,7 +429,10 @@ document.write(`
 <ul class="simple">
 <li><p>when interest rate is 0</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(Y = \ddot{a}_{\overline{t|}}\)</span> when <span class="math notranslate nohighlight">\(K_x \ge t\)</span>, else <span class="math notranslate nohighlight">\(\ddot{a}_{\overline{K_x+1|}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(Y = \ddot{a}_{\overline{t|}}\)</span> when <span class="math notranslate nohighlight">\(K_x \ge t\)</span>, else <span class="math notranslate nohighlight">\(Y = \ddot{a}_{\overline{K_x+1|}}\)</span></p>
+<ul class="simple">
+<li><p>present value random variable for annual life annuity</p></li>
+</ul>
 <p><span class="math notranslate nohighlight">\(\ddot{a}_{x:\overline{t|}} = \sum_{k=0}^{t-1} ~ v^k ~ _{k|}p_x = \ddot{a}_x - ~_tE_x ~ \ddot{a}_{x+t}\)</span></p>
 <ul class="simple">
 <li><p>annual temporary life annuity due</p></li>
@@ -440,11 +453,17 @@ document.write(`
 <p><strong>Certain and life annuity</strong>:</p>
 <p>A common feature of pension benefits is that the pension annuity is guaranteed to be paid for some period even if the annuitant dies before the end of the period.</p>
 <p><span class="math notranslate nohighlight">\(Y = ~ \overline{a}_{\overline{n|}}\)</span> when <span class="math notranslate nohighlight">\(T_x \le n\)</span>, else <span class="math notranslate nohighlight">\(\overline{a}_{\overline{T_x|}}\)</span></p>
+<ul class="simple">
+<li><p>present value random variable for continuous annuity</p></li>
+</ul>
 <p><span class="math notranslate nohighlight">\(\overline{a}_{\overline{x:\overline{n|}}} = \overline{a}_{\overline{n|}} + ~_{n|}\overline{a}_{x}\)</span></p>
 <ul class="simple">
 <li><p>is a continuous temporary certain annuity plus a deferred continuous whole life annuity</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(Y = \ddot{a}_{\overline{n|}}\)</span> when <span class="math notranslate nohighlight">\(K_x &lt; n\)</span>, else <span class="math notranslate nohighlight">\(\ddot{a}_{\overline{K_x+1|}}\)</span></p>
+<ul class="simple">
+<li><p>present value random variable for annual annuity due</p></li>
+</ul>
 <p><span class="math notranslate nohighlight">\(\ddot{a}_{\overline{x:\overline{n|}}} = \ddot{a}_{\overline{n|}} + ~_{n|}\ddot{a}_{x}\)</span></p>
 <ul class="simple">
 <li><p>is an annual temporary certain annuity due, plus a deferred annual life annuity due</p></li>
@@ -557,7 +576,7 @@ document.write(`
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">Annuity</span></code> class implements methods to compute the present value of life annuities</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Annuity</span></code> class implements methods to compute the expected present value of life annuities</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">Annuity</span>
@@ -573,7 +592,7 @@ document.write(`
     --------
 
     a_x(x, s, t, u, benefit, discrete):
-      Numerically compute EPV of annuities from survival functions
+      Compute EPV of life annuity from survival function
 
     immediate_annuity(x, s, t, b, variance):
       Compute EPV of immediate life annuity

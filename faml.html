@@ -161,12 +161,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -954,7 +954,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Lifetime}~e_{{x+41}}~:=\\
 ~~~e_{{x+41}} = [ ~e_{{x+40}} - ~e_{{x+40:\overline{1|}}} ] / ~p_{x+40}&amp; \quad \texttt{forward recursion}\\
 ~~~~~e_{{x+40}} = ~e_{{x+40:\overline{20|}}} + ~_{20}p_{x+40} * ~e_{{x+60}}&amp; \quad \texttt{backward recursion}\\
@@ -1967,14 +1967,14 @@ between integral ages</p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Mortality}~q_{x+61}~:=\\
 ~~~q_{x+61} = ~1 - ~p_{x+61}&amp; \quad \texttt{complement survival}\\
 ~~~~~p_{x+61} = [ v - ~A_{{x+61:\overline{2|}}} ] / [v * [ 1 - ~A_{{x+62:\overline{1|}}} ]]&amp; \quad \texttt{insurance recursion}\\
 ~~~~~~~A^1_{{x+61:\overline{2|}}} = [ ~A^1_{{x+60:\overline{3|}}} / v - ~q_{x+60} * b ] / ~p_{x+60}&amp; \quad \texttt{forward recursion}\\
 ~~~~~~~~~p_{x+60} = 1 - ~q_{x+60}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Endowment Insurance}~A_{{x+60:\overline{3|}}}~:=\\
 ~~~A^1_{{x+60:\overline{3|}}} = v * [ ~q_{x+60} * b + ~p_{x+60} * ~A^1_{{x+61:\overline{2|}}} ]&amp; \quad \texttt{backward recursion}\\
 ~~~~~A^1_{{x+61:\overline{2|}}} = v * [ ~q_{x+61} * b + ~p_{x+61} * ~A^1_{{x+62:\overline{1|}}} ]&amp; \quad \texttt{backward recursion}\\
@@ -2181,7 +2181,7 @@ years</p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Pure Endowment}~_{15}E_{x+35}~:=\\
 ~~~_{15}E_{x+35} = ~A_{{x+35:\overline{15|}}} - ~A^1_{{x+35:\overline{15|}}}&amp; \quad \texttt{endowment insurance minus term}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q4.9 0.5: 0.5 [OK] -----
@@ -2711,11 +2711,11 @@ payable for the lifetime of (x) with 10 years certain</p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Annuity}~\ddot{a}_{{x}}~:=\\
 ~~~\ddot{a}_{{x}} = [1 - ~A_{{x}} ] / d&amp; \quad \texttt{insurance twin}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Annuity}~\ddot{a}_{{x+10}}~:=\\
 ~~~\ddot{a}_{{x+10}} = [1 - ~A_{{x+10}} ] / d&amp; \quad \texttt{insurance twin}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q5.2 9.64: 9.639999999999999 [OK] -----
@@ -2899,15 +2899,15 @@ payable for the lifetime of (x) with 10 years certain</p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Annuity}~\ddot{a}_{{x+35}}~:=\\
 ~~~\ddot{a}_{{x+35}} = [1 - ~A_{{x+35}} ] / d&amp; \quad \texttt{insurance twin}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Annuity}~\ddot{a}_{{x+65}}~:=\\
 ~~~\ddot{a}_{{x+65}} = [1 - ~A_{{x+65}} ] / d&amp; \quad \texttt{insurance twin}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Pure Endowment}~_{30}E_{x+35}~:=\\
 ~~~_{30}E_{x+35} = ~_{30}p_{x+35} * v^{30}&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q5.7 17376.7: 17376.71459632958 [OK] -----
@@ -2969,7 +2969,7 @@ payable for the lifetime of (x) with 10 years certain</p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Annuity}~\ddot{a}_{{x+1}}~:=\\
 ~~~\ddot{a}_{{x+1}} = [ ~\ddot{a}_{{x}} - 1 ] / ~E_{x}&amp; \quad \texttt{forward recursion}\\
 ~~~~~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
@@ -3310,7 +3310,7 @@ you are given:</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Survival}~p_{x+2}~:=\\
 ~~~p_{x+2} = ~E_{x+2} /v&amp; \quad \texttt{one-year pure endowment}\\
 ~~~~~E_{x+2} = ~A_{{x+2:\overline{1|}}} - ~A^1_{{x+2:\overline{1|}}}&amp; \quad \texttt{endowment insurance minus term}\\
@@ -3343,12 +3343,12 @@ you are given:</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Insurance}~A_{{x+50}}~:=\\
 ~~~A_{{x+50}} = v * [ ~q_{x+50} * b + ~p_{x+50} * ~A_{{x+51}} ]&amp; \quad \texttt{backward recursion}\\
 ~~~~~p_{x+50} = 1 - ~q_{x+50}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Insurance}~A_{{x+50}}~:=\\
 ~~~A_{{x+50}} = v * [ ~q_{x+50} * b + ~p_{x+50} * ~A_{{x+51}} ]&amp; \quad \texttt{backward recursion}\\
 ~~~~~p_{x+50} = 1 - ~q_{x+50}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
@@ -3607,7 +3607,7 @@ equivalence principle</p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Term Insurance}~A^1_{{x:\overline{2|}}}~:=\\
 ~~~A^1_{{x:\overline{2|}}} = ~A_{{x:\overline{2|}}} - ~_{2}E_{x}&amp; \quad \texttt{endowment insurance - pure}\\
 ~~~~~_{2}E_{x} = ~_{2}p_{x} * v^{2}&amp; \quad \texttt{pure endowment}\\
@@ -3617,13 +3617,13 @@ equivalence principle</p></li>
 ~~~~~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\\
 ~~~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Temporary Annuity}~\ddot{a}_{{x:\overline{2|}}}~:=\\
 ~~~\ddot{a}_{{x:\overline{2|}}} = 1 + ~E_{x} * ~\ddot{a}_{{x+1:\overline{1|}}}&amp; \quad \texttt{backward recursion}\\
 ~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\\
 ~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Pure Endowment}~_{2}E_{x}~:=\\
 ~~~_{2}E_{x} = ~_{2}p_{x} * v^{2}&amp; \quad \texttt{pure endowment}\\
 ~~~~~_{2}p_{x} = ~p_{x+1} * ~p_{x}&amp; \quad \texttt{survival chain rule}\\
@@ -4111,7 +4111,7 @@ f(t) &amp; = 0.01 e^{-0.01 t}, \quad 0 \le t &lt; 70\\
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Insurance}~A_{{x}}~:=\\
 ~~~\ddot{a}_{{x}} = [ 1 - ~A_{{x}} ] / d&amp; \quad \texttt{annuity twin}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.32 550: 550.4356936711871 [OK] -----
@@ -4296,7 +4296,7 @@ the first, are 3% of the premium</p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Temporary Annuity}~a_{{x:\overline{10|}}}~:=\\
 ~~~\ddot{a}_{{x:\overline{10|}}} = [ 1 - ~A_{{x:\overline{10|}}} ] / d&amp; \quad \texttt{annuity twin}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.38 11.3: 11.308644185253657 [OK] -----
@@ -4363,13 +4363,13 @@ the first, are 3% of the premium</p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Annuity}~\ddot{a}_{{x}}~:=\\
 ~~~\ddot{a}_{{x}} = 1 + ~E_{x} * ~\ddot{a}_{{x+1}}&amp; \quad \texttt{backward recursion}\\
 ~~~~~E_{x} = ~p_{x} * v&amp; \quad \texttt{pure endowment}\\
 ~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Insurance}~A_{{x+1}}~:=\\
 ~~~A_{{x+1}} = [ ~A_{{x}} / v - ~q_{x} * b ] / ~p_{x}&amp; \quad \texttt{forward recursion}\\
 ~~~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
@@ -4525,15 +4525,15 @@ the first, are 3% of the premium</p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Insurance}~A_{{x+60}}~:=\\
 ~~~\ddot{a}_{{x+60}} = [ 1 - ~A_{{x+60}} ] / d&amp; \quad \texttt{annuity twin}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Insurance}~A_{{x+60}}~:=\\
 ~~~\ddot{a}_{{x+60}} = [ 1 - ~A_{{x+60}} ] / d&amp; \quad \texttt{annuity twin}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Insurance}~A_{{x+60}}~:=\\
 ~~~\ddot{a}_{{x+60}} = [ 1 - ~A_{{x+60}} ] / d&amp; \quad \texttt{annuity twin}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.44 2.2: 2.183803457688809 [OK] -----
@@ -4658,15 +4658,15 @@ this policy.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Pure Endowment}~_{5}E_{x}~:=\\
 ~~~_{5}E_{x} = ~_{5}p_{x} * v^{5}&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Pure Endowment}~_{5}E_{x}~:=\\
 ~~~_{5}E_{x} = ~_{5}p_{x} * v^{5}&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Term Insurance}~A^1_{{x+5:\overline{3|}}}~:=\\
 ~~~~~~~~~~~A^1_{{x+5:\overline{1|}}} = ~A_{{x+5:\overline{1|}}} - ~E_{x+5}&amp; \quad \texttt{endowment insurance - pure}\\
 ~~~~~A_{{x+5:\overline{3|}}} = ~A^1_{{x+5:\overline{3|}}} + ~_{3}E_{x+5}&amp; \quad \texttt{term plus pure endowment}\\
@@ -4685,7 +4685,7 @@ this policy.</p>
 ~~~~~~~~~~~~~p_{x+6} = 1 - ~q_{x+6}&amp; \quad \texttt{complement of mortality}\\
 ~~~~~~~~~~~~~p_{x+5} = 1 - ~q_{x+5}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Term Insurance}~A^1_{{x+5:\overline{3|}}}~:=\\
 ~~~~~~~~~~~A^1_{{x+5:\overline{1|}}} = ~A_{{x+5:\overline{1|}}} - ~E_{x+5}&amp; \quad \texttt{endowment insurance - pure}\\
 ~~~~~A_{{x+5:\overline{3|}}} = ~A^1_{{x+5:\overline{3|}}} + ~_{3}E_{x+5}&amp; \quad \texttt{term plus pure endowment}\\
@@ -4793,7 +4793,7 @@ July 2018.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Increasing Insurance}~(IA)_{{x+62:\overline{10|}}}~:=\\
 ~~~(IA)_{{x+62:\overline{10|}}} = 11 ~A^1_{{x+62:\overline{10|}}} - ~(DA)_{{x+62:\overline{10|}}}&amp; \quad \texttt{varying insurance identity}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.51 34700: 34687.207544453246 [OK] -----
@@ -5136,7 +5136,7 @@ you are given:</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Annuity}~\ddot{a}_{{x+10}}~:=\\
 ~~~\ddot{a}_{{x+10}} = [1 - ~A_{{x+10}} ] / d&amp; \quad \texttt{insurance twin}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q7.7 1110: 1107.9718253968258 [OK] -----
@@ -5163,7 +5163,7 @@ you are given:</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Survival}~p_{x+70}~:=\\
 ~~~p_{x+70} = 1 - ~q_{x+70}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q7.8 29.85: 29.85469179271202 [OK] -----
@@ -5255,7 +5255,7 @@ insurance.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Insurance}~A_{{x+55}}~:=\\
 ~~~\ddot{a}_{{x+55}} = [ 1 - ~A_{{x+55}} ] / d&amp; \quad \texttt{annuity twin}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q7.11 1460: 1459.9818035330218 [OK] -----
@@ -5299,7 +5299,7 @@ insurance.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Survival}~p_{x+55}~:=\\
 ~~~p_{x+55} = 1 - ~q_{x+55}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q7.12 4.09: 4.089411764705883 [OK] -----
@@ -5310,7 +5310,7 @@ insurance.</p>
 </div>
 </div>
 </div>
-<p>Answer 7.13: (A) 180</p>
+<p><strong>SOA Question 7.13</strong> : (A) 180</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
@@ -5434,12 +5434,12 @@ are given:</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Insurance}~A_{{x+10}}~:=\\
 ~~~A_{{x+10}} = v * [ ~q_{x+10} * b + ~p_{x+10} * ~A_{{x+11}} ]&amp; \quad \texttt{backward recursion}\\
 ~~~~~p_{x+10} = 1 - ~q_{x+10}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Whole Life Insurance}~^2A_{{x+10}}~:=\\
 ~~~^2A_{{x+10}} = v^{2} * [ ~q_{x+10} * b^{2} + ~p_{x+10} * ~^2A_{{x+11}} ]&amp; \quad \texttt{backward recursion}\\
 ~~~~~p_{x+10} = 1 - ~q_{x+10}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
@@ -5625,7 +5625,7 @@ the end of the first policy year is <em>S</em></p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\begin{array}{lr}
+\[\begin{split}\begin{array}{llll}
 ~\texttt{Term Insurance}~A^1_{{x+25:\overline{1|}}}* 10000~:=\\
 ~~~A^1_{{x+25:\overline{1|}}} = ~A_{{x+25:\overline{1|}}} - ~E_{x+25}&amp; \quad \texttt{endowment insurance - pure}\\
 ~~~~~E_{x+25} = ~p_{x+25} * v&amp; \quad \texttt{pure endowment}\end{array}\end{split}\]</div>
@@ -5942,7 +5942,7 @@ calculate <span class="math notranslate nohighlight">\(L_{10}\)</span> is change
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-24 09:31:20.605269
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-07-21 17:30:21.404239
 Passed: 136/136
 </pre></div>
 </div>

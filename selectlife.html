@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'selectlife';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Recursion" href="recursion.html" />
+    <link rel="next" title="Mortality Laws" href="mortalitylaws.html" />
     <link rel="prev" title="SULT" href="sult.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -384,14 +384,21 @@ document.write(`
 <h1>Select Life Table<a class="headerlink" href="#select-life-table" title="Permalink to this heading">#</a></h1>
 <section id="select-and-ultimate-life-model">
 <h2>Select and ultimate life model<a class="headerlink" href="#select-and-ultimate-life-model" title="Permalink to this heading">#</a></h2>
-<p>A newly selected policyholder is in the best health condition possible, compared to the general population with the same age. The life table can be expanded to tabulate the select period when mortality. Since this selection process wears off after a few years, the ultimate part of the table can be then be used when select age is assumed to no longer have an effect on mortality.</p>
+<p>A newly selected policyholder is in the best health condition possible, compared to the general population with the same age. The life table can be expanded to tabulate the select period when selection has an effect on mortality. Since this selection process wears off after a few years, the ultimate part of the table can be then be used when select age is assumed to no longer have an effect on mortality.</p>
 <ul class="simple">
 <li><p>Future survival probabilities depend on the individual’s current age and on the age at which the individual joined the group (i.e. was <em>selected</em>). Current age is written <span class="math notranslate nohighlight">\([x]+s\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> is the selected age and <span class="math notranslate nohighlight">\(s\)</span> is the number of years after selection.</p></li>
 <li><p>If an individual joined the group more than <span class="math notranslate nohighlight">\(d\)</span> years ago (called the <em>select period</em>), future survival probabilities (called the <em>ultimate mortality</em>) depend only on current age. The initial selection effect is assumed to have worn off after <span class="math notranslate nohighlight">\(d\)</span> years. Current age can be written as <span class="math notranslate nohighlight">\(x+s\)</span> after the select period <span class="math notranslate nohighlight">\(s \ge d\)</span></p></li>
 </ul>
 <p>Select life tables reflect duration as well as age during the select period.</p>
-<p><span class="math notranslate nohighlight">\(_tp_{[x]+ s} =\)</span> Pr(a life aged <span class="math notranslate nohighlight">\(x + s\)</span> selected at age <span class="math notranslate nohighlight">\(x\)</span> survives to age <span class="math notranslate nohighlight">\(x +s +t\)</span>)</p>
-<p><span class="math notranslate nohighlight">\(_tq_{[x]+ s} =\)</span> Pr(a life aged <span class="math notranslate nohighlight">\(x + s\)</span> selected at age <span class="math notranslate nohighlight">\(x\)</span> dies before age <span class="math notranslate nohighlight">\(x +s + t\)</span>)</p>
+<p><strong>Notation for select survival models</strong>:</p>
+<p><span class="math notranslate nohighlight">\(_tp_{[x]+ s} =\)</span> Pr(a life aged <span class="math notranslate nohighlight">\(x + s\)</span>, selected at age <span class="math notranslate nohighlight">\(x\)</span>, survives to age <span class="math notranslate nohighlight">\(x +s +t\)</span>)</p>
+<ul class="simple">
+<li><p>defines survival probability in the select period</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_tq_{[x]+ s} =\)</span> Pr(a life aged <span class="math notranslate nohighlight">\(x + s\)</span>, selected at age <span class="math notranslate nohighlight">\(x\)</span>, dies before age <span class="math notranslate nohighlight">\(x +s + t\)</span>)</p>
+<ul class="simple">
+<li><p>defines mortality rate in the select period</p></li>
+</ul>
 <p><span class="math notranslate nohighlight">\(l_{[x]+s} = \dfrac{l_{x+d}}{_{d-s}p_{[x]+s}} =\)</span> number of lives, selected at age <span class="math notranslate nohighlight">\(x\)</span>, who are aged <span class="math notranslate nohighlight">\(x+s\)</span>, given that <span class="math notranslate nohighlight">\(l_{x+d}\)</span> survived to age <span class="math notranslate nohighlight">\(x+d\)</span>.</p>
 <ul class="simple">
 <li><p>defines the life table within the select period, by working backwards from the value of <span class="math notranslate nohighlight">\(l_{x+d}\)</span> in the ultimate part of the table which only depends on current age.</p></li>
@@ -400,7 +407,7 @@ document.write(`
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">SelectLife</span></code> class implements methods to calculate and fill in a select and ultimate mortality life table</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">SelectLife</span></code> class implements methods to construct and fill in a select life table</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">SelectLife</span>
@@ -417,7 +424,7 @@ document.write(`
       verbose : whether to echo update steps
 
     Notes:
-      6 types of information can be loaded and calculated in the select table:
+      6 types of columns can be loaded and calculated in the select table:
 
       - &#39;q&#39; : probability [x]+s dies in one year
       - &#39;l&#39; : number of lives aged [x]+s
@@ -1048,7 +1055,7 @@ Age
 </div>
 </div>
 </div>
-<p><strong>Trace calculations</strong>:</p>
+<p><strong>show verbose calculations</strong>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="o">=</span><span class="p">{</span><span class="mi">21</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.00120</span><span class="p">,</span> <span class="mf">0.00150</span><span class="p">,</span> <span class="mf">0.00170</span><span class="p">,</span> <span class="mf">0.00180</span><span class="p">],</span>
@@ -1188,11 +1195,11 @@ Age
       </div>
     </a>
     <a class="right-next"
-       href="recursion.html"
+       href="mortalitylaws.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Recursion</p>
+        <p class="prev-next-title">Mortality Laws</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

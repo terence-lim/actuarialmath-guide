@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -385,15 +385,14 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="insurance">
 <h1>Insurance<a class="headerlink" href="#insurance" title="Permalink to this heading">#</a></h1>
-<p>For a life insurance policy, the time at which the benefit will be paid is unknown until the policyholder actually dies and the policy becomes a claim.</p>
+<p>For a life insurance policy, the time at which the benefit will be paid is unknown until the policyholder actually dies and the policy becomes a claim. In this section, formulas are developed for the valuation of traditional insurance benefits (such as whole life, term and endowment insurance) and their second moments, as well as varying insurances.</p>
 <section id="present-value-of-life-insurance-r-v-z">
 <h2>Present value of life insurance r.v. <span class="math notranslate nohighlight">\(Z\)</span><a class="headerlink" href="#present-value-of-life-insurance-r-v-z" title="Permalink to this heading">#</a></h2>
-<p>Valuation functions for the present value of insurance benefits, denoted by Z, are based on the continuous future lifetime random variable, Tx, or the curtate future lifetime random variable, Kx.
-The expected present value of insurance benefit,denoted and solved by EPV(Z), is sometimes referred to as the actuarial value or actuarial present value.</p>
+<p>Valuation functions for the present value of insurance benefits, denoted by <span class="math notranslate nohighlight">\(Z\)</span>, are based on the continuous future lifetime random variable, <span class="math notranslate nohighlight">\(T_x\)</span>, or the curtate future lifetime random variable, <span class="math notranslate nohighlight">\(K_x\)</span>. The interest rate is generally assumed to be fixed and constant. Given a survival model and an interest rate we can derive the distribution of the present value random variable for a life contingent benefit, and can therefore compute quantities such as the mean and variance of the present value. Valuation functions are developed per dollar of sum assured, which can be multiplied by the actual sum insured for difference benefit amounts. The expected present value of insurance benefit, denoted and solved by <span class="math notranslate nohighlight">\(EPV(Z)\)</span>, is sometimes referred to as the actuarial value or actuarial present value.</p>
 <p><strong>Whole life insurance</strong>:</p>
 <p><span class="math notranslate nohighlight">\(Z = v^{T_x}\)</span></p>
 <ul class="simple">
-<li><p>continuous insurance, benefit is payable immediately on death</p></li>
+<li><p>continuous insurance, where benefit is payable immediately on death</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(\overline{A}_x = E[v^{T_x}] = \int_{t=0}^{\infty} ~ v^t ~ _tp_x ~ \mu_{x+t} ~ dt\)</span></p>
 <ul class="simple">
@@ -401,7 +400,7 @@ The expected present value of insurance benefit,denoted and solved by EPV(Z), is
 </ul>
 <p><span class="math notranslate nohighlight">\(Z = v^{K_x + 1}\)</span></p>
 <ul class="simple">
-<li><p>annual insurance, benefit is payable at end of year of death</p></li>
+<li><p>annual insurance, where benefit is payable at end of year of death</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(A_x = E[v^{K_x+1}] = \sum_{k=0}^{\infty} ~ v^{k+1} ~ _{k|}q_x\)</span></p>
 <ul class="simple">
@@ -465,7 +464,7 @@ insured is payable at the end of the <span class="math notranslate nohighlight">
 </section>
 <section id="pure-endowment">
 <h2>Pure endowment<a class="headerlink" href="#pure-endowment" title="Permalink to this heading">#</a></h2>
-<p><span class="math notranslate nohighlight">\(Z = 0\)</span> when <span class="math notranslate nohighlight">\(T_x &lt; t\)</span>, else <span class="math notranslate nohighlight">\(v^t\)</span></p>
+<p><span class="math notranslate nohighlight">\(Z = 0\)</span> when <span class="math notranslate nohighlight">\(T_x &lt; t\)</span>, else <span class="math notranslate nohighlight">\(Z = v^t\)</span></p>
 <ul class="simple">
 <li><p>benefit payable in <span class="math notranslate nohighlight">\(t\)</span> years if (x) is still alive at that time, but pays nothing if (x) dies before then.</p></li>
 </ul>
@@ -561,16 +560,16 @@ insured is payable at the end of the <span class="math notranslate nohighlight">
 <p><strong>Identity relationship</strong>:</p>
 <p><span class="math notranslate nohighlight">\((\overline{DA})^{1}_{x:\overline{t|}} + (\overline{IA})^{1}_{x:\overline{t|}} = t ~ \overline{A}^{1}_{x:\overline{t|}}\)</span></p>
 <ul class="simple">
-<li><p>relates continuous increasing and decreasing insurances</p></li>
+<li><p>relates continuous increasing and decreasing insurances to level insurance</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\((DA)^{1}_{x:\overline{t|}} + (IA)^{1}_{x:\overline{t|}} = (t+1) ~ A^{1}_{x:\overline{t|}}\)</span></p>
 <ul class="simple">
-<li><p>relates annual increasing and decreasing insurances</p></li>
+<li><p>relates annual increasing and decreasing insurances to level insurance</p></li>
 </ul>
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">Insurance</span></code> class implements methods to compute the present value of life insurance</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Insurance</span></code> class implements methods to compute the expected present value of life insurance</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>

@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="SULT" href="sult.html" />
-    <link rel="prev" title="Constant Force of Mortality" href="constantforce.html" />
+    <link rel="prev" title="Recursion" href="recursion.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udd.html">UDD M’thly</a></li>
@@ -381,7 +381,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="life-table">
 <h1>Life Table<a class="headerlink" href="#life-table" title="Permalink to this heading">#</a></h1>
-<p>A life table,from some initial age <span class="math notranslate nohighlight">\(x_0\)</span> to a maximum age <span class="math notranslate nohighlight">\(\omega\)</span>, represents a survival model with probabilities <span class="math notranslate nohighlight">\(_tp_x\)</span>.
+<p>A life table, from some initial age <span class="math notranslate nohighlight">\(x_0\)</span> to a maximum age <span class="math notranslate nohighlight">\(\omega\)</span>, represents a survival model with probabilities <span class="math notranslate nohighlight">\(_tp_x\)</span>.
 Let <span class="math notranslate nohighlight">\(l_{x_0}\)</span> be an arbitrary positive number of lives at age <span class="math notranslate nohighlight">\(x_0\)</span>, called the radix, and <span class="math notranslate nohighlight">\(l_{x_0+t} = l_{x_0}~_tp_{x_0}\)</span> A life table is typically tabulated at integer ages only – fractional age assumptions would be needed to calculate survival probabilities for non-integer ages and durations.</p>
 <p><span class="math notranslate nohighlight">\(d_x = l_x - l_{x+1}\)</span></p>
 <ul class="simple">
@@ -389,11 +389,11 @@ Let <span class="math notranslate nohighlight">\(l_{x_0}\)</span> be an arbitrar
 </ul>
 <p><span class="math notranslate nohighlight">\(q_x = \dfrac{d_x}{l_x}\)</span></p>
 <ul class="simple">
-<li><p>the mortality rate can then be derived, which equals the probability that a life aged <span class="math notranslate nohighlight">\(x\)</span> dies within one year.</p></li>
+<li><p>the mortality rate can then be derived, which is the probability that a life aged <span class="math notranslate nohighlight">\(x\)</span> dies within one year.</p></li>
 </ul>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">LifeTable</span></code> class implements methods to load, calculate and impute life table entries</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">LifeTable</span></code> class implements methods to define and calculate life table entries</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">LifeTable</span>
@@ -410,7 +410,7 @@ Let <span class="math notranslate nohighlight">\(l_{x_0}\)</span> be an arbitrar
       verbose : whether to echo update steps
 
     Notes:
-      4 types of information can be loaded and calculated in the life table:
+      4 types of columns can be loaded and calculated in the life table:
 
       - &#39;q&#39; : probability (x) dies in one year
       - &#39;l&#39; : number of lives aged x
@@ -487,10 +487,9 @@ Let <span class="math notranslate nohighlight">\(l_{x_0}\)</span> be an arbitrar
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">l</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">l</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">52</span><span class="p">,</span><span class="mi">61</span><span class="p">),</span> 
-                            <span class="p">[</span><span class="mi">89948</span><span class="p">,</span> <span class="mi">89089</span><span class="p">,</span> <span class="mi">88176</span><span class="p">,</span> 
-                             <span class="mi">87208</span><span class="p">,</span> <span class="mi">86181</span><span class="p">,</span> <span class="mi">85093</span><span class="p">,</span> 
-                             <span class="mi">83940</span><span class="p">,</span> <span class="mi">82719</span><span class="p">,</span> <span class="mi">81429</span><span class="p">])}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">l</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">l</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">52</span><span class="p">,</span> <span class="mi">61</span><span class="p">),</span> 
+                            <span class="p">[</span><span class="mi">89948</span><span class="p">,</span> <span class="mi">89089</span><span class="p">,</span> <span class="mi">88176</span><span class="p">,</span> <span class="mi">87208</span><span class="p">,</span> <span class="mi">86181</span><span class="p">,</span> 
+                             <span class="mi">85093</span><span class="p">,</span> <span class="mi">83940</span><span class="p">,</span> <span class="mi">82719</span><span class="p">,</span> <span class="mi">81429</span><span class="p">])}</span>
 <span class="n">life1</span> <span class="o">=</span> <span class="n">LifeTable</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_table</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="n">table</span><span class="p">)</span>
 <span class="n">life2</span> <span class="o">=</span> <span class="n">LifeTable</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_table</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="n">table</span><span class="p">)</span>
 <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">life1</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.2</span><span class="p">),</span>   <span class="c1"># 0.001917                                 </span>
@@ -785,12 +784,12 @@ Calculate the probability that (50) dies during the next 2.5 years.</p></li>
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="constantforce.html"
+       href="recursion.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Constant Force of Mortality</p>
+        <p class="prev-next-title">Recursion</p>
       </div>
     </a>
     <a class="right-next"

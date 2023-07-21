@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="premiums.html">Premiums</a></li>
 <li class="toctree-l1"><a class="reference internal" href="policyvalues.html">Policy Values</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reserves.html">Reserves</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lifetable.html">Life Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sult.html">SULT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="selectlife.html">Select Life Table</a></li>
-<li class="toctree-l1"><a class="reference internal" href="recursion.html">Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mortalitylaws.html">Mortality Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constantforce.html">Constant Force of Mortality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extrarisk.html">Extra Risk</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mthly.html">1/M’thly</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">UDD M’thly</a></li>
@@ -385,10 +385,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="udd-m-thly">
 <h1>UDD M’thly<a class="headerlink" href="#udd-m-thly" title="Permalink to this heading">#</a></h1>
-<p>With the UDD fractional age assumption, we can work with annual insurance and annuity factors <span class="math notranslate nohighlight">\(A_x\)</span> and <span class="math notranslate nohighlight">\(a_x\)</span>, then adjust for a more appropriate frequency <span class="math notranslate nohighlight">\(A^{(m)}_{x}\)</span> and <span class="math notranslate nohighlight">\(\ddot{a}^{(m)}_{x}\)</span> using the following relationships.</p>
+<p>With the UDD fractional age assumption, we can work with annual insurance and annuity factors <span class="math notranslate nohighlight">\(A_x\)</span> and <span class="math notranslate nohighlight">\(\ddot{a}_x\)</span>, then adjust for a more appropriate frequency <span class="math notranslate nohighlight">\(A^{(m)}_{x}\)</span> and <span class="math notranslate nohighlight">\(\ddot{a}^{(m)}_{x}\)</span> using the following relationships.</p>
 <section id="life-insurance">
 <h2>Life insurance<a class="headerlink" href="#life-insurance" title="Permalink to this heading">#</a></h2>
-<p>Using the values of <span class="math notranslate nohighlight">\(A_x\)</span> to approximate <span class="math notranslate nohighlight">\(A^{(m)}_{x}\)</span></p>
+<p>Under UDD, the values of annual <span class="math notranslate nohighlight">\(A_x\)</span> can be used to derive exact results for 1/mthly insurance <span class="math notranslate nohighlight">\(A^{(m)}_{x}\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(A^{(m)}_x = \dfrac{i}{i^{(m)}} A_x\)</span></p>
 <ul class="simple">
 <li><p>discrete whole life insurance</p></li>
@@ -399,7 +399,7 @@ document.write(`
 </ul>
 <p><span class="math notranslate nohighlight">\(A^{(m)}_{x:\overline{t|}} = \dfrac{i}{i^{(m)}} A^{1}_{x:\overline{t|}} + ~_tE_x\)</span></p>
 <ul class="simple">
-<li><p>endowment insurance combines the death and survival benefits, so we need to split off the death benefit to apply the approximations.</p></li>
+<li><p>endowment insurance combines the death and survival benefits, so we need to split off the death benefit to apply the derivations.</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(_{u|}A^{(m)}_{x} = ~_uE_x \dfrac{i}{i^{(m)}} A_{x+u}\)</span></p>
 <ul class="simple">
@@ -416,7 +416,7 @@ document.write(`
 <p>Under UDD, continuous life insurance can also be related to annual life insurance factors</p>
 <p><span class="math notranslate nohighlight">\(\overline{A}_x = \dfrac{i}{\delta} A_x\)</span></p>
 <ul class="simple">
-<li><p>cwhole life insurance</p></li>
+<li><p>whole life insurance</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(\overline{A}^ {1}_{x:\overline{t|}} = \dfrac{i}{\delta} A^{1}_{x:\overline{t|}}\)</span></p>
 <ul class="simple">
@@ -460,7 +460,7 @@ document.write(`
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">UDD</span></code> class implements methods to compute life insurance and annuities assuming a uniform distribution of deaths (UDD)</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">UDD</span></code> class implements methods to compute life insurance and annuities with 1/mthly benefits assuming uniform distribution of deaths (UDD) between integer ages.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">UDD</span><span class="p">,</span> <span class="n">SULT</span><span class="p">,</span> <span class="n">Recursion</span><span class="p">,</span> <span class="n">Contract</span>
@@ -658,7 +658,7 @@ period of 20 years, you are given:</p>
 </div>
 </div>
 </div>
-<p><strong>Generate table of interest functions</strong>:</p>
+<p><strong>Generate table of interest functions</strong> (for FAM-L exam):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Interest Functions at i=0.05&quot;</span><span class="p">)</span>
