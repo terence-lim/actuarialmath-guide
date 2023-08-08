@@ -394,20 +394,25 @@ greater than or less than the policy value.</p>
 <ul class="simple">
 <li><p>recursion for gross reserves</p></li>
 </ul>
-<p><strong>Net reserves</strong></p>
-<p><span class="math notranslate nohighlight">\(( _tV + P)(1 + i) = q_{x+t} ~ b + p_{x+t} ~ _{t+1}V\)</span></p>
-<ul class="simple">
-<li><p>recursion for net reserves</p></li>
-</ul>
 <p><strong>Expense reserves</strong></p>
 <p><span class="math notranslate nohighlight">\(( _tV^e + P^e - e)(1 + i) = q_{x+t} ~ E + p_{x+t} ~ _{t+1}V^e\)</span></p>
 <ul class="simple">
 <li><p>recursion for expense reserves</p></li>
 </ul>
+<p><strong>Net reserves</strong></p>
+<p><span class="math notranslate nohighlight">\(( _tV + P)(1 + i) = q_{x+t} ~ b + p_{x+t} ~ _{t+1}V\)</span></p>
+<ul class="simple">
+<li><p>recursion for net reserves</p></li>
+</ul>
+<p><strong>Refund of benefit reserve</strong></p>
+<p><span class="math notranslate nohighlight">\(( _tV + P)(1 + i) = q_{x+t} ~ (b +~ _{t+1}V) + p_{x+t} ~ _{t+1}V\)</span></p>
+<ul class="simple">
+<li><p>if reserves are also refunded after death, then the end-of-year value reserves should be added to death benefits in the reserves recursion formula</p></li>
+</ul>
 </section>
 <section id="interim-reserves">
 <h2>Interim reserves<a class="headerlink" href="#interim-reserves" title="Permalink to this heading">#</a></h2>
-<p>Recursive formulae for interim reserves <span class="math notranslate nohighlight">\(_{t+r}V\)</span> where <span class="math notranslate nohighlight">\(0 \le r \le 1\)</span> can be similarly obtained:</p>
+<p>Recursive formulae for interim reserves <span class="math notranslate nohighlight">\(_{t+r}V\)</span> where <span class="math notranslate nohighlight">\(0 \le r \le 1\)</span> can be similarly obtained.  These compute the reserve for fully discrete annual-premium insurances in the middle of the year.</p>
 <p><span class="math notranslate nohighlight">\(( _tV + P)(1 + i)^r =~ _rq_{x+t} ~ b ~ v^{1-r} + ~_rp_{x+t} ~ _{t+r}V\)</span></p>
 <ul class="simple">
 <li><p>forward recursion for interim net reserves</p></li>
@@ -486,7 +491,7 @@ greater than or less than the policy value.</p>
     V_plot(ax, color, title):
       Plot values from reserves tables
 
-    V_t():
+    reserves_frame():
       Returns reserves table as a DataFrame
 </pre></div>
 </div>
@@ -495,6 +500,33 @@ greater than or less than the policy value.</p>
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">FPT_premium</span></code> and <code class="docutils literal notranslate"><span class="pre">FPT_policy_value</span></code> methods compute the Full Preliminary Term premiums and policy values for whole life, temporary and endowment insurances.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="k">def</span> <span class="nf">S</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>  <span class="c1"># define a survival function</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">.00022</span><span class="o">*</span><span class="n">t</span> <span class="o">-</span> <span class="p">(</span><span class="mf">.0000027</span><span class="o">*</span><span class="mf">1.124</span><span class="o">**</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.124</span><span class="o">**</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.124</span><span class="p">))</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Reserves</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">minage</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">maxage</span><span class="o">=</span><span class="mi">130</span><span class="p">)</span>\
+                  <span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">net_premium</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Level Net Premium:&#39;</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;FPT premiums:     &#39;</span><span class="p">,</span>
+      <span class="n">life</span><span class="o">.</span><span class="n">FPT_premium</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">first</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> 
+      <span class="n">life</span><span class="o">.</span><span class="n">FPT_premium</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">first</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;FPT policy values:&#39;</span><span class="p">,</span> 
+      <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">FPT_policy_value</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Level Net Premium: 2.465109289578718
+FPT premiums:      0.2377514556176763 2.582546365777722
+FPT policy values: [0, 0, 2.459, 5.0374, 7.7409]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">set_reserves</span></code> method is called to load given values of reserves into an internal table, and then <code class="docutils literal notranslate"><span class="pre">fill_reserves</span></code> method can be called to iteratively fill in missing values. Internally, this calls the <code class="docutils literal notranslate"><span class="pre">t_V</span></code> method which attempts both the <code class="docutils literal notranslate"><span class="pre">t_V_forward</span></code> and <code class="docutils literal notranslate"><span class="pre">t_V_backward</span></code> methods that implement the recursion formula forwards and backwards respectively. Interim reserves recursion formulas for fractional durations are similarly implemented in the <code class="docutils literal notranslate"><span class="pre">r_V_forward</span></code> and <code class="docutils literal notranslate"><span class="pre">r_V_backward</span></code> methods. Values of reserves over time can be plotted with <code class="docutils literal notranslate"><span class="pre">V_plot</span></code> or displayed with the <code class="docutils literal notranslate"><span class="pre">reserves_frame</span></code> methods.</p>
 <p><strong>SOA Question 7.31</strong></p>
 <p>For a fully discrete 3-year endowment insurance of 1000 on (x), you are given:</p>
 <ul class="simple">
@@ -560,7 +592,7 @@ greater than or less than the policy value.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/85d8c1ea6199d13585ceb3dde189e1546368891a78fec823125a96952be94b06.png" src="_images/85d8c1ea6199d13585ceb3dde189e1546368891a78fec823125a96952be94b06.png" />
+<img alt="_images/4e980e9fdce78ec100139e179bebdf954be746adecc349ba49a0ac21cd1d3293.png" src="_images/4e980e9fdce78ec100139e179bebdf954be746adecc349ba49a0ac21cd1d3293.png" />
 </div>
 </div>
 <p><strong>AMLCR2 Figure 7.3</strong>:</p>
@@ -578,7 +610,7 @@ greater than or less than the policy value.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0300960dc20a35343f415acf343d1dba4ba2ff7b32c1eca0fad7b0322b15aa39.png" src="_images/0300960dc20a35343f415acf343d1dba4ba2ff7b32c1eca0fad7b0322b15aa39.png" />
+<img alt="_images/e8828a18b7cb03f7563dc0308ce7b7ec300dac28b38108dbdcbd0795136cac21.png" src="_images/e8828a18b7cb03f7563dc0308ce7b7ec300dac28b38108dbdcbd0795136cac21.png" />
 </div>
 </div>
 </section>

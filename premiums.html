@@ -366,11 +366,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#present-value-of-future-loss-r-v-l">Present value of future loss r.v. <span class="math notranslate nohighlight">\(L\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#present-value-of-loss-at-issue-r-v-0l">Present value of loss at issue r.v. <span class="math notranslate nohighlight">\(_0L\)</span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equivalence-principle">Equivalence principle</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#net-premium">Net premium</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portfolio-percentile-premium">Portfolio Percentile Premium</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gross-premium">Gross premium</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portfolio-percentile-premium">Portfolio Percentile Premium</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
@@ -386,93 +386,94 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="premiums">
 <h1>Premiums<a class="headerlink" href="#premiums" title="Permalink to this heading">#</a></h1>
-<p>When insurance company agrees to pay some life contingent benefits, the policyholder agrees to pay premiums to the insurance company to secure these benefits. The premiums will also need to reimburse the insurance company for the expenses associated with the policy.
-The calculation of the premium may not explicitly allow for the insurance company’s expenses. In this case we refer to a net premium (also called a risk premium or benefit premium). If the calculation does explicitly allow for expenses, the premium is called a gross premium (also called expense-loaded premium).</p>
+<p>When insurance company agrees to pay some life contingent benefits, the policyholder agrees to pay premiums to the insurance company to secure these benefits. The premiums will also need to reimburse the insurance company for the expenses associated with the policy.</p>
+<p>The calculation of the premium may not explicitly allow for the insurance company’s expenses, which we refer to as a net premium (also called a risk premium or benefit premium). If the calculation does explicitly allow for expenses, the premium is called a gross premium (also called expense-loaded premium).</p>
 <p>Premiums for life insurance are payable in advance, with the first premium payable when the policy is purchased.</p>
-<section id="present-value-of-future-loss-r-v-l">
-<h2>Present value of future loss r.v. <span class="math notranslate nohighlight">\(L\)</span><a class="headerlink" href="#present-value-of-future-loss-r-v-l" title="Permalink to this heading">#</a></h2>
-<p><span class="math notranslate nohighlight">\(_0L\)</span> = PV of loss at issue = PV of future benefits - PV of future premiums</p>
+<ul class="simple">
+<li><p><em>Fully continuous insurance</em>: both benefits and premiums are payable continuously</p></li>
+<li><p><em>Fully discrete insurance</em>: benefits are paid at the end of the year, premiums are paid at the beginning of the year</p></li>
+<li><p><em>Semi-continuous insurance</em>: benefits are paid at moment of death, premiums are paid at the beginning of the year</p></li>
+</ul>
+<section id="present-value-of-loss-at-issue-r-v-0l">
+<h2>Present value of loss at issue r.v. <span class="math notranslate nohighlight">\(_0L\)</span><a class="headerlink" href="#present-value-of-loss-at-issue-r-v-0l" title="Permalink to this heading">#</a></h2>
+<p>The loss at issue random variable is defined as the present value of the amount the insurance loses.</p>
+<p><span class="math notranslate nohighlight">\(_0L\)</span> = PV of future benefits - PV of future premiums</p>
+<ul class="simple">
+<li><p>PV of loss at issue</p></li>
+</ul>
+<p><strong>Fully continuous whole life insurance</strong>:</p>
+<p><span class="math notranslate nohighlight">\(_0L = v^{T_x} - P \overline{a}_{\overline{T_x|}} = v^{T_x} - P (\dfrac{1 - v^{T_x}}{\delta})\)</span></p>
+<ul class="simple">
+<li><p>loss at issue is the present value of the insurance payment less the present value of the level premimum annuity of <span class="math notranslate nohighlight">\(P\)</span> per year</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_0L = \overline{A}_x - P \overline{a}_x = \overline{A}_x(1 + \dfrac{P}{\delta}) - \dfrac{\pi}{\delta}\)</span></p>
+<ul class="simple">
+<li><p>expected loss at issue by applying expected values to the loss at issue equation</p></li>
+</ul>
 </section>
 <section id="equivalence-principle">
 <h2>Equivalence principle<a class="headerlink" href="#equivalence-principle" title="Permalink to this heading">#</a></h2>
-<p>Under this principle, premiums are set such that expected loss at issue equals zero:</p>
+<p>Under this principle, premiums are set such that the actuarial present value of the benefit premiums equals the actuarial present value of the benefits, hence expected loss at issue is zero:</p>
 <p><span class="math notranslate nohighlight">\(~ E[_0L] = EPV_0 (\textsf{future benefits}) - EPV_0 (\textsf{future premiums}) = 0\)</span></p>
-<ul class="simple">
-<li><p>Fully continuous: both benefits and premiums are payable continuously</p></li>
-<li><p>Fully discrete: benefits are paid at the end of the year, premiums are paid at the beginning of the year</p></li>
-<li><p>Semi-continuous: benefits are paid at moment of death, premiums are paid at the beginning of the year</p></li>
-</ul>
 </section>
 <section id="net-premium">
 <h2>Net premium<a class="headerlink" href="#net-premium" title="Permalink to this heading">#</a></h2>
 <p>For net premiums, we take into consideration outgoing benefit payments only:
 expenses are not a part of the calculation. The benefit may be a death benefit or a survival benefit or a combination. Under the equivalence principle, the net premium is set such that the expected value of the future loss is zero at the start of the contract, <span class="math notranslate nohighlight">\(E[L_0] = 0\)</span>.</p>
+<p><strong>Whole life insurance:</strong></p>
 <p><span class="math notranslate nohighlight">\(P_{x} = \dfrac{A_{x}}{\ddot{a}_{x}}\)</span></p>
 <ul class="simple">
 <li><p>fully discrete whole life insurance net premium</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(P_{x} = \dfrac{\overline{A}_{x}}{\overline{a}_{x}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\overline{P}_{x} = \dfrac{\overline{A}_{x}}{\overline{a}_{x}}\)</span></p>
 <ul class="simple">
 <li><p>fully continuous whole life insurance net premium</p></li>
 </ul>
+<p><strong>Term life insurance:</strong></p>
 <p><span class="math notranslate nohighlight">\(P^{1}_{x:\overline{t|}} = \dfrac{A^{1}_{x:\overline{t|}}}{\ddot{a}_{x:\overline{t|}}}\)</span></p>
 <ul class="simple">
 <li><p>fully discrete term life net premium</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(P^{1}_{x:\overline{t|}} = \dfrac{\overline{A}^{1}_{x:\overline{t|}}}{\overline{a}_{x:\overline{t|}}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\overline{P}^{1}_{x:\overline{t|}} = \dfrac{\overline{A}^{1}_{x:\overline{t|}}}{\overline{a}_{x:\overline{t|}}}\)</span></p>
 <ul class="simple">
 <li><p>fully continuous term life net premium</p></li>
 </ul>
+<p><strong>Pure endowment:</strong></p>
 <p><span class="math notranslate nohighlight">\(P^{~~~1}_{x:\overline{t|}} = \dfrac{~_tE_x}{\ddot{a}_{x:\overline{t|}}}\)</span></p>
 <ul class="simple">
 <li><p>fully discrete pure endowment net premium</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(P^{~~~1}_{x:\overline{t|}} = \dfrac{~_tE_x}{\overline{a}_{x:\overline{t|}}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\overline{P}^{~~~1}_{x:\overline{t|}} = \dfrac{~_tE_x}{\overline{a}_{x:\overline{t|}}}\)</span></p>
 <ul class="simple">
 <li><p>fully continuous pure endowment net premium</p></li>
 </ul>
+<p><strong>Endowment insurance:</strong></p>
 <p><span class="math notranslate nohighlight">\(P_{x:\overline{t|}} = \dfrac{A_{x:\overline{t|}}}{\ddot{a}_{x:\overline{t|}}}\)</span></p>
 <ul class="simple">
 <li><p>fully discrete endowment insurance net premium</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(P_{x:\overline{t|}} = \dfrac{\overline{A}_{x:\overline{t|}}}{\overline{a}_{x:\overline{t|}}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\overline{P}_{x:\overline{t|}} = \dfrac{\overline{A}_{x:\overline{t|}}}{\overline{a}_{x:\overline{t|}}}\)</span></p>
 <ul class="simple">
 <li><p>fully continuous endowment insurance net premium</p></li>
 </ul>
 <p><strong>Shortcuts for whole life and endowment insurance only</strong>:</p>
 <p>For whole life and endowment insurance only, by plugging in the insurance or annuity twin, the following shortcuts are available for calculating net premiums from only the life insurance or annuity factor.</p>
-<p><span class="math notranslate nohighlight">\(P = b ~ (\dfrac{1}{\ddot{a}_x} - d) = b ~ (\dfrac{dA_x}{1 - A_x})\ \)</span></p>
+<p><span class="math notranslate nohighlight">\(P_{x} = b ~ (\dfrac{1}{\ddot{a}_x} - d) = b ~ (\dfrac{dA_x}{1 - A_x})\ \)</span></p>
 <ul class="simple">
 <li><p>fully discrete whole life shortcut</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(P = b ~ (\dfrac{1}{\overline{a}_x} - \delta) = b ~ (\dfrac{d\overline{A}_x}{1 - \overline{A}_x})\)</span></p>
+<p><span class="math notranslate nohighlight">\(\overline{P}_{x} = b ~ (\dfrac{1}{\overline{a}_x} - \delta) = b ~ (\dfrac{d\overline{A}_x}{1 - \overline{A}_x})\)</span></p>
 <ul class="simple">
 <li><p>fully continuous whole life shortcut</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(P = b ~ (\dfrac{1}{\ddot{a}_{x:\overline{n|}}} - d) = b ~ (\dfrac{dA_{x:\overline{n|}}}{1 - A_{x:\overline{n|}}})\ \)</span></p>
+<p><span class="math notranslate nohighlight">\(P_{x:\overline{t|}} = b ~ (\dfrac{1}{\ddot{a}_{x:\overline{n|}}} - d) = b ~ (\dfrac{dA_{x:\overline{n|}}}{1 - A_{x:\overline{n|}}})\ \)</span></p>
 <ul class="simple">
 <li><p>fully discrete endowment insurance shortcut</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(P = b ~ (\dfrac{1}{\overline{a}_{x:\overline{n|}}} - \delta) = b ~ (\dfrac{d\overline{A}_{x:\overline{n|}}}{1 - \overline{A}_{x:\overline{n|}}})\)</span></p>
+<p><span class="math notranslate nohighlight">\(\overline{P}_{x:\overline{t|}} = b ~ (\dfrac{1}{\overline{a}_{x:\overline{n|}}} - \delta) = b ~ (\dfrac{d\overline{A}_{x:\overline{n|}}}{1 - \overline{A}_{x:\overline{n|}}})\)</span></p>
 <ul class="simple">
 <li><p>fully continuous endowment insurance shortcut</p></li>
 </ul>
-</section>
-<section id="portfolio-percentile-premium">
-<h2>Portfolio Percentile Premium<a class="headerlink" href="#portfolio-percentile-premium" title="Permalink to this heading">#</a></h2>
-<p>The portfolio percentile premium principle is an alternative to the equivalence premium principle. Using the mean and variance of the future loss random variable, the portfolio percentile premium principle can be used to determine a premium. We assume a large portfolio of <span class="math notranslate nohighlight">\(N\)</span> identical and independent policies. The present value of the total future loss <span class="math notranslate nohighlight">\(\overline{L}\)</span> of the portfolio can be approximated by a normal distribution over the sum of the individual losses <span class="math notranslate nohighlight">\(L_i\)</span></p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{align*}
-\overline{L} &amp; = L_1 + L_2 + \cdots + L_N\\
-E[\overline{L}] &amp;= N ~ E[L]\\
-Var[\overline{L}] &amp;= N ~ Var[L]\\
-\end{align*}\end{split}\]</div>
-<p>Note <span class="math notranslate nohighlight">\(E[\overline{L}]\)</span> and <span class="math notranslate nohighlight">\(Var[\overline{L}]\)</span> are functions of the unspecified premium <span class="math notranslate nohighlight">\(P\)</span>. A probability percentile <span class="math notranslate nohighlight">\(q\)</span> (say, 95% confidence) and a threshold <span class="math notranslate nohighlight">\(L^*\)</span> (say, 0) are chosen, then <span class="math notranslate nohighlight">\(P\)</span> is solved for implicitly from the following equation, such that the probability of <span class="math notranslate nohighlight">\(\overline{L}\)</span> not exceeding <span class="math notranslate nohighlight">\(L^*\)</span> is <span class="math notranslate nohighlight">\(q\)</span></p>
-<div class="math notranslate nohighlight">
-\[Pr[\overline{L} &lt; L^*] = 
-Pr \left[\dfrac{\overline{L} - E[\overline{L}]}{\sqrt{Var[\overline{L}]}}
-&lt; \dfrac{L^* - E[\overline{L}]}{\sqrt{Var[\overline{L}]}}\right]
-= \Phi\left( \dfrac{L^* - E[\overline{L}]}{\sqrt{Var[\overline{L}]}}\right) = q\]</div>
 </section>
 <section id="gross-premium">
 <h2>Gross premium<a class="headerlink" href="#gross-premium" title="Permalink to this heading">#</a></h2>
@@ -491,7 +492,7 @@ termination or claim expenses.</p>
 </ul>
 <p><span class="math notranslate nohighlight">\(E =\)</span> settlement expense</p>
 <ul>
-<li><p>is paid with death benefit (<span class="math notranslate nohighlight">\(b\)</span>); hence</p>
+<li><p>is paid along with death benefit (<span class="math notranslate nohighlight">\(b\)</span>); hence total claim cost upon death is:</p>
 <p>claim cost <span class="math notranslate nohighlight">\(= b + E = \)</span> death benefit + settlement expense.</p>
 </li>
 </ul>
@@ -503,6 +504,22 @@ termination or claim expenses.</p>
 <p><strong>Equivalence principle</strong>:</p>
 <p>If gross premiums are set under equivalence principle, then expected gross future loss at issue equals zero:</p>
 <p><span class="math notranslate nohighlight">\(~ E[_0L^g] = EPV_0 (\textsf{future benefits}) + EPV_0 (\textsf{future expenses})- EPV_0 (\textsf{future premiums}) = 0\)</span></p>
+</section>
+<section id="portfolio-percentile-premium">
+<h2>Portfolio Percentile Premium<a class="headerlink" href="#portfolio-percentile-premium" title="Permalink to this heading">#</a></h2>
+<p>The portfolio percentile premium principle is an alternative to the equivalence premium principle. Using the mean and variance of the future loss random variable, the portfolio percentile premium principle can be used to determine a premium. We assume a large portfolio of <span class="math notranslate nohighlight">\(N\)</span> identical and independent policies. The present value of the total future loss <span class="math notranslate nohighlight">\(\overline{L}\)</span> of the portfolio can be approximated by a normal distribution over the sum of the individual losses <span class="math notranslate nohighlight">\(L_i\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+\overline{L} &amp; = L_1 + L_2 + \cdots + L_N\\
+E[\overline{L}] &amp;= N ~ E[L]\\
+Var[\overline{L}] &amp;= N ~ Var[L]\\
+\end{align*}\end{split}\]</div>
+<p>Note <span class="math notranslate nohighlight">\(E[\overline{L}]\)</span> and <span class="math notranslate nohighlight">\(Var[\overline{L}]\)</span> are functions of the unspecified premium <span class="math notranslate nohighlight">\(P\)</span>. A probability percentile <span class="math notranslate nohighlight">\(q\)</span> (say, 95% confidence) and a threshold <span class="math notranslate nohighlight">\(L^*\)</span> (say, 0) are chosen, then <span class="math notranslate nohighlight">\(P\)</span> is solved for implicitly from the following equation, such that the probability of <span class="math notranslate nohighlight">\(\overline{L}\)</span> not exceeding <span class="math notranslate nohighlight">\(L^*\)</span> is <span class="math notranslate nohighlight">\(q\)</span></p>
+<div class="math notranslate nohighlight">
+\[Pr[\overline{L} &lt; L^*] = 
+Pr \left[\dfrac{\overline{L} - E[\overline{L}]}{\sqrt{Var[\overline{L}]}}
+&lt; \dfrac{L^* - E[\overline{L}]}{\sqrt{Var[\overline{L}]}}\right]
+= \Phi\left( \dfrac{L^* - E[\overline{L}]}{\sqrt{Var[\overline{L}]}}\right) = q\]</div>
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
@@ -543,68 +560,31 @@ termination or claim expenses.</p>
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
-<p><strong>SOA Question 5.6</strong>:</p>
-<p>For a group of 100 lives age x with independent future lifetimes, you are given:</p>
-<ul class="simple">
-<li><p>Each life is to be paid 1 at the beginning of each year, if alive</p></li>
-<li><p><span class="math notranslate nohighlight">\(A_x = 0.45\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(_2A_x = 0.22\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(Y\)</span> is the present value random variable of the aggregate payments.</p></li>
-</ul>
-<p>Using the normal approximation to Y, calculate the initial size of the fund needed in order to be 95% certain of being able to make the payments for these life annuities.</p>
+<p>When net premiums are set by the equivalence principle, then the three class methods <code class="docutils literal notranslate"><span class="pre">insurance_equivalence</span></code>, <code class="docutils literal notranslate"><span class="pre">annuity_equivalence</span></code> or <code class="docutils literal notranslate"><span class="pre">premium_equivalence</span></code> can be called to compute the insurance, annuity or net premium respectively given any one of the other value, for whole life and endowment insurances. For other general life insurance or annuity benefits, <code class="docutils literal notranslate"><span class="pre">net_premium</span></code> computes the net premium under EPP given any term (<code class="docutils literal notranslate"><span class="pre">t</span></code>), deferral period (<code class="docutils literal notranslate"><span class="pre">u</span></code>), endowment benefit amount (<code class="docutils literal notranslate"><span class="pre">endowment</span></code>), other initial expected costs (<code class="docutils literal notranslate"><span class="pre">initial_cost</span></code>), or refund of premium without interest at death (<code class="docutils literal notranslate"><span class="pre">return_premium</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 5.6:  (D) 1200&quot;</span><span class="p">)</span>
-<span class="n">life</span> <span class="o">=</span> <span class="n">Premiums</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-<span class="n">var</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">annuity_variance</span><span class="p">(</span><span class="n">A2</span><span class="o">=</span><span class="mf">0.22</span><span class="p">,</span> <span class="n">A1</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
-<span class="n">mean</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">annuity_twin</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
-<span class="n">fund</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">portfolio_percentile</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">.95</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fund</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Premiums</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>\
+                 <span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="mf">0.04</span><span class="p">)</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">net_premium</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">whole_life_insurance</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">whole_life_annuity</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Insurance:&#39;</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">insurance_equivalence</span><span class="p">(</span><span class="n">premium</span><span class="o">=</span><span class="n">P</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Annuity:&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">annuity_equivalence</span><span class="p">(</span><span class="n">premium</span><span class="o">=</span><span class="n">P</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Net Premium:&#39;</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> 
+      <span class="n">life</span><span class="o">.</span><span class="n">premium_equivalence</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> 
+      <span class="n">life</span><span class="o">.</span><span class="n">premium_equivalence</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 5.6:  (D) 1200
-1200.6946732201702
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Insurance: 0.4 0.4
+Annuity: 9.999999999999996 9.999999999999996
+Net Premium: 0.040000000000000015 0.040000000000000015 0.040000000000000015
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>SOA Question 6.29</strong></p>
-<p>(35) purchases a fully discrete whole life insurance policy of 100,000.
-You are given:</p>
-<ul class="simple">
-<li><p>The annual gross premium, calculated using the equivalence principle, is 1770</p></li>
-<li><p>The expenses in policy year 1 are 50% of premium and 200 per policy</p></li>
-<li><p>The expenses in policy years 2 and later are 10% of premium and 50 per policy</p></li>
-<li><p>All expenses are incurred at the beginning of the policy year</p></li>
-<li><p><span class="math notranslate nohighlight">\(i = 0.035\)</span></p></li>
-</ul>
-<p>Calculate <span class="math notranslate nohighlight">\(\ddot{a}_{35}\)</span>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.29  (B) 20.5&quot;</span><span class="p">)</span>
-<span class="n">life</span> <span class="o">=</span> <span class="n">Premiums</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.035</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">life</span><span class="o">.</span><span class="n">gross_premium</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">life</span><span class="o">.</span><span class="n">insurance_twin</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">),</span>
-                                <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span>
-                                <span class="n">benefit</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span>
-                                <span class="n">initial_policy</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
-                                <span class="n">initial_premium</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span>
-                                <span class="n">renewal_policy</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-                                <span class="n">renewal_premium</span><span class="o">=</span><span class="mf">.1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">1770</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">22</span><span class="p">]))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.29  (B) 20.5
-20.480268314431726
-</pre></div>
-</div>
-</div>
-</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">gross_premium</span></code> class method computes the level premium under the equivalence principles given expense and claim amounts (initial and renewal expenses per policy or per $1 premium, settlement expense, death benefit, and endowment) and corresponding actuarial present value factors (<code class="docutils literal notranslate"><span class="pre">A</span></code> for insurance benefits, <code class="docutils literal notranslate"><span class="pre">a</span></code> for premium annuity, <code class="docutils literal notranslate"><span class="pre">IA</span></code> for refund of premium without interest death benefit, and <code class="docutils literal notranslate"><span class="pre">E</span></code> for endowment benefit).</p>
 <p><strong>SOA Question 6.2</strong></p>
 <p>For a fully discrete 10-year term life insurance policy on (x), you are given:</p>
 <ul class="simple">
@@ -624,13 +604,13 @@ premiums and 200 per policy expenses each year</p></li>
 <span class="n">life</span> <span class="o">=</span> <span class="n">Premiums</span><span class="p">()</span>
 <span class="n">A</span><span class="p">,</span> <span class="n">IA</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="mf">0.17094</span><span class="p">,</span> <span class="mf">0.96728</span><span class="p">,</span> <span class="mf">6.8865</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">gross_premium</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span>
-                            <span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span>
-                            <span class="n">IA</span><span class="o">=</span><span class="n">IA</span><span class="p">,</span>
-                            <span class="n">benefit</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span>
-                            <span class="n">initial_premium</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-                            <span class="n">renewal_premium</span><span class="o">=</span><span class="mf">.05</span><span class="p">,</span>
-                            <span class="n">renewal_policy</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
-                            <span class="n">initial_policy</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
+                         <span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span>
+                         <span class="n">IA</span><span class="o">=</span><span class="n">IA</span><span class="p">,</span>
+                         <span class="n">benefit</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span>
+                         <span class="n">initial_premium</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                         <span class="n">renewal_premium</span><span class="o">=</span><span class="mf">.05</span><span class="p">,</span>
+                         <span class="n">renewal_policy</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+                         <span class="n">initial_policy</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -761,17 +741,90 @@ without interest</p></li>
 </div>
 </div>
 </div>
-<p><strong>Other examples</strong></p>
+<p><strong>SOA Question 6.29</strong></p>
+<p>(35) purchases a fully discrete whole life insurance policy of 100,000.
+You are given:</p>
+<ul class="simple">
+<li><p>The annual gross premium, calculated using the equivalence principle, is 1770</p></li>
+<li><p>The expenses in policy year 1 are 50% of premium and 200 per policy</p></li>
+<li><p>The expenses in policy years 2 and later are 10% of premium and 50 per policy</p></li>
+<li><p>All expenses are incurred at the beginning of the policy year</p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.035\)</span></p></li>
+</ul>
+<p>Calculate <span class="math notranslate nohighlight">\(\ddot{a}_{35}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Premiums</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>\
-                 <span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="mf">0.04</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">net_premium</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.29  (B) 20.5&quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Premiums</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.035</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">life</span><span class="o">.</span><span class="n">gross_premium</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">life</span><span class="o">.</span><span class="n">insurance_twin</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">),</span>
+                                <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span>
+                                <span class="n">benefit</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span>
+                                <span class="n">initial_policy</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+                                <span class="n">initial_premium</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span>
+                                <span class="n">renewal_policy</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+                                <span class="n">renewal_premium</span><span class="o">=</span><span class="mf">.1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">1770</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">22</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.03692697915432344
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.29  (B) 20.5
+20.480268314431726
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 6.33</strong></p>
+<p>An insurance company sells 15-year pure endowments of 10,000 to 500 lives, each age x, with independent future lifetimes. The single premium for each pure endowment is determined by the equivalence principle.</p>
+<p>You are given:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(i\)</span> = 0.03</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu_x(t) = 0.02 t, \quad t \ge 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(_0L\)</span> is the aggregate loss at issue random variable for these pure endowments.</p></li>
+</ul>
+<p>Using the normal approximation without continuity correction, calculate <span class="math notranslate nohighlight">\(Pr(_0L) &gt; 50,000)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.33:  (B) 0.13&quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Premiums</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mf">0.02</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">moment</span><span class="o">=</span><span class="n">life</span><span class="o">.</span><span class="n">VARIANCE</span><span class="p">,</span> <span class="n">endowment</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">life</span><span class="o">.</span><span class="n">portfolio_cdf</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="n">var</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.33:  (B) 0.13
+0.12828940905648634
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 5.6</strong>:</p>
+<p>For a group of 100 lives age x with independent future lifetimes, you are given:</p>
+<ul class="simple">
+<li><p>Each life is to be paid 1 at the beginning of each year, if alive</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_x = 0.45\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(_2A_x = 0.22\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(i = 0.05\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Y\)</span> is the present value random variable of the aggregate payments.</p></li>
+</ul>
+<p>Using the normal approximation to Y, calculate the initial size of the fund needed in order to be 95% certain of being able to make the payments for these life annuities.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 5.6:  (D) 1200&quot;</span><span class="p">)</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Premiums</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">annuity_variance</span><span class="p">(</span><span class="n">A2</span><span class="o">=</span><span class="mf">0.22</span><span class="p">,</span> <span class="n">A1</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">annuity_twin</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
+<span class="n">fund</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">portfolio_percentile</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">.95</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fund</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 5.6:  (D) 1200
+1200.6946732201702
 </pre></div>
 </div>
 </div>
@@ -846,11 +899,11 @@ without interest</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#present-value-of-future-loss-r-v-l">Present value of future loss r.v. <span class="math notranslate nohighlight">\(L\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#present-value-of-loss-at-issue-r-v-0l">Present value of loss at issue r.v. <span class="math notranslate nohighlight">\(_0L\)</span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equivalence-principle">Equivalence principle</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#net-premium">Net premium</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portfolio-percentile-premium">Portfolio Percentile Premium</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gross-premium">Gross premium</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portfolio-percentile-premium">Portfolio Percentile Premium</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>

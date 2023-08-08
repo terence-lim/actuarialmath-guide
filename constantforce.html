@@ -370,6 +370,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-endowment">Pure endowment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-insurance">Life insurance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-annuities">Life annuities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#net-future-loss">Net future loss</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
@@ -385,55 +386,70 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="constant-force-of-mortality">
 <h1>Constant Force of Mortality<a class="headerlink" href="#constant-force-of-mortality" title="Permalink to this heading">#</a></h1>
-<p>Shortcut formulas by assuming an exponential distribution (constant force of mortality) for future lifetime.</p>
+<p>If force of mortality is constant, then future lifetime is exponentially distributed.  The exponential distribution is easy to work with, and has the <em>memoryless</em> property that survival probability is independent of age (which is clearly an unrealistic assumption for human mortality).</p>
 <p><span class="math notranslate nohighlight">\(_tp_x = e^{-\mu t}\)</span></p>
+<p><span class="math notranslate nohighlight">\(_tq_x = 1 - e^{-\mu t}\)</span></p>
 <ul class="simple">
-<li><p>survival functions do not depend on age x</p></li>
+<li><p>survival functions do not depend on age x; given any desired probability of survival (or death), the time-of-death threshold can also be easily derived by inverting this simple shortcut formula</p></li>
 </ul>
 <section id="expected-future-lifetime">
 <h2>Expected future lifetime<a class="headerlink" href="#expected-future-lifetime" title="Permalink to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x} = \dfrac{1}{\mu}\)</span></p>
 <ul class="simple">
-<li><p>expected future lifetime does not depend on age x</p></li>
+<li><p>expected future lifetime is the mean of an exponential distribution, and does not depend on age x</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x:\overline{n|}} = \dfrac{1}{\mu} (1 - e^{-\mu n})\)</span></p>
 <ul class="simple">
-<li><p>expected temporary future life time does not depend on age</p></li>
+<li><p>temporary life expectancy is expected future life time, minus the probability of surviving <span class="math notranslate nohighlight">\(n\)</span> years times the expected remaining lifetime of those survivors</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(Var(T_x) = \dfrac{1}{\mu^2}\)</span></p>
 <ul class="simple">
-<li><p>variance of future lifetime</p></li>
+<li><p>variance of future lifetime is the variance of an exponential distribution</p></li>
 </ul>
 </section>
 <section id="pure-endowment">
 <h2>Pure endowment<a class="headerlink" href="#pure-endowment" title="Permalink to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\(_nE_x = e^{-(\mu + \delta)n}\)</span></p>
+<ul class="simple">
+<li><p>shortcut for pure endowment after substituting in the formula for survival function</p></li>
+</ul>
 </section>
 <section id="life-insurance">
 <h2>Life insurance<a class="headerlink" href="#life-insurance" title="Permalink to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\(\bar{A}_{x} = \dfrac{\mu}{\mu + \delta}\)</span></p>
 <ul class="simple">
-<li><p>whole life insurance</p></li>
+<li><p>continuous whole life insurance, does not depend on age <span class="math notranslate nohighlight">\(x\)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(~_{u|}\bar{A}_{x} = \dfrac{\mu}{\mu + \delta} e^{-\mu u}\)</span></p>
+<ul class="simple">
+<li><p>deferred continuous whole life insurance as pure endowment times whole life insurance</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(\bar{A}_{x:\overline{t|}} = \dfrac{\mu}{\mu + \delta} (1 - e^{-\mu t})\)</span></p>
 <ul class="simple">
-<li><p>term life insurance</p></li>
+<li><p>continuous term life insurance as difference of whole life and deferred whole life insurance shortcut formulas</p></li>
 </ul>
 </section>
 <section id="life-annuities">
 <h2>Life annuities<a class="headerlink" href="#life-annuities" title="Permalink to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\(\bar{a}_{x} = \dfrac{1}{\mu + \delta}\)</span></p>
 <ul class="simple">
-<li><p>whole life annuity</p></li>
+<li><p>whole life annuity, does not depend on age <span class="math notranslate nohighlight">\(x\)</span></p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(\bar{a}_{x:\overline{t|}} = \dfrac{1}{\mu + \delta} (1 - e^{-\mu t})\)</span></p>
 <ul class="simple">
-<li><p>temporary life annuity</p></li>
+<li><p>temporary life annuity as difference of whole life and deferred whole life annuity shortcut formulas</p></li>
+</ul>
+</section>
+<section id="net-future-loss">
+<h2>Net future loss<a class="headerlink" href="#net-future-loss" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(var(_0L) = \dfrac{\mu}{2\delta + \mu}\)</span></p>
+<ul class="simple">
+<li><p>variance of loss at issue on whole life insurance with benefit premium calculated using the equivalence principle equals the second moment of insurance</p></li>
 </ul>
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">ConstantForce</span></code> class implements methods that apply shortcut formulas available when assuming constant force of mortality for the distribution of future lifetime</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ConstantForce</span></code> class specifies a constant force of mortality for the survival model. It inherits all the general methods for computing life contingency risks, and overrides those methods with shortcut formulas that are available when assuming an exponential distribution for future lifetime.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">ConstantForce</span>
@@ -447,7 +463,6 @@ document.write(`
 
     Args:
       mu : constant value of force of mortality
-      udd : assume UDD (True) or CFM (False, default) between integer ages
 
     Examples:
       &gt;&gt;&gt; life = ConstantForce(mu=0.01).set_interest(delta=0.05)
@@ -483,6 +498,20 @@ document.write(`
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>To use the constant force of mortality assumption, the <code class="docutils literal notranslate"><span class="pre">ConstantForce</span></code> subclass can be initialized with the value of <code class="docutils literal notranslate"><span class="pre">mu</span></code>; then shortcut formulas for computing life contingencies, where available, would be called instead of general inherited methods.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">ConstantForce</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>                       
+<span class="n">life</span><span class="o">.</span><span class="n">term_insurance</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">35</span><span class="p">)</span>   
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.14625726195783623, 0.12245642825298157)
+</pre></div>
+</div>
+</div>
+</div>
 <p><strong>SOA Question 6.36</strong></p>
 <p>For a fully continuous 20-year term insurance policy of 100,000 on (50), you are given:</p>
 <ul class="simple">
@@ -723,6 +752,7 @@ payable for the lifetime of (x) with 10 years certain</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-endowment">Pure endowment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-insurance">Life insurance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#life-annuities">Life annuities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#net-future-loss">Net future loss</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>

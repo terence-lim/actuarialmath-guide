@@ -389,7 +389,7 @@ document.write(`
 <li><p>Future survival probabilities depend on the individual’s current age and on the age at which the individual joined the group (i.e. was <em>selected</em>). Current age is written <span class="math notranslate nohighlight">\([x]+s\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> is the selected age and <span class="math notranslate nohighlight">\(s\)</span> is the number of years after selection.</p></li>
 <li><p>If an individual joined the group more than <span class="math notranslate nohighlight">\(d\)</span> years ago (called the <em>select period</em>), future survival probabilities (called the <em>ultimate mortality</em>) depend only on current age. The initial selection effect is assumed to have worn off after <span class="math notranslate nohighlight">\(d\)</span> years. Current age can be written as <span class="math notranslate nohighlight">\(x+s\)</span> after the select period <span class="math notranslate nohighlight">\(s \ge d\)</span></p></li>
 </ul>
-<p>Select life tables reflect duration as well as age during the select period.</p>
+<p>Select life tables reflect duration as well as age during the select period.  A select and ultimate mortality table is shown in tabular form by listing agex vertically and the selection durations horizontally.  If the select period is <span class="math notranslate nohighlight">\(n\)</span>, there are <span class="math notranslate nohighlight">\(n\)</span> columns followed by a column with ultimate mortality. To find the mortality at a duration after a selection age, we read across the row corresponding to that selection age then continue down the last column.</p>
 <p><strong>Notation for select survival models</strong>:</p>
 <p><span class="math notranslate nohighlight">\(_tp_{[x]+ s} =\)</span> Pr(a life aged <span class="math notranslate nohighlight">\(x + s\)</span>, selected at age <span class="math notranslate nohighlight">\(x\)</span>, survives to age <span class="math notranslate nohighlight">\(x +s +t\)</span>)</p>
 <ul class="simple">
@@ -407,7 +407,7 @@ document.write(`
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">SelectLife</span></code> class implements methods to construct and fill in a select life table</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">SelectLife</span></code>  class specifies a given select life table to be the survival model.  It inherits all the general methods for computing life contingency risks, and overrides those methods where values can be looked up or calculated from select life table entries.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">SelectLife</span>
@@ -436,10 +436,10 @@ document.write(`
     Methods:
     --------
 
-    set_table(fill, l, d, q, A, a, e):
+    set_table(l, d, q, A, a, e, fill, radix):
       Update from table, every age has row for all select durations
 
-    set_select(s, age_selected, fill, l, d, q, A, a, e):
+    set_select(s, age_selected, radix, fill, l, d, q, A, a, e):
       Update a table column, for a particular duration s in the select period
 
     fill_table(radix):
@@ -475,6 +475,7 @@ document.write(`
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">set_table</span></code> method is called to load a life table, by age and duration, with given values of number of lives, number of deaths, mortality rate, insurance, annuity and/or life expectancy. The <code class="docutils literal notranslate"><span class="pre">set_select</span></code> method can also be called instead to update values of the same functions but for a particular duration <span class="math notranslate nohighlight">\(s\)</span> only. If the <code class="docutils literal notranslate"><span class="pre">fill</span></code> flag is set to True, <code class="docutils literal notranslate"><span class="pre">fill_table</span></code> is automatically called to fill in any missing values using recursion and identify formulas.  All other computational methods can then be called in the usual manner, which will use the survival model provided by the select life table.</p>
 <p><strong>SOA Question 3.2</strong>:</p>
 <p>You are given:</p>
 <ul class="simple">

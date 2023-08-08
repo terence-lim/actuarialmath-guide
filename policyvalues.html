@@ -370,6 +370,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gross-policy-value">Gross policy value</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-future-loss">Variance of future loss</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expense-reserve">Expense reserve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilities-and-percentiles">Probabilities and Percentiles</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
@@ -385,7 +386,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="policy-values">
 <h1>Policy Values<a class="headerlink" href="#policy-values" title="Permalink to this heading">#</a></h1>
-<p>Policy value at time <span class="math notranslate nohighlight">\(t\)</span> is the present value, at time <span class="math notranslate nohighlight">\(t\)</span>, of the future loss random variable</p>
+<p>Policy value at time <span class="math notranslate nohighlight">\(t\)</span> is the expected present value, at time <span class="math notranslate nohighlight">\(t\)</span>, of the future loss random variable, where <span class="math notranslate nohighlight">\(P\)</span> is the premium for <span class="math notranslate nohighlight">\(b\)</span> units of insurance, not necessarily the benefit premium determined from the equivalence principle.</p>
 <p><strong>Net future loss at issue</strong></p>
 <p>For net future loss at time <span class="math notranslate nohighlight">\(t=0\)</span>, we consider benefit payments and net premiums only.</p>
 <p><span class="math notranslate nohighlight">\(_0L = b~v^{K_x + 1} - P\ddot{a}_{\overline{K_x + 1|}} = (b + \dfrac{P}{d})~v^{K_x+1} - \dfrac{P}{d}\)</span></p>
@@ -404,8 +405,8 @@ document.write(`
 </ul>
 <section id="net-policy-value">
 <h2>Net policy value<a class="headerlink" href="#net-policy-value" title="Permalink to this heading">#</a></h2>
-<p>The amount needed at time <span class="math notranslate nohighlight">\(t\)</span> to cover the shortfall of expected future benefits greater than the EPV of future premiums is called the policy value for the policy at time <span class="math notranslate nohighlight">\(t\)</span>, denoted <span class="math notranslate nohighlight">\(_tV\)</span>,</p>
-<p><span class="math notranslate nohighlight">\(_tV = E[_tL] = EPV_t (\textsf{future benefits}) - EPV_t (\textsf{future premiums})\)</span></p>
+<p>The amount needed at time <span class="math notranslate nohighlight">\(t\)</span> to cover the shortfall of expected future benefits greater than the EPV of future net premiums after time <span class="math notranslate nohighlight">\(t\)</span> is called the policy value for the policy at time <span class="math notranslate nohighlight">\(t\)</span>, denoted <span class="math notranslate nohighlight">\(_tV\)</span>,</p>
+<p><span class="math notranslate nohighlight">\(_tV = E[_tL] = EPV_t (\textsf{future benefits}) - EPV_t (\textsf{future net premiums})\)</span></p>
 <ul class="simple">
 <li><p>net policy value at time <span class="math notranslate nohighlight">\(t\)</span> is the expected net future loss of benefits less premiums after time <span class="math notranslate nohighlight">\(t\)</span></p></li>
 </ul>
@@ -413,28 +414,38 @@ document.write(`
 <ul class="simple">
 <li><p>net policy value at issue is 0 because of the equivalence principle</p></li>
 </ul>
+<p><strong>Term insurance</strong>:</p>
 <p><span class="math notranslate nohighlight">\(_nV = 0\)</span></p>
 <ul class="simple">
 <li><p>net policy value at year <span class="math notranslate nohighlight">\(n\)</span> is 0 for a n-year term insurance</p></li>
 </ul>
+<p><strong>Endowment insurance</strong>:</p>
 <p><span class="math notranslate nohighlight">\(_nV = \)</span> endowment benefit</p>
 <ul class="simple">
 <li><p>net policy value at year <span class="math notranslate nohighlight">\(n\)</span> is equal to the endowment benefit for a n-year endowment insurance</p></li>
 </ul>
 <p><strong>Shortcuts for whole life and endowment insurance:</strong></p>
+<p>These have a simple relationship between insurance and annuity, hence the policy value formulas can be expressed in temrs of insurances only or annuities only.</p>
 <p><span class="math notranslate nohighlight">\(_tV = b[1 - \dfrac{\ddot{a}_{x+t}}{\ddot{a}_{x}}]\)</span> or <span class="math notranslate nohighlight">\(b[\dfrac{A_{x+t} - A_x}{1 - A_x}]\space \)</span></p>
 <ul class="simple">
-<li><p>net policy value at time <span class="math notranslate nohighlight">\(t\)</span> of fully-discrete whole life insurance*</p></li>
+<li><p>net policy value at time <span class="math notranslate nohighlight">\(t\)</span> of fully-discrete whole life insurance</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(_tV = b[1 - \dfrac{\overline{a}_{x+t}}{\overline{a}_{x}}]\)</span> or <span class="math notranslate nohighlight">\(b[\dfrac{\overline{A}_{x+t} - \overline{A}_x}{1 - \overline{A}_x}] \space \)</span></p>
 <ul class="simple">
-<li><p>net policy value at time <span class="math notranslate nohighlight">\(t\)</span> of fully-continuous whole life insurance*</p></li>
+<li><p>net policy value at time <span class="math notranslate nohighlight">\(t\)</span> of fully-continuous whole life insurance</p></li>
 </ul>
-<p>*Add <span class="math notranslate nohighlight">\(:\overline{n|}\)</span> to <span class="math notranslate nohighlight">\(A\)</span>’s and <span class="math notranslate nohighlight">\(a\)</span>’s for endowment insurance</p>
+<p><span class="math notranslate nohighlight">\(_tV = b[1 - \dfrac{\ddot{a}_{x+t:\overline{n-t|}}}{\ddot{a}_{x:\overline{n|}}}]\)</span> or <span class="math notranslate nohighlight">\(b[\dfrac{A_{x+t:\overline{n-t|}} - A_{x:\overline{n|}}}{1 - A_{x:\overline{n|}}}]\space \)</span></p>
+<ul class="simple">
+<li><p>net policy value at time <span class="math notranslate nohighlight">\(t\)</span> of fully-discrete endowment insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_tV = b[1 - \dfrac{\overline{a}_{x+t:\overline{n-t|}}}{\overline{a}_{x:\overline{n|}}}]\)</span> or <span class="math notranslate nohighlight">\(b[\dfrac{\overline{A}_{x+t:\overline{n-t|}} - \overline{A}_{x:\overline{n|}}}{1 - \overline{A}_{x:\overline{n|}}}] \space \)</span></p>
+<ul class="simple">
+<li><p>net policy value at time <span class="math notranslate nohighlight">\(t\)</span> of fully-continuous endowment insurance</p></li>
+</ul>
 </section>
 <section id="gross-policy-value">
 <h2>Gross policy value<a class="headerlink" href="#gross-policy-value" title="Permalink to this heading">#</a></h2>
-<p>Gross premium policy values explicitly allow for expenses and for the full gross premium, whereas net premium policy values exclude expenses from cash flows, and only the net premium is counted.</p>
+<p>Gross premium policy values explicitly allow for expenses and for the full gross premium.</p>
 <p><span class="math notranslate nohighlight">\(_tV^g = E[_tL^g] = EPV_t (\textsf{future benefits}) + EPV_t (\textsf{future expenses}) - EPV_t (\textsf{future premiums})\)</span></p>
 <ul class="simple">
 <li><p>gross policy value at time <span class="math notranslate nohighlight">\(t\)</span> is the expected net future loss of benefits and expenses less premiums after time <span class="math notranslate nohighlight">\(t\)</span></p></li>
@@ -442,32 +453,51 @@ document.write(`
 </section>
 <section id="variance-of-future-loss">
 <h2>Variance of future loss<a class="headerlink" href="#variance-of-future-loss" title="Permalink to this heading">#</a></h2>
-<p>These formulas apply to <em>whole life</em> and <em>endowment insurance</em> <strong>only</strong>:</p>
+<p>These formulas apply to <em>whole life</em> and <em>endowment insurance</em> <strong>only</strong>.  In these cases, the function of the random variable <span class="math notranslate nohighlight">\(v^{T_x}\)</span> is the same for both the insurance and annuity of premiums which simplifies the formulas for variance of future loss.</p>
 <p><strong>Net future loss</strong></p>
+<p><span class="math notranslate nohighlight">\(Var[_tL] = (b + \dfrac{P}{d})^2~[^{2}A_{x+t} - (A_{x+t})^2]\)</span></p>
+<ul class="simple">
+<li><p>fully discrete whole life insurance</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var[_tL] = (b + \dfrac{P}{\delta})^2~[^{2}\overline{A}_{x+t} - (\overline{A}_{x+t})^2]\)</span></p>
+<ul class="simple">
+<li><p>fully continuous whole life insurance</p></li>
+</ul>
 <p><span class="math notranslate nohighlight">\(Var[_tL] = (b + \dfrac{P}{d})^2~[^{2}A_{x+t:\overline{n-t|}} - (A_{x+t:\overline{n-t|}})^2]\)</span></p>
 <ul class="simple">
-<li><p>fully discrete endowment insurance*</p></li>
+<li><p>fully discrete endowment insurance</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(Var[_tL] = (b + \dfrac{P}{\delta})^2~[^{2}\overline{A}_{x+t:\overline{n-t|}} - (\overline{A}_{x+t:\overline{n-t|}})^2]\)</span></p>
 <ul class="simple">
-<li><p>fully continuous endowment insurance*</p></li>
+<li><p>fully continuous endowment insurance</p></li>
 </ul>
 <p><strong>Gross future loss</strong></p>
+<p><span class="math notranslate nohighlight">\(Var[_tL] = (b + E + \dfrac{G-e_r}{d})^2~[^{2}A_{x+t} - (A_{x+t})^2]\)</span></p>
+<ul class="simple">
+<li><p>fully discrete whole life insurance</p></li>
+</ul>
 <p><span class="math notranslate nohighlight">\(Var[_tL] = (b + E + \dfrac{G-e_r}{d})^2~[^{2}A_{x+t:\overline{n-t|}} - (A_{x+t:\overline{n-t|}})^2]\)</span></p>
 <ul class="simple">
-<li><p>fully discrete endowment insurance*</p></li>
+<li><p>fully discrete endowment insurance</p></li>
 </ul>
-<p><strong>Shortcuts for variance of net future loss</strong></p>
-<p>When net premiums are set under equivalence principle, these shortcuts are available without explicitly specifying the value of net premiums, again, for <em>whole life</em> and <em>endowment insurance</em> <strong>only</strong>:</p>
+<p><strong>Shortcuts for variance of net future loss under equivalence principle</strong></p>
+<p>When net premiums are set under equivalence principle, these shortcuts are available without explicitly specifying the value of net premiums (which can be stated as a function of insurance only under this assumption) for <em>whole life</em> and <em>endowment insurance</em> <strong>only</strong>:</p>
+<p><span class="math notranslate nohighlight">\(Var[_tL] = b^2[\dfrac{^{2}A_{x+t} - (A_{x+t})^2}{(1 - A_{x})^2}]\)</span></p>
+<ul class="simple">
+<li><p>variance of net future loss for fully-discrete whole life insurance under EPP</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var[_tL] = b^2[\dfrac{^{2}\overline{A}_{x+t} - (\overline{A}_{x+t})^2}{(1 - \overline{A}_{x})^2}]\)</span></p>
+<ul class="simple">
+<li><p>variance of net future loss for fully-continuous whole life insurance under EPP</p></li>
+</ul>
 <p><span class="math notranslate nohighlight">\(Var[_tL] = b^2[\dfrac{^{2}A_{x+t:\overline{n-t|}} - (A_{x+t:\overline{n-t|}})^2}{(1 - A_{x:\overline{n|}})^2}]\)</span></p>
 <ul class="simple">
-<li><p>variance of net future loss for fully-discrete endowment insurance*</p></li>
+<li><p>variance of net future loss for fully-discrete endowment insurance under EPP</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(Var[_tL] = b^2[\dfrac{^{2}\overline{A}_{x+t:\overline{n-t|}} - (\overline{A}_{x+t:\overline{n-t|}})^2}{(1 - \overline{A}_{x:\overline{n|}})^2}]\)</span></p>
 <ul class="simple">
-<li><p>variance of net future loss for fully-continuous endowment insurance*</p></li>
+<li><p>variance of net future loss for fully-continuous endowment insurance under EPP</p></li>
 </ul>
-<p>*For whole life insurance, remove the <span class="math notranslate nohighlight">\(\overline{:n|}\)</span> and <span class="math notranslate nohighlight">\(\overline{:n-t|}\)</span> notations.</p>
 </section>
 <section id="expense-reserve">
 <h2>Expense reserve<a class="headerlink" href="#expense-reserve" title="Permalink to this heading">#</a></h2>
@@ -485,12 +515,21 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(~_tV &gt; ~_tV^g &gt; 0 &gt; ~_tV^e\)</span></p></li>
 </ul>
 </section>
+<section id="probabilities-and-percentiles">
+<h2>Probabilities and Percentiles<a class="headerlink" href="#probabilities-and-percentiles" title="Permalink to this heading">#</a></h2>
+<p>For whole life, term and endowment insurance, the present value of benefits decreases with time, while the present value of the premium annuity increases</p>
+<p><strong>Percentile of <span class="math notranslate nohighlight">\(_0L\)</span>:</strong></p>
+<p>Since loss at issue is a monotonically decreasing function of lifetime, the <span class="math notranslate nohighlight">\(100p\)</span>-th percentile of the loss at issue r.v. is determined from the <span class="math notranslate nohighlight">\(100p\)</span>-th percentile of the survival function.</p>
+<p><strong>Probability of <span class="math notranslate nohighlight">\(_0L\)</span>:</strong></p>
+<p>To calculate the probability that the present value of loss at issue is greater than some value <span class="math notranslate nohighlight">\(Pr(_0L \ge L_{\pi})\)</span>, calculate the time <span class="math notranslate nohighlight">\(t_{\pi}\)</span> for which <span class="math notranslate nohighlight">\(_0L = b~v^{t_{\pi}} - P\overline{a}_{\overline{t_{\pi}|}}\)</span> has the required value, then calculate the probability that time of death <span class="math notranslate nohighlight">\(T_x\)</span> is in that range.</p>
+</section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">PolicyValues</span></code> class implements methods for computing net and gross future losses, and policy values (expected present values).  The <code class="docutils literal notranslate"><span class="pre">Contract</span></code> class is used store and retrieve policy contract terms, such as benefit amounts and the various types of expenses.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.policyvalues</span> <span class="kn">import</span> <span class="n">PolicyValues</span><span class="p">,</span> <span class="n">Contract</span>
+<span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">describe</span>
 <span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">PolicyValues</span><span class="p">)</span>
 </pre></div>
@@ -502,37 +541,43 @@ document.write(`
     Methods:
     --------
 
-    net_future_loss(A, A1, b):
-      Shortcuts for WL or Endowment Insurance net loss
-
-    net_variance_loss(A1, A2, A, b):
-      Shortcuts for variance of net loss of WL or Endowment Insurance
-
-    net_policy_variance(x, s, t, b, n, endowment, discrete):
-      Variance of future loss for WL or Endowment Ins assuming equivalence
-
-    gross_future_loss(A, a, contract):
-      Shortcut for WL or Endowment Insurance gross future loss
-
-    gross_policy_variance(x, s, t, n, contract):
-      Variance of gross policy value for WL and Endowment Insurance
-
     gross_policy_value(x, s, t, n, contract):
       Gross policy values for insurance: t_V = E[L_t]
 
-    L_from_t(t, contract):
-      PV of Loss L(t) at time of death t = T_x (or K_x if discrete)
+    gross_policy_variance(x, s, t, n, contract):
+      Variance of gross policy value for WL and Endowment Insurance only
 
-    L_to_t(L, contract):
-      Compute time of death T_x s.t. PV future loss is L
+    net_policy_value(x, s, t, b, n, endowment, discrete):
+      Net policy value assuming net premiums from equivalence principle: E[L_t]
+
+    net_policy_variance(x, s, t, b, n, endowment, discrete):
+      Variance of net future loss for WL or Endowment Insurance only
+
+    net_future_loss(A, A1, b):
+      Shortcut for net policy value with WL or Endowment Insurance factors
+
+    gross_future_loss(A, a, contract):
+      Shortcut for gross policy value with WL or Endowment Insurance factors
+
+    net_variance_loss(A1, A2, A, b):
+      Variance of net loss with WL or Endowment Insurance factors
+
+    gross_variance_loss(A1, A2, contract):
+      Variance of gross loss with WL or endowment insurance factors
+
+    L_from_t(t, contract):
+      PV of Loss L(t) at time of death t = T_x
 
     L_from_prob(x, prob, contract):
-      Compute PV of future loss at given percentile prob
+      Percentile of PV future loss r.v. L given probability
+
+    L_to_t(L, contract):
+      Time of death T_x s.t. PV future loss is no more than L
 
     L_to_prob(x, L, contract):
-      Compute percentile of L on the PV of future loss curve&quot;
+      Probability such that PV of future loss r.v. is no more than L&quot;
 
-    L_plot(x, s, stop, T, contract, ax, title, color):
+    L_plot(x, s, stop, T, contract, ax, dual, title, color, alpha):
       Plot PV of future loss r.v. L vs time of death T_x
 </pre></div>
 </div>
@@ -567,16 +612,16 @@ document.write(`
       Update any existing policy contract terms
 
     premium_terms():
-      Getter returns dict of terms required for calculating gross premiums
+      Dict of terms required for calculating gross premiums
 
     renewal_profit():
-      Getter returns renewal dollar profit (premium less renewal expenses)
+      Renewal dollar profit (premium less renewal expenses)
 
     initial_cost():
-      Getter returns total initial cost (excludes renewal expenses)
+      Total initial cost (net of renewal component of expenses and premiums)
 
     claims_cost():
-      Getter returns total claims cost (death benefit + settlement expense)
+      Total claims cost (death benefit + settlement expense)
 
     renewals(t):
       Returns contract object with initial terms set to renewal terms
@@ -587,6 +632,84 @@ document.write(`
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Contract</span></code> helper class can be initialized to store expenses, benefit amounts and values of other contract features. Its <code class="docutils literal notranslate"><span class="pre">set_contract</span></code> method is called to update individual values, its <code class="docutils literal notranslate"><span class="pre">renewals</span></code> method returns a new Contract object with its initial expenses changed to be the same as renewal expenses, and other “getter” methods derive various summary values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">contract</span> <span class="o">=</span> <span class="n">Contract</span><span class="p">(</span><span class="n">benefit</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
+                    <span class="n">settlement_policy</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+                    <span class="n">initial_policy</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+                    <span class="n">initial_premium</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> 
+                    <span class="n">renewal_policy</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                    <span class="n">renewal_premium</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contract</span><span class="o">.</span><span class="n">premium_terms</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contract</span><span class="o">.</span><span class="n">renewals</span><span class="p">()</span><span class="o">.</span><span class="n">premium_terms</span><span class="p">)</span>
+<span class="n">contract</span><span class="o">.</span><span class="n">set_contract</span><span class="p">(</span><span class="n">premium</span><span class="o">=</span><span class="mf">35.38618830746352</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contract</span><span class="o">.</span><span class="n">initial_cost</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contract</span><span class="o">.</span><span class="n">claims_cost</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contract</span><span class="o">.</span><span class="n">renewal_profit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;benefit&#39;: 1000, &#39;initial_policy&#39;: 10, &#39;initial_premium&#39;: 0.75, &#39;renewal_policy&#39;: 2, &#39;renewal_premium&#39;: 0.1, &#39;settlement_policy&#39;: 20}
+{&#39;benefit&#39;: 1000, &#39;initial_policy&#39;: 2, &#39;initial_premium&#39;: 0.1, &#39;renewal_policy&#39;: 2, &#39;renewal_premium&#39;: 0.1, &#39;settlement_policy&#39;: 20}
+31.00102239985129
+1020
+29.84756947671717
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">gross_policy_value</span></code> method in the <code class="docutils literal notranslate"><span class="pre">PolicyValues</span></code> class compute policy values at issue or future year <span class="math notranslate nohighlight">\(t\)</span> for general insurances and premiums.  For whole life and endowment insurances only, <code class="docutils literal notranslate"><span class="pre">gross_policy_variance</span></code> computes the variance of the future gross loss PV random variable. Internally, these use the <code class="docutils literal notranslate"><span class="pre">gross_future_loss</span></code> and <code class="docutils literal notranslate"><span class="pre">gross_variance_loss</span></code> helper methods, which are also available to be called directly if the actuarial insurance factors are already provided as inputs.</p>
+<p>When net premiums are given by the equivalence principle, <code class="docutils literal notranslate"><span class="pre">net_policy_value</span></code> computes the net policy values at issue or a future year <span class="math notranslate nohighlight">\(t\)</span>. For whole life and endowment insurances only, <code class="docutils literal notranslate"><span class="pre">net_policy_variance</span></code> compute the variance of the future net loss PV random variable. Internally, these use the <code class="docutils literal notranslate"><span class="pre">net_future_loss</span></code> and <code class="docutils literal notranslate"><span class="pre">net_variance_loss</span></code> helper methods, which are also available to be called directly if the actuarial insurance factors are already provided as inputs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">S</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>  <span class="c1"># define a survival function</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">.00022</span><span class="o">*</span><span class="n">t</span> <span class="o">-</span> <span class="p">(</span><span class="mf">.0000027</span><span class="o">*</span><span class="mf">1.124</span><span class="o">**</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.124</span><span class="o">**</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.124</span><span class="p">))</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">PolicyValues</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">minage</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">maxage</span><span class="o">=</span><span class="mi">130</span><span class="p">)</span>\
+                     <span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">net_policy_value</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">benefit</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">discrete</span><span class="p">),</span> 
+      <span class="n">life</span><span class="o">.</span><span class="n">net_policy_value</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">benefit</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">discrete</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">net_policy_variance</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">benefit</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">discrete</span><span class="p">),</span> 
+      <span class="n">life</span><span class="o">.</span><span class="n">net_policy_variance</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">benefit</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="n">contract</span><span class="o">.</span><span class="n">discrete</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">gross_policy_value</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">),</span>
+      <span class="n">life</span><span class="o">.</span><span class="n">gross_policy_variance</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0 12.88972064810054
+3734.4039865925088 4534.593306902999
+-514.7435740643272 9155.101027638082
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">L_from_t</span></code> method computes the present value of the future loss when death occurs at time <span class="math notranslate nohighlight">\(t\)</span>, while <code class="docutils literal notranslate"><span class="pre">L_from_prob</span></code> returns the <span class="math notranslate nohighlight">\(100p\)</span>-th percentile value of <span class="math notranslate nohighlight">\(L\)</span>. The inverse computations are performed by <code class="docutils literal notranslate"><span class="pre">L_to_t</span></code> and <code class="docutils literal notranslate"><span class="pre">L_to_prob</span></code> methods respectively.  <code class="docutils literal notranslate"><span class="pre">L_plot</span></code> plots the present value of future loss r.v. <span class="math notranslate nohighlight">\(L\)</span> as a function of time <span class="math notranslate nohighlight">\(t\)</span>. The example below determines the breakeven lifetime, when the present value of future loss L(t) = 0, and annotates in a plot with survival probabilities.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">S</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>  <span class="c1"># define a survival function</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">.00022</span><span class="o">*</span><span class="n">t</span> <span class="o">-</span> <span class="p">(</span><span class="mf">.0000027</span><span class="o">*</span><span class="mf">1.124</span><span class="o">**</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.124</span><span class="o">**</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.124</span><span class="p">))</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">PolicyValues</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">minage</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">maxage</span><span class="o">=</span><span class="mi">130</span><span class="p">)</span>\
+                     <span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">net_premium</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">contract</span> <span class="o">=</span> <span class="n">Contract</span><span class="p">(</span><span class="n">premium</span><span class="o">=</span><span class="n">P</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">L_to_t</span><span class="p">(</span><span class="n">L</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>        <span class="c1"># breakeven T                            </span>
+<span class="n">life</span><span class="o">.</span><span class="n">L_plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span> <span class="n">dual</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">L_to_prob</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L:&#39;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">L_from_t</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">),</span> 
+      <span class="n">life</span><span class="o">.</span><span class="n">L_from_prob</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="n">prob</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>L: -4.905848505210031e-10 -4.905742478911179e-10
+</pre></div>
+</div>
+<img alt="_images/1cb6be2d90d436aaf511d849034987717c70cf41ee5b7fc9de98a84e97e304db.png" src="_images/1cb6be2d90d436aaf511d849034987717c70cf41ee5b7fc9de98a84e97e304db.png" />
+</div>
+</div>
 <p><strong>SOA Question 6.24</strong></p>
 <p>For a fully continuous whole life insurance of 1 on (x), you are given:</p>
 <ul class="simple">
@@ -754,27 +877,6 @@ determined by the equivalence principle</p></li>
 </div>
 </div>
 </div>
-<p><strong>Plot present value of future loss r.v L</strong>:</p>
-<p>Assume mortality follows Standard Ultimate Life Table. Indicate breakeven lifetime.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.sult</span> <span class="kn">import</span> <span class="n">SULT</span>
-<span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="n">P</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">net_premium</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
-<span class="n">contract</span> <span class="o">=</span> <span class="n">Contract</span><span class="p">(</span><span class="n">premium</span><span class="o">=</span><span class="n">P</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">L_to_t</span><span class="p">(</span><span class="n">L</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>  <span class="c1"># breakeven T                            </span>
-<span class="n">life</span><span class="o">.</span><span class="n">L_plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.000695265147726408
-</pre></div>
-</div>
-<img alt="_images/a0f863a91d36d8cff32ec637188c316d98d4f2e523b09269121502eabd0f7515.png" src="_images/a0f863a91d36d8cff32ec637188c316d98d4f2e523b09269121502eabd0f7515.png" />
-</div>
-</div>
 </section>
 </section>
 
@@ -849,6 +951,7 @@ determined by the equivalence principle</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gross-policy-value">Gross policy value</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-of-future-loss">Variance of future loss</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expense-reserve">Expense reserve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilities-and-percentiles">Probabilities and Percentiles</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>

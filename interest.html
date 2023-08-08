@@ -388,12 +388,18 @@ document.write(`
 <p><span class="math notranslate nohighlight">\(i\)</span> is the amount earned on $1 after one year</p>
 <ul class="simple">
 <li><p>effective annual <em>interest rate</em></p></li>
-<li><p><span class="math notranslate nohighlight">\(i^{(m)}\)</span> denotes the nominal interest rate, stated on annual basis, compounded <em>m</em> times per year</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(i^{(m)}\)</span> is the nominal interest rate compounded <em>m</em> times per year</p>
+<ul class="simple">
+<li><p>it is numerically equal to <span class="math notranslate nohighlight">\(m\)</span> times the effective interest rate over 1/m’th of a year.</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(d = \dfrac{i}{1 + i}\)</span></p>
 <ul class="simple">
 <li><p>annual <em>discount rate</em> of interest</p></li>
-<li><p><span class="math notranslate nohighlight">\(d^{(m)}\)</span> denotes the nominal discount rate, stated on annual basis, compounded <em>m</em> times per year</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(d^{(m)}\)</span> is the nominal discount rate compounded <em>m</em> times per year</p>
+<ul class="simple">
+<li><p>it is numerically equal to <span class="math notranslate nohighlight">\(m\)</span> times the discount rate over 1/m’th of a year.</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(v = \dfrac{1}{1 + i}\)</span></p>
 <ul class="simple">
@@ -407,20 +413,21 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-(1+i)^t &amp; = (1-d)^{-t} \\
-&amp; = (1+\dfrac{i^{(m)}}{m})^{mt} \\
-&amp; = (1-\dfrac{d^{(m)}}{m})^{-mt} \\
-&amp; = e^{\delta t} \\
-&amp; = v^{-t}
+v^{t} &amp; = e^{- \delta t} \\
+&amp; = (1-d)^{t} \\
+&amp; = (1+i)^{-t} \\
+&amp; = (1-\dfrac{d^{(m)}}{m})^{mt} \\
+&amp; = (1+\dfrac{i^{(m)}}{m})^{-mt} \\
 \end{align*}
 \end{split}\]</div>
 <p><strong>Doubling the force of interest</strong></p>
-<p><span class="math notranslate nohighlight">\(\delta ' \leftarrow 2 \delta\)</span></p>
-<p><span class="math notranslate nohighlight">\(i' \leftarrow 2 i + i^2\)</span></p>
-<p><span class="math notranslate nohighlight">\(d' \leftarrow 2 d - d^2\)</span></p>
-<p><span class="math notranslate nohighlight">\(v' \leftarrow v^2\)</span></p>
+<p>Note that doubling the force of interest is not the same as doubling the rate of interest.</p>
+<p><span class="math notranslate nohighlight">\(~^2\delta \leftarrow 2 \delta\)</span></p>
+<p><span class="math notranslate nohighlight">\(~^2i \leftarrow 2 i + i^2\)</span></p>
+<p><span class="math notranslate nohighlight">\(~^2d \leftarrow 2 d - d^2\)</span></p>
+<p><span class="math notranslate nohighlight">\(~^2v \leftarrow v^2\)</span></p>
 <p><strong>Annuity certain</strong></p>
-<p>Pays $1 per year for <span class="math notranslate nohighlight">\(n\)</span> years</p>
+<p>Present value of an annuity certain that pays at a rate of $1 per year for <span class="math notranslate nohighlight">\(n\)</span> years</p>
 <p><span class="math notranslate nohighlight">\(\ddot{a}_{\overline{n|}} = \dfrac{1 - v^{n}}{d}\)</span></p>
 <ul class="simple">
 <li><p>Annuity certain due: pays $1 at the beginning of the year</p></li>
@@ -446,20 +453,17 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Interest - Converts interest rates, and computes value of annuity certain
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Interest - Store an assumed interest rate, and compute interest rate functions
     
     Args:
       i : assumed annual interest rate
-      d : or assumed discount rate
-      v : or assumed discount factor
-      delta : or assumed continuously compounded interest rate
-      v_t : or assumed discount rate as a function of time
-      i_m : or assumed monthly interest rate
-      d_m : or assumed monthly discount rate
-      m : m&#39;thly frequency, if i_m or d_m are given
-
-    Examples:
-      &gt;&gt;&gt; interest = Interest(v=0.75)
+      d : or annual discount rate
+      v : or annual discount factor
+      delta : or continuously compounded interest rate
+      v_t : or discount rate as a function of time
+      i_m : or m-thly interest rate
+      d_m : or m-thly discount rate
+      m : m&#39;thly frequency, if i_m or d_m are specified
 
     Methods:
     --------
@@ -479,6 +483,99 @@ document.write(`
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Interest</span></code> class can be initialized with an assumed annual interest rate expressed in any one of the forms <code class="docutils literal notranslate"><span class="pre">i,</span> <span class="pre">d,</span> <span class="pre">v,</span> <span class="pre">delta,</span> <span class="pre">i_m,</span> <span class="pre">d_m</span></code> (where the latter two forms also require the argument <code class="docutils literal notranslate"><span class="pre">m</span></code> to specify the number of times compounded in a year). Then that rate can be retrieved in any other annual form as an attribute.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interest</span> <span class="o">=</span> <span class="n">Interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">interest</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="n">interest</span><span class="o">.</span><span class="n">v</span><span class="p">,</span> <span class="n">interest</span><span class="o">.</span><span class="n">delta</span><span class="p">,</span> <span class="n">interest</span><span class="o">.</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.047619047619047616 0.9523809523809523 0.04879016416943205 0.05
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">mthly</span></code> static method converts between annual-pay and m-thly pay interest rates in any form.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delta</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">Interest</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="n">delta</span><span class="p">)</span><span class="o">.</span><span class="n">i</span>      <span class="c1"># convert to annual interest rate</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">Interest</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="n">delta</span><span class="p">)</span><span class="o">.</span><span class="n">d</span>      <span class="c1"># convert to annual discount rate</span>
+<span class="n">i_m</span> <span class="o">=</span> <span class="n">Interest</span><span class="o">.</span><span class="n">mthly</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>  <span class="c1"># convert to annual interest rate monthly-pay</span>
+<span class="n">d_m</span> <span class="o">=</span> <span class="n">Interest</span><span class="o">.</span><span class="n">mthly</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>  <span class="c1"># convert to annual discount rate monthly-pay</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Continuously-compounded annual rate of interest:&#39;</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Convert to annual interest rate:              &#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">Interest</span><span class="o">.</span><span class="n">mthly</span><span class="p">(</span><span class="n">i_m</span><span class="o">=</span><span class="n">i_m</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Convert to annual discount rate:              &#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">Interest</span><span class="o">.</span><span class="n">mthly</span><span class="p">(</span><span class="n">d_m</span><span class="o">=</span><span class="n">d_m</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Convert to annual interest rate (monthly-pay):&#39;</span><span class="p">,</span> <span class="n">i_m</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Convert to annual discount rate (monthly-pay):&#39;</span><span class="p">,</span> <span class="n">d_m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Continuously-compounded annual rate of interest: 0.05
+  Convert to annual interest rate:               0.05127109637602412 0.051271096376023007
+  Convert to annual discount rate:               0.04877057549928606 0.04877057549928587
+  Convert to annual interest rate (monthly-pay): 0.05010431149342143
+  Convert to annual discount rate (monthly-pay): 0.049895977858680496
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">annuity</span></code> class method computes the present value of an annuity that pays at the rate of $1 per year continuously or discrete (due, immediate, or m’thly)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">t</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="p">[</span><span class="n">interest</span><span class="o">.</span><span class="n">annuity</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">due</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">t</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Present Value of Annuity Certain Due (i=</span><span class="si">{</span><span class="n">interest</span><span class="o">.</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Period (years)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Annuity Due Factor&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Annuity Factors By Payment Frequency (perpetual, i=5%):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;1. Immediate:                 &#39;</span><span class="p">,</span> <span class="n">interest</span><span class="o">.</span><span class="n">annuity</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">Interest</span><span class="o">.</span><span class="n">WHOLE</span><span class="p">,</span> <span class="n">due</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;2. Immediate (quarterly pay): &#39;</span><span class="p">,</span> <span class="n">interest</span><span class="o">.</span><span class="n">annuity</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">Interest</span><span class="o">.</span><span class="n">WHOLE</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">due</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;3. Continuous:                &#39;</span><span class="p">,</span> <span class="n">interest</span><span class="o">.</span><span class="n">annuity</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">Interest</span><span class="o">.</span><span class="n">WHOLE</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;4. Due (quarterly pay):       &#39;</span><span class="p">,</span> <span class="n">interest</span><span class="o">.</span><span class="n">annuity</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">Interest</span><span class="o">.</span><span class="n">WHOLE</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">due</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;5. Due:                       &#39;</span><span class="p">,</span> <span class="n">interest</span><span class="o">.</span><span class="n">annuity</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">Interest</span><span class="o">.</span><span class="n">WHOLE</span><span class="p">,</span> <span class="n">due</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Annuity Factors By Payment Frequency (perpetual, i=5%):
+1. Immediate:                  19.999999999999982
+2. Immediate (quarterly pay):  20.371188429095998
+3. Continuous:                 20.49593431428785
+4. Due (quarterly pay):        20.621188429096076
+5. Due:                        20.999999999999975
+</pre></div>
+</div>
+<img alt="_images/5ba9f821098401818249540f365be065905f1916becca138e38de3110422cb83.png" src="_images/5ba9f821098401818249540f365be065905f1916becca138e38de3110422cb83.png" />
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">double_force</span></code> static method takes an interest rate in any form, and converts to the same form after doubling the force of interest.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Example: double the force of interest i=0.05&quot;</span><span class="p">)</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">Interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">d</span>               <span class="c1"># convert interest rate to discount rate</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;i:&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;d:&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="n">i2</span> <span class="o">=</span> <span class="n">Interest</span><span class="o">.</span><span class="n">double_force</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>   <span class="c1"># interest rate after doubling force</span>
+<span class="n">d2</span> <span class="o">=</span> <span class="n">Interest</span><span class="o">.</span><span class="n">double_force</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>   <span class="c1"># discount rate after doubling force</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;i:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">i2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">Interest</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="n">d2</span><span class="p">)</span><span class="o">.</span><span class="n">i</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;d:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">d2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">Interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">i2</span><span class="p">)</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Example: double the force of interest i=0.05
+i: 0.05 d: 0.047619047619047616
+i: 0.1025 0.1025
+d: 0.092971 0.092971
+</pre></div>
+</div>
+</div>
+</div>
 <p><strong>SOA Question 3.10</strong>:</p>
 <p>A group of 100 people start a Scissor Usage Support Group. The rate at which members enter and leave the group is dependent on whether they are right-handed or left-handed. You are given the following:</p>
 <ul class="simple">
@@ -504,29 +601,6 @@ Calculate the proportion of the Scissor Usage Support Group’s expected members
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 3.10:  (C) 0.86
 0.8578442833761983
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>Example for doubling the force of interest</strong>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Example: double the force of interest i=0.05&quot;</span><span class="p">)</span>
-<span class="n">i</span> <span class="o">=</span> <span class="mf">0.05</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">Interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">d</span>               <span class="c1"># convert interest rate to discount rate</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;i:&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;d:&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
-<span class="n">i2</span> <span class="o">=</span> <span class="n">Interest</span><span class="o">.</span><span class="n">double_force</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>   <span class="c1"># interest rate after doubling force</span>
-<span class="n">d2</span> <span class="o">=</span> <span class="n">Interest</span><span class="o">.</span><span class="n">double_force</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>   <span class="c1"># discount rate after doubling force</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;i:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">i2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">Interest</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="n">d2</span><span class="p">)</span><span class="o">.</span><span class="n">i</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;d:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">d2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">Interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">i2</span><span class="p">)</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Example: double the force of interest i=0.05
-i: 0.05 d: 0.047619047619047616
-i: 0.1025 0.1025
-d: 0.092971 0.092971
 </pre></div>
 </div>
 </div>

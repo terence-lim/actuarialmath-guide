@@ -384,21 +384,20 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="expected-future-lifetimes">
 <h1>Expected Future Lifetimes<a class="headerlink" href="#expected-future-lifetimes" title="Permalink to this heading">#</a></h1>
-<p>In many insurance applications we are interested not only in the future lifetime of an individual, but also the individual’s <em>curtate</em> future lifetime, defined as the integer
-part of future lifetime.  For some lifetime distributions we are able to integrate for the mean and standard deviations of future lifetimes directly, without using numerical techniques.</p>
+<p>In many insurance applications we are interested in the first and second moments not only of the future lifetime of an individual, but also of the individual’s <em>curtate</em> future lifetime, defined as the integer part of future lifetime.  For some lifetime distributions (as described in later sections), we are able to obtain the mean and variances of future lifetimes directly without using numerical integrationn techniques.</p>
 <section id="complete-expectation-of-life">
 <h2>Complete expectation of life<a class="headerlink" href="#complete-expectation-of-life" title="Permalink to this heading">#</a></h2>
-<p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x} = E[T_x] = \int_0^{\infty} t~ _tp_x\ \mu_{x+t} ds = \int_0^{\infty}~ _tp_x\ dt\)</span></p>
+<p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x} = E[T_x] = \int_0^{\infty} t~ _tp_x\ \mu_{x+t} dt = \int_0^{\infty}~ _tp_x\ dt\)</span></p>
 <ul class="simple">
-<li><p>is the complete expectation of life, or the expected future lifetime</p></li>
+<li><p>is the complete expectation of life, or the mean future lifetime: it can be computed either as (1) the weighted sum of lifetimes lived or (2) the sum over all years of the probabilities of living at least those years.</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(E[T_x^2] = \int_0^{\infty} t^2~ _tp_x~ \mu_{x+t}\ ds = \int_0^{\infty}~ 2~ t~ _tp_x~ dt\)</span></p>
 <ul class="simple">
-<li><p>Second moment of future lifetime</p></li>
+<li><p>second moment of future lifetime</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(Var[T_x] = E[T_x^2] - (\overset{\circ}{e}_{x})^2\)</span></p>
 <ul class="simple">
-<li><p>Variance of future lifetime</p></li>
+<li><p>variance of future lifetime</p></li>
 </ul>
 </section>
 <section id="curtate-expectation-of-life">
@@ -409,15 +408,15 @@ part of future lifetime.  For some lifetime distributions we are able to integra
 </ul>
 <p><span class="math notranslate nohighlight">\(e_{x} = E[K_x] = \sum_{k=0}^{\infty} k~ _{k|}q_x~  = \sum_{k=1}^{\infty}~ _kp_x~ dt\)</span></p>
 <ul class="simple">
-<li><p>Is the curtate expectation of life, representing the expected curtate lifetime</p></li>
+<li><p>Is the curtate expectation of life, or the mean curtate lifetime: it can be computed two ways intuitively similar to the approach of complete expectations.</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(E[K_x^2] = \sum_{k=0}^{\infty} k^2~ _{k|}q_x~ = \sum_{k=1}^{\infty} (2k-1)~ _kq_x\ dt\)</span></p>
 <ul class="simple">
-<li><p>Second moment of curtate future lifetime</p></li>
+<li><p>second moment of curtate future lifetime</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(Var[K_x] = E[K_x^2] - (e_{x})^2\)</span></p>
 <ul class="simple">
-<li><p>Variance of curtate future lifetime</p></li>
+<li><p>variance of curtate future lifetime</p></li>
 </ul>
 </section>
 <section id="temporary-expectation-of-life">
@@ -458,6 +457,70 @@ part of future lifetime.  For some lifetime distributions we are able to integra
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">e_x</span></code> class method computes the mean, variance or second moment (by setting the value of the argument <code class="docutils literal notranslate"><span class="pre">moment</span></code> to be 1, VARIANCE, or 2 respectively) of either the complete or curtate future lifetime (by setting the value of the argument <code class="docutils literal notranslate"><span class="pre">curtate</span></code> to be False or True respectively).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Lifetime</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">life</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">moment</span><span class="o">=</span><span class="n">life</span><span class="o">.</span><span class="n">VARIANCE</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">life</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">moment</span><span class="o">=</span><span class="n">life</span><span class="o">.</span><span class="n">VARIANCE</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.999999999999998 99.99999999999997
+9.508331944775032 99.91670831680462
+</pre></div>
+</div>
+</div>
+</div>
+<p>Limited future lifetimes are specified by the argument <code class="docutils literal notranslate"><span class="pre">t</span></code>. The example below plots the expected limited curtate lifetimes by varying age <span class="math notranslate nohighlight">\(x\)</span> and lifetime limit <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">S</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>  <span class="c1"># define a survival function</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">.00022</span><span class="o">*</span><span class="n">t</span> <span class="o">-</span> <span class="p">(</span><span class="mf">.0000027</span><span class="o">*</span><span class="mf">1.124</span><span class="o">**</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.124</span><span class="o">**</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.124</span><span class="p">))</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Lifetime</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">minage</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">maxage</span><span class="o">=</span><span class="mi">130</span><span class="p">)</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Z</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Z</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">Z</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">t</span><span class="o">=</span><span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">rstride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cstride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Age (x)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Lifetime Limit (t)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Expected Limited Curtate Lifetime ($e_{x:\overline</span><span class="si">{t}</span><span class="s1">|}$)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="o">-</span><span class="mi">45</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a9f8e7d1ab13614a2b617ca62e17e9dc5c0259498b9eaeb5a43defff1cbe6536.png" src="_images/a9f8e7d1ab13614a2b617ca62e17e9dc5c0259498b9eaeb5a43defff1cbe6536.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0,  0,  0, ...,  0,  0,  0],
+       [ 1,  1,  1, ...,  1,  1,  1],
+       [ 2,  2,  2, ...,  2,  2,  2],
+       ...,
+       [77, 77, 77, ..., 77, 77, 77],
+       [78, 78, 78, ..., 78, 78, 78],
+       [79, 79, 79, ..., 79, 79, 79]])
+</pre></div>
+</div>
+</div>
+</div>
 <p><strong>AMLCR Exericse 2.1</strong></p>
 <p>Let <span class="math notranslate nohighlight">\(F_0(t) = 1 - (1 - t /105)^{1/5}\)</span> for <span class="math notranslate nohighlight">\(0 \le t \le 105\)</span>. Calculate</p>
 <p>(a) the probability that a newborn life dies before age 60 [0.1559]</p>
@@ -475,7 +538,7 @@ part of future lifetime.  For some lifetime distributions we are able to integra
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(b)&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">70</span><span class="o">-</span><span class="mi">30</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(c)&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mi">90</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">100</span><span class="o">-</span><span class="mi">90</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(d)&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">mu_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(e)&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">),</span> <span class="n">target</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">55</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(e)&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">),</span> <span class="n">target</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="mi">105</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(f)&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(g)&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">))</span>
 </pre></div>
@@ -485,9 +548,9 @@ part of future lifetime.  For some lifetime distributions we are able to integra
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(a) 0.1558791201558899
 (b) 0.8586207034844889
 (c) 0.13943444007155992
-(d) 0.003636764417087519
-(e) 53.28124999999994
-(f) 45.833333333333336
+(d) 0.0036366521919970474
+(e) 53.28125000000001
+(f) 45.833333325511866
 (g) 45.17675143564247
 </pre></div>
 </div>
@@ -504,8 +567,9 @@ part of future lifetime.  For some lifetime distributions we are able to integra
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 2.1: (B) 2.5&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">omega</span><span class="p">):</span>  <span class="c1"># Solve first for omega, given mu_65 = 1/180</span>
-    <span class="k">return</span> <span class="n">Lifetime</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">/</span><span class="n">omega</span><span class="p">)</span><span class="o">**</span><span class="mf">0.25</span><span class="p">,</span>
-                                   <span class="n">maxage</span><span class="o">=</span><span class="n">omega</span><span class="p">)</span><span class="o">.</span><span class="n">mu_x</span><span class="p">(</span><span class="mi">65</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Lifetime</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">/</span><span class="n">omega</span><span class="p">)</span><span class="o">**</span><span class="mf">0.25</span><span class="p">,</span>
+                                   <span class="n">maxage</span><span class="o">=</span><span class="n">omega</span><span class="p">)</span>\
+                     <span class="o">.</span><span class="n">mu_x</span><span class="p">(</span><span class="mi">65</span><span class="p">)</span>
 <span class="n">omega</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Lifetime</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">180</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>  <span class="c1"># solve for omega</span>
 <span class="n">e</span> <span class="o">=</span> <span class="n">Lifetime</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">/</span><span class="n">omega</span><span class="p">)</span><span class="o">**</span><span class="mf">0.25</span><span class="p">,</span> 
                                <span class="n">maxage</span><span class="o">=</span><span class="n">omega</span><span class="p">)</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="mi">106</span><span class="p">)</span>
@@ -526,8 +590,9 @@ part of future lifetime.  For some lifetime distributions we are able to integra
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 2.4: (E) 8.2&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">S</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">)</span> <span class="p">:</span> <span class="k">return</span> <span class="mf">0.</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">100</span> <span class="k">else</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">((</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mf">10000.</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">Lifetime</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="n">S</span><span class="p">)</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">q</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="n">t</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mf">10000.</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">100</span> <span class="k">else</span> <span class="mf">1.</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">Lifetime</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">q</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">))</span>\
+              <span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 </pre></div>
 </div>

@@ -399,29 +399,30 @@ document.write(`
 </section>
 <section id="expected-future-lifetime">
 <h2>Expected future lifetime<a class="headerlink" href="#expected-future-lifetime" title="Permalink to this heading">#</a></h2>
+<p>For both complete and curtate future lifetime, we can decompose the formula for the life expectancy of <span class="math notranslate nohighlight">\((x)\)</span> into a temporary life expectancy, plus the probability of surviving till the end of that term times the remaining life expectancy.</p>
 <p><span class="math notranslate nohighlight">\(e_{x} = e_{x:\overline{m|}} +\ _mp_x\ e_{x+m}\)</span></p>
 <ul class="simple">
-<li><p>curtate expectation of lifetime</p></li>
+<li><p>recursion formula for curtate expectation of lifetime</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x} = \overset{\circ}{e}_{x:\overline{m|}} +\ _mp_x\ \overset{\circ}{e}_{x+m}\)</span></p>
 <ul class="simple">
-<li><p>complete expectation of lifetime</p></li>
+<li><p>recursion formula for complete expectation of lifetime</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(e_{x:\overline{m+n|}} = e_{x:\overline{m|}} +\ _mp_x\ e_{x:\overline{n|}}\)</span></p>
 <ul class="simple">
-<li><p>limited curtate expectation of lifetime</p></li>
+<li><p>recursion formula for limited curtate expectation of lifetime</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x:\overline{m+n|}} = \overset{\circ}{e}_{x:\overline{m|}} +\ _mp_x\ \overset{\circ}{e}_{x+m:\overline{n|}}\)</span></p>
 <ul class="simple">
-<li><p>limited complete expectation of lifetime</p></li>
+<li><p>recursion formula for limited complete expectation of lifetime</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(e_{x} = p_x(1 + e_{x+1})\)</span></p>
 <ul class="simple">
-<li><p>one-year recursion for curtate expectaion of lifetime</p></li>
+<li><p>special case of a one-year recursion formula for curtate expectaion of lifetime</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x} = \overset{\circ}{e}_{x:\overline{1|}} + p_x\ \overset{\circ}{e}_{x+1}\)</span></p>
 <ul class="simple">
-<li><p>one-year recursion for complete expectation of lifetime</p></li>
+<li><p>special case of a one-year recursion formula for complete expectation of lifetime</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(e_{x:\overline{1|}} = p_x\)</span></p>
 <ul class="simple">
@@ -494,7 +495,7 @@ document.write(`
 <p><strong>Notes</strong>:</p>
 <ul class="simple">
 <li><p>If a colab or jupyter notebook is auto-detected, the steps are displayed in latex format; else as raw text.</p></li>
-<li><p>These display options can be changed by calling the <code class="docutils literal notranslate"><span class="pre">blog_options</span></code> method</p></li>
+<li><p>These display options can be changed by calling the <code class="docutils literal notranslate"><span class="pre">blog_options</span></code> static method</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -512,25 +513,15 @@ document.write(`
       verbose : whether to echo recursion steps (True, default)
 
     Notes:
-      7 types of information can be loaded and calculated in recursions:
+      7 types of function values can be loaded for recursion computations:
 
       - &#39;q&#39; : (deferred) probability (x) dies in t years
       - &#39;p&#39; : probability (x) survives t years
-      - &#39;e&#39; : (temporary) expected future lifetime, and moments
-      - &#39;A&#39; : deferred, term, endowment or whole life insurance, and moments
+      - &#39;e&#39; : (temporary) expected future lifetime, or moments
+      - &#39;A&#39; : deferred, term, endowment or whole life insurance, or moments
       - &#39;IA&#39; : decreasing life insurance of t years
       - &#39;DA&#39; : increasing life insurance of t years
-      - &#39;a&#39; : deferred, temporary or whole life annuity of t years, and moments
-
-    Examples:
-      &gt;&gt;&gt; x = 0
-      &gt;&gt;&gt; life = Recursion().set_interest(i=0.06).set_a(7, x=x+1).set_q(0.05, x=x)
-      &gt;&gt;&gt; a = life.whole_life_annuity(x)
-      &gt;&gt;&gt; A = 110 * a / 1000
-      &gt;&gt;&gt; print(a, A)
-      &gt;&gt;&gt; life = Recursion().set_interest(i=0.06).set_A(A, x=x).set_q(0.05, x=x)
-      &gt;&gt;&gt; A1 = life.whole_life_insurance(x+1)
-      &gt;&gt;&gt; P = life.gross_premium(A=A1 / 1.03, a=7) * 1000
+      - &#39;a&#39; : deferred, temporary or whole life annuity of t years, or moments
 
     Methods:
     --------
@@ -560,7 +551,7 @@ document.write(`
       Set annuity u|_a_[x+s]:t to given value
 
     blog_options(latex, notebook):
-      Static method to change display options for tracing the recursion steps taken
+      Static method to change display options for tracing the recursion steps
 </pre></div>
 </div>
 </div>
@@ -568,6 +559,7 @@ document.write(`
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>The given values of functions are set by calling the respective “setter” methods <code class="docutils literal notranslate"><span class="pre">set_q,</span> <span class="pre">set_p,</span> <span class="pre">set_e,</span> <span class="pre">set_E,</span> <span class="pre">set_A,</span> <span class="pre">set_IA,</span> <span class="pre">set_DA,</span></code> or <code class="docutils literal notranslate"><span class="pre">set_a</span></code>. Then derived function values, at other ages or durations, can be computed – the successful recursion steps taken are displayed if the <code class="docutils literal notranslate"><span class="pre">verbose</span></code> flag is initiated to True (which is the default value).</p>
 <p><strong>AMLCR2 Exercise 2.6</strong></p>
 <p>Given <span class="math notranslate nohighlight">\(P_x =0.99\)</span> , <span class="math notranslate nohighlight">\(P_{x+1} = 0.985\)</span>, <span class="math notranslate nohighlight">\(_3P_{x+1} = 0.95\)</span>, <span class="math notranslate nohighlight">\(q_{x+3} = 0.02\)</span>,</p>
 <p>Calculate (a) <span class="math notranslate nohighlight">\(P_{x+3}\)</span>, (b) <span class="math notranslate nohighlight">\(_2P_x\)</span>, (c) <span class="math notranslate nohighlight">\(_2P_{x+1}\)</span>, (d) <span class="math notranslate nohighlight">\(_3P_x\)</span>, (e) <span class="math notranslate nohighlight">\(_{1|2}q_x\)</span>.</p>
@@ -835,7 +827,7 @@ equivalence principle</p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.17:  (A) -30000
-37251.49857703497 1.8378124241073728 20269.478042694187
+37251.49857703495 1.8378124241073746 20269.478042694158
 </pre></div>
 </div>
 <div class="output text_latex math notranslate nohighlight">
@@ -861,7 +853,7 @@ equivalence principle</p></li>
 ~~~~~_{2}p_{x} = ~p_{x+1} * ~p_{x}&amp; \quad \texttt{survival chain rule}\\
 ~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\\
 ~~~~~~~~~p_{x+1} = 1 - ~q_{x+1}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-30107.42633581125
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-30107.42633581115
 </pre></div>
 </div>
 </div>

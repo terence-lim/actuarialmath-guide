@@ -397,7 +397,7 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#! pip install actuarialmath==0.0.11</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#! pip install actuarialmath</span>
 </pre></div>
 </div>
 </div>
@@ -439,7 +439,8 @@ document.write(`
 <p><strong>Helper to compare computed answers to expected solutions</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">IsClose</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="k">class</span> <span class="nc">IsClose</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper class for testing and reporting if two values are close&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rel_tol</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">score</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
                  <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
@@ -448,6 +449,7 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>  <span class="c1"># whether to run silently</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">incorrect</span> <span class="o">=</span> <span class="p">[]</span>     <span class="c1"># to keep list of messages for INCORRECT</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tol</span> <span class="o">=</span> <span class="n">rel_tol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">answer</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">rel_tol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Compare solution to answer within relative tolerance</span>
@@ -475,7 +477,8 @@ document.write(`
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Display cumulative score and errors&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Passed: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">den</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">incorrect</span><span class="p">)</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Elapsed: </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">tic</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> secs</span><span class="se">\n</span><span class="s2">&quot;</span> \
+               <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Passed:  </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">den</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">incorrect</span><span class="p">)</span>
 <span class="n">isclose</span> <span class="o">=</span> <span class="n">IsClose</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">score</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -912,8 +915,8 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">l</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span> <span class="k">return</span> <span class="mf">0.</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">100</span> <span class="k">else</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">((</span><span class="n">x</span> <span class="o">+</span> <span class="n">s</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10000.</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">Lifetime</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="n">l</span><span class="p">)</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">q</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="n">t</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mf">10000.</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">100</span> <span class="k">else</span> <span class="mf">1.</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">Lifetime</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">q</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">))</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">curtate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">isclose</span><span class="p">(</span><span class="mf">8.2</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="s2">&quot;Q2.4&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -986,7 +989,7 @@ Pr(Z&lt;=z)  0.800  0.850  0.900  0.950  0.975  0.990  0.995
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q2.6 13.3: 13.340451278922776 [OK] -----
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q2.6 13.3: 13.337287043994648 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -1043,7 +1046,7 @@ S_0(x) &amp; = 1 - \frac{x}{250}, \quad 0 \le x &lt; 40 \\
     <span class="n">male</span> <span class="o">=</span> <span class="n">Survival</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mu</span><span class="p">)</span>
     <span class="n">female</span> <span class="o">=</span> <span class="n">Survival</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="n">mu</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">(</span><span class="mi">75</span> <span class="o">*</span> <span class="n">female</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">25</span> <span class="o">*</span> <span class="n">male</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">))</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="n">Survival</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">85</span><span class="o">/</span><span class="mi">15</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="p">[</span><span class="mf">0.89</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">])</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">Survival</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">85</span><span class="o">/</span><span class="mi">15</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">Survival</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="n">mu</span><span class="p">)</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">isclose</span><span class="p">(</span><span class="mf">0.94</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="s2">&quot;Q2.8&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1182,7 +1185,7 @@ S_0(x) &amp; = 1 - \frac{x}{250}, \quad 0 \le x &lt; 40 \\
                                       <span class="n">e</span><span class="o">=</span><span class="p">{</span><span class="mi">65</span><span class="p">:</span> <span class="p">[</span><span class="n">e_curtate</span><span class="p">,</span> <span class="kc">None</span><span class="p">]},</span>
                                       <span class="n">d</span><span class="o">=</span><span class="p">{</span><span class="mi">65</span><span class="p">:</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="kc">None</span><span class="p">,],</span>
                                          <span class="mi">66</span><span class="p">:</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="kc">None</span><span class="p">]})</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">e_r</span><span class="p">(</span><span class="mi">66</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">e_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">66</span><span class="p">)</span>
 <span class="n">isclose</span><span class="p">(</span><span class="mf">14.7</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="s2">&quot;Q3.2&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1761,7 +1764,7 @@ membership that is left-handed at the start of the group’s 6th year, before an
                                  <span class="mi">57</span><span class="p">:</span> <span class="p">[</span><span class="mi">7011</span><span class="p">,</span> <span class="mi">6443</span><span class="p">,</span> <span class="mi">5395</span><span class="p">,</span> <span class="mi">3904</span><span class="p">],</span>
                                  <span class="mi">58</span><span class="p">:</span> <span class="p">[</span><span class="mi">5853</span><span class="p">,</span> <span class="mi">4846</span><span class="p">,</span> <span class="mi">3548</span><span class="p">,</span> <span class="mi">2210</span><span class="p">]},</span>
                               <span class="n">e</span><span class="o">=</span><span class="p">{</span><span class="mi">57</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">e_r</span><span class="p">(</span><span class="mi">58</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">e_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">58</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">isclose</span><span class="p">(</span><span class="mf">1.6</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="s2">&quot;Q3.13&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2042,13 +2045,13 @@ between integral ages</p></li>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sult</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-<span class="n">Z</span> <span class="o">=</span> <span class="mi">100000</span> <span class="o">*</span> <span class="n">sult</span><span class="o">.</span><span class="n">Z_from_prob</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="mi">100000</span> <span class="o">*</span> <span class="n">sult</span><span class="o">.</span><span class="n">Z_from_prob</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">isclose</span><span class="p">(</span><span class="mi">35200</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="s2">&quot;Q4.5&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q4.5 35200: 35187.952037196534 [OK] -----
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q4.5 35200: 35187.95203719653 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -2254,7 +2257,7 @@ Z &amp; =0, \quad \textrm{if } T_x \le 10\\
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
-<img alt="_images/aff82270348bdd20e263cfb698ae608233d43df075faea45d14c9c4cb2866a61.png" src="_images/aff82270348bdd20e263cfb698ae608233d43df075faea45d14c9c4cb2866a61.png" />
+<img alt="_images/a082ed7801ed34bbaedc35803dff5c5481b4e17c9a6c2e069dddeb89b8d2000c.png" src="_images/a082ed7801ed34bbaedc35803dff5c5481b4e17c9a6c2e069dddeb89b8d2000c.png" />
 </div>
 </div>
 <p><strong>SOA Question 4.11</strong> :  (A) 143385</p>
@@ -2474,7 +2477,7 @@ insurance of 100</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q4.15 0.0833: 0.08334849338238598 [OK] -----
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q4.15 0.0833: 0.08333333333333331 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -2596,7 +2599,7 @@ You are also given that <span class="math notranslate nohighlight">\(\delta = 5\
 <span class="k">def</span> <span class="nf">benefit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">):</span> <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="mi">100000</span>
 <span class="n">prob</span> <span class="o">=</span> <span class="mf">0.9</span> <span class="o">-</span> <span class="n">life</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">T</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">Z_t</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="n">prob</span><span class="p">)</span>
-<span class="n">Z</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">Z_from_t</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">benefit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">Z_from_t</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">*</span> <span class="n">benefit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
 <span class="n">isclose</span><span class="p">(</span><span class="mi">81873</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="s2">&quot;Q4.18&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3137,8 +3140,9 @@ year’s benefit.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
 <span class="n">P</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">net_premium</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">gain</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="k">return</span> <span class="n">life</span><span class="o">.</span><span class="n">Y_x</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span> <span class="o">-</span> <span class="n">life</span><span class="o">.</span><span class="n">Z_x</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
-<span class="n">k</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span> <span class="k">if</span> <span class="n">gain</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">gain</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="n">life</span><span class="o">.</span><span class="n">Y_x</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span> <span class="o">-</span> <span class="n">life</span><span class="o">.</span><span class="n">Z_x</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+<span class="n">k</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">if</span> <span class="n">gain</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># add 1 because k=0 is first policy year</span>
 <span class="n">isclose</span><span class="p">(</span><span class="mi">33</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="s2">&quot;Q6.5&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3447,7 +3451,7 @@ subsequent premiums. There are no other expenses</p></li>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
-<img alt="_images/8ecba602090dee0c1d5e68faa2441f1fa14891a9753bd0cfd6864391d530867c.png" src="_images/8ecba602090dee0c1d5e68faa2441f1fa14891a9753bd0cfd6864391d530867c.png" />
+<img alt="_images/a3a0639e2f3fb107835e3d9c4ee22b22f49382fa22a650d2f55e433e2733b205.png" src="_images/a3a0639e2f3fb107835e3d9c4ee22b22f49382fa22a650d2f55e433e2733b205.png" />
 </div>
 </div>
 <p><strong>SOA Question 6.14</strong> :  (D) 1150</p>
@@ -3629,7 +3633,7 @@ equivalence principle</p></li>
 ~~~~~_{2}p_{x} = ~p_{x+1} * ~p_{x}&amp; \quad \texttt{survival chain rule}\\
 ~~~~~~~p_{x} = 1 - ~q_{x}&amp; \quad \texttt{complement of mortality}\\
 ~~~~~~~~~p_{x+1} = 1 - ~q_{x+1}&amp; \quad \texttt{complement of mortality}\end{array}\end{split}\]</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.17 -30000: -30107.42633581125 [OK] -----
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----- Q6.17 -30000: -30107.42633581115 [OK] -----
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
@@ -4573,7 +4577,7 @@ this policy.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
-<img alt="_images/e92e6534254fc529fa050266127b8d49394c885a068e00851cf9393f587a6ac4.png" src="_images/e92e6534254fc529fa050266127b8d49394c885a068e00851cf9393f587a6ac4.png" />
+<img alt="_images/67867f17ac1e1de040b0d440b3edb601d3bb9842703f7092523b34570509d5de.png" src="_images/67867f17ac1e1de040b0d440b3edb601d3bb9842703f7092523b34570509d5de.png" />
 </div>
 </div>
 <p><strong>SOA Question 6.46</strong> :  (E) 208</p>
@@ -4897,7 +4901,7 @@ you are given:</p>
 <ol class="arabic simple">
 <li><p>Mortality follows the Standard Ultimate Life Table.</p></li>
 <li><p><em>i</em> = 0.05</p></li>
-<li><p>The annual premium is determined using the equivalencep rinciple.</p></li>
+<li><p>The annual premium is determined using the equivalence principle.</p></li>
 </ol>
 <p>Calculate the standard deviation of
 <span class="math notranslate nohighlight">\(_0L\)</span> , the present value random variable for the loss at issue.</p>
@@ -5942,8 +5946,9 @@ calculate <span class="math notranslate nohighlight">\(L_{10}\)</span> is change
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-07-21 17:30:21.404239
-Passed: 136/136
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-08-08 14:58:05.448794
+Elapsed: 2.4 secs
+Passed:  136/136
 </pre></div>
 </div>
 </div>

@@ -383,34 +383,66 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="life-contingent-risks">
 <h1>Life Contingent Risks<a class="headerlink" href="#life-contingent-risks" title="Permalink to this heading">#</a></h1>
-<p>By modeling future lifetimes as random variables, probabilities of survival or death can be calculated. This section reviews essential probability relationships and the moments of common distributions.</p>
+<p>Life contingencies use probability models as well as interest rate functions. By modeling future lifetimes as random variables, probabilities of survival or death can be calculated. This section reviews essential probability relationships and the moments of common distributions.</p>
 <section id="probability">
 <h2>Probability<a class="headerlink" href="#probability" title="Permalink to this heading">#</a></h2>
-<p><span class="math notranslate nohighlight">\(Var(aX + bY) = a^2~Var(X) + b^2~Var(Y) + 2~a~b~Cov(X,Y)\)</span></p>
-<p><span class="math notranslate nohighlight">\(Cov(X, Y) = E[XY] - E[X] \cdot E[Y]\)</span></p>
-<p><strong>Bernoulli</strong> <span class="math notranslate nohighlight">\((p)\)</span> distribution</p>
-<p><span class="math notranslate nohighlight">\(Y \in \{a,~b\}\)</span> w.p. <span class="math notranslate nohighlight">\((p,~1-p)\)</span></p>
+<p>The cumulative distribution function of a r.v. <em>X</em> is the probability <span class="math notranslate nohighlight">\(F(x) = Pr(X \le x)\)</span>. For a continuous r.v., <span class="math notranslate nohighlight">\(f(x) = \frac{d}{dx} F(x)\)</span> is the probability density function. For a discrete r.v. <span class="math notranslate nohighlight">\(p(x) = Pr(X=x)\)</span> is the probability mass function.</p>
+<p><span class="math notranslate nohighlight">\(E(x) = \int_{-\infty}^{\infty} xf(x) dx\)</span> when continuous, or <span class="math notranslate nohighlight">\(\sum_x x f(x)\)</span> when discrete</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(E[Y] = a~p + b~(1-p)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(Var[Y] = (a-b)^2~p~(1-p)\)</span></p></li>
+<li><p>is the mean, or first moment of <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
 </ul>
-<p><strong>Binomial</strong> <span class="math notranslate nohighlight">\((N,~p)\)</span> distribution</p>
-<p><span class="math notranslate nohighlight">\(Y\)</span> is sum of <span class="math notranslate nohighlight">\(N\)</span> i.i.d. 0-1 Bernoulli(<span class="math notranslate nohighlight">\(p\)</span>)</p>
+<p><span class="math notranslate nohighlight">\(Var(x) = E[(X - E[x])^2]\)</span></p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(E[Y] = N~p\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(Var[Y] = N~p~(1-p)\)</span></p></li>
+<li><p>is the variance, or second central moment of <span class="math notranslate nohighlight">\(X\)</span>, often denoted <span class="math notranslate nohighlight">\(\sigma^2\)</span></p></li>
+</ul>
+<p><strong>Linearity of expectations</strong></p>
+<p><span class="math notranslate nohighlight">\(E(a + bX + cY) = a + bE(X) + cE(Y)\)</span></p>
+<ul class="simple">
+<li><p>the mean of the sum of random variables is the sum of the means</p></li>
+</ul>
+<p><strong>Variances</strong></p>
+<p><span class="math notranslate nohighlight">\(Var(aX + bY) = a^2~Var(X) + b^2~Var(Y) + 2~a~b~Cov(X,Y)\)</span></p>
+<ul class="simple">
+<li><p>is the formula to compute the variance of the weighted sum of two random variables</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Cov(X, Y) = E[XY] - E[X] \cdot E[Y]\)</span></p>
+<ul class="simple">
+<li><p>is the formula to compute the covariance between two random variables</p></li>
+</ul>
+<p><strong>Bernoulli</strong>:</p>
+<p>The Bernoulli is a discrete distribution that takes one of two values <span class="math notranslate nohighlight">\(Y \in \{a,~b\}\)</span> with probabilities <span class="math notranslate nohighlight">\((p, ~1-p)\)</span></p>
+<p><span class="math notranslate nohighlight">\(E[Y] = a~p + b~(1-p)\)</span></p>
+<ul class="simple">
+<li><p>mean of Bernoulli distribution</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var[Y] = (a-b)^2~p~(1-p)\)</span></p>
+<ul class="simple">
+<li><p>Bernoulli shortcut formula for the variance</p></li>
+</ul>
+<p><strong>Binomial</strong>:</p>
+<p>A binomial r.v. measures the total number of successes from <span class="math notranslate nohighlight">\(N\)</span> independent 0-1 Bernoulli r.v., where each has a probability of success <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(E[Y] = N~p\)</span></p>
+<ul class="simple">
+<li><p>mean of Binomial distribution</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var[Y] = N~p~(1-p)\)</span></p>
+<ul class="simple">
+<li><p>variance of Binomial distribution</p></li>
 </ul>
 <p><strong>Mixture</strong></p>
-<p>A mixture distribution is a random variable <span class="math notranslate nohighlight">\(Y\)</span> whose distribution function can be expressed as a weighted average of the distribution functions of <span class="math notranslate nohighlight">\(n\)</span> random variables <span class="math notranslate nohighlight">\(Y_1, \cdots, Y_n\)</span></p>
-<p>e.g. Y is mixture of two Binomial distributions <span class="math notranslate nohighlight">\((p',~N)\)</span>, where <span class="math notranslate nohighlight">\(p' \in (p_1,~p_2)\)</span> w.p. <span class="math notranslate nohighlight">\((p,~1-p)\)</span></p>
+<p>A mixture distribution is a random variable <span class="math notranslate nohighlight">\(Y\)</span> whose distribution function can be expressed as a weighted average of the distribution functions of <span class="math notranslate nohighlight">\(n\)</span> random variables <span class="math notranslate nohighlight">\(Y_1, \cdots, Y_n\)</span>. A common case is when Y is a mixture of two Binomial distributions <span class="math notranslate nohighlight">\((p',~N)\)</span>, where <span class="math notranslate nohighlight">\(p' \in (p_1,~p_2)\)</span> with respective probabilities <span class="math notranslate nohighlight">\((p,~1-p)\)</span>: a value is first drawn from a Bernoulli random variable w.p. <span class="math notranslate nohighlight">\(p\)</span>, then depending on its value, a final value is then drawn from the selected one of the two component Binomial distributions.</p>
+<p><span class="math notranslate nohighlight">\(E[Y] = p~N~p_1 + (1-p)~N~p_2\)</span></p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(E[Y] = p~N~p_1 + (1-p)~N~p_2\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(Var[Y] = E[Y^2] - E[Y]^2 = E[Var(Y~|~p') + E(Y~|~p')^2] - E[Y]^2\)</span></p></li>
+<li><p>mean of mixture of two Binomial distributions</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var[Y] = E[Y^2] - E[Y]^2 = E[Var(Y~|~p') + E(Y~|~p')^2] - E[Y]^2\)</span></p>
+<ul class="simple">
+<li><p>variance of mixture of two Binomial distributions</p></li>
 </ul>
 <p><strong>Conditional Variance</strong></p>
-<p>Alternative calculation of the variance of a mixture by using conditional variance formula</p>
+<p><span class="math notranslate nohighlight">\(Var[Y] = Var(E[Y~|~p']) + E[Var (Y~|~p')]\)</span></p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(Var[Y] = Var(E[Y~|~p']) + E[Var (Y~|~p')]\)</span></p></li>
+<li><p>alternative calculation of the variance of a mixture by using conditional variance formula, where the first term  can be easily calculated using the Bernoulli shortcut, since <span class="math notranslate nohighlight">\(E[Y~|~p']\)</span> is a Bernoulli random variable that takes a value of either <span class="math notranslate nohighlight">\(E[Y~|~p_1]\)</span> or <span class="math notranslate nohighlight">\(E[Y~|~p_2]\)</span> with respective probabilities <span class="math notranslate nohighlight">\((p, 1-p)\)</span></p></li>
 </ul>
 </section>
 <section id="portfolio-percentile">
@@ -418,19 +450,19 @@ document.write(`
 <p><strong>Normal Approximation</strong></p>
 <p>A portfolio, <span class="math notranslate nohighlight">\(Y\)</span>, which is the sum of <span class="math notranslate nohighlight">\(N\)</span> iid random variables each with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>, has a normal distribution with</p>
 <ul class="simple">
-<li><p>mean <span class="math notranslate nohighlight">\(E[Y] = N\mu\)</span> and</p></li>
-<li><p>variance <span class="math notranslate nohighlight">\(Var[Y] = N\sigma^2\)</span></p></li>
+<li><p>mean <span class="math notranslate nohighlight">\(E[Y] = N~\mu\)</span> and</p></li>
+<li><p>variance <span class="math notranslate nohighlight">\(Var[Y] = N~\sigma^2\)</span></p></li>
 </ul>
 <p><strong>Percentiles</strong></p>
-<p>Percentiles are essentially an inverse function of the cumulative probability distribution. If <span class="math notranslate nohighlight">\(F(y)\)</span> is the cdf for <span class="math notranslate nohighlight">\(Y\)</span>, then the p’th quantile is a number <span class="math notranslate nohighlight">\(y_p\)</span> such that <span class="math notranslate nohighlight">\(F(y)==p\)</span>.</p>
+<p>Percentiles are essentially an inverse function of the cumulative probability distribution. If <span class="math notranslate nohighlight">\(F(y)\)</span> is the cdf for <span class="math notranslate nohighlight">\(Y\)</span>, then the <em>p</em>’th quantile (or <span class="math notranslate nohighlight">\(100p\)</span>’th percentile) is a number <span class="math notranslate nohighlight">\(y_p\)</span> such that <span class="math notranslate nohighlight">\(F(y_p) = Pr(Y \le y_p)= p\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(Y_p = E[Y] + z_p~\sqrt{Var[Y]}\)</span></p>
 <ul class="simple">
-<li><p>value of <span class="math notranslate nohighlight">\(Y\)</span> at percentile <span class="math notranslate nohighlight">\(p\)</span></p></li>
+<li><p>value of <span class="math notranslate nohighlight">\(Y\)</span> at percentile <span class="math notranslate nohighlight">\(p\)</span> when Y is normally distributed, where <span class="math notranslate nohighlight">\(z_p\)</span> is the inverse standard normal function <span class="math notranslate nohighlight">\(z_p = \Phi^{-1}(p)\)</span></p></li>
 </ul>
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">Life</span></code> class implements methods for computing moments and probabilities of random variables.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Life</span></code> class implements methods for computing moments and probability distributions of random variables.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
@@ -462,7 +494,7 @@ document.write(`
       Mean or variance of binomial mixture
 
     conditional_variance(p, p1, p2, N):
-      Conditional variance formula
+      Conditional variance formula for mixture of binomials
 
     portfolio_percentile(mean, variance, prob, N):
       Probability percentile of the sum of N iid r.v.&#39;s
@@ -479,6 +511,109 @@ document.write(`
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">variance</span></code> method computes the variance of <span class="math notranslate nohighlight">\(aX + bY\)</span> by plugging in the required inputs into the formula <span class="math notranslate nohighlight">\(a^2~Var(X) + b^2~Var(Y) + 2~a~b~Cov(X,Y)\)</span>. Similarly, the <code class="docutils literal notranslate"><span class="pre">covariance</span></code> method computes the covariance of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> by pluggin the required inputs into the formula <span class="math notranslate nohighlight">\(E[XY] - E[X] \cdot E[Y]\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Life</span><span class="o">.</span><span class="n">variance</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">var_a</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">var_b</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">cov_ab</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>133
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Life</span><span class="o">.</span><span class="n">covariance</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ab</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">bernoulli</span></code> and <code class="docutils literal notranslate"><span class="pre">binomial</span></code> methods compute the mean or variance (by setting the argument <code class="docutils literal notranslate"><span class="pre">variance=True</span></code>) of the respective probability distributions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Life</span><span class="o">.</span><span class="n">bernoulli</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">Life</span><span class="o">.</span><span class="n">bernoulli</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5 0.25
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Life</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span> <span class="n">Life</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50.0 25.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>For a mixture of two binomial distribution, the <code class="docutils literal notranslate"><span class="pre">mixture</span></code> method computes the mean or variance, while the <code class="docutils literal notranslate"><span class="pre">conditional_variance</span></code> method computes the variance using the conditional variance formula.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Life</span><span class="o">.</span><span class="n">mixture</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">p1</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
+      <span class="n">Life</span><span class="o">.</span><span class="n">mixture</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">p1</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>35.0 47.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>The sum of <span class="math notranslate nohighlight">\(N\)</span> iid r.v. with identical mean and variance can be approximated by a normal distribution that is computed by the <code class="docutils literal notranslate"><span class="pre">portfolio_cdf</span></code> method, or whose <span class="math notranslate nohighlight">\(100p\)</span>’th percentile is computed by the <code class="docutils literal notranslate"><span class="pre">portfolio_percentile</span></code> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Life</span><span class="o">.</span><span class="n">portfolio_cdf</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7602499389065233
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Life</span><span class="o">.</span><span class="n">portfolio_percentile</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.76</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.994313317536634
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">set_interest</span></code> method is called to initialize and store an <code class="docutils literal notranslate"><span class="pre">Interest</span></code> object with the assumed interest rate, expressed in any annual or <span class="math notranslate nohighlight">\(m\)</span>-thly form, which is used in all subsequent life contingency computations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Life</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">life</span><span class="o">.</span><span class="n">interest</span><span class="o">.</span><span class="n">delta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.04879016416943205
+</pre></div>
+</div>
+</div>
+</div>
 <p><strong>SOA Question 2.2</strong>:</p>
 <p>Scientists are searching for a vaccine for a disease. You are given:</p>
 <ul class="simple">
@@ -508,7 +643,7 @@ document.write(`
 </div>
 </div>
 <p><strong>Normal distribution table</strong>:</p>
-<p>Generate extract of normal distribution table (for SOA FAM-L exam)</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">quantiles_frame</span></code> method displays an extract of normal distribution table for common quantile values, that is made available during SOA FAM-L exam.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Values of z for selected values of Pr(Z&lt;=z)&quot;</span><span class="p">)</span>

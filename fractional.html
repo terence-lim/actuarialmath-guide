@@ -383,21 +383,21 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="fractional-ages">
 <h1>Fractional Ages<a class="headerlink" href="#fractional-ages" title="Permalink to this heading">#</a></h1>
-<p>Given values of <span class="math notranslate nohighlight">\(l_x\)</span> at integer ages only, we need to make some assumption about the probability distribution for the future lifetime random variable between integer ages, in order to calculate probabilities for non-integer ages or durations.
-Such fractional age assumptions may be specified in terms of the force of mortality function (e.g. constant) or the survival or mortality probabilities (e.g. uniform distribution of deaths).</p>
+<p>Given values of <span class="math notranslate nohighlight">\(l_x\)</span> at integer ages only, we need to make some assumption about the probability distribution for the future lifetime random variable between integer ages, in order to calculate survival function values for non-integer ages or durations. Such fractional age assumptions may be specified in terms of the force of mortality function (e.g. constant) or the survival or mortality probabilities (e.g. uniform distribution of deaths).</p>
 <section id="uniform-distribution-of-deaths">
 <h2>Uniform distribution of deaths<a class="headerlink" href="#uniform-distribution-of-deaths" title="Permalink to this heading">#</a></h2>
+<p>This is the simplest assumption, which linearly interpolates the number of lives between integer ages.</p>
 <p><span class="math notranslate nohighlight">\(T_x = K_x + R_x\)</span></p>
 <ul class="simple">
-<li><p>The UDD assumptions defines a new random variable <span class="math notranslate nohighlight">\(R_x \sim U(0,1)\)</span> which is independent of curtate lifetime <span class="math notranslate nohighlight">\(K_x\)</span>.</p></li>
+<li><p>The UDD assumptions define can be modeled by a new random variable <span class="math notranslate nohighlight">\(R_x \sim U(0,1)\)</span> which is independent of curtate lifetime <span class="math notranslate nohighlight">\(K_x\)</span>.</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(_rq_x = r ~ q_x\)</span>, for integer <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(0 \le s &lt; 1\)</span></p>
+<p><span class="math notranslate nohighlight">\(_rq_x = r ~ q_x\)</span>, for integer <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(0 \le r &lt; 1\)</span></p>
 <ul class="simple">
 <li><p>is an equivalent way of formulating the UDD assumption</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(l_{x+r} = (1 - r) ~ l_x + r ~ l_{x+1} = l_x - r~d_x\)</span></p>
 <ul class="simple">
-<li><p>UDD is linear interpolation of lives between integer ages</p></li>
+<li><p>linear interpolation of lives between integer ages</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(_rq_{x+s} = \dfrac{r ~ q_x}{1 - s ~ q_x}, \quad\)</span> for <span class="math notranslate nohighlight">\(0 \le s + r &lt; 0\)</span></p>
 <ul class="simple">
@@ -411,28 +411,41 @@ Such fractional age assumptions may be specified in terms of the force of mortal
 <ul class="simple">
 <li><p>lifetime density is constant between integer ages, which also follows from the UDD assumption for <span class="math notranslate nohighlight">\(R_x\)</span>.</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x} = q_x \dfrac{1}{2} + p_x(1 + \overset{\circ}{e}_{x+1})\)</span></p>
-<ul class="simple">
-<li><p>recursive expression for complete expectation of life obtained with UDD assumption</p></li>
-</ul>
 <p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x:\overline{1|}} = 1 - q_x \dfrac{1}{2} = q_x \dfrac{1}{2} + ~p_x\)</span></p>
 <ul class="simple">
-<li><p>1-year limited complete expectation under UDD</p></li>
+<li><p>1-year limited complete expectation</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x} \approx e_x + 0.5\)</span></p>
+<p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x:\overline{r|}} =~ _rq_x \dfrac{r}{2} +~ _rp_x r\)</span></p>
 <ul class="simple">
-<li><p>This exact result under UDD is often used as an approximation of complete and curtate expectations.</p></li>
+<li><p>fractional year limited complete expectation</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x} = q_x \dfrac{1}{2} + p_x(1 + \overset{\circ}{e}_{x+1}) = \overset{\circ}{e}_{x:\overline{1|}} + p_x \overset{\circ}{e}_{x+1}\)</span></p>
+<ul class="simple">
+<li><p>recursive for complete expectation of life: UDD-specific and general formulas</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x} = e_x + 0.5\)</span></p>
+<ul class="simple">
+<li><p>since <span class="math notranslate nohighlight">\(E[R_x] = 0.5\)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Var(T_x) = Var(K_x) + \dfrac{1}{12}\)</span></p>
+<ul class="simple">
+<li><p>since <span class="math notranslate nohighlight">\(Var[R_x] = \dfrac{1}{12}\)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x:\overline{n|}} = e_{x:\overline{n|}} + 0.5 ~_nq_x\)</span></p>
+<ul class="simple">
+<li><p>These exact results under UDD are often used generally as approximations between complete and curtate expectations.</p></li>
 </ul>
 </section>
 <section id="constant-force-of-mortality">
 <h2>Constant force of mortality<a class="headerlink" href="#constant-force-of-mortality" title="Permalink to this heading">#</a></h2>
+<p>Under this assumption, the force of mortality is set to be constant between integer ages</p>
 <p><span class="math notranslate nohighlight">\(\mu_{x+r} =~ \mu_{x} =~ -\ln ~p_x, \quad\)</span> for <span class="math notranslate nohighlight">\(0 \le r &lt; 1\)</span></p>
 <ul class="simple">
-<li><p>force of mortality is constant between integer ages, which leads to a step function over successive years of age</p></li>
+<li><p>which leads to a step function for the force of mortality over successive years of age</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(l_{x+r} = (l_x)^{1-r} \cdot (l_{x+1})^{r}\)</span></p>
 <ul class="simple">
-<li><p>constant force of mortality is exponential interpolation of lives</p></li>
+<li><p>constant force of mortality is equivalent to exponential interpolation of lives between integer ages</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(_rp_x = e^{-\mu_x r} = (p_x)^r\)</span></p>
 <ul class="simple">
@@ -440,11 +453,15 @@ Such fractional age assumptions may be specified in terms of the force of mortal
 </ul>
 <p><span class="math notranslate nohighlight">\(_rp_{x+s} = e^{-\int_0^r \mu_{x+s+u} du} = (p_x)^r, \quad\)</span> for <span class="math notranslate nohighlight">\(0 \le r+s &lt; 1\)</span></p>
 <ul class="simple">
-<li><p>the probability of surviving for period of <span class="math notranslate nohighlight">\(s\)</span> from age <span class="math notranslate nohighlight">\(x+t\)</span> is independent of <span class="math notranslate nohighlight">\(t\)</span> under constant force of mortality</p></li>
+<li><p>the probability of surviving for period of <span class="math notranslate nohighlight">\(r\)</span> from age <span class="math notranslate nohighlight">\(x+s\)</span> is independent of <span class="math notranslate nohighlight">\(s\)</span> under constant force of mortality</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(f_x(r) =~ _rp_x ~ \mu_{x+r} = e^{-\mu_x r} \cdot \mu_x,\quad\)</span> for <span class="math notranslate nohighlight">\(0 \le r &lt;1\)</span></p>
 <ul class="simple">
-<li><p>relate lifetime density of (x) to constant force of mortality assumption</p></li>
+<li><p>lifetime density function at fractional age using constant force of mortality assumption</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x:\overline{r|}} = \dfrac{1 - e^{-\mu_x r}}{\mu}\)</span></p>
+<ul class="simple">
+<li><p>fractional year limited complete expectation</p></li>
 </ul>
 </section>
 <section id="methods">
@@ -480,7 +497,7 @@ Such fractional age assumptions may be specified in terms of the force of mortal
       Force of mortality at fractional age: mu_[x]+s+r
 
     f_r(x, s, r, t):
-      mortality function at fractional age: f_[x]+s+r (t)
+      Lifetime density function at fractional age: f_[x]+s+r (t)
 
     E_r(x, s, r, t):
       Pure endowment at fractional age: t_E_[x]+s+r
@@ -488,7 +505,7 @@ Such fractional age assumptions may be specified in terms of the force of mortal
     e_r(x, s, t):
       Temporary expected future lifetime at fractional age: e_[x]+s:t
 
-    e_approximate(e_complete, e_curtate):
+    e_approximate(e_complete, e_curtate, variance):
       Convert between curtate and complete expectations assuming UDD shortcut
 </pre></div>
 </div>
@@ -497,25 +514,106 @@ Such fractional age assumptions may be specified in terms of the force of mortal
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
-<p><strong>Compare fractional age assumptions</strong>:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Fractional</span></code> class can be initialized to apply the uniform distribution or constant force of mortality assumptions at fractional ages (by setting the <code class="docutils literal notranslate"><span class="pre">udd</span></code> argument to be either True or False respectively), while using any other survival model for integer ages. Then survival function values at fractional ages can be computed by the methods <code class="docutils literal notranslate"><span class="pre">l_r</span></code>, <code class="docutils literal notranslate"><span class="pre">p_r</span></code>, <code class="docutils literal notranslate"><span class="pre">q_r</span></code>, <code class="docutils literal notranslate"><span class="pre">mu_r</span></code>, <code class="docutils literal notranslate"><span class="pre">f_r</span></code> and <code class="docutils literal notranslate"><span class="pre">E_r</span></code> (for the number of lives, survival probability, mortality rate, force of mortality, lifetime density and pure endowment functions respectively).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life1</span> <span class="o">=</span> <span class="n">Fractional</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mi">50</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
-<span class="n">life2</span> <span class="o">=</span> <span class="n">Fractional</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mi">50</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;           Constant Force of Mortality           UDD&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;           ---------------------------          -----&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mortality rate    &#39;</span><span class="p">,</span> <span class="n">life1</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">life2</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;force of mortality&#39;</span><span class="p">,</span> <span class="n">life1</span><span class="o">.</span><span class="n">mu_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">life2</span><span class="o">.</span><span class="n">mu_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lifetime density  &#39;</span><span class="p">,</span> <span class="n">life1</span><span class="o">.</span><span class="n">f_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">life2</span><span class="o">.</span><span class="n">f_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cfm</span> <span class="o">=</span> <span class="n">Fractional</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mi">50</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
+<span class="n">udd</span> <span class="o">=</span> <span class="n">Fractional</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mi">50</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Compare:   Constant Force of Mortality    vs    UDD  assumptions&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;           ---------------------------         -----&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mortality rate    &#39;</span><span class="p">,</span> <span class="n">cfm</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">udd</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;force of mortality&#39;</span><span class="p">,</span> <span class="n">cfm</span><span class="o">.</span><span class="n">mu_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">udd</span><span class="o">.</span><span class="n">mu_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lifetime density  &#39;</span><span class="p">,</span> <span class="n">cfm</span><span class="o">.</span><span class="n">f_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">udd</span><span class="o">.</span><span class="n">f_r</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>           Constant Force of Mortality           UDD
-           ---------------------------          -----
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compare:   Constant Force of Mortality    vs    UDD  assumptions
+           ---------------------------         -----
 mortality rate     0.05131670194948623 0.04999999999999999
 force of mortality 0.10536051565782628 0.10526315789473682
-lifetime density   0.10536051565782628 0.09999999999999998
+lifetime density   1.0 0.09999999999999998
+</pre></div>
+</div>
+</div>
+</div>
+<p>When using constant force of maturity as the fractional age assumption, the force of maturity may show discontinuous jumps at integer ages</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">cfm</span> <span class="o">=</span> <span class="n">Fractional</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="mi">100</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">))</span>
+<span class="n">udd</span> <span class="o">=</span> <span class="n">Fractional</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="mi">100</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="n">cfm</span><span class="o">.</span><span class="n">mu_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">x</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="n">udd</span><span class="o">.</span><span class="n">mu_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">x</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39; Constant Force of Maturity&#39;</span><span class="p">,</span> <span class="s1">&#39;Uniform Distribution&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;force of mortality $\mu$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Fractional Age Assumptions and Force of Mortality&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Fractional Age Assumptions and Force of Mortality&#39;)
+</pre></div>
+</div>
+<img alt="_images/31bb63079ab3c118bccea489cefa260a26407ba668136a3d6e651441297d4f42.png" src="_images/31bb63079ab3c118bccea489cefa260a26407ba668136a3d6e651441297d4f42.png" />
+</div>
+</div>
+<p>The uniform distribution assumption for fractional ages linearly interpolates the number of lives between integer ages, whereas the constant force of mortality asssumption uses exponential interpolation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">udd</span> <span class="o">=</span> <span class="n">Fractional</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">)</span>
+<span class="n">cfm</span> <span class="o">=</span> <span class="n">Fractional</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="n">udd</span><span class="o">.</span><span class="n">l_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">x</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="n">cfm</span><span class="o">.</span><span class="n">l_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">x</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Uniform Distribution&#39;</span><span class="p">,</span> <span class="s1">&#39;Constant Force of Maturity&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of lives&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Fractional Age Assumptions and Interpolation of Lives&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Fractional Age Assumptions and Interpolation of Lives&#39;)
+</pre></div>
+</div>
+<img alt="_images/beb2b4b0c41a72504b00cf24fc78d583e911b949ef54d08ab648695bcca28db9.png" src="_images/beb2b4b0c41a72504b00cf24fc78d583e911b949ef54d08ab648695bcca28db9.png" />
+</div>
+</div>
+<p>The complete future lifetime for fractional limited durations starting from integer ages is computed by the <code class="docutils literal notranslate"><span class="pre">e_r</span></code> class method. Under the hood, when the duration is one year or less, then shortcuts are available for both the uniform distribution and constant force of maturity cases; when the limited duration is more than one year, then the general one-year recursion formula is repeatedly applied until the last period of length less than or equal to one year is reached.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]</span>
+<span class="n">udd</span> <span class="o">=</span> <span class="n">Fractional</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="mi">50</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">),</span> <span class="n">maxage</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">cfm</span> <span class="o">=</span> <span class="n">Fractional</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="mf">0.03</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;UDD: &#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">udd</span><span class="o">.</span><span class="n">e_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">x</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;CFM: &#39;</span><span class="p">,</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">cfm</span><span class="o">.</span><span class="n">e_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">x</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>UDD:  [0.4975, 0.99, 1.4774, 1.9599]
+CFM:  [0.4963, 0.9852, 1.4669, 1.9413]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The exact results under the assumption of uniform distribution of deaths are often used to approximate between curtate and complete expectations, and can be computed by the <code class="docutils literal notranslate"><span class="pre">e_approximate</span></code> static method</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Fractional</span><span class="o">.</span><span class="n">e_approximate</span><span class="p">(</span><span class="n">e_complete</span><span class="o">=</span><span class="mi">15</span><span class="p">),</span> 
+      <span class="n">Fractional</span><span class="o">.</span><span class="n">e_approximate</span><span class="p">(</span><span class="n">e_complete</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Fractional</span><span class="o">.</span><span class="n">e_approximate</span><span class="p">(</span><span class="n">e_curtate</span><span class="o">=</span><span class="mi">15</span><span class="p">),</span> 
+      <span class="n">Fractional</span><span class="o">.</span><span class="n">e_approximate</span><span class="p">(</span><span class="n">e_curtate</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14.5 199.91666666666666
+15.5 200.08333333333334
 </pre></div>
 </div>
 </div>

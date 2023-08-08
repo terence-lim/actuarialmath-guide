@@ -381,8 +381,11 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="life-table">
 <h1>Life Table<a class="headerlink" href="#life-table" title="Permalink to this heading">#</a></h1>
-<p>A life table, from some initial age <span class="math notranslate nohighlight">\(x_0\)</span> to a maximum age <span class="math notranslate nohighlight">\(\omega\)</span>, represents a survival model with probabilities <span class="math notranslate nohighlight">\(_tp_x\)</span>.
-Let <span class="math notranslate nohighlight">\(l_{x_0}\)</span> be an arbitrary positive number of lives at age <span class="math notranslate nohighlight">\(x_0\)</span>, called the radix, and <span class="math notranslate nohighlight">\(l_{x_0+t} = l_{x_0}~_tp_{x_0}\)</span> A life table is typically tabulated at integer ages only – fractional age assumptions would be needed to calculate survival probabilities for non-integer ages and durations.</p>
+<p>A life table, from some initial age <span class="math notranslate nohighlight">\(x_0\)</span> to a maximum age <span class="math notranslate nohighlight">\(\omega\)</span>, represents a survival model with probabilities <span class="math notranslate nohighlight">\(_tp_x\)</span>.  A life table is typically tabulated for the number of lives <span class="math notranslate nohighlight">\(l_x\)</span> at integer ages <span class="math notranslate nohighlight">\(x\)</span> only – fractional age assumptions would be needed to calculate survival probabilities for non-integer ages and durations.</p>
+<p><span class="math notranslate nohighlight">\(l_{x_0+t} = l_{x_0}~_tp_{x_0}\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(l_{x_0}\)</span> is an arbitrary positive number of lives at starting age <span class="math notranslate nohighlight">\(x_0\)</span> called the radix</p></li>
+</ul>
 <p><span class="math notranslate nohighlight">\(d_x = l_x - l_{x+1}\)</span></p>
 <ul class="simple">
 <li><p>it is usual for a life table to also show the values of <span class="math notranslate nohighlight">\(d_x\)</span>, the expected of deaths in the year of age <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(x+1\)</span>.</p></li>
@@ -391,9 +394,10 @@ Let <span class="math notranslate nohighlight">\(l_{x_0}\)</span> be an arbitrar
 <ul class="simple">
 <li><p>the mortality rate can then be derived, which is the probability that a life aged <span class="math notranslate nohighlight">\(x\)</span> dies within one year.</p></li>
 </ul>
+<p>Recursion formulas from earlier sections allow the recursive construction of a table of other life contingent values, such as life expectancy, insurance, and annuities, at all ages.</p>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">LifeTable</span></code> class implements methods to define and calculate life table entries</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">LifeTable</span></code> class specifies a given life table to be the survival model.  It inherits all the general methods for computing life contingency risks, and overrides those methods where values can be looked up or calculated from life table entries.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">LifeTable</span>
@@ -420,7 +424,7 @@ Let <span class="math notranslate nohighlight">\(l_{x_0}\)</span> be an arbitrar
     Methods:
     --------
 
-    set_table(fill, minage, maxage, l, d, p, q):
+    set_table(radix, minage, maxage, fill, l, d, p, q):
       Update life table
 
     fill_table(radix):
@@ -438,6 +442,7 @@ Let <span class="math notranslate nohighlight">\(l_{x_0}\)</span> be an arbitrar
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">set_table</span></code> method is called to load a life table, by age, with given values of number of lives, number of deaths, mortality rate, and/or survival probability: if the <code class="docutils literal notranslate"><span class="pre">fill</span></code> flag is set to True (by default), <code class="docutils literal notranslate"><span class="pre">fill_table</span></code> is automatically called to fill in any missing values using recursion and identify formulas.  All other computational methods can then be called in the usual manner, which will use the survival model provided by the life table.</p>
 <p><strong>AMLCR2 Exercise 3.2</strong></p>
 <p>You are given the following life table extract.</p>
 <table class="table">
@@ -490,44 +495,19 @@ Let <span class="math notranslate nohighlight">\(l_{x_0}\)</span> be an arbitrar
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">l</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">l</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">52</span><span class="p">,</span> <span class="mi">61</span><span class="p">),</span> 
                             <span class="p">[</span><span class="mi">89948</span><span class="p">,</span> <span class="mi">89089</span><span class="p">,</span> <span class="mi">88176</span><span class="p">,</span> <span class="mi">87208</span><span class="p">,</span> <span class="mi">86181</span><span class="p">,</span> 
                              <span class="mi">85093</span><span class="p">,</span> <span class="mi">83940</span><span class="p">,</span> <span class="mi">82719</span><span class="p">,</span> <span class="mi">81429</span><span class="p">])}</span>
-<span class="n">life1</span> <span class="o">=</span> <span class="n">LifeTable</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_table</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="n">table</span><span class="p">)</span>
+<span class="n">life1</span> <span class="o">=</span> <span class="n">LifeTable</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">set_table</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="n">table</span><span class="p">)</span>
 <span class="n">life2</span> <span class="o">=</span> <span class="n">LifeTable</span><span class="p">(</span><span class="n">udd</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_table</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="n">table</span><span class="p">)</span>
-<span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">life1</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.2</span><span class="p">),</span>   <span class="c1"># 0.001917                                 </span>
-           <span class="n">life2</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.2</span><span class="p">),</span>   <span class="c1"># 0.001917                                 </span>
-           <span class="n">life1</span><span class="o">.</span><span class="n">p_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">5.7</span><span class="p">),</span>   <span class="c1"># 0.935422                                 </span>
-           <span class="n">life2</span><span class="o">.</span><span class="n">p_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">5.7</span><span class="p">),</span>   <span class="c1"># 0.935423                                 </span>
-           <span class="n">life1</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mf">3.2</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">2.5</span><span class="p">),</span>  <span class="c1"># 0.030957                           </span>
-           <span class="n">life2</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mf">3.2</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)]</span>  <span class="c1"># 0.030950  </span>
-<span class="nb">print</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">[</span><span class="n">life1</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.2</span><span class="p">),</span>   <span class="c1"># 0.001917                                 </span>
+                             <span class="n">life2</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">0.2</span><span class="p">),</span>   <span class="c1"># 0.001917                                 </span>
+                             <span class="n">life1</span><span class="o">.</span><span class="n">p_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">5.7</span><span class="p">),</span>   <span class="c1"># 0.935422                                 </span>
+                             <span class="n">life2</span><span class="o">.</span><span class="n">p_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">5.7</span><span class="p">),</span>   <span class="c1"># 0.935423                                 </span>
+                             <span class="n">life1</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mf">3.2</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">2.5</span><span class="p">),</span>  <span class="c1"># 0.030957                           </span>
+                             <span class="n">life2</span><span class="o">.</span><span class="n">q_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mf">3.2</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)]])</span>  <span class="c1"># 0.030950 </span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 d(x=52) = 859
-2 d(x=53) = 913
-3 d(x=54) = 968
-4 d(x=55) = 1027
-5 d(x=56) = 1088
-6 d(x=57) = 1153
-7 d(x=58) = 1221
-8 d(x=59) = 1290
-9 q(x=52) = 0.009549962200382444
-10 q(x=53) = 0.01024817878750463
-11 q(x=54) = 0.010978043912175649
-12 q(x=55) = 0.011776442528208421
-13 q(x=56) = 0.01262459242756524
-14 q(x=57) = 0.013549880718743022
-15 q(x=58) = 0.014546104360257326
-16 q(x=59) = 0.015594966090015596
-17 p(x=52) = 0.99045
-18 p(x=53) = 0.9897518
-19 p(x=54) = 0.989022
-20 p(x=55) = 0.9882236
-21 p(x=56) = 0.9873754
-22 p(x=57) = 0.9864501
-23 p(x=58) = 0.9854539
-24 p(x=59) = 0.984405
-[0.001917, 0.001917, 0.935422, 0.935423, 0.030957, 0.03095]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.001917, 0.001917, 0.935422, 0.935423, 0.030957, 0.03095]
 </pre></div>
 </div>
 </div>

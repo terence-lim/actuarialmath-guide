@@ -384,7 +384,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="extra-risk">
 <h1>Extra Risk<a class="headerlink" href="#extra-risk" title="Permalink to this heading">#</a></h1>
-<p>If underwriting determines that an individual should offered insurance but at above standard rates, there are different ways in which we can model the extra mortality risk in a premium calculation.</p>
+<p>If the underwriter determines that an individual should be offered insurance but at above standard rates, there are different ways in which we can model the extra mortality risk in a premium calculation.</p>
 <section id="age-rating">
 <h2>Age rating<a class="headerlink" href="#age-rating" title="Permalink to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\((x) \gets (x+k)\)</span></p>
@@ -404,6 +404,7 @@ impaired life aged 45.</p></li>
 </section>
 <section id="force-of-mortality">
 <h2>Force of mortality<a class="headerlink" href="#force-of-mortality" title="Permalink to this heading">#</a></h2>
+<p>A linear transformation of <span class="math notranslate nohighlight">\(\mu_x\)</span> affects survival probability in the following ways: Recall that <span class="math notranslate nohighlight">\(\mu\)</span> is exponentiated to get <span class="math notranslate nohighlight">\(p\)</span>, hence adding a constant to <span class="math notranslate nohighlight">\(\mu\)</span> requires multiplying <span class="math notranslate nohighlight">\(~_tp_x\)</span> by the constant exponentiated, while multiplying <span class="math notranslate nohighlight">\(\mu\)</span> by a factor requires raising <span class="math notranslate nohighlight">\(~_tp_x\)</span> to that power</p>
 <p><span class="math notranslate nohighlight">\(\mu_{x+t} \gets \mu_{x+t} + k \Rightarrow ~_tp_x \gets ~_tp_x ~ e^{-kt}\)</span></p>
 <ul class="simple">
 <li><p>add constant to force of mortality, when the extra risk is largely independent of age</p></li>
@@ -430,7 +431,7 @@ impaired life aged 45.</p></li>
     Args:
       life : contains original survival and mortality rates
       extra : amount of extra risk to adjust
-      risk : adjust by {&quot;ADD_FORCE&quot;, &quot;MULTIPLY_FORCE&quot;, &quot;ADD_AGE&quot; or &quot;MULTIPLY_RATE&quot;}
+      risk : adjust by {&quot;ADD_FORCE&quot;, &quot;MULTIPLY_FORCE&quot;, &quot;ADD_AGE&quot;, &quot;MULTIPLY_RATE&quot;}
 
     Methods:
     --------
@@ -450,6 +451,7 @@ impaired life aged 45.</p></li>
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ExtraRisk</span></code> class is initialized with its <code class="docutils literal notranslate"><span class="pre">life</span></code> argument set to an instance of a survival model, with amount of <code class="docutils literal notranslate"><span class="pre">extra</span></code> risk and type of <code class="docutils literal notranslate"><span class="pre">risk</span></code> (either “ADD_FORCE”, “MULTIPLY_FORCE”, “ADD_AGE” or “MULTIPLY_RATE”) specified. The <code class="docutils literal notranslate"><span class="pre">q_x</span></code> or <code class="docutils literal notranslate"><span class="pre">p_x</span></code> methods can then be called to return the adjusted mortality rate or survival probability respectively, or an entire column of values by age can be retrieved as the item “q” or “p”.</p>
 <p><strong>SOA Question 5.5</strong></p>
 <p>For an annuity-due that pays 100 at the beginning of each year that (45) is alive, you are given:</p>
 <ul class="simple">
@@ -471,11 +473,10 @@ impaired life aged 45.</p></li>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 5.5: (A) 1699.6&quot;</span><span class="p">)</span>
 <span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
 <span class="n">extra</span> <span class="o">=</span> <span class="n">ExtraRisk</span><span class="p">(</span><span class="n">life</span><span class="o">=</span><span class="n">life</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">risk</span><span class="o">=</span><span class="s2">&quot;ADD_FORCE&quot;</span><span class="p">)</span>
-<span class="n">select</span> <span class="o">=</span> <span class="n">SelectLife</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>\
-    <span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">.05</span><span class="p">)</span>\
-    <span class="o">.</span><span class="n">set_select</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_selected</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">extra</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">])</span>\
-    <span class="o">.</span><span class="n">set_select</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">age_selected</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">life</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">])</span>\
-    <span class="o">.</span><span class="n">fill_table</span><span class="p">()</span>
+<span class="n">select</span> <span class="o">=</span> <span class="n">SelectLife</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">.05</span><span class="p">)</span>\
+                              <span class="o">.</span><span class="n">set_select</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_selected</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">extra</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">])</span>\
+                              <span class="o">.</span><span class="n">set_select</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">age_selected</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">life</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">])</span>\
+                              <span class="o">.</span><span class="n">fill_table</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">select</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">][</span><span class="mi">45</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -502,11 +503,10 @@ Ultimate Life Table</p></li>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 4.19:  (B) 59050&quot;</span><span class="p">)</span>
 <span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
 <span class="n">extra</span> <span class="o">=</span> <span class="n">ExtraRisk</span><span class="p">(</span><span class="n">life</span><span class="o">=</span><span class="n">life</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">risk</span><span class="o">=</span><span class="s2">&quot;MULTIPLY_RATE&quot;</span><span class="p">)</span>
-<span class="n">select</span> <span class="o">=</span> <span class="n">SelectLife</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>\
-    <span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">.05</span><span class="p">)</span>\
-    <span class="o">.</span><span class="n">set_select</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_selected</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">extra</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">])</span>\
-    <span class="o">.</span><span class="n">set_select</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">age_selected</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">life</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">])</span>\
-    <span class="o">.</span><span class="n">fill_table</span><span class="p">()</span>
+<span class="n">select</span> <span class="o">=</span> <span class="n">SelectLife</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">.05</span><span class="p">)</span>\
+                              <span class="o">.</span><span class="n">set_select</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_selected</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">extra</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">])</span>\
+                              <span class="o">.</span><span class="n">set_select</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">age_selected</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">life</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">])</span>\
+                              <span class="o">.</span><span class="n">fill_table</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="mi">100000</span><span class="o">*</span><span class="n">select</span><span class="o">.</span><span class="n">whole_life_insurance</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 </pre></div>
 </div>

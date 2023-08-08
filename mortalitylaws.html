@@ -366,10 +366,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-distribution">Beta distribution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uniform-distribution">Uniform distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#makeham-s-law">Makeham’s Law</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-distribution">Beta distribution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gompertz-s-law">Gompertz’s Law</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#makeham-s-law">Makeham’s Law</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
@@ -385,51 +385,85 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="mortality-laws">
 <h1>Mortality Laws<a class="headerlink" href="#mortality-laws" title="Permalink to this heading">#</a></h1>
-<p>When using special mortality laws for lifetime distribution, shortcut formulas may be available.</p>
+<p>Another approach to defining a survival model is to fit a parametric function, which may have convenient properties that simplify computations. When using these  special mortality laws for lifetime distribution, shortcut formulas may be available without the need for numerical integration.</p>
+<section id="uniform-distribution">
+<h2>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Permalink to this heading">#</a></h2>
+<p>If deaths are uniformly distributed then insurance benefits are paid out in a level manner. A convenient property of a uniform distribution on <span class="math notranslate nohighlight">\([0, \theta]\)</span> is that it has a midrange mean and median of <span class="math notranslate nohighlight">\(\theta/2\)</span></p>
+<p><span class="math notranslate nohighlight">\(l_x \sim \omega - x\)</span></p>
+<p><span class="math notranslate nohighlight">\(_tp_x = \dfrac{\omega - (x + t)}{\omega - x}\)</span></p>
+<ul class="simple">
+<li><p>number of lives, and survival function, are linearly declining with age</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\mu_{x+t} = f_x(t) = \dfrac{1}{\omega - x - t}\)</span></p>
+<ul class="simple">
+<li><p>the force of mortality and lifetime density function are identical</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x} = \dfrac{\omega - x}{2}\)</span></p>
+<ul class="simple">
+<li><p>expected future lifetime is the mean of a uniform distribution</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x:\overline{n|}} =\ _np_x\ n +\ _nq_x\ \dfrac{n}{2}\)</span></p>
+<ul class="simple">
+<li><p>expected limited lifetime is the weighted sum of the mean lifetime of deaths (for those who died) and the limit <span class="math notranslate nohighlight">\(n\)</span> (for those who survived)</p></li>
+</ul>
+<p>$Var(T_x) = \dfrac{(\omega - x)^2}{12}</p>
+<ul class="simple">
+<li><p>variance of complete future lifetime is the variance of a uniform distribution</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(_nE_x = v^n \dfrac{\omega - (x+n)}{\omega - x}\)</span></p>
+<ul class="simple">
+<li><p>pure endowment shortcut by substituting in formula for the survival function</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\bar{A}_{x} = \dfrac{\bar{a}_{\overline{\omega - x|}}}{\omega - x}\)</span></p>
+<ul class="simple">
+<li><p>it is not necessary to carry out integration since whole life insurance is equivalent to an annuity-certain that pays <span class="math notranslate nohighlight">\(\dfrac{1}{\omega}\)</span> per year. To calculate the second moment of insurance, simply double the force of interest in the annuity-certain in the shortcut formula.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\bar{A}^ {1}_{x:\overline{n|}} = \dfrac{\bar{a}_{\overline{n|}}}{\omega - x}\)</span></p>
+<ul class="simple">
+<li><p>term insurance is an annuity-certain that pays <span class="math notranslate nohighlight">\(\dfrac{1}{\omega}\)</span> per year for the term of the insurance.</p></li>
+</ul>
+</section>
 <section id="beta-distribution">
 <h2>Beta distribution<a class="headerlink" href="#beta-distribution" title="Permalink to this heading">#</a></h2>
-<p>With two parameters <span class="math notranslate nohighlight">\(\alpha, \omega\)</span>:</p>
+<p>This is a generalized version of the uniform distribution with two parameters <span class="math notranslate nohighlight">\(\alpha, \omega\)</span>.  The uniform is a special case of the Beta distribution with <span class="math notranslate nohighlight">\(\alpha = 1\)</span>. However, unlike the uniform, its density function is longer constant.</p>
 <p><span class="math notranslate nohighlight">\(l_x \sim (\omega - x)^{\alpha}\)</span></p>
+<p><span class="math notranslate nohighlight">\(f_x(t) = \dfrac{\alpha(\omega - x - t)^{\alpha-1}}{(\omega - x){\alpha}}\)</span></p>
 <p><span class="math notranslate nohighlight">\(\mu_x = \dfrac{\alpha}{\omega - x}\)</span></p>
 <p><span class="math notranslate nohighlight">\(_tp_x = (\dfrac{\omega - (x + t)}{\omega - x})^{\alpha}\)</span></p>
 <p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x} = \dfrac{\omega - x}{\alpha + 1}\)</span></p>
-</section>
-<section id="uniform-distribution">
-<h2>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Permalink to this heading">#</a></h2>
-<p>Is Beta distribution with <span class="math notranslate nohighlight">\(\alpha = 1\)</span></p>
-<p><span class="math notranslate nohighlight">\(l_x \sim \omega - x\)</span></p>
-<p><span class="math notranslate nohighlight">\(\mu_x = \dfrac{1}{\omega - x}\)</span></p>
-<p><span class="math notranslate nohighlight">\(_tp_x = \dfrac{\omega - (x + t)}{\omega - x}\)</span></p>
-<p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x} = \dfrac{\omega - x}{2}\)</span></p>
-<p><span class="math notranslate nohighlight">\(\overset{\circ}{e}_{x:\overline{n|}} =\ _np_x\ n +\ _nq_x\ \dfrac{n}{2}\)</span></p>
-<p><span class="math notranslate nohighlight">\(_nE_x = v^n \dfrac{\omega - (x+n)}{\omega - x}\)</span></p>
-<p><span class="math notranslate nohighlight">\(\bar{A}_{x} = \dfrac{\bar{a}_{\overline{\omega - x|}}}{\omega - x}\)</span></p>
-<p><span class="math notranslate nohighlight">\(\bar{A}^ {1}_{x:\overline{n|}} = \dfrac{\bar{a}_{\overline{n|}}}{\omega - x}\)</span></p>
-</section>
-<section id="makeham-s-law">
-<h2>Makeham’s Law<a class="headerlink" href="#makeham-s-law" title="Permalink to this heading">#</a></h2>
-<p>With three parameters <span class="math notranslate nohighlight">\(c &gt; 1,\ B &gt; 0,\ A \ge -B\)</span>, it includes an element in the force of mortality that does not depend on age.</p>
-<p><span class="math notranslate nohighlight">\(\mu_x = A + B c^x\)</span></p>
-<p><span class="math notranslate nohighlight">\(_tp_x = e^{\frac{B c^x}{\ln c}(c^t - 1) - A t}\)</span></p>
+<p><span class="math notranslate nohighlight">\(Var(T_x) = \dfrac{\alpha(\omega - x)^2}{(1+\alpha)^2(2+\alpha)}\)</span></p>
 </section>
 <section id="gompertz-s-law">
 <h2>Gompertz’s Law<a class="headerlink" href="#gompertz-s-law" title="Permalink to this heading">#</a></h2>
-<p>Is Makeham’s Law with <span class="math notranslate nohighlight">\(A=0\)</span></p>
+<p>Gompertz proposed this law based on observations that the logarithm of the force of mortality appeared to fit well to a straight line for ages above 20.</p>
 <p><span class="math notranslate nohighlight">\(\mu_x = B c^x\)</span></p>
 <p><span class="math notranslate nohighlight">\(_tp_x = e^{\frac{B c^x}{\ln c}(c^t - 1)}\)</span></p>
+<ul class="simple">
+<li><p>the force of mortality is modeled by two parameters <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(c &gt; 1\)</span></p></li>
+</ul>
+</section>
+<section id="makeham-s-law">
+<h2>Makeham’s Law<a class="headerlink" href="#makeham-s-law" title="Permalink to this heading">#</a></h2>
+<p>Makeham improved Gompertz’s law by adding a third parameters <span class="math notranslate nohighlight">\(A \ge -B\)</span>. This includes
+represents a constant element in the force of mortality that does not depend on age.</p>
+<p><span class="math notranslate nohighlight">\(\mu_x = A + B c^x\)</span></p>
+<p><span class="math notranslate nohighlight">\(_tp_x = e^{\frac{B c^x}{\ln c}(c^t - 1) - A t}\)</span></p>
+<ul class="simple">
+<li><p>the force of mortality is modeled with three parameters <span class="math notranslate nohighlight">\(c &gt; 1,\ B &gt; 0,\ A \ge -B\)</span></p></li>
+</ul>
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">MortalityLaws</span></code> class, and <code class="docutils literal notranslate"><span class="pre">Beta</span></code>, <code class="docutils literal notranslate"><span class="pre">Uniform</span></code>, <code class="docutils literal notranslate"><span class="pre">Makeham</span></code> and <code class="docutils literal notranslate"><span class="pre">Gompertz</span></code> subclasses, implement methods to apply shortcut equations that are available when assuming these special mortality laws for the distribution of future lifetime.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">MortalityLaws</span></code> class, and <code class="docutils literal notranslate"><span class="pre">Beta</span></code>, <code class="docutils literal notranslate"><span class="pre">Uniform</span></code>, <code class="docutils literal notranslate"><span class="pre">Makeham</span></code> and <code class="docutils literal notranslate"><span class="pre">Gompertz</span></code> subclasses, specify continuous functions for survival distributions.  These classes inherit all the general methods for computing life contingency risks, and override those methods with shortcut formulas that may be available when assuming their respective mortality laws.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath</span> <span class="kn">import</span> <span class="n">MortalityLaws</span><span class="p">,</span> <span class="n">Uniform</span><span class="p">,</span> <span class="n">Beta</span><span class="p">,</span> <span class="n">Makeham</span><span class="p">,</span> <span class="n">Gompertz</span>
 <span class="kn">import</span> <span class="nn">describe</span>
 <span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">MortalityLaws</span><span class="p">)</span>
-<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Beta</span><span class="p">)</span>
 <span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Uniform</span><span class="p">)</span>
-<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Makeham</span><span class="p">)</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Beta</span><span class="p">)</span>
 <span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Gompertz</span><span class="p">)</span>
+<span class="n">describe</span><span class="o">.</span><span class="n">methods</span><span class="p">(</span><span class="n">Makeham</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -459,42 +493,24 @@ document.write(`
 
 
 
+class Uniform - Shortcuts with uniform distribution of deaths aka DeMoivre&#39;s Law
+
+    Args:
+      omega : maximum age
+
+    Examples:
+      &gt;&gt;&gt; print(Uniform(95).e_x(30, t=40, curtate=False)) # 27.692
+
+
 class Beta - Shortcuts with beta distribution of deaths (is Uniform when alpha = 1)
 
     Args:
       omega : maximum age
       alpha : alpha paramter of beta distribution
-      lives : assumed starting number of lives for survival function
+      radix : assumed starting number of lives for survival function
 
     Examples:
-      &gt;&gt;&gt; life = Beta(omega=100, alpha=0.5)
-      &gt;&gt;&gt; print(life.q_x(25, t=1, u=10))     # 0.0072
-      &gt;&gt;&gt; print(life.e_x(25))                # 50
       &gt;&gt;&gt; print(Beta(omega=60, alpha=1/3).mu_x(35) * 1000)
-
-
-class Uniform - Shortcuts with uniform distribution of deaths aka DeMoivre&#39;s Law
-
-    Args:
-      omega : maximum age
-      udd : assume UDD (True, default) or CFM (False) between integer ages
-
-    Examples:
-      &gt;&gt;&gt; uniform = Uniform(80).set_interest(delta=0.04)
-      &gt;&gt;&gt; print(uniform.whole_life_annuity(20, discrete=False))        # 15.53
-      &gt;&gt;&gt; print(uniform.temporary_annuity(20, t=5, discrete=False))   # 4.35
-      &gt;&gt;&gt; print(Uniform(161).p_x(70, t=1)) # 0.98901
-      &gt;&gt;&gt; print(Uniform(95).e_x(30, t=40, curtate=False)) # 27.692
-
-
-class Makeham - Includes element in force of mortality that does not depend on age
-
-    Args:
-      A, B, c : parameters of Makeham distribution
-
-    Examples:
-      &gt;&gt;&gt; life = Makeham(A=0.00022, B=2.7e-6, c=1.124)
-      &gt;&gt;&gt; print(life.mu_x(60) * 0.9803)  # 0.00316
 
 
 class Gompertz - Is Makeham&#39;s Law with A = 0
@@ -503,10 +519,16 @@ class Gompertz - Is Makeham&#39;s Law with A = 0
       B, c : parameters of Gompertz distribution
 
     Examples:
-      &gt;&gt;&gt; life = Gompertz(B=0.000005, c=1.10)
-      &gt;&gt;&gt; p = life.p_x(80, t=10)  # 869.4
-      &gt;&gt;&gt; print(life.portfolio_percentile(N=1000, mean=p, variance=p*(1-p), prob=0.99)) 
       &gt;&gt;&gt; print(Gompertz(B=0.00027, c=1.1).f_x(50, t=10)) # 0.04839
+
+
+class Makeham - Includes element in force of mortality that does not depend on age
+
+    Args:
+      A, B, c : parameters of Makeham distribution
+
+    Examples:
+      &gt;&gt;&gt; print(Makeham(A=0.00022, B=2.7e-6, c=1.124).mu_x(60) * 0.9803)  # 0.00316
 </pre></div>
 </div>
 </div>
@@ -514,60 +536,7 @@ class Gompertz - Is Makeham&#39;s Law with A = 0
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
-<p><strong>SOA Question 2.3</strong>:</p>
-<p>You are given that mortality follows Gompertz Law with B = 0.00027 and c = 1.1.
-Calculate <span class="math notranslate nohighlight">\(f_{50}(10)\)</span>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 2.3: (A) 0.0483&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">Gompertz</span><span class="p">(</span><span class="n">B</span><span class="o">=</span><span class="mf">0.00027</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span><span class="o">.</span><span class="n">f_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 2.3: (A) 0.0483
-0.048389180223511644
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>SOA Question 2.6</strong></p>
-<p>You are given the survival function:</p>
-<p><span class="math notranslate nohighlight">\(S_0(x) = \left( 1 − \frac{x}{60} \right)^{\frac{1}{3}}, \quad 0 \le x \le 60\)</span></p>
-<p>Calculate <span class="math notranslate nohighlight">\(1000 \mu_{35}\)</span>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# SOA Question 2.6: (C) 13.3&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">Beta</span><span class="p">(</span><span class="n">omega</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">mu_x</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># SOA Question 2.6: (C) 13.3
-13.333333333333332
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>Beta distribution</strong>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Beta</span><span class="p">(</span><span class="n">omega</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>                    <span class="c1"># 0.0072</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="mi">25</span><span class="p">))</span>                               <span class="c1"># 50</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">Beta</span><span class="p">(</span><span class="n">omega</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">mu_x</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># 13.33</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.007188905547861446
-50.0
-13.333333333333332
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>Uniform distribution</strong>:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Uniform</span></code> class is initialized with the <code class="docutils literal notranslate"><span class="pre">omega</span></code> parameter to specify the range of the uniform distribution of deaths assumption. All the inherited general computation methods can be accessed; where shortcut formulas are available, then those specific methods are overriden.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Uniform&#39;</span><span class="p">)</span>
@@ -603,7 +572,25 @@ Calculate <span class="math notranslate nohighlight">\(f_{50}(10)\)</span>.</p>
 </div>
 </div>
 </div>
-<p><strong>Makeham’s and Gompertz’s Laws</strong>:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Beta</span></code> class is initialized with <code class="docutils literal notranslate"><span class="pre">omega</span></code> and <code class="docutils literal notranslate"><span class="pre">alpha</span></code> parameters of the beta distribution of deaths assumption. All the inherited general computation methods can be accessed; where shortcut formulas are available, then those specific methods are overriden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Beta</span><span class="p">(</span><span class="n">omega</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>                    <span class="c1"># 0.0072</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">e_x</span><span class="p">(</span><span class="mi">25</span><span class="p">))</span>                               <span class="c1"># 50</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Beta</span><span class="p">(</span><span class="n">omega</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">mu_x</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># 13.33</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.007188905547861446
+50.0
+13.333333333333332
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Gompertz</span></code> or <code class="docutils literal notranslate"><span class="pre">Makeham</span></code> classes are initialized with the respective parameters of the Gompertz and Makeham Laws assumptions. All the inherited general computation methods can be accessed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Gompertz</span><span class="p">(</span><span class="n">B</span><span class="o">=</span><span class="mf">0.000005</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">1.10</span><span class="p">)</span>
@@ -620,6 +607,41 @@ Calculate <span class="math notranslate nohighlight">\(f_{50}(10)\)</span>.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>869.3908338193208
 0.048389180223511644
 0.0031580641631654026
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 2.3</strong>:</p>
+<p>You are given that mortality follows Gompertz Law with B = 0.00027 and c = 1.1.
+Calculate <span class="math notranslate nohighlight">\(f_{50}(10)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 2.3: (A) 0.0483&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Gompertz</span><span class="p">(</span><span class="n">B</span><span class="o">=</span><span class="mf">0.00027</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span><span class="o">.</span><span class="n">f_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 2.3: (A) 0.0483
+0.048389180223511644
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>SOA Question 2.6</strong></p>
+<p>You are given the survival function:</p>
+<p><span class="math notranslate nohighlight">\(S_0(x) = \left( 1 − \frac{x}{60} \right)^{\frac{1}{3}}, \quad 0 \le x \le 60\)</span></p>
+<p>Calculate <span class="math notranslate nohighlight">\(1000 \mu_{35}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# SOA Question 2.6: (C) 13.3&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Beta</span><span class="p">(</span><span class="n">omega</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">mu_x</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># SOA Question 2.6: (C) 13.3
+13.333333333333332
 </pre></div>
 </div>
 </div>
@@ -694,10 +716,10 @@ Calculate <span class="math notranslate nohighlight">\(f_{50}(10)\)</span>.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-distribution">Beta distribution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uniform-distribution">Uniform distribution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#makeham-s-law">Makeham’s Law</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beta-distribution">Beta distribution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gompertz-s-law">Gompertz’s Law</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#makeham-s-law">Makeham’s Law</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>

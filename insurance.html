@@ -367,9 +367,14 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#present-value-of-life-insurance-r-v-z">Present value of life insurance r.v. <span class="math notranslate nohighlight">\(Z\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whole-life-insurance">Whole life insurance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#term-insurance">Term insurance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deferred-insurance">Deferred insurance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#endowment-insurance">Endowment insurance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-endowment">Pure endowment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variances">Variances</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-insurance">Varying insurance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilities-and-percentiles">Probabilities and percentiles</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
@@ -388,25 +393,31 @@ document.write(`
 <p>For a life insurance policy, the time at which the benefit will be paid is unknown until the policyholder actually dies and the policy becomes a claim. In this section, formulas are developed for the valuation of traditional insurance benefits (such as whole life, term and endowment insurance) and their second moments, as well as varying insurances.</p>
 <section id="present-value-of-life-insurance-r-v-z">
 <h2>Present value of life insurance r.v. <span class="math notranslate nohighlight">\(Z\)</span><a class="headerlink" href="#present-value-of-life-insurance-r-v-z" title="Permalink to this heading">#</a></h2>
-<p>Valuation functions for the present value of insurance benefits, denoted by <span class="math notranslate nohighlight">\(Z\)</span>, are based on the continuous future lifetime random variable, <span class="math notranslate nohighlight">\(T_x\)</span>, or the curtate future lifetime random variable, <span class="math notranslate nohighlight">\(K_x\)</span>. The interest rate is generally assumed to be fixed and constant. Given a survival model and an interest rate we can derive the distribution of the present value random variable for a life contingent benefit, and can therefore compute quantities such as the mean and variance of the present value. Valuation functions are developed per dollar of sum assured, which can be multiplied by the actual sum insured for difference benefit amounts. The expected present value of insurance benefit, denoted and solved by <span class="math notranslate nohighlight">\(EPV(Z)\)</span>, is sometimes referred to as the actuarial value or actuarial present value.</p>
-<p><strong>Whole life insurance</strong>:</p>
+<p>Valuation functions for the present value of insurance benefits, denoted by <span class="math notranslate nohighlight">\(Z\)</span>, are based on the continuous future lifetime random variable, <span class="math notranslate nohighlight">\(T_x\)</span>, or the curtate future lifetime random variable, <span class="math notranslate nohighlight">\(K_x\)</span>. The interest rate is generally assumed to be fixed and constant. Given a survival model and an interest rate we can derive the distribution of the present value random variable for a life contingent benefit, and can therefore compute quantities such as the mean and variance of the present value. Valuation functions are developed per dollar of sum assured, which can be multiplied by the actual sum insured for different benefit amounts. The expected present value of insurance benefit, denoted and solved by <span class="math notranslate nohighlight">\(EPV(Z)\)</span>, is sometimes referred to as the actuarial value, actuarial present valuen (APV), or single net premium. Later sections will review special mortality law assumptions where EPV’s can be computed without the need for integration.</p>
+</section>
+<section id="whole-life-insurance">
+<h2>Whole life insurance<a class="headerlink" href="#whole-life-insurance" title="Permalink to this heading">#</a></h2>
+<p>Whole life insurance pays a benefit whenver <span class="math notranslate nohighlight">\((x)\)</span> dies.</p>
 <p><span class="math notranslate nohighlight">\(Z = v^{T_x}\)</span></p>
 <ul class="simple">
-<li><p>continuous insurance, where benefit is payable immediately on death</p></li>
+<li><p>continuous insurance, where the benefit of $1 is payable immediately on death</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(\overline{A}_x = E[v^{T_x}] = \int_{t=0}^{\infty} ~ v^t ~ _tp_x ~ \mu_{x+t} ~ dt\)</span></p>
 <ul class="simple">
-<li><p>EPV continuous whole life insurance</p></li>
+<li><p>EPV continuous whole life insurance that pays benefit of $1 immediately on death</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(Z = v^{K_x + 1}\)</span></p>
 <ul class="simple">
-<li><p>annual insurance, where benefit is payable at end of year of death</p></li>
+<li><p>annual insurance, where benefit of $1 is payable at end of year of death</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(A_x = E[v^{K_x+1}] = \sum_{k=0}^{\infty} ~ v^{k+1} ~ _{k|}q_x\)</span></p>
 <ul class="simple">
-<li><p>EPV of annual whole life insurance</p></li>
+<li><p>EPV of annual whole life insurance that pays benefit of $1 at end of year on death</p></li>
 </ul>
-<p><strong>Term insurance</strong>:</p>
+</section>
+<section id="term-insurance">
+<h2>Term insurance<a class="headerlink" href="#term-insurance" title="Permalink to this heading">#</a></h2>
+<p>A term life insurace for <span class="math notranslate nohighlight">\(t\)</span> years pays the benefit if death occurs within <span class="math notranslate nohighlight">\(t\)</span> years, 0 otherwise.</p>
 <p><span class="math notranslate nohighlight">\(Z = 0\)</span> when <span class="math notranslate nohighlight">\(T_x &gt; t\)</span>, else <span class="math notranslate nohighlight">\(v^{T_x}\)</span></p>
 <ul class="simple">
 <li><p>death benefit is payable immediately only if the policy-holder dies within <span class="math notranslate nohighlight">\(t\)</span> years</p></li>
@@ -423,7 +434,9 @@ document.write(`
 <ul class="simple">
 <li><p>annual term insurance as the difference of annual whole life and deferred annual whole life</p></li>
 </ul>
-<p><strong>Deferred whole life insurance</strong>:</p>
+</section>
+<section id="deferred-insurance">
+<h2>Deferred insurance<a class="headerlink" href="#deferred-insurance" title="Permalink to this heading">#</a></h2>
 <p>Does not begin to offer death benefit cover until the end of a deferred period</p>
 <p><span class="math notranslate nohighlight">\(Z = 0\)</span> when <span class="math notranslate nohighlight">\(T_x &lt; u\)</span>, else <span class="math notranslate nohighlight">\(v^{T_x}\)</span></p>
 <ul class="simple">
@@ -441,7 +454,9 @@ document.write(`
 <ul class="simple">
 <li><p>annual deferred insurance as the EPV of whole life insurance starting at the end of deferred period.</p></li>
 </ul>
-<p><strong>Endowment insurance</strong>:</p>
+</section>
+<section id="endowment-insurance">
+<h2>Endowment insurance<a class="headerlink" href="#endowment-insurance" title="Permalink to this heading">#</a></h2>
 <p>An endowment insurance provides a combination of a term insurance and a pure endowment.</p>
 <p><span class="math notranslate nohighlight">\(Z = v^t\)</span> when <span class="math notranslate nohighlight">\(T_x \ge t\)</span>, else <span class="math notranslate nohighlight">\(v^{T_x}\)</span></p>
 <ul class="simple">
@@ -470,12 +485,16 @@ insured is payable at the end of the <span class="math notranslate nohighlight">
 </ul>
 <p><span class="math notranslate nohighlight">\({_n}E_x = A^{~~~~1}_{x:\overline{n|}} = v^n ~ _np_x\)</span></p>
 <ul class="simple">
-<li><p>Because the pure endowment will be paid only at time <span class="math notranslate nohighlight">\(t\)</span>, assuming the life survives, there is only the discrete time version</p></li>
+<li><p>because the pure endowment will be paid only at time <span class="math notranslate nohighlight">\(t\)</span>, assuming the life survives, there is only the discrete time version</p></li>
 </ul>
 </section>
 <section id="variances">
 <h2>Variances<a class="headerlink" href="#variances" title="Permalink to this heading">#</a></h2>
-<p>The variance of life insurance benefits is computed as the difference of the second moment and square of the first moment.</p>
+<p>The variance of life insurance benefits is computed as the difference of the second moment <span class="math notranslate nohighlight">\(E[Z^2]\)</span> and square of the first moment <span class="math notranslate nohighlight">\(E[Z]^2\)</span>. By the rule of momenets: <span class="math notranslate nohighlight">\(E[Z^n]\)</span> at force of interest <span class="math notranslate nohighlight">\(\delta\)</span> equals <span class="math notranslate nohighlight">\(E[Z]\)</span> at force of interest <span class="math notranslate nohighlight">\(n\delta\)</span> with the benefit amount also raised to the <span class="math notranslate nohighlight">\(n\)</span>-th power.</p>
+<p><span class="math notranslate nohighlight">\(E[Z^n] = \int_{t=0}^{\infty} ~b_t^n ~ v_t^{n} ~ _tp_x ~ \mu_{x+t} ~ dt\)</span></p>
+<ul class="simple">
+<li><p>when calculating with moments, the benefit and discount factor are raised to the <span class="math notranslate nohighlight">\(n\)</span>-th power.</p></li>
+</ul>
 <p><span class="math notranslate nohighlight">\({^2}{\overline{A}}_{x} = \int_{t=0}^{\infty} ~ v^{2t} ~ _tp_x ~ \mu_{x+t} ~ dt\)</span></p>
 <ul class="simple">
 <li><p>second moment of continuous insurance equal to <span class="math notranslate nohighlight">\(\overline{A}_{x}\)</span> at double the force of interest.</p></li>
@@ -484,7 +503,7 @@ insured is payable at the end of the <span class="math notranslate nohighlight">
 <ul class="simple">
 <li><p>second moment of annual insurance is equal to <span class="math notranslate nohighlight">\(A_{x}\)</span> at double the force of interest.</p></li>
 </ul>
-<p><strong>Life insurance</strong>:</p>
+<p><strong>Whole Life insurance</strong>:</p>
 <p><span class="math notranslate nohighlight">\(Var(\overline{A}_{x}) =  {^2}\overline{A}_{x} - (\overline{A}_{x})^2\)</span></p>
 <ul class="simple">
 <li><p>variance of continuous whole life insurance</p></li>
@@ -493,6 +512,7 @@ insured is payable at the end of the <span class="math notranslate nohighlight">
 <ul class="simple">
 <li><p>variance of annual whole life insurance</p></li>
 </ul>
+<p><strong>Term Life insurance</strong>:</p>
 <p><span class="math notranslate nohighlight">\(Var(\overline{A}^ {1}_{x:\overline{t|}}) =  {^2}\overline{A}^ {1}_{x:\overline{t|}} - (\overline{A}^ {1}_{x:\overline{t|}})^2\)</span></p>
 <ul class="simple">
 <li><p>variance of continuous term life insurance</p></li>
@@ -501,6 +521,7 @@ insured is payable at the end of the <span class="math notranslate nohighlight">
 <ul class="simple">
 <li><p>variance of annual term life insurance</p></li>
 </ul>
+<p><strong>Deferred Life insurance</strong>:</p>
 <p><span class="math notranslate nohighlight">\(Var(_{u|}\overline{A}_{x:\overline{t|}}) =  {^2_{u|}}\overline{A}_{x:\overline{t|}} - (_{u|}\overline{A}_{x:\overline{t|}})^2\)</span></p>
 <ul class="simple">
 <li><p>variance of continuous deferred life insurance</p></li>
@@ -509,20 +530,21 @@ insured is payable at the end of the <span class="math notranslate nohighlight">
 <ul class="simple">
 <li><p>variance of annual deferred life insurance</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(Var(\overline{A}_{x:\overline{t|}}) =  {^2}\overline{A}_{x:\overline{t|}} - (\overline{A}_{x:\overline{t|}})^2\)</span></p>
+<p><strong>Endowment insurance</strong>:</p>
+<p><span class="math notranslate nohighlight">\(Var(\overline{A}_{x:\overline{t|}}) =  {^2}\overline{A}_{x:\overline{t|}} - (\overline{A}_{x:\overline{t|}})^2 = Var(\overline{A}^ {1}_{x:\overline{t|}}) + Var(_tE_x) - Cov(\overline{A}^ {1}_{x:\overline{t|}}, ~_tE_x)\)</span></p>
 <ul class="simple">
-<li><p>variance of continous endowment insurance</p></li>
+<li><p>variance of continous endowment insurance may also be expressed on the sum of a term insurance and pure endowment, which are mutually exclusive hence <span class="math notranslate nohighlight">\(Cov(\overline{A}^ {1}_{x:\overline{t|}}, ~_tE_x) = E[\overline{A}^ {1}_{x:\overline{t|}}] E[_tE_x]\)</span></p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(Var(A_{x:\overline{t|}}) = {^2}A_{x:\overline{t|}} - ~(A_{x:\overline{t|}})^2\)</span></p>
+<p><span class="math notranslate nohighlight">\(Var(A_{x:\overline{t|}}) = {^2}A_{x:\overline{t|}} - ~(A_{x:\overline{t|}})^2 = Var(A^ {1}_{x:\overline{t|}}) + Var(_tE_x) - Cov(A^ {1}_{x:\overline{t|}}, ~_tE_x)\)</span></p>
 <ul class="simple">
 <li><p>variance of annual endowment insurance</p></li>
 </ul>
 <p><strong>Pure Endowment</strong>:</p>
-<p><span class="math notranslate nohighlight">\({^2_t}E_{x} = v^{2t} ~ _tp_x = v_t ~ _tE_x\)</span></p>
+<p><span class="math notranslate nohighlight">\({^2_t}E_{x} = v^{2t} ~ _tp_x = v^t ~ _tE_x\)</span></p>
 <ul class="simple">
 <li><p>second moment of pure endowment by discounting <span class="math notranslate nohighlight">\(_tE_x\)</span></p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\(Var(_tE_x) = v^{2t} ~ _tp_x ~ _tq_x = v^{2t} ~_tp_x - (v^t ~ _tp_x)^2\)</span></p>
+<p><span class="math notranslate nohighlight">\(Var(~_tE_x) = v^{2t} ~ _tp_x ~ _tq_x = v^{2t} ~_tp_x - (v^t ~ _tp_x)^2\)</span></p>
 <ul class="simple">
 <li><p>variance of pure endowment is the variance of a Bernoulli random variable</p></li>
 </ul>
@@ -566,6 +588,21 @@ insured is payable at the end of the <span class="math notranslate nohighlight">
 <ul class="simple">
 <li><p>relates annual increasing and decreasing insurances to level insurance</p></li>
 </ul>
+</section>
+<section id="probabilities-and-percentiles">
+<h2>Probabilities and percentiles<a class="headerlink" href="#probabilities-and-percentiles" title="Permalink to this heading">#</a></h2>
+<p>The larger <span class="math notranslate nohighlight">\(T\)</span>, the lower the present value of the payment and the random variable <span class="math notranslate nohighlight">\(Z\)</span>. For a level benefit whole life insurance, the <span class="math notranslate nohighlight">\(100\pi\)</span>-th percentile of the actuarial present value is determined by the <span class="math notranslate nohighlight">\(100(1 - \pi)\)</span>-th percentile of the lifetime random variable.</p>
+<p><strong>Percentile of <span class="math notranslate nohighlight">\(Z\)</span>:</strong></p>
+<p><span class="math notranslate nohighlight">\(t_{\pi} = S^{-1}(\pi)\)</span></p>
+<ul class="simple">
+<li><p>the <span class="math notranslate nohighlight">\(100(1-p)\)</span>-th percentile of the lifetime variable for WL insurance can be obtained by looking up the inverse of the survival function at probability <span class="math notranslate nohighlight">\(p\)</span>; e.g. if <span class="math notranslate nohighlight">\(~_tp_x = e^{-\mu t}\)</span>, then <span class="math notranslate nohighlight">\(t_{\pi} = \dfrac{-\ln \pi}{\mu}\)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Z_{\pi} = b_{\pi} v^{t_{\pi}}\)</span></p>
+<ul class="simple">
+<li><p>the PV of the insurance r.v. that pays benefit <span class="math notranslate nohighlight">\(b_{t_{\pi}}\)</span> at time <span class="math notranslate nohighlight">\(t_{\pi}\)</span></p></li>
+</ul>
+<p><strong>Probability of <span class="math notranslate nohighlight">\(Z\)</span>:</strong></p>
+<p>To determine the probability that the present value of an annuity is greater than some percentile value <span class="math notranslate nohighlight">\(Pr(Z \ge z_{\pi})\)</span>, it is necessary to plot Z as a function of <span class="math notranslate nohighlight">\(t\)</span>, then identify those time periods where <span class="math notranslate nohighlight">\(Z \ge z_{\pi}\)</span> and compute the cumulative probability of <span class="math notranslate nohighlight">\(T\)</span> being in those time periods.</p>
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
@@ -614,25 +651,25 @@ insured is payable at the end of the <span class="math notranslate nohighlight">
     decreasing_insurance(x, s, t, b, discrete):
       Decreasing life insurance: (DA)_x
 
-    Z_t(x, prob, discrete):
-      T_x given percentile of the PV of WL or Term insurance, i.e. r.v. Z(t)
-
-    Z_from_t(t, discrete):
-      PV of insurance payment Z(t), given T_x (or K_x if discrete)
-
-    Z_to_t(Z):
-      T_x s.t. PV of insurance payment is Z
-
-    Z_from_prob(x, prob, discrete):
-      Percentile of insurance PV r.v. Z, given probability
-
-    Z_to_prob(x, Z):
-      Cumulative density of insurance PV r.v. Z, given percentile value
-
     Z_x(x, s, t, discrete):
       EPV of year t insurance death benefit for life aged [x]+s: b_x[s]+s(t)
 
-    Z_plot(x, s, stop, benefit, T, discrete, ax, title, color):
+    Z_t(x, prob, discrete):
+      T_x, given the prob of the PV of life insurance, i.e. r.v. Z(t)
+
+    Z_from_t(t, discrete):
+      PV of annual or continuous insurance payment Z(t) at t=T_x
+
+    Z_from_prob(x, prob, discrete):
+      Percentile of annual or continuous WL insurance PV r.v. Z given probability
+
+    Z_to_t(Z):
+      T_x s.t. PV of continuous WL insurance payment is Z
+
+    Z_to_prob(x, Z):
+      Probability that continuous WL insurance PV r.v. is no more than Z
+
+    Z_plot(x, s, stop, benefit, T, discrete, ax, dual, title, color, alpha):
       Plot of PV of insurance r.v. Z vs t
 </pre></div>
 </div>
@@ -641,30 +678,99 @@ insured is payable at the end of the <span class="math notranslate nohighlight">
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
-<p><strong>SOA Question 6.33</strong></p>
-<p>An insurance company sells 15-year pure endowments of 10,000 to 500 lives, each age x, with independent future lifetimes. The single premium for each pure endowment is determined by the equivalence principle.</p>
-<p>You are given:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(i\)</span> = 0.03</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mu_x(t) = 0.02 t, \quad t \ge 0\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(_0L\)</span> is the aggregate loss at issue random variable for these pure endowments.</p></li>
-</ul>
-<p>Using the normal approximation without continuity correction, calculate <span class="math notranslate nohighlight">\(Pr(_0L) &gt; 50,000)\)</span>.</p>
+<p>Given a survival model, the <code class="docutils literal notranslate"><span class="pre">A_x</span></code> class method computes the EPV for arbitrary life insurance benefits, endowments, discount functions, terms and moments using numerical integration or summation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 6.33:  (B) 0.13&quot;</span><span class="p">)</span>
-<span class="n">life</span> <span class="o">=</span> <span class="n">Insurance</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mf">0.02</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
-<span class="n">var</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">moment</span><span class="o">=</span><span class="n">life</span><span class="o">.</span><span class="n">VARIANCE</span><span class="p">,</span> <span class="n">endowment</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
-<span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">life</span><span class="o">.</span><span class="n">portfolio_cdf</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="n">var</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life</span> <span class="o">=</span> <span class="n">Insurance</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>\
+                  <span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="mf">0.04</span><span class="p">)</span>
+<span class="n">benefit</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.02</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+<span class="n">A1</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">A_x</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="n">benefit</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">A2</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">A_x</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">moment</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="n">benefit</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">A2</span> <span class="o">-</span> <span class="n">A1</span><span class="o">**</span><span class="mi">2</span>   <span class="c1"># compute variance of this life insurance</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>  <span class="c1"># 0.0833 </span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 6.33:  (B) 0.13
-0.12828940905648634
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.08333333333333331
 </pre></div>
 </div>
+</div>
+</div>
+<p>But typically, the common life insurance EPV’s are computed by calling the class methods <code class="docutils literal notranslate"><span class="pre">whole_life_insurance,</span> <span class="pre">term_insurance,</span> <span class="pre">deferred_insurance,</span> <span class="pre">endowment_insurance,</span> <span class="pre">increasing_insurance,</span> <span class="pre">decreasing</span> <span class="pre">insurance</span></code>, or <code class="docutils literal notranslate"><span class="pre">E_x</span></code> (i.e. pure endowment). It is observed in the example below that term insurance can be equivalently computed as the difference of endowment insurance and a pure endowment, or as the difference of whole life and deferred insurance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">S</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>  <span class="c1"># define a survival function</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">.00022</span><span class="o">*</span><span class="n">t</span> <span class="o">-</span> <span class="p">(</span><span class="mf">.0000027</span><span class="o">*</span><span class="mf">1.124</span><span class="o">**</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.124</span><span class="o">**</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.124</span><span class="p">))</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Insurance</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">minage</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">maxage</span><span class="o">=</span><span class="mi">130</span><span class="p">)</span>\
+                  <span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">-year endowment insurance for (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">): &quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">endowment_insurance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">-year pure endowment for (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">):      &quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">-year term insurance for (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">):      &quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">term_insurance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">-year deferred insurance for (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">):  &quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">deferred_insurance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">t</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;whole life insurance for (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">):        &quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">whole_life_insurance</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">-year increasing insurance for (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">):&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">increasing_insurance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">-year decreasing insurance for (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">):&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">decreasing_insurance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10-year endowment insurance for (50):  0.6164284147269636
+10-year pure endowment for (50):       0.6018174267001221
+10-year term insurance for (50):       0.014610988026841604
+10-year deferred insurance for (50):   0.1746968722738868
+whole life insurance for (50):         0.1893078603007284
+10-year increasing insurance for (50): 0.08665589675401192
+10-year decreasing insurance for (50): 0.07406497154124572
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Z_t</span></code> class method returns the <span class="math notranslate nohighlight">\(100p\)</span>-th percentile of the survival function, then <code class="docutils literal notranslate"><span class="pre">Z_from_t</span></code> can be called to discount the benefit paid at that time.  The <code class="docutils literal notranslate"><span class="pre">Z_from_prob</span></code> class method performs both steps with one call. <code class="docutils literal notranslate"><span class="pre">Z_plot</span></code> plots the insurance present value r.v. <span class="math notranslate nohighlight">\(Z\)</span> as a function of time <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">S</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>  <span class="c1"># define a survival function</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">.00022</span><span class="o">*</span><span class="n">t</span> <span class="o">-</span> <span class="p">(</span><span class="mf">.0000027</span><span class="o">*</span><span class="mf">1.124</span><span class="o">**</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.124</span><span class="o">**</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.124</span><span class="p">))</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Insurance</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">minage</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">maxage</span><span class="o">=</span><span class="mi">130</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mf">0.75</span>  <span class="c1"># to find the 75-th percentile of Z</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">Z_t</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="n">P</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># corresponding percentile of lifetime</span>
+<span class="n">life</span><span class="o">.</span><span class="n">Z_plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># plot Z vs t, and annotate at time T</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;T:&#39;</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>   <span class="c1"># call methods and compare results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;p:&#39;</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">T</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Z:&#39;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">Z_from_prob</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="n">P</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">life</span><span class="o">.</span><span class="n">Z_from_t</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>T: 60.274191128246535
+p: 0.75 0.7500000000000304
+Z: 0.05282410383956641 0.05282410383956641
+</pre></div>
+</div>
+<img alt="_images/385f63b0a225bffcf6d5641ad6553166db2ec7703d5d644ec0f89bdf72edd364.png" src="_images/385f63b0a225bffcf6d5641ad6553166db2ec7703d5d644ec0f89bdf72edd364.png" />
+</div>
+</div>
+<p>By setting the <code class="docutils literal notranslate"><span class="pre">dual</span></code> argument to True, the survival probability of (x) can be simultaneously plotted to annotate, say, the median survival lifetime.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">S</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>  <span class="c1"># define a survival function</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">.00022</span><span class="o">*</span><span class="n">t</span> <span class="o">-</span> <span class="p">(</span><span class="mf">.0000027</span><span class="o">*</span><span class="mf">1.124</span><span class="o">**</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.124</span><span class="o">**</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.124</span><span class="p">))</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Insurance</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">S</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">minage</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">maxage</span><span class="o">=</span><span class="mi">130</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">Z_t</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># compute the median lifetime</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">Z_t</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   <span class="c1"># plot using discrete approximation</span>
+<span class="n">life</span><span class="o">.</span><span class="n">Z_plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;median Z(K)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;S(K=</span><span class="si">{</span><span class="n">K</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">):&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">K</span><span class="p">))</span>  <span class="c1"># survival function at integer age</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;S(T=</span><span class="si">{</span><span class="n">T</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">):&quot;</span><span class="p">,</span> <span class="n">life</span><span class="o">.</span><span class="n">p_r</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">T</span><span class="p">))</span>  <span class="c1"># survival function at fractional age</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>S(K=68.0000): 0.5003864946350018
+S(T=68.0097): 0.49999343308443683
+</pre></div>
+</div>
+<img alt="_images/3c9cf5fe8a0a76d88ce177d2233f861d79f92a6fd78c6e0b6701d80fb703a791.png" src="_images/3c9cf5fe8a0a76d88ce177d2233f861d79f92a6fd78c6e0b6701d80fb703a791.png" />
 </div>
 </div>
 <p><strong>SOA Question 4.18</strong></p>
@@ -685,29 +791,36 @@ You are also given that <span class="math notranslate nohighlight">\(\delta = 5\
 <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">t</span><span class="p">):</span> <span class="k">return</span> <span class="mf">0.1</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">t</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">life</span> <span class="o">=</span> <span class="n">Insurance</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>\
                   <span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">maxage</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">benefit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">):</span> <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="mi">100000</span>
+<span class="k">def</span> <span class="nf">benefit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="mi">100000</span>
+<span class="n">life</span><span class="o">.</span><span class="n">Z_plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="n">benefit</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;benefits begin at T=2&#39;</span><span class="p">)</span>
 <span class="n">prob</span> <span class="o">=</span> <span class="mf">0.9</span> <span class="o">-</span> <span class="n">life</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">T</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">Z_t</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="n">prob</span><span class="p">)</span>
-<span class="n">Z</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">Z_from_t</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">benefit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">life</span><span class="o">.</span><span class="n">Z_from_t</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">*</span> <span class="n">benefit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">Z</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 4.18  (A) 81873 
-81873.07530779815
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 81873.07530779815
+</pre></div>
+</div>
+<img alt="_images/e59739f01e60ccd45a24f97af9553887c8609b39544b5146856496934e0a6fc2.png" src="_images/e59739f01e60ccd45a24f97af9553887c8609b39544b5146856496934e0a6fc2.png" />
 </div>
 </div>
 <p><strong>SOA Question 4.10</strong></p>
-<p>The present value random variable for an insurance policy on (x) is expressed as:
-$<span class="math notranslate nohighlight">\(\begin{align*}
+<p>The present value random variable for an insurance policy on (x) is expressed as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
 Z &amp; =0, \quad \textrm{if } T_x \le 10\\
 &amp; =v^T, \quad \textrm{if } 10 &lt; T_x \le 20\\
 &amp; =2v^T, \quad \textrm{if } 20 &lt; T_x \le 30\\
 &amp; =0, \quad \textrm{thereafter}
-\end{align*}\)</span>$</p>
+\end{align*}\end{split}\]</div>
 <p>Determine which of the following is a correct expression for <span class="math notranslate nohighlight">\(E[Z]\)</span>.</p>
 <p>(A) <span class="math notranslate nohighlight">\(_{10|}\overline{A}_x + _{20|}\overline{A}_x - _{30|}\overline{A}_x\)</span></p>
 <p>(B) <span class="math notranslate nohighlight">\(\overline{A}_x + _{20}E_x \overline{A}_{x+20} - 2~_{30}E_x \overline{A}_{x +30}\)</span></p>
@@ -718,12 +831,12 @@ Z &amp; =0, \quad \textrm{if } T_x \le 10\\
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA Question 4.10:  (D)&quot;</span><span class="p">)</span>
 <span class="n">life</span> <span class="o">=</span> <span class="n">Insurance</span><span class="p">()</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>\
-                    <span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">S</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">maxage</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+                  <span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">S</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">maxage</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>  <span class="c1"># given target</span>
     <span class="k">if</span> <span class="mi">10</span> <span class="o">&lt;=</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">:</span> <span class="k">return</span> <span class="n">life</span><span class="o">.</span><span class="n">interest</span><span class="o">.</span><span class="n">v_t</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
     <span class="k">elif</span> <span class="mi">20</span> <span class="o">&lt;</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="mi">30</span><span class="p">:</span> <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">life</span><span class="o">.</span><span class="n">interest</span><span class="o">.</span><span class="n">v_t</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
-<span class="k">def</span> <span class="nf">A</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>  <span class="c1"># Z_x+k (t-k)                                                       </span>
+<span class="k">def</span> <span class="nf">A</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>    <span class="c1"># Z_x+k (t-k)                                                       </span>
     <span class="k">return</span> <span class="n">life</span><span class="o">.</span><span class="n">interest</span><span class="o">.</span><span class="n">v_t</span><span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">benefits</span><span class="o">=</span><span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
@@ -742,13 +855,15 @@ Z &amp; =0, \quad \textrm{if } T_x \le 10\\
                             <span class="o">*</span> <span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
                             <span class="o">+</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">20</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
                             <span class="o">-</span> <span class="n">life</span><span class="o">.</span><span class="n">E_x</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">20</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="p">)))]</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>   <span class="c1"># plot shapes of the target and the five functions</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">fun</span><span class="p">]</span> <span class="o">+</span> <span class="n">benefits</span><span class="p">):</span>
     <span class="n">life</span><span class="o">.</span><span class="n">Z_plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">benefit</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;C</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="s2">&quot;abcde&quot;</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span> <span class="k">if</span> <span class="n">i</span> <span class="k">else</span> <span class="s2">&quot;Z&quot;</span><span class="p">])</span>
+
 <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">b</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="n">fun</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">))</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">benefits</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ABCDE&quot;</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">z</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ABCDE&quot;</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">z</span><span class="p">)])</span>    <span class="c1"># output letter of the function most similar to target</span>
 </pre></div>
 </div>
 </div>
@@ -757,7 +872,7 @@ Z &amp; =0, \quad \textrm{if } T_x \le 10\\
 D
 </pre></div>
 </div>
-<img alt="_images/aff82270348bdd20e263cfb698ae608233d43df075faea45d14c9c4cb2866a61.png" src="_images/aff82270348bdd20e263cfb698ae608233d43df075faea45d14c9c4cb2866a61.png" />
+<img alt="_images/a082ed7801ed34bbaedc35803dff5c5481b4e17c9a6c2e069dddeb89b8d2000c.png" src="_images/a082ed7801ed34bbaedc35803dff5c5481b4e17c9a6c2e069dddeb89b8d2000c.png" />
 </div>
 </div>
 <p><strong>SOA Question 4.12</strong></p>
@@ -849,7 +964,7 @@ issued to (x)</p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SOA Question 4.15  (E) 0.0833 
-0.08334849338238598
+0.08333333333333331
 </pre></div>
 </div>
 </div>
@@ -882,21 +997,6 @@ Calculate Var(Z).</p></li>
 0.03567680106032681
 </pre></div>
 </div>
-</div>
-</div>
-<p><strong>Plot insurance present value r.v Z</strong></p>
-<p>Plot the insurance present value r.v. Z and survival probability of (x), and indicate median survival lifetime.  Assume mortality follows Standard Ultimate Life Table</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">actuarialmath.sult</span> <span class="kn">import</span> <span class="n">SULT</span>
-<span class="n">life</span> <span class="o">=</span> <span class="n">SULT</span><span class="p">()</span>
-<span class="n">life</span><span class="o">.</span><span class="n">Z_curve</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">life</span><span class="o">.</span><span class="n">Z_t</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
-             <span class="n">title</span><span class="o">=</span><span class="s2">&quot;PV insurance benefit if (x) survives median lifetime&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/18dac308967351d5334e026be351d2ee5210055db0e88ee96a27496aad5c9340.png" src="_images/18dac308967351d5334e026be351d2ee5210055db0e88ee96a27496aad5c9340.png" />
 </div>
 </div>
 </section>
@@ -970,9 +1070,14 @@ Calculate Var(Z).</p></li>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#present-value-of-life-insurance-r-v-z">Present value of life insurance r.v. <span class="math notranslate nohighlight">\(Z\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whole-life-insurance">Whole life insurance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#term-insurance">Term insurance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deferred-insurance">Deferred insurance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#endowment-insurance">Endowment insurance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-endowment">Pure endowment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variances">Variances</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-insurance">Varying insurance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilities-and-percentiles">Probabilities and percentiles</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>

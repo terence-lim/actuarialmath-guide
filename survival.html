@@ -416,30 +416,33 @@ document.write(`
 </ul>
 <p><span class="math notranslate nohighlight">\(S_x(t) = \dfrac{l_{x+t}}{l_x}\)</span></p>
 <ul class="simple">
-<li><p>relate survivor function to the number of lives in life table</p></li>
-</ul>
-<p><span class="math notranslate nohighlight">\(S_x(t) = e^{-\int_0^t \mu_{x+t} ds}\)</span></p>
-<ul class="simple">
-<li><p>relate survival function to the force of mortality</p></li>
+<li><p>a life table provides a concrete way to visualize the survival function: from a certain number of lives at a starting age, we apply survival probabilities to compute the expected number of lives at any other age.</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(S_x(0) = 1,~ S_x(\infty) = 0, ~S'_x(t) \le 0\)</span></p>
 <ul class="simple">
-<li><p>conditions to be a valid survival function</p></li>
+<li><p>conditions on <span class="math notranslate nohighlight">\(S_x\)</span> to be a valid survival function</p></li>
 </ul>
+<p><strong>Percentiles</strong>:</p>
+<p>A <span class="math notranslate nohighlight">\(100p\)</span>-th percentile of survival time is the time <span class="math notranslate nohighlight">\(t\)</span> such that there is a probability <span class="math notranslate nohighlight">\(p\)</span> that survival time ie less than <span class="math notranslate nohighlight">\(t\)</span>.</p>
 </section>
 <section id="force-of-mortality">
 <h2>Force of mortality<a class="headerlink" href="#force-of-mortality" title="Permalink to this heading">#</a></h2>
-<p><span class="math notranslate nohighlight">\(\mu_{x+t} = \dfrac{f_x(t)}{S_x(t)} = \dfrac{-\frac{\partial}{\partial t} _tp_x}{_tp_x} -\dfrac{\partial}{\partial t} \ln~ _tp_x\)</span></p>
+<p>What actuaries call the force of mortality, denoted <span class="math notranslate nohighlight">\(\mu_x\)</span>, is known as the hazard rate in survival analysis and the failure rate in reliability theory.</p>
+<p><span class="math notranslate nohighlight">\(\mu_{x+t} = \dfrac{f_x(t)}{S_x(t)} = \dfrac{-\frac{\partial}{\partial t} l_{x+t}}{l_{x+t}} = \dfrac{-\frac{\partial}{\partial t} _tp_x}{_tp_x} = \dfrac{\partial}{\partial t} \ln~ _tp_x\)</span></p>
 <ul class="simple">
-<li><p>is what actuaries call the force of mortality (and known as the hazard rate in survival analysis and the failure rate in reliability theory)</p></li>
-</ul>
-<p><span class="math notranslate nohighlight">\(\mu_{x} dx \approx Pr[T_0 \le x + dx | T_0 &gt; x]\)</span></p>
-<ul class="simple">
-<li><p>can be interpreted as the probability that <span class="math notranslate nohighlight">\((x)\)</span> dies before attaining age <span class="math notranslate nohighlight">\(x + dx\)</span></p></li>
+<li><p>the force of mortality actually completely determines the survival function</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(f_x(t)  =~ _tp_x ~\mu_{x+t}\)</span></p>
 <ul class="simple">
-<li><p>can be related to the lifetime density function</p></li>
+<li><p>can be related to the lifetime density function for <span class="math notranslate nohighlight">\((x)\)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(S_x(t) = e^{-\int_x^{x+t} \mu_{s} ds}  = e^{-\int_0^t \mu_{x+s} ds}\)</span></p>
+<ul class="simple">
+<li><p>the survival probability, conditional on survival to the age represented by the lower bound, can be computed by integrating the force of mortality up to the age represented by the upper bound.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\mu_{x} dx \approx Pr[T_0 \le x + dx | T_0 &gt; x]\)</span></p>
+<ul class="simple">
+<li><p>intuitively, multiplying the force of mortality by a small number <span class="math notranslate nohighlight">\(dx\)</span> can be interpreted as the probability that <span class="math notranslate nohighlight">\((x)\)</span> dies before attaining age <span class="math notranslate nohighlight">\(x + dx\)</span></p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(\int_0^{\infty} \mu_{x+s} ds = \infty\)</span></p>
 <ul class="simple">
@@ -448,6 +451,7 @@ document.write(`
 </section>
 <section id="actuarial-notation">
 <h2>Actuarial notation<a class="headerlink" href="#actuarial-notation" title="Permalink to this heading">#</a></h2>
+<p>The actuarial profession uses shorthand notation to record mathematical formulas:</p>
 <p><strong>Survival probability</strong></p>
 <p><span class="math notranslate nohighlight">\(~_tp_x = Pr[T_x &gt; t] \equiv S_x(t)\)</span></p>
 <ul class="simple">
@@ -464,23 +468,23 @@ age <span class="math notranslate nohighlight">\(x\)</span> from <span class="ma
 <ul class="simple">
 <li><p>probability that <span class="math notranslate nohighlight">\((x)\)</span> dies before age <span class="math notranslate nohighlight">\(x+t\)</span>.</p></li>
 </ul>
-<p><strong>Deferred mortality probability</strong></p>
+<p><strong>Deferred mortality rate</strong></p>
 <p><span class="math notranslate nohighlight">\(_{u|t} q_x = Pr[u &lt; T_x \le u + t] = \int_u^{u+t} ~ _sp_x\mu_{x+s} ds \)</span></p>
 <ul class="simple">
-<li><p>probability that <span class="math notranslate nohighlight">\((x)\)</span> survives <span class="math notranslate nohighlight">\(u\)</span> years, and then dies in the subsequent <span class="math notranslate nohighlight">\(t\)</span> years.</p></li>
+<li><p>probability that <span class="math notranslate nohighlight">\((x)\)</span> survives <span class="math notranslate nohighlight">\(u\)</span> years, and then dies within the subsequent <span class="math notranslate nohighlight">\(t\)</span> years.</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(_{u|t} q_x =~ \dfrac{l_{x+u} - l_{x+u+t}}{l_x}\)</span></p>
 <ul class="simple">
-<li><p>can be related to number of lives in the life table</p></li>
+<li><p>can be related to the number of lives in the life table: total number of deaths of ages between <span class="math notranslate nohighlight">\(x+u\)</span> and <span class="math notranslate nohighlight">\(x+u+t\)</span>, divided by number of lives aged <span class="math notranslate nohighlight">\(x\)</span></p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(_{u|t} q_x =~ _up_x {t}q_{x+u} =~ _{u+t}q_x -~ _uq_x =~ _up_x -~ _{u+t}p_x\)</span></p>
 <ul class="simple">
-<li><p>can be computed as either (1) deferred mortality (2) limited mortality or (3) complement of survival functions.</p></li>
+<li><p>there are three useful formulas for computing deferred mortality: (1) deferred mortality (2) limited mortality, or (3) limited survival probabilities.</p></li>
 </ul>
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">Survival</span></code> class implements methods to compute and apply relationships between the various forms of survival and mortality functions. The force of mortality function fully describes the lifetime distribution, just as the survival function does.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Survival</span></code> class implements methods to compute and apply relationships between the various equivalent forms of survival and mortality functions. The force of mortality function fully describes the lifetime distribution, just as the survival function does.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
@@ -493,22 +497,10 @@ age <span class="math notranslate nohighlight">\(x\)</span> from <span class="ma
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class Survival - Set and derive basic survival and mortality functions
 
-    Examples:
-      &gt;&gt;&gt; B, c = 0.00027, 1.1
-      &gt;&gt;&gt; def S(x,s,t): return (math.exp(-B * c**(x+s) * (c**t - 1)/math.log(c)))
-      &gt;&gt;&gt; f = Survival().set_survival(S=S).f_x(x=50, t=10)
-      &gt;&gt;&gt; def ell(x,s): return (1 - (x+s) / 60)**(1 / 3)
-      &gt;&gt;&gt; mu = Survival().set_survival(l=ell).mu_x(35) * 1000
-      &gt;&gt;&gt; def ell(x,s): return (1 - ((x+s)/250)) if x+s &lt; 40 else (1 - ((x+s)/100)**2)
-      &gt;&gt;&gt; q = Survival().set_survival(l=ell).q_x(30, t=20)
-      &gt;&gt;&gt; def fun(k):
-      &gt;&gt;&gt;     return Survival().set_survival(l=lambda x,s: 100*(k - (x+s)/2)**(2/3))      &gt;&gt;&gt;                      .mu_x(50)
-      &gt;&gt;&gt; k = int(Survival.solve(fun, target=1/48, grid=50))
-
     Methods:
     --------
 
-    set_survival(S, f, l, mu, maxage, minage):
+    set_survival(S, f, l, mu, minage, maxage):
       Construct the basic survival and mortality functions given any one form
 
     l_x(x, s):
@@ -535,6 +527,26 @@ age <span class="math notranslate nohighlight">\(x\)</span> from <span class="ma
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">set_survival</span></code> class method is called to specify any survival model by either its survival probability (with the argument <code class="docutils literal notranslate"><span class="pre">S</span></code>), force of mortality (<code class="docutils literal notranslate"><span class="pre">mu</span></code>), number of lives (<code class="docutils literal notranslate"><span class="pre">l</span></code>), or lifetime density (<code class="docutils literal notranslate"><span class="pre">f</span></code>) functions. Then the various survival and mortality probabilities and function values can be retrieved using methods with names similar to their respective actuarial notations: <code class="docutils literal notranslate"><span class="pre">p_x,</span> <span class="pre">q_x,</span> <span class="pre">f_x,</span> <span class="pre">mu_x,</span> <span class="pre">d_x,</span> <span class="pre">l_x</span></code>. In later sections, special mortality laws like the uniform and exponential distributions, along with their available shortcut formulas, will be described and implemented.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># specify survival function by linearly declining number of lives</span>
+<span class="n">life</span> <span class="o">=</span> <span class="n">Survival</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="mi">100</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">),</span> <span class="n">minage</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">maxage</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">set_interest</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">l_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">life</span><span class="o">.</span><span class="n">l_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span> <span class="n">life</span><span class="o">.</span><span class="n">l_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="n">life</span><span class="o">.</span><span class="n">d_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">life</span><span class="o">.</span><span class="n">d_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">50</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">]:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">life</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">),</span> <span class="n">life</span><span class="o">.</span><span class="n">q_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span> <span class="n">life</span><span class="o">.</span><span class="n">f_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">),</span> <span class="n">life</span><span class="o">.</span><span class="n">mu_x</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100 0 50 1 1
+0.9888888888888889 0.11111111111111105 1.0 0.011111111111111112
+0.98 0.20000000000000007 1.0 0.02
+0.9 1.0 1.0 0.1
+</pre></div>
+</div>
+</div>
+</div>
 <p><strong>SOA Question 2.3</strong>:</p>
 <p>You are given that mortality follows Gompertz Law with B = 0.00027 and c = 1.1.
 Calculate <span class="math notranslate nohighlight">\(f_{50}(10)\)</span>.</p>
@@ -569,7 +581,7 @@ Calculate <span class="math notranslate nohighlight">\(f_{50}(10)\)</span>.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># SOA Question 2.6: (C) 13.3
-13.340451278922776
+13.337287043994648
 </pre></div>
 </div>
 </div>
@@ -616,7 +628,7 @@ S_0(x) &amp; = 1 - \frac{x}{250}, \quad 0 \le x &lt; 40\\
     <span class="n">male</span> <span class="o">=</span> <span class="n">Survival</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">mu</span><span class="p">)</span>
     <span class="n">female</span> <span class="o">=</span> <span class="n">Survival</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="n">mu</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">(</span><span class="mi">75</span> <span class="o">*</span> <span class="n">female</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">25</span> <span class="o">*</span> <span class="n">male</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">))</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="n">Survival</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">85</span><span class="o">/</span><span class="mi">15</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="p">[</span><span class="mf">0.89</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">])</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">Survival</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">85</span><span class="o">/</span><span class="mi">15</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">Survival</span><span class="p">()</span><span class="o">.</span><span class="n">set_survival</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">s</span><span class="p">:</span> <span class="n">mu</span><span class="p">)</span><span class="o">.</span><span class="n">p_x</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 </pre></div>
@@ -645,7 +657,7 @@ S_0(x) &amp; = 1 - \frac{x}{250}, \quad 0 \le x &lt; 40\\
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CAS41-F99:12: k = 41
-41.005207994280646
+41.00115767959991
 </pre></div>
 </div>
 </div>
