@@ -1,0 +1,29 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: README.md
+chapters:
+- file: actuarial
+- file: interest
+- file: life
+- file: survival
+- file: lifetime
+- file: fractional
+- file: insurance
+- file: annuity
+- file: premiums
+- file: policyvalues
+- file: reserves
+- file: recursion
+- file: lifetable
+- file: sult
+- file: selectlife
+- file: mortalitylaws
+- file: constantforce
+- file: extrarisk
+- file: mthly
+- file: udd
+- file: woolhouse
+- file: faml
+

@@ -1,0 +1,10 @@
+jupyter-book
+matplotlib
+matplotlib-inline
+numpy
+pandas
+scipy
+sphinx-inline-tabs
+sphinx-examples
+sphinx-proof
+sphinx-hoverxref
