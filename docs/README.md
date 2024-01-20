@@ -78,7 +78,7 @@ print(R-S)   # solution = -277.19
 
 ## Resources
 
-1. [Jupyter notebook](https://github.com/terence-lim/actuarialmath-guide/blob/main/docs/faml.ipynb) or [run in Colab](https://colab.research.google.com/github/terence-lim/terence-lim.github.io/blob/master\
+1. [Jupyter notebook](https://terence-lim.github.io/notes/faml.ipynb) or [run in Colab](https://colab.research.google.com/github/terence-lim/terence-lim.github.io/blob/master\
 /notes/faml.ipynb), to solve all sample SOA FAM-L exam questions.
 
 1. [User Guide](https://actuarialmath-guide.readthedocs.io/en/latest/), or [download pdf](https://terence-lim.github.io/notes/actuarialmath-guide.pdf)
@@ -105,4 +105,4 @@ Github: [https://terence-lim.github.io](https://terence-lim.github.io)
 
 Enjoy!
 
-__Terence Lim__ ASA PhD CFA CPA CFP CAIA
+__Terence Lim__ PhD ASA CFA CPA CFP CAIA
