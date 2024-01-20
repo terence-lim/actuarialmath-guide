@@ -4,7 +4,7 @@
 title: "Solving Actuarial Math with Python"
 author: Terence Lim
 copyright: "2022-2024"
-logo: actuarialmath.png
+#logo: actuarialmath.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
