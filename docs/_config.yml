@@ -3,12 +3,13 @@
 
 title: "Solving Actuarial Math with Python"
 author: Terence Lim
-#logo: logo.png
+copyright: "2022-2024"
+logo: actuarialmath.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: 'force' #'auto' # 'auto' # 'off'  # force auto off
+  execute_notebooks: 'off' # force auto off
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -27,7 +28,7 @@ bibtex_bibfiles:
 # Information about where the book exists on the web
 repository:
   url: https://github.com/terence-lim/actuarialmath.git  # Online location of your book
-  path_to_book: docs  # Optional path to your book, relative to the repository root
+  path_to_book: "" # docs  # Optional path to your book, relative to the repository root
   branch: master  # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub buttons to your book
