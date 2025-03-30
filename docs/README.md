@@ -105,4 +105,4 @@ Github: [https://terence-lim.github.io](https://terence-lim.github.io)
 
 Enjoy!
 
-__Terence Lim__ PhD ASA CFA CPA CFP CAIA
+__Terence Lim__ PhD ASA CFA CPA CFP CAIA FRM
