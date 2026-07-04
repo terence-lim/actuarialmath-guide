@@ -5,15 +5,15 @@ __actuarialmath -- Solve Life Contingent Risks with Python__
 
 
 ```
-@book{lim2025financialdatascience,
+@book{lim2024actuarialmath,
   author       = {Terence Lim},
-  title        = {Solving Actual Math with Python},
+  title        = {Solving Actuarial Math with Python},
   year         = {2024},
-  url          = {https://terence-lim.github.io/docs/financial-data-science-notebooks.pdf},
+  url          = {https://terence-lim.github.io/notes/actuarialmath-guide.pdf},
 }
 ```
 
-Lim, Terence (2025). *Financial Data Science in Python Notebooks*. Retrieved from [https://terence-lim.github.io/notes/actuarialmath-guide.pdf](https://terence-lim.github.io/notes/actuarialmath-guide.pdf)
+Lim, Terence (2024). *Solving actuarial math with Python.* Retrieved from [https://terence-lim.github.io/notes/actuarialmath-guide.pdf](https://terence-lim.github.io/notes/actuarialmath-guide.pdf)
 
 
 
